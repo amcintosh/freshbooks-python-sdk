@@ -1,0 +1,13 @@
+{
+    "response": {
+        "errors": [
+            {
+                "errno": 1012,
+                "field": "userid",
+                "message": "Client not found.",
+                "object": "client",
+                "value": "12345"
+            }
+        ]
+    }
+}

@@ -5,7 +5,6 @@ from decimal import Decimal
 
 
 class AccountingResource(Resource):
-
     def __init__(self, base_url, access_token, accounting_path, single_name, list_name):
         super().__init__(base_url, access_token)
         self.accounting_path = accounting_path
@@ -14,8 +13,7 @@ class AccountingResource(Resource):
 
     def _get_url(self, account_id, resource_id=None):
         if resource_id:
-            return "{}/accounting/account/{}/{}/{}".format(
-                self.base_url, account_id, self.accounting_path, resource_id)
+            return "{}/accounting/account/{}/{}/{}".format(self.base_url, account_id, self.accounting_path, resource_id)
         return "{}/accounting/account/{}/{}".format(self.base_url, account_id, self.accounting_path)
 
     def _extract_error(self, errors):
@@ -41,7 +39,7 @@ class AccountingResource(Resource):
             raise FailedRequest(status, "Failed to parse response", raw_response=response.text)
 
         if "response" not in content:
-            raise FailedRequest("Returned an unexpected response", raw_response=response.text)
+            raise FailedRequest(status, "Returned an unexpected response", raw_response=response.text)
 
         response = content["response"]
         if status >= 400:

@@ -1,0 +1,144 @@
+{
+    "project": {
+        "id": 654321,
+        "title": "Awesome Project",
+        "description": null,
+        "due_date": null,
+        "client_id": null,
+        "internal": true,
+        "budget": null,
+        "fixed_price": null,
+        "rate": null,
+        "billing_method": "project_rate",
+        "project_type": "hourly_rate",
+        "project_manager_id": null,
+        "active": true,
+        "complete": false,
+        "sample": false,
+        "created_at": "2020-09-13T01:07:51",
+        "updated_at": "2020-09-13T03:10:13",
+        "logged_duration": null,
+        "services": [
+            {
+                "business_id": 439000,
+                "id": 154,
+                "name": "Some Service",
+                "billable": true,
+                "vis_state": 0
+            },
+            {
+                "business_id": 439000,
+                "id": 155,
+                "name": "A new service",
+                "billable": true,
+                "vis_state": 0
+            }
+        ],
+        "billed_amount": "0.00",
+        "billed_status": "unbilled",
+        "retainer_id": null,
+        "expense_markup": 0,
+        "group": {
+            "id": 764645,
+            "members": [
+                {
+                    "id": 4652287,
+                    "identity_id": 65001,
+                    "role": "owner",
+                    "first_name": "Gordon",
+                    "last_name": "Shumway",
+                    "email": "gordon.shumway@AmericanCyanamid.com",
+                    "company": "American Cyanamid",
+                    "active": true
+                }
+            ],
+            "pending_invitations": []
+        }
+    },
+    "abilities": [
+        {
+            "name": "can_edit",
+            "value": true
+        },
+        {
+            "name": "can_archive",
+            "value": true
+        },
+        {
+            "name": "can_generate_invoice",
+            "value": false
+        },
+        {
+            "name": "can_delete",
+            "value": true
+        },
+        {
+            "name": "can_invite_team_member",
+            "value": true
+        },
+        {
+            "name": "can_manage_services",
+            "value": true
+        },
+        {
+            "name": "can_view_team_time",
+            "value": true
+        },
+        {
+            "name": "can_edit_hourly_budget",
+            "value": true
+        },
+        {
+            "name": "can_edit_client",
+            "value": true
+        },
+        {
+            "name": "can_edit_project_manager",
+            "value": true
+        },
+        {
+            "name": "can_view_invoices_tab",
+            "value": true
+        },
+        {
+            "name": "can_view_fixed_price",
+            "value": true
+        },
+        {
+            "name": "can_edit_fixed_price",
+            "value": true
+        },
+        {
+            "name": "can_edit_end_date",
+            "value": true
+        },
+        {
+            "name": "can_edit_flat_rate",
+            "value": true
+        },
+        {
+            "name": "can_edit_project_type",
+            "value": true
+        },
+        {
+            "name": "can_edit_title",
+            "value": true
+        },
+        {
+            "name": "can_view_review_tab",
+            "value": true
+        },
+        {
+            "name": "can_view_discuss_tab",
+            "value": true
+        },
+        {
+            "name": "can_track_time",
+            "value": true
+        },
+        {
+            "name": "can_create_comment",
+            "value": true
+        }
+    ]
+}

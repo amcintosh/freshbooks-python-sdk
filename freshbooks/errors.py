@@ -1,5 +1,15 @@
 class FreshBooksError(Exception):
-    """Exception thrown when FreshBooks returns a response, but it is not json parsable.
+    """Exception thrown when FreshBooks returns a non-200 response.
+
+    Example:
+    ```python
+    try:
+        client = freshBooksClient.clients.get(self.account_id, client_id)
+    except FreshBooksError as e:
+        assert str(e) == "Client not found."
+        assert e.status_code == 404
+        assert e.error_code == 1012
+    ```
 
     Attributes:
         message: Error message

@@ -1,14 +1,13 @@
-
 import requests
 
 
 class HttpVerbs(object):
-    GET = 'GET'
-    POST = 'POST'
-    PUT = 'PUT'
-    PATCH = 'PATCH'
-    DELETE = 'DELETE'
-    HEAD = 'HEAD'
+    GET = "GET"
+    POST = "POST"
+    PUT = "PUT"
+    PATCH = "PATCH"
+    DELETE = "DELETE"
+    HEAD = "HEAD"
 
 
 class Resource:
@@ -23,9 +22,7 @@ class Resource:
     def headers(self, method):
         """Get headers required for API calls"""
 
-        headers = {
-            'Authorization': f'Bearer {self.access_token}'
-        }
+        headers = {"Authorization": f"Bearer {self.access_token}"}
         if method in [HttpVerbs.POST, HttpVerbs.PUT, HttpVerbs.PATCH]:
             headers["Content-Type"] = "application/json"
         return headers
@@ -44,9 +41,4 @@ class Resource:
         elif method is HttpVerbs.HEAD:
             session = self.session.head
 
-        return session(
-            uri,
-            data=data,
-            headers=self.headers(method),
-            timeout=self.DEFAULT_TIMEOUT
-        )
+        return session(uri, data=data, headers=self.headers(method), timeout=self.DEFAULT_TIMEOUT)

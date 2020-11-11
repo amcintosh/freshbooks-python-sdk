@@ -5,7 +5,6 @@ from decimal import Decimal
 
 
 class ProjectsResource(Resource):
-
     def __init__(self, base_url, access_token, project_path, single_name, list_name=None):
         super().__init__(base_url, access_token)
         self.project_path = project_path
@@ -16,10 +15,8 @@ class ProjectsResource(Resource):
 
     def _get_url(self, business_id, resource_id=None):
         if resource_id:
-            return "{}/projects/business/{}/{}/{}".format(
-                self.base_url, business_id, self.project_path, resource_id)
-        return "{}/projects/business/{}/{}".format(
-            self.base_url, business_id, self.project_path)
+            return "{}/projects/business/{}/{}/{}".format(self.base_url, business_id, self.project_path, resource_id)
+        return "{}/projects/business/{}/{}".format(self.base_url, business_id, self.project_path)
 
     def _request(self, url, method, data=None):
         response = self._send_request(url, method, data)

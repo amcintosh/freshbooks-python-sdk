@@ -1,6 +1,6 @@
 from freshbooks.errors import FailedRequest, FreshBooksError
 from freshbooks.api.resource import Resource, HttpVerbs
-from freshbooks.models import Result
+from freshbooks.models import Result, ListResult
 from decimal import Decimal
 
 
@@ -22,7 +22,7 @@ class ProjectsResource(Resource):
         response = self._send_request(url, method, data)
 
         status = response.status_code
-        if status == 200 and method == HttpVerbs.HEAD:
+        if status == 200 and method == HttpVerbs.HEAD:  # pragma: no cover
             # no content returned from a HEAD
             return
 
@@ -40,3 +40,7 @@ class ProjectsResource(Resource):
     def get(self, business_id, resource_id):
         data = self._request(self._get_url(business_id, resource_id), HttpVerbs.GET)
         return Result(self.single_name, data)
+
+    def list(self, business_id):
+        data = self._request(self._get_url(business_id), HttpVerbs.GET)
+        return ListResult(self.list_name, self.single_name, data)

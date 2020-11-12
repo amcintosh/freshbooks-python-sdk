@@ -12,9 +12,11 @@ class Client:
     def __init__(self, client_id=None, client_secret=None, redirect_uri=None,
                  access_token=None, refresh_token=None):
         """
-        Create a new API client instance for the given `client_id` and `client_secret`. This will allow you to follow the authentication flow to get an `access_token`.
+        Create a new API client instance for the given `client_id` and `client_secret`.
+        This will allow you to follow the authentication flow to get an `access_token`.
 
-        Alternatively, you can provide an `access_token` directly, in which case then you don't need to specify a `client_id` (though the token cannot be refreshed in this case).
+        Alternatively, you can provide an `access_token` directly, in which case then you don't need
+        to specify a `client_id` (though the token cannot be refreshed in this case).
 
         TODO: Rate limits, change timeout
 
@@ -37,7 +39,7 @@ class Client:
         self.base_url = os.getenv("FRESHBOOKS_API_URL", API_BASE_URL)
         self.authorization_url = "{}{}".format(os.getenv("FRESHBOOKS_AUTH_URL", AUTH_BASE_URL), AUTH_URL)
 
-    def __str__(self):
+    def __str__(self):  # pragma: no cover
         return "FreshBooks Client: {}".format(self.client_id or "No client_id")
 
     @property

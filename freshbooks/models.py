@@ -71,7 +71,7 @@ class ListResult:
 
     def __getitem__(self, index):
         results = self.data.get(self.name, [])
-        return Result(self.single_name, results[index])
+        return Result(self.single_name, {self.single_name: results[index]})
 
     def __iter__(self):
         self.n = 0

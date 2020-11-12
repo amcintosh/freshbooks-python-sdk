@@ -29,7 +29,7 @@ class AccountingResource(Resource):
         response = self._send_request(url, method, data)
 
         status = response.status_code
-        if status == 200 and method == HttpVerbs.HEAD:
+        if status == 200 and method == HttpVerbs.HEAD:  # pragma: no cover
             # no content returned from a HEAD
             return
 

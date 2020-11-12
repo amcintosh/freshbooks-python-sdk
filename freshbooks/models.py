@@ -1,3 +1,6 @@
+from collections import namedtuple
+
+
 class Result:
     """Result object from API calls with a single resource returned.
 
@@ -5,7 +8,7 @@ class Result:
 
     Example:
     ```python
-    client = FreshBooksClient.clients.get(account_id, user_id)
+    client = freshBooksClient.clients.get(account_id, user_id)
     assert client.organization == "FreshBooks"
     assert client.userid == user_id
     ```
@@ -14,8 +17,8 @@ class Result:
 
     Example:
     ```python
-    assert client.data['organization'] == "FreshBooks"
-    assert client.data['userid'] == user_id
+    assert client.data["organization"] == "FreshBooks"
+    assert client.data["userid"] == user_id
     ```
     """
 
@@ -24,6 +27,9 @@ class Result:
         self.data = data[name]
 
     def __str__(self):
+        return "Result({})".format(self.name)
+
+    def __repr__(self):
         return "Result({})".format(self.name)
 
     def __getattr__(self, field):
@@ -37,7 +43,7 @@ class ListResult:
 
     Example:
     ```python
-    clients = FreshBooksClient.clients.list(account_id)
+    clients = freshBooksClient.clients.list(account_id)
     assert clients[0].organization == "FreshBooks"
     ```
 
@@ -54,16 +60,30 @@ class ListResult:
     ```python
     for client in clients:
         assert client.organization == "FreshBooks"
-        assert client.data['organization'] == "FreshBooks"
+        assert client.data["organization"] == "FreshBooks"
     ```
+
+    Pagination results are included in the `pages` attribute:
+    ```python
+    >>> clients.pages
+    PageResult(page=1, pages=1, per_page=30, total=6)
+    >>> clients.pages.total
+    6
+    ```
+
+    For including pagination in requests, see `freshbooks.builders.Pagination`.
     """
 
     def __init__(self, name, single_name, data):
         self.name = name
         self.single_name = single_name
         self.data = data
+        self.pages = self._constructPages(data)
 
     def __str__(self):
+        return "Result({})".format(self.name)
+
+    def __repr__(self):
         return "Result({})".format(self.name)
 
     def __len__(self):
@@ -85,3 +105,13 @@ class ListResult:
             return result
         else:
             raise StopIteration
+
+    def _constructPages(self, data):
+        if data.get("meta"):  # Project-style endpoint
+            data = data["meta"]
+        page = data["page"]
+        pages = data["pages"]
+        per_page = data["per_page"]
+        total = data["total"] # TODO total_pages too
+        PageResult = namedtuple("PageResult", ["page", "pages", "per_page", "total"])
+        return PageResult(page, pages, per_page, total)

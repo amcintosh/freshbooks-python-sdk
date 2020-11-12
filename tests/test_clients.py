@@ -2,7 +2,7 @@ import json
 import httpretty
 
 from freshbooks import Client as FreshBooksClient
-from freshbooks import FreshBooksError, FailedRequest
+from freshbooks import Pagination, FreshBooksError, FailedRequest
 from freshbooks.client import API_BASE_URL
 from tests import get_fixture
 
@@ -97,6 +97,7 @@ class TestClientResources:
         assert str(clients) == "Result(clients)"
         assert clients.name == "clients"
         assert len(clients) == 3
+        assert clients.pages.total == 3
         assert clients.data["total"] == 3
         assert clients[0].userid == client_ids[0]
         assert clients.data["clients"][0]["userid"] == client_ids[0]
@@ -132,3 +133,20 @@ class TestClientResources:
         assert clients.data["clients"] == []
         for client in clients:
             assert False, "With no results, this should not be called"
+
+    @httpretty.activate
+    def test_list_clients__paged(self):
+        url = "{}/accounting/account/{}/users/clients?page=2&per_page=1".format(API_BASE_URL, self.account_id)
+        httpretty.register_uri(
+            httpretty.GET,
+            url,
+            body=json.dumps(get_fixture("list_clients_response")),
+            status=200
+        )
+
+        p = Pagination(2, 1)
+        self.freshBooksClient.clients.list(self.account_id, pagination=p)
+
+        expected_params = {"page": ['2'], "per_page": ["1"]}
+        assert httpretty.last_request().querystring == expected_params
+

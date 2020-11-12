@@ -16,6 +16,14 @@ class AccountingResource(Resource):
             return "{}/accounting/account/{}/{}/{}".format(self.base_url, account_id, self.accounting_path, resource_id)
         return "{}/accounting/account/{}/{}".format(self.base_url, account_id, self.accounting_path)
 
+    def _build_query_string(self, pagination):
+        query_string = ""
+        if pagination:
+            query_string += pagination._build()
+        if query_string:
+            query_string = "?" + query_string[1:]
+        return query_string
+
     def _extract_error(self, errors):
         if not errors:
             return "Unknown error", None
@@ -54,8 +62,10 @@ class AccountingResource(Resource):
         data = self._request(self._get_url(account_id, resource_id), HttpVerbs.GET)
         return Result(self.single_name, data)
 
-    def list(self, account_id):
-        data = self._request(self._get_url(account_id), HttpVerbs.GET)
+    def list(self, account_id, pagination=None):
+        resource_url = self._get_url(account_id)
+        query_string = self._build_query_string(pagination)
+        data = self._request(f"{resource_url}{query_string}", HttpVerbs.GET)
         return ListResult(self.list_name, self.single_name, data)
 
     def create(self, account_id):

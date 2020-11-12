@@ -18,7 +18,7 @@ class Client:
         Alternatively, you can provide an `access_token` directly, in which case then you don't need
         to specify a `client_id` (though the token cannot be refreshed in this case).
 
-        TODO: Rate limits, change timeout
+        TODO: Rate limits, change timeout, retries
 
         Args:
             client_id: The FreshBooks application client id
@@ -42,6 +42,9 @@ class Client:
     def __str__(self):  # pragma: no cover
         return "FreshBooks Client: {}".format(self.client_id or "No client_id")
 
+    def __repr__(self):  # pragma: no cover
+        return "FreshBooks Client: {}".format(self.client_id or "No client_id")
+
     @property
     def clients(self):
         """FreshBooks clients resource with calls to get, list.
@@ -50,6 +53,6 @@ class Client:
 
     @property
     def projects(self):
-        """FreshBooks clients resource with calls to get.
+        """FreshBooks projects resource with calls to get, list.
         """
         return ProjectsResource(self.base_url, self.access_token, "projects", "project")

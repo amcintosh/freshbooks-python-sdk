@@ -81,6 +81,7 @@ class TestClientResources:
 
         assert projects.name == "projects"
         assert len(projects) == 3
+        assert projects.pages.total == 3
         assert projects.data["meta"]["total"] == 3
         assert projects.data["projects"][0]["id"] == project_ids[0]
         for index, project in enumerate(projects):

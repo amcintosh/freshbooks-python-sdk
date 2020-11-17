@@ -2,12 +2,12 @@ import json
 import httpretty
 
 from freshbooks import Client as FreshBooksClient
-from freshbooks import FreshBooksError, FailedRequest
+from freshbooks import PaginatorBuilder, FilterBuilder, FreshBooksError, FailedRequest
 from freshbooks.client import API_BASE_URL
 from tests import get_fixture
 
 
-class TestClientResources:
+class TestProjectsResources:
     def setup_method(self, method):
         self.business_id = 98765
         self.freshBooksClient = FreshBooksClient(access_token="some_token")
@@ -87,3 +87,36 @@ class TestClientResources:
         for index, project in enumerate(projects):
             assert project.id == project_ids[index]
         assert httpretty.last_request().headers["Authorization"] == "Bearer some_token"
+
+    @httpretty.activate
+    def test_list_projects__paged(self):
+        url = "{}/projects/business/{}/projects?page=2&per_page=1".format(API_BASE_URL, self.business_id)
+        httpretty.register_uri(
+            httpretty.GET,
+            url,
+            body=json.dumps(get_fixture("list_projects_response")),
+            status=200
+        )
+
+        p = PaginatorBuilder(2, 1)
+        self.freshBooksClient.projects.list(self.business_id, builders=[p])
+
+        expected_params = {"page": ["2"], "per_page": ["1"]}
+        assert httpretty.last_request().querystring == expected_params
+
+    @httpretty.activate
+    def test_list_projects__filtered(self):
+        url = "{}/projects/business/{}/projects?page=2&per_page=1".format(API_BASE_URL, self.business_id)
+        httpretty.register_uri(
+            httpretty.GET,
+            url,
+            body=json.dumps(get_fixture("list_projects_response")),
+            status=200
+        )
+
+        filter = FilterBuilder()
+        filter.boolean("active", True)
+        self.freshBooksClient.projects.list(self.business_id, builders=[filter])
+
+        expected_params = {"active": ["True"]}
+        assert httpretty.last_request().querystring == expected_params

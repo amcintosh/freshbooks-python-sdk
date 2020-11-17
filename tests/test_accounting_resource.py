@@ -1,13 +1,14 @@
+from datetime import datetime
 import json
 import httpretty
 
 from freshbooks import Client as FreshBooksClient
-from freshbooks import Pagination, FreshBooksError, FailedRequest
+from freshbooks import PaginatorBuilder, FilterBuilder, FreshBooksError, FailedRequest
 from freshbooks.client import API_BASE_URL
 from tests import get_fixture
 
 
-class TestClientResources:
+class TestAccountingResources:
     def setup_method(self, method):
         self.account_id = "ACM123"
         self.freshBooksClient = FreshBooksClient(access_token="some_token")
@@ -144,9 +145,33 @@ class TestClientResources:
             status=200
         )
 
-        p = Pagination(2, 1)
-        self.freshBooksClient.clients.list(self.account_id, pagination=p)
+        p = PaginatorBuilder(2, 1)
+        self.freshBooksClient.clients.list(self.account_id, builders=[p])
 
-        expected_params = {"page": ['2'], "per_page": ["1"]}
+        expected_params = {"page": ["2"], "per_page": ["1"]}
         assert httpretty.last_request().querystring == expected_params
 
+    @httpretty.activate
+    def test_list_clients__filtered(self):
+        url = ("{}/accounting/account/{}/users/clients?search[userids][]=1&search[userids][]=2"
+               "&search[date_min]=2010-10-17&search[date_max]=2012-11-21").format(API_BASE_URL, self.account_id)
+        httpretty.register_uri(
+            httpretty.GET,
+            url,
+            body=json.dumps(get_fixture("list_clients_response")),
+            status=200
+        )
+
+        date_min = datetime(year=2010, month=10, day=17, hour=5, minute=47)
+        date_max = datetime(year=2012, month=11, day=21, hour=12, minute=34)
+        filter = FilterBuilder()
+        filter.in_list("userid", [1, 2])
+
+        filter.between("date", min=date_min, max=date_max)
+        self.freshBooksClient.clients.list(self.account_id, builders=[filter])
+
+        expected_params = {
+            "search[date_max]": ["2012-11-21"],
+            "search[date_min]": ["2010-10-17"],
+            "search[userids][]": ["1", "2"]}
+        assert httpretty.last_request().querystring == expected_params

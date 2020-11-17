@@ -42,3 +42,12 @@ class Resource:
             session = self.session.head
 
         return session(uri, data=data, headers=self.headers(method), timeout=self.DEFAULT_TIMEOUT)
+
+    def _build_query_string(self, builders):
+        query_string = ""
+        if builders:
+            for builder in builders:
+                query_string += builder.build()
+        if query_string:
+            query_string = "?" + query_string[1:]
+        return query_string

@@ -29,7 +29,7 @@ class Result:
     def __str__(self):
         return "Result({})".format(self.name)
 
-    def __repr__(self):
+    def __repr__(self):  # pragma: no cover
         return "Result({})".format(self.name)
 
     def __getattr__(self, field):
@@ -71,7 +71,7 @@ class ListResult:
     6
     ```
 
-    For including pagination in requests, see `freshbooks.builders.Pagination`.
+    For including pagination in requests, see `freshbooks.builders.paginator.PaginatorBuilder`.
     """
 
     def __init__(self, name, single_name, data):
@@ -83,7 +83,7 @@ class ListResult:
     def __str__(self):
         return "Result({})".format(self.name)
 
-    def __repr__(self):
+    def __repr__(self):  # pragma: no cover
         return "Result({})".format(self.name)
 
     def __len__(self):
@@ -112,6 +112,6 @@ class ListResult:
         page = data["page"]
         pages = data["pages"]
         per_page = data["per_page"]
-        total = data["total"] # TODO total_pages too
+        total = data["total"]
         PageResult = namedtuple("PageResult", ["page", "pages", "per_page", "total"])
         return PageResult(page, pages, per_page, total)

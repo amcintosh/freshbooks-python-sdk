@@ -1,6 +1,6 @@
 # FreshBooks Python SDK
 
-The FreshBooks Python SDK allows you to more easily utilize the FreshBooks API.
+The FreshBooks Python SDK allows you to more easily utilize the [FreshBooks API](https://www.freshbooks.com/api).
 
 ## Installation
 
@@ -80,6 +80,9 @@ for client in clients:
 
 #### Pagination, Filters, and Includes
 
+`list` calls take a list of builder objects that can be used to paginate, filter, and include
+optional data in the response.
+
 ##### Pagination
 
 Pagination results are included in `list` responses in the `pages` attribute:
@@ -92,36 +95,73 @@ PageResult(page=1, pages=1, per_page=30, total=6)
 6
 ```
 
-To make change a paginated call, first build a `Pagination` object that can be passed into the `list` method.
+To make change a paginated call, first build a `PaginatorBuilder` object that can be passed into the `list` method.
 
 ```python
->>> from freshbooks import Pagination
+>>> from freshbooks import PaginatorBuilder
 
->>> p = Pagination(2, 4)
->>> p
-Pagination(page=2, per_page=4)
+>>> paginator = PaginatorBuilder(2, 4)
+>>> paginator
+PaginatorBuilder(page=2, per_page=4)
 
->>> clients = freshBooksClient.clients.list(account_id, pagination=p)
+>>> clients = freshBooksClient.clients.list(account_id, builders=[paginator])
 >>> clients.pages
 PageResult(page=2, pages=3, per_page=4, total=9)
 ```
 
-`Pagination` has methods `page` and `per_page` to return or set the values. When setting the values the calls can be chained.
+`PaginatorBuilder` has methods `page` and `per_page` to return or set the values. When setting the values the calls can be chained.
 
 ```python
->>> p = Pagination(1, 3)
->>> p
-Pagination(page=2, per_page=4)
+>>> paginator = PaginatorBuilder(1, 3)
+>>> paginator
+PaginatorBuilder(page=1, per_page=3)
 
->>> pagination.page()
+>>> paginator.page()
 1
 
->>> p.page(2).per_page(4)
->>> p
-Pagination(page=2, per_page=4)
+>>> paginator.page(2).per_page(4)
+>>> paginator
+PaginatorBuilder(page=2, per_page=4)
 ```
 
 ##### Filters
+
+To filter which results are return by `list` method calls, construct a `FilterBuilder` and pass that
+in the list of builders to the `list` method.
+
+```python
+>>> from freshbooks import FilterBuilder
+
+>>> filter = FilterBuilder()
+>>> filter.equals("userid", 123)
+
+>>> clients = freshBooksClient.clients.list(account_id, builders=[filter])
+```
+
+Filters can be builts with the methods: `equals`, `in_list`, `like`, `between`, and `boolean`,
+which can be chained together.
+
+```python
+>>> f = FilterBuilder()
+>>> f.like("email_like", "@freshbooks.com")
+FilterBuilder(&search[email_like]=@freshbooks.com)
+
+>>> f = FilterBuilder()
+>>> f.in_list("clientids", [123, 456]).boolean("active", False)
+FilterBuilder(&search[clientids][]=123&search[clientids][]=456&active=False)
+
+>>> f = FilterBuilder()
+>>> f.boolean("active", False).in_list("clientids", [123, 456])
+FilterBuilder(&active=False&search[clientids][]=123&search[clientids][]=456)
+
+>>> f = FilterBuilder()
+>>> f.between("amount", [1, 10])
+FilterBuilder(&search[amount_min]=1&search[amount_max]=10)
+
+>>> f = FilterBuilder()
+>>> f.between("start_date", date.today())
+FilterBuilder(&search[start_date]=2020-11-21)
+```
 
 ##### Includes
 

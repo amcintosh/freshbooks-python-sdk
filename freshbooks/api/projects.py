@@ -41,6 +41,8 @@ class ProjectsResource(Resource):
         data = self._request(self._get_url(business_id, resource_id), HttpVerbs.GET)
         return Result(self.single_name, data)
 
-    def list(self, business_id):
-        data = self._request(self._get_url(business_id), HttpVerbs.GET)
+    def list(self, business_id, builders=None):
+        resource_url = self._get_url(business_id)
+        query_string = self._build_query_string(builders)
+        data = self._request(f"{resource_url}{query_string}", HttpVerbs.GET)
         return ListResult(self.list_name, self.single_name, data)

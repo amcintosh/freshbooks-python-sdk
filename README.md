@@ -78,10 +78,30 @@ for client in clients:
 
 #### Create and Update
 
+API calls to create and update take a dictionary of the resource data. A successful call will return a `Result` object as if a `get` call.
+
+Create:
+
+```python
+payload = {"email": "john.doe@abcorp.com"}
+new_client = FreshBooksClient.clients.create(account_id, payload)
+
+client_id = new_client.userid
+```
+
+Update:
+
+```python
+payload = {"email": "john.doe@abcorp.ca"}
+client = FreshBooksClient.clients.update(account_id, client_id, payload)
+
+assert client.email == "john.doe@abcorp.ca"
+```
+
 #### Pagination, Filters, and Includes
 
 `list` calls take a list of builder objects that can be used to paginate, filter, and include
-optional data in the response.
+optional data in the response. See [FreshBooks API - Parameters](https://www.freshbooks.com/api/parameters) documentation.
 
 ##### Pagination
 

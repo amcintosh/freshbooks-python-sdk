@@ -60,11 +60,15 @@ class AccountingResource(Resource):
         data = self._request(f"{resource_url}{query_string}", HttpVerbs.GET)
         return ListResult(self.list_name, self.single_name, data)
 
-    def create(self, account_id):
-        pass
+    def create(self, account_id, data):
+        response = self._request(self._get_url(account_id), HttpVerbs.POST, data={self.single_name: data})
+        return Result(self.single_name, response)
 
-    def update(self, account_id, resource_id):
-        pass
+    def update(self, account_id, resource_id, data):
+        response = self._request(
+            self._get_url(account_id, resource_id), HttpVerbs.PUT, data={self.single_name: data}
+        )
+        return Result(self.single_name, response)
 
     def delete(self, account_id, resource_id):
         pass

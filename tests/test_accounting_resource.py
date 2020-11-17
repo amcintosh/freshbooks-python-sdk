@@ -175,3 +175,47 @@ class TestAccountingResources:
             "search[date_min]": ["2010-10-17"],
             "search[userids][]": ["1", "2"]}
         assert httpretty.last_request().querystring == expected_params
+
+    @httpretty.activate
+    def test_create_client(self):
+        client_id = 56789
+        url = "{}/accounting/account/{}/users/clients".format(API_BASE_URL, self.account_id)
+        httpretty.register_uri(
+            httpretty.POST,
+            url,
+            body=json.dumps(get_fixture("create_client_response")),
+            status=200
+        )
+
+        payload = {"email": "john.doe@abcorp.com"}
+        client = self.freshBooksClient.clients.create(self.account_id, payload)
+
+        assert str(client) == "Result(client)"
+        assert client.name == "client"
+        assert client.data["email"] == "john.doe@abcorp.com"
+        assert client.email == "john.doe@abcorp.com"
+        assert client.userid == client_id
+        assert httpretty.last_request().headers["Authorization"] == "Bearer some_token"
+        assert httpretty.last_request().headers["Content-Type"] == "application/json"
+
+    @httpretty.activate
+    def test_update_client(self):
+        client_id = 56789
+        url = "{}/accounting/account/{}/users/clients/{}".format(API_BASE_URL, self.account_id, client_id)
+        httpretty.register_uri(
+            httpretty.PUT,
+            url,
+            body=json.dumps(get_fixture("create_client_response")),
+            status=200
+        )
+
+        payload = {"email": "john.doe@abcorp.com"}
+        client = self.freshBooksClient.clients.update(self.account_id, client_id, payload)
+
+        assert str(client) == "Result(client)"
+        assert client.name == "client"
+        assert client.data["email"] == "john.doe@abcorp.com"
+        assert client.email == "john.doe@abcorp.com"
+        assert client.userid == client_id
+        assert httpretty.last_request().headers["Authorization"] == "Bearer some_token"
+        assert httpretty.last_request().headers["Content-Type"] == "application/json"

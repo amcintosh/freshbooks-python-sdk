@@ -1,3 +1,4 @@
+import json
 import requests
 
 
@@ -32,10 +33,13 @@ class Resource:
             session = self.session.get
         elif method is HttpVerbs.POST:
             session = self.session.post
+            data = json.dumps(data)
         elif method is HttpVerbs.PUT:
             session = self.session.put
+            data = json.dumps(data)
         elif method is HttpVerbs.PATCH:
             session = self.session.patch
+            data = json.dumps(data)
         elif method is HttpVerbs.DELETE:
             session = self.session.delete
         elif method is HttpVerbs.HEAD:

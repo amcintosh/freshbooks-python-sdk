@@ -46,3 +46,13 @@ class ProjectsResource(Resource):
         query_string = self._build_query_string(builders)
         data = self._request(f"{resource_url}{query_string}", HttpVerbs.GET)
         return ListResult(self.list_name, self.single_name, data)
+
+    def create(self, business_id, data):
+        response = self._request(self._get_url(business_id), HttpVerbs.POST, data={self.single_name: data})
+        return Result(self.single_name, response)
+
+    def update(self, business_id, resource_id, data):
+        response = self._request(
+            self._get_url(business_id, resource_id), HttpVerbs.PUT, data={self.single_name: data}
+        )
+        return Result(self.single_name, response)

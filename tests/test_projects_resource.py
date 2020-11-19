@@ -120,3 +120,54 @@ class TestProjectsResources:
 
         expected_params = {"active": ["True"]}
         assert httpretty.last_request().querystring == expected_params
+
+    @httpretty.activate
+    def test_create_project(self):
+        url = "{}/projects/business/{}/projects".format(API_BASE_URL, self.business_id)
+        httpretty.register_uri(
+            httpretty.POST,
+            url,
+            body=json.dumps(get_fixture("create_project_response")),
+            status=200
+        )
+
+        payload = {
+            "title": "Some Project",
+            "client_id": "56789",
+            "project_type": "fixed_price",
+            "fixed_price": "600"
+        }
+        project = self.freshBooksClient.projects.create(self.business_id, payload)
+
+        assert str(project) == "Result(project)"
+        assert project.id == 12345
+        assert project.title == "Some Project"
+        assert project.data["title"] == "Some Project"
+        assert httpretty.last_request().headers["Authorization"] == "Bearer some_token"
+        assert httpretty.last_request().headers["Content-Type"] == "application/json"
+
+    @httpretty.activate
+    def test_update_project(self):
+        project_id = 12345
+        url = "{}/projects/business/{}/projects/{}".format(API_BASE_URL, self.business_id, project_id)
+        httpretty.register_uri(
+            httpretty.PUT,
+            url,
+            body=json.dumps(get_fixture("create_project_response")),
+            status=200
+        )
+
+        payload = {
+            "title": "Some Project",
+            "client_id": "56789",
+            "project_type": "fixed_price",
+            "fixed_price": "600"
+        }
+        project = self.freshBooksClient.projects.update(self.business_id, project_id, payload)
+
+        assert str(project) == "Result(project)"
+        assert project.id == 12345
+        assert project.title == "Some Project"
+        assert project.data["title"] == "Some Project"
+        assert httpretty.last_request().headers["Authorization"] == "Bearer some_token"
+        assert httpretty.last_request().headers["Content-Type"] == "application/json"

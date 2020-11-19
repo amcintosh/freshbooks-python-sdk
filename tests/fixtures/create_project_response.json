@@ -1,0 +1,43 @@
+{
+    "project": {
+        "id": 12345,
+        "title": "Some Project",
+        "description": "None",
+        "due_date": "None",
+        "client_id": 56789,
+        "internal": false,
+        "budget": "None",
+        "fixed_price": "600.00",
+        "rate": "None",
+        "billing_method": "None",
+        "project_type": "fixed_price",
+        "project_manager_id": "None",
+        "active": true,
+        "complete": false,
+        "sample": false,
+        "created_at": "2020-11-219T13:22:04",
+        "updated_at": "2020-11-219T13:23:52",
+        "logged_duration": "None",
+        "services": [],
+        "billed_amount": "0.00",
+        "billed_status": "unbilled",
+        "retainer_id": "None",
+        "expense_markup": 0,
+        "group": {
+            "id": 321,
+            "members": [
+                {
+                    "id": 321,
+                    "identity_id": 6655,
+                    "role": "owner",
+                    "first_name": "Gordon",
+                    "last_name": "Shumway",
+                    "email": "gordon.shumway@AmericanCyanamid.com",
+                    "company": "American Cyanamid",
+                    "active": true
+                }
+            ],
+            "pending_invitations": []
+        }
+    }
+}

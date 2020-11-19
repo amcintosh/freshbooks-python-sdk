@@ -17,6 +17,7 @@ class PaginatorBuilder:
     PageResult(page=2, pages=3, per_page=4, total=9)
     ```
     """
+
     MAX_PER_PAGE = 100
     MIN_PAGE = 1
 
@@ -105,6 +106,9 @@ class PaginatorBuilder:
 
     def build(self):
         """Builds the query string parameters from the PaginatorBuilder.
+
+        Returns:
+            The built query string
         """
         query_string = ""
         if self._page:

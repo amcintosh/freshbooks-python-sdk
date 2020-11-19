@@ -15,15 +15,19 @@ class Resource:
     DEFAULT_TIMEOUT = 30
     """Default request timeout to FreshBooks"""
 
-    def __init__(self, base_url, access_token):
-        self.base_url = base_url
-        self.access_token = access_token
+    def __init__(self, client_config):
+        self.base_url = client_config.base_url
+        self.access_token = client_config.access_token
+        self.user_agent = client_config.user_agent
         self.session = requests.Session()
 
     def headers(self, method):
         """Get headers required for API calls"""
 
-        headers = {"Authorization": f"Bearer {self.access_token}"}
+        headers = {
+            "Authorization": f"Bearer {self.access_token}",
+            "user-agent": self.user_agent
+        }
         if method in [HttpVerbs.POST, HttpVerbs.PUT, HttpVerbs.PATCH]:
             headers["Content-Type"] = "application/json"
         return headers

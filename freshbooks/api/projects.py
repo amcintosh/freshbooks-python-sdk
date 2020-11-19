@@ -5,8 +5,8 @@ from decimal import Decimal
 
 
 class ProjectsResource(Resource):
-    def __init__(self, base_url, access_token, project_path, single_name, list_name=None):
-        super().__init__(base_url, access_token)
+    def __init__(self, client_config, project_path, single_name, list_name=None):
+        super().__init__(client_config)
         self.project_path = project_path
         self.single_name = single_name
         self.list_name = list_name

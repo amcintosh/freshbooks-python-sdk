@@ -5,8 +5,8 @@ from decimal import Decimal
 
 
 class AccountingResource(Resource):
-    def __init__(self, base_url, access_token, accounting_path, single_name, list_name):
-        super().__init__(base_url, access_token)
+    def __init__(self, client_config, accounting_path, single_name, list_name):
+        super().__init__(client_config)
         self.accounting_path = accounting_path
         self.single_name = single_name
         self.list_name = list_name

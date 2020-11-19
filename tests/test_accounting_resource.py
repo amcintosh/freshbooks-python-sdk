@@ -4,7 +4,7 @@ import httpretty
 
 from freshbooks import Client as FreshBooksClient
 from freshbooks import PaginatorBuilder, FilterBuilder, FreshBooksError, FailedRequest
-from freshbooks.client import API_BASE_URL
+from freshbooks.client import API_BASE_URL, VERSION
 from tests import get_fixture
 
 
@@ -32,6 +32,7 @@ class TestAccountingResources:
         assert client.organization == "American Cyanamid"
         assert client.userid == client_id
         assert httpretty.last_request().headers["Authorization"] == "Bearer some_token"
+        assert httpretty.last_request().headers["user-agent"] == f"FreshBooks python sdk/{VERSION}"
 
     @httpretty.activate
     def test_get_client__not_found(self):
@@ -84,6 +85,7 @@ class TestAccountingResources:
 
     @httpretty.activate
     def test_list_clients(self):
+        freshBooksClient = FreshBooksClient(access_token="some_token", user_agent="phone_home")
         client_ids = [12345, 12346, 12457]
         url = "{}/accounting/account/{}/users/clients".format(API_BASE_URL, self.account_id)
         httpretty.register_uri(
@@ -93,7 +95,7 @@ class TestAccountingResources:
             status=200
         )
 
-        clients = self.freshBooksClient.clients.list(self.account_id)
+        clients = freshBooksClient.clients.list(self.account_id)
 
         assert str(clients) == "Result(clients)"
         assert clients.name == "clients"
@@ -105,6 +107,7 @@ class TestAccountingResources:
         for index, client in enumerate(clients):
             assert client.userid == client_ids[index]
         assert httpretty.last_request().headers["Authorization"] == "Bearer some_token"
+        assert httpretty.last_request().headers["user-agent"] == "phone_home"
 
     @httpretty.activate
     def test_list_clients__no_matching_clients(self):

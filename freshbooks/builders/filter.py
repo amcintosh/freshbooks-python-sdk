@@ -167,6 +167,9 @@ class FilterBuilder:
 
     def build(self):
         """Builds the query string parameters from the FilterBuilder.
+
+        Returns:
+            The built query string
         """
         query_string = ""
         for filter_type, field, value in self._filters:

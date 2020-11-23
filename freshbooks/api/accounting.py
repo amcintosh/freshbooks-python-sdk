@@ -1,4 +1,4 @@
-from freshbooks.errors import FailedRequest, FreshBooksError
+from freshbooks.errors import FreshBooksError
 from freshbooks.api.resource import HttpVerbs, Resource
 from freshbooks.models import Result, ListResult
 from decimal import Decimal
@@ -36,10 +36,10 @@ class AccountingResource(Resource):
         try:
             content = response.json(parse_float=Decimal)
         except ValueError:
-            raise FailedRequest(status, "Failed to parse response", raw_response=response.text)
+            raise FreshBooksError(status, "Failed to parse response", raw_response=response.text)
 
         if "response" not in content:
-            raise FailedRequest(status, "Returned an unexpected response", raw_response=response.text)
+            raise FreshBooksError(status, "Returned an unexpected response", raw_response=response.text)
 
         response = content["response"]
         if status >= 400:

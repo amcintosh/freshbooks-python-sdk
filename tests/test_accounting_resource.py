@@ -3,7 +3,7 @@ import json
 import httpretty
 
 from freshbooks import Client as FreshBooksClient
-from freshbooks import PaginatorBuilder, FilterBuilder, FreshBooksError, FailedRequest
+from freshbooks import PaginatorBuilder, FilterBuilder, FreshBooksError
 from freshbooks.client import API_BASE_URL, VERSION
 from tests import get_fixture
 
@@ -64,9 +64,10 @@ class TestAccountingResources:
         )
         try:
             self.freshBooksClient.clients.get(self.account_id, client_id)
-        except FailedRequest as e:
-            assert str(e) == "Failed to parse response: 'stuff'"
+        except FreshBooksError as e:
+            assert str(e) == "Failed to parse response"
             assert e.status_code == 500
+            assert e.raw_response == "stuff"
 
     @httpretty.activate
     def test_get_client__missing_response(self):
@@ -80,9 +81,10 @@ class TestAccountingResources:
         )
         try:
             self.freshBooksClient.clients.get(self.account_id, client_id)
-        except FailedRequest as e:
-            assert str(e) == "Returned an unexpected response: '{\"foo\": \"bar\"}'"
+        except FreshBooksError as e:
+            assert str(e) == "Returned an unexpected response"
             assert e.status_code == 200
+            assert e.raw_response == "{\"foo\": \"bar\"}"
 
     @httpretty.activate
     def test_list_clients(self):

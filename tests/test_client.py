@@ -3,8 +3,8 @@ import json
 import httpretty
 
 from freshbooks import Client as FreshBooksClient
-from freshbooks import PaginatorBuilder, FilterBuilder, FreshBooksError, FailedRequest
-from freshbooks.client import API_BASE_URL, VERSION
+from freshbooks import FreshBooksError
+from freshbooks.client import API_BASE_URL
 from tests import get_fixture
 
 

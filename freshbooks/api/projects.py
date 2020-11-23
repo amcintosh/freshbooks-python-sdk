@@ -1,4 +1,4 @@
-from freshbooks.errors import FailedRequest, FreshBooksError
+from freshbooks.errors import FreshBooksError
 from freshbooks.api.resource import Resource, HttpVerbs
 from freshbooks.models import Result, ListResult
 from decimal import Decimal
@@ -29,7 +29,7 @@ class ProjectsResource(Resource):
         try:
             content = response.json(parse_float=Decimal)
         except ValueError:
-            raise FailedRequest(status, "Failed to parse response", raw_response=response.text)
+            raise FreshBooksError(status, "Failed to parse response", raw_response=response.text)
 
         if status >= 400:
             code = content.get("errno")

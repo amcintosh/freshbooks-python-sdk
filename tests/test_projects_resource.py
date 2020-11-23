@@ -2,7 +2,7 @@ import json
 import httpretty
 
 from freshbooks import Client as FreshBooksClient
-from freshbooks import PaginatorBuilder, FilterBuilder, FreshBooksError, FailedRequest
+from freshbooks import PaginatorBuilder, FilterBuilder, FreshBooksError
 from freshbooks.client import API_BASE_URL
 from tests import get_fixture
 
@@ -62,9 +62,10 @@ class TestProjectsResources:
 
         try:
             self.freshBooksClient.projects.get(self.business_id, project_id)
-        except FailedRequest as e:
-            assert str(e) == "Failed to parse response: 'stuff'"
+        except FreshBooksError as e:
+            assert str(e) == "Failed to parse response"
             assert e.status_code == 500
+            assert e.raw_response == "stuff"
 
     @httpretty.activate
     def test_list_projects(self):

@@ -1,0 +1,9 @@
+{
+    "access_token": "my_access_token",
+    "refresh_token": "my_refresh_token",
+    "token_type": "Bearer",
+    "expires_in": 100,
+    "scope": "some:scope",
+    "created_at": 1287287900,
+    "id_token": "a_id_token"
+}

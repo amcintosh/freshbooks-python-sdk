@@ -11,7 +11,7 @@ from tests import get_fixture
 class TestAccountingResources:
     def setup_method(self, method):
         self.account_id = "ACM123"
-        self.freshBooksClient = FreshBooksClient(access_token="some_token")
+        self.freshBooksClient = FreshBooksClient(client_id="some_client", access_token="some_token")
 
     @httpretty.activate
     def test_get_client(self):
@@ -32,7 +32,8 @@ class TestAccountingResources:
         assert client.organization == "American Cyanamid"
         assert client.userid == client_id
         assert httpretty.last_request().headers["Authorization"] == "Bearer some_token"
-        assert httpretty.last_request().headers["user-agent"] == f"FreshBooks python sdk/{VERSION}"
+        assert (httpretty.last_request().headers["user-agent"]
+                == f"FreshBooks python sdk/{VERSION} client_id some_client")
 
     @httpretty.activate
     def test_get_client__not_found(self):
@@ -85,7 +86,7 @@ class TestAccountingResources:
 
     @httpretty.activate
     def test_list_clients(self):
-        freshBooksClient = FreshBooksClient(access_token="some_token", user_agent="phone_home")
+        freshBooksClient = FreshBooksClient(client_id="some_client", access_token="some_token", user_agent="phone_home")
         client_ids = [12345, 12346, 12457]
         url = "{}/accounting/account/{}/users/clients".format(API_BASE_URL, self.account_id)
         httpretty.register_uri(

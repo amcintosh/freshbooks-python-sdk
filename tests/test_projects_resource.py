@@ -10,7 +10,7 @@ from tests import get_fixture
 class TestProjectsResources:
     def setup_method(self, method):
         self.business_id = 98765
-        self.freshBooksClient = FreshBooksClient(access_token="some_token")
+        self.freshBooksClient = FreshBooksClient(client_id="some_client", access_token="some_token")
 
     @httpretty.activate
     def test_get_project(self):

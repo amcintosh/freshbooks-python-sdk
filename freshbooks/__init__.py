@@ -1,5 +1,9 @@
 """
-Overview
+The FreshBooks Python SDK allows you to more easily utilize the [FreshBooks API](https://www.freshbooks.com/api).
+
+- See `freshbooks.client.Client` for instantiating a Client, auth, and resource calls
+- See `freshbooks.api.accounting` and `freshbooks.api.projects` for resource methods (`get`, `list`, `create`, etc.)
+- See `freshbooks.builders` for list filters, pagination, etc.
 """
 
 from freshbooks.builders.filter import FilterBuilder  # noqa

@@ -32,6 +32,7 @@ class TestAccountingResources:
         assert client.organization == "American Cyanamid"
         assert client.userid == client_id
         assert httpretty.last_request().headers["Authorization"] == "Bearer some_token"
+        assert httpretty.last_request().headers["Content-Type"] is None
         assert (httpretty.last_request().headers["user-agent"]
                 == f"FreshBooks python sdk/{VERSION} client_id some_client")
 
@@ -110,6 +111,7 @@ class TestAccountingResources:
         for index, client in enumerate(clients):
             assert client.userid == client_ids[index]
         assert httpretty.last_request().headers["Authorization"] == "Bearer some_token"
+        assert httpretty.last_request().headers["Content-Type"] is None
         assert httpretty.last_request().headers["user-agent"] == "phone_home"
 
     @httpretty.activate
@@ -225,3 +227,32 @@ class TestAccountingResources:
         assert client.userid == client_id
         assert httpretty.last_request().headers["Authorization"] == "Bearer some_token"
         assert httpretty.last_request().headers["Content-Type"] == "application/json"
+
+    @httpretty.activate
+    def test_delete__client_via_update(self):
+        client_id = 56789
+        data = get_fixture("get_client_response")
+        data["response"]["result"]["client"]["vis_state"] = 1
+        url = "{}/accounting/account/{}/users/clients/{}".format(API_BASE_URL, self.account_id, client_id)
+        httpretty.register_uri(httpretty.PUT, url, body=json.dumps(data), status=200)
+
+        client = self.freshBooksClient.clients.delete(self.account_id, client_id)
+
+        assert str(client) == "Result(client)"
+        assert client.vis_state == 1
+        assert httpretty.last_request().headers["Authorization"] == "Bearer some_token"
+        assert httpretty.last_request().headers["Content-Type"] == "application/json"
+        assert httpretty.last_request().body == "{\"client\": {\"vis_state\": 1}}".encode("utf-8")
+
+    @httpretty.activate
+    def test_delete__tax_via_delete(self):
+        url = "{}/accounting/account/{}/taxes/taxes/{}".format(API_BASE_URL, self.account_id, 124)
+        httpretty.register_uri(httpretty.DELETE, url, body="{\"response\": {}}", status=200)
+
+        tax = self.freshBooksClient.taxes.delete(self.account_id, 124)
+
+        assert str(tax) == "Result(tax)"
+        assert tax.data == {}
+        assert httpretty.last_request().headers["Authorization"] == "Bearer some_token"
+        assert httpretty.last_request().headers["Content-Type"] is None
+        assert httpretty.last_request().body == b""

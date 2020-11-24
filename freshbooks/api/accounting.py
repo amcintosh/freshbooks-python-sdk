@@ -5,11 +5,12 @@ from decimal import Decimal
 
 
 class AccountingResource(Resource):
-    def __init__(self, client_config, accounting_path, single_name, list_name):
+    def __init__(self, client_config, accounting_path, single_name, list_name, delete_via_update=True):
         super().__init__(client_config)
         self.accounting_path = accounting_path
         self.single_name = single_name
         self.list_name = list_name
+        self.delete_via_update = delete_via_update
 
     def _get_url(self, account_id, resource_id=None):
         if resource_id:
@@ -17,7 +18,7 @@ class AccountingResource(Resource):
         return "{}/accounting/account/{}/{}".format(self.base_url, account_id, self.accounting_path)
 
     def _extract_error(self, errors):
-        if not errors:
+        if not errors:  # pragma: no cover
             return "Unknown error", None
 
         if isinstance(errors, list):
@@ -71,4 +72,10 @@ class AccountingResource(Resource):
         return Result(self.single_name, response)
 
     def delete(self, account_id, resource_id):
-        pass
+        if self.delete_via_update:
+            response = self._request(
+                self._get_url(account_id, resource_id), HttpVerbs.PUT, data={self.single_name: {"vis_state": 1}}
+            )
+        else:
+            response = self._request(self._get_url(account_id, resource_id), HttpVerbs.DELETE)
+        return Result(self.single_name, response)

@@ -24,7 +24,7 @@ class Result:
 
     def __init__(self, name, data):
         self.name = name
-        self.data = data[name]
+        self.data = data.get(name, {})
 
     def __str__(self):
         return "Result({})".format(self.name)

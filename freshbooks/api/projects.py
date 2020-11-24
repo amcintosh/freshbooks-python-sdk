@@ -25,6 +25,8 @@ class ProjectsResource(Resource):
         if status == 200 and method == HttpVerbs.HEAD:  # pragma: no cover
             # no content returned from a HEAD
             return
+        if status == 204 and method == HttpVerbs.DELETE:
+            return {}
 
         try:
             content = response.json(parse_float=Decimal)
@@ -55,4 +57,8 @@ class ProjectsResource(Resource):
         response = self._request(
             self._get_url(business_id, resource_id), HttpVerbs.PUT, data={self.single_name: data}
         )
+        return Result(self.single_name, response)
+
+    def delete(self, business_id, resource_id):
+        response = self._request(self._get_url(business_id, resource_id), HttpVerbs.DELETE)
         return Result(self.single_name, response)

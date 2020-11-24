@@ -164,8 +164,15 @@ class Client:
 
     @property
     def clients(self):
-        """FreshBooks clients resource with calls to get, list, create, update."""
+        """FreshBooks clients resource with calls to get, list, create, update, delete"""
         return AccountingResource(self._client_resource_config(), "users/clients", "client", "clients")
+
+    @property
+    def taxes(self):
+        """FreshBooks taxes resource with calls to get, list, create, update, delete"""
+        return AccountingResource(
+            self._client_resource_config(), "taxes/taxes", "tax", "taxes", delete_via_update=False
+        )
 
     @property
     def projects(self):

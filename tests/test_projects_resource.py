@@ -172,3 +172,17 @@ class TestProjectsResources:
         assert project.data["title"] == "Some Project"
         assert httpretty.last_request().headers["Authorization"] == "Bearer some_token"
         assert httpretty.last_request().headers["Content-Type"] == "application/json"
+
+    @httpretty.activate
+    def test_delete_project(self):
+        project_id = 654321
+        url = "{}/projects/business/{}/projects/{}".format(API_BASE_URL, self.business_id, project_id)
+        httpretty.register_uri(httpretty.DELETE, url, status=204)
+
+        tax = self.freshBooksClient.projects.delete(self.business_id, project_id)
+
+        assert str(tax) == "Result(project)"
+        assert tax.data == {}
+        assert httpretty.last_request().headers["Authorization"] == "Bearer some_token"
+        assert httpretty.last_request().headers["Content-Type"] is None
+        assert httpretty.last_request().body == b""

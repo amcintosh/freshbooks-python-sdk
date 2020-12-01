@@ -14,7 +14,8 @@ class AccountingResource(Resource):
 
     def _get_url(self, account_id, resource_id=None):
         if resource_id:
-            return "{}/accounting/account/{}/{}/{}".format(self.base_url, account_id, self.accounting_path, resource_id)
+            return "{}/accounting/account/{}/{}/{}".format(
+                self.base_url, account_id, self.accounting_path, resource_id)
         return "{}/accounting/account/{}/{}".format(self.base_url, account_id, self.accounting_path)
 
     def _extract_error(self, errors):

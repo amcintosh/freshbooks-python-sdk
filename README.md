@@ -139,7 +139,7 @@ for client in clients:
     assert client.data["organization"] == "FreshBooks"
 ```
 
-#### Create and Update
+#### Create, Update, and Delete
 
 API calls to create and update take a dictionary of the resource data. A successful call will return a `Result` object as if a `get` call.
 
@@ -160,6 +160,15 @@ client = freshBooksClient.clients.update(account_id, client_id, payload)
 
 assert client.email == "john.doe@abcorp.ca"
 ```
+
+Delete:
+
+```python
+client = freshBooksClient.clients.delete(account_id, client_id)
+
+assert client.vis_state == 1  # Deleted state
+```
+
 
 #### Pagination, Filters, and Includes
 

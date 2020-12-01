@@ -2,7 +2,7 @@ import json
 import httpretty
 
 from freshbooks import Client as FreshBooksClient
-from freshbooks import PaginatorBuilder, FilterBuilder, FreshBooksError
+from freshbooks import PaginateBuilder, FilterBuilder, FreshBooksError
 from freshbooks.client import API_BASE_URL
 from tests import get_fixture
 
@@ -99,7 +99,7 @@ class TestProjectsResources:
             status=200
         )
 
-        p = PaginatorBuilder(2, 1)
+        p = PaginateBuilder(2, 1)
         self.freshBooksClient.projects.list(self.business_id, builders=[p])
 
         expected_params = {"page": ["2"], "per_page": ["1"]}

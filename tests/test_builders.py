@@ -1,11 +1,11 @@
 from datetime import date, datetime
-from freshbooks import PaginatorBuilder, FilterBuilder
+from freshbooks import PaginateBuilder, FilterBuilder
 
 
-class TestPaginatorBuilder:
+class TestPaginateBuilder:
 
     def test_paginator_builder_calls(self):
-        p = PaginatorBuilder(page=1, per_page=3)
+        p = PaginateBuilder(page=1, per_page=3)
         assert p.build() == "&page=1&per_page=3"
         assert p.page() == 1
         assert p.per_page() == 3
@@ -22,10 +22,10 @@ class TestPaginatorBuilder:
         p.per_page(2).page(6)
         assert p.build() == "&page=6&per_page=2"
 
-        assert str(p) == "PaginatorBuilder(page=6, per_page=2)"
+        assert str(p) == "PaginateBuilder(page=6, per_page=2)"
 
     def test_minimum_page(self):
-        p = PaginatorBuilder(page=0)
+        p = PaginateBuilder(page=0)
         assert p.page() == 1
 
         p.page(0)
@@ -34,7 +34,7 @@ class TestPaginatorBuilder:
         assert p.build() == "&page=1"
 
     def test_maximun_per_page(self):
-        p = PaginatorBuilder(per_page=500)
+        p = PaginateBuilder(per_page=500)
         assert p.per_page() == 100
 
         p.per_page(400)

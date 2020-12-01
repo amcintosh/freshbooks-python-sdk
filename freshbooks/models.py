@@ -71,7 +71,7 @@ class ListResult:
     6
     ```
 
-    For including pagination in requests, see `freshbooks.builders.paginator.PaginatorBuilder`.
+    For including pagination in requests, see `freshbooks.builders.paginator.PaginateBuilder`.
     """
 
     def __init__(self, name, single_name, data):

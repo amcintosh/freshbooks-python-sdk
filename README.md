@@ -169,7 +169,6 @@ client = freshBooksClient.clients.delete(account_id, client_id)
 assert client.vis_state == 1  # Deleted state
 ```
 
-
 #### Pagination, Filters, and Includes
 
 `list` calls take a list of builder objects that can be used to paginate, filter, and include
@@ -187,33 +186,33 @@ PageResult(page=1, pages=1, per_page=30, total=6)
 6
 ```
 
-To make change a paginated call, first build a `PaginatorBuilder` object that can be passed into the `list` method.
+To make change a paginated call, first build a `PaginateBuilder` object that can be passed into the `list` method.
 
 ```python
->>> from freshbooks import PaginatorBuilder
+>>> from freshbooks import PaginateBuilder
 
->>> paginator = PaginatorBuilder(2, 4)
+>>> paginator = PaginateBuilder(2, 4)
 >>> paginator
-PaginatorBuilder(page=2, per_page=4)
+PaginateBuilder(page=2, per_page=4)
 
 >>> clients = freshBooksClient.clients.list(account_id, builders=[paginator])
 >>> clients.pages
 PageResult(page=2, pages=3, per_page=4, total=9)
 ```
 
-`PaginatorBuilder` has methods `page` and `per_page` to return or set the values. When setting the values the calls can be chained.
+`PaginateBuilder` has methods `page` and `per_page` to return or set the values. When setting the values the calls can be chained.
 
 ```python
->>> paginator = PaginatorBuilder(1, 3)
+>>> paginator = PaginateBuilder(1, 3)
 >>> paginator
-PaginatorBuilder(page=1, per_page=3)
+PaginateBuilder(page=1, per_page=3)
 
 >>> paginator.page()
 1
 
 >>> paginator.page(2).per_page(4)
 >>> paginator
-PaginatorBuilder(page=2, per_page=4)
+PaginateBuilder(page=2, per_page=4)
 ```
 
 ##### Filters

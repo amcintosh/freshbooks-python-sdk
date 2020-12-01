@@ -1,0 +1,4 @@
+{
+    "error": "unauthenticated",
+    "error_description": "This action requires authentication to continue."
+}

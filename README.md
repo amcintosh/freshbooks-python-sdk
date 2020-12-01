@@ -41,7 +41,7 @@ freshBooksClient = Client(
 #### Authoization flow
 
 _This is a brief summary of the OAuth2 authorization flow and the methods in the FreshBooks API Client
-around them. See the [FreshBooks Authentication](https://www.freshbooks.com/api/authentication) documentation._
+around them. See the [FreshBooks API - Authentication](https://www.freshbooks.com/api/authentication) documentation._
 
 First, instantiate your Client with `client_id`, `client_secret`, and `redirect_uri` as above.
 
@@ -82,6 +82,24 @@ or you can pass the refresh token yourself:
 >>> auth_results = freshBooksClient.refresh_access_token(stored_refresh_token)
 >>> auth_results.access_token
 <a new token>
+```
+
+### Current User
+
+FreshBooks users are uniquely identified by their email across our entire product. One user may act on several Businesses in different ways, and our Identity model is how we keep track of it. Each unique user has an Identity, and each Identity has Business Memberships which define the permissions they have.
+
+See [FreshBooks API - Business, Roles, and Identity](https://www.freshbooks.com/api/me_endpoint) and
+[FreshBooks API - The Identity Model](https://www.freshbooks.com/api/identity_model).
+
+The current user can be accessed by:
+
+```python
+>>> current_user = freshBooksClient.current_user
+>>> current_user.email
+<some email>
+
+>>> current_user.business_memberships
+<list of businesses>
 ```
 
 ### Making API Calls

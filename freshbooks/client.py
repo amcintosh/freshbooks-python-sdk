@@ -4,6 +4,7 @@ from types import SimpleNamespace
 import requests
 from requests.models import urlencode
 from freshbooks.api.accounting import AccountingResource
+from freshbooks.api.auth import AuthResource
 from freshbooks.api.projects import ProjectsResource
 from freshbooks.errors import FreshBooksError
 
@@ -28,6 +29,8 @@ class Client:
         to specify a `client_secret` (though the token cannot be refreshed in this case).
 
         TODO: Rate limits, change timeout, retries
+        TODO: identity: get business_id from account and vice
+        TODO: identity: get businesses by role
         TODO: sub-objects
         TODO: sorting
         TODO: type hints
@@ -161,6 +164,14 @@ class Client:
         """
         refresh_token = refresh_token or self.refresh_token
         return self._authorize_call("refresh_token", "refresh_token", refresh_token)
+
+    @property
+    def current_user(self):
+        """The identity details of the currently authenticated user.
+
+        See https://www.freshbooks.com/api/me_endpoint
+        """
+        return AuthResource(self._client_resource_config()).me_endpoint()
 
     @property
     def clients(self):

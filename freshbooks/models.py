@@ -115,3 +115,43 @@ class ListResult:
         total = data["total"]
         PageResult = namedtuple("PageResult", ["page", "pages", "per_page", "total"])
         return PageResult(page, pages, per_page, total)
+
+
+class Identity(Result):
+    """An Identity is a `freshbooks.models.Result` object with additional properties and helper methods
+    to make accessing the current user's identity easier.
+
+    Example:
+    ```python
+    >>> current_user = freshBooksClient.current_user
+    >>> current_user.email
+    <some email>
+
+    >>> current_user.business_memberships
+    <list of businesses>
+    ```
+    """
+
+    def __init__(self, data):
+        self.data = data
+
+    def __str__(self):
+        return "Identity({}, {})".format(self.identity_id, self.data.get("email"))
+
+    def __repr__(self):  # pragma: no cover
+        return "Identity({})".format(self.identity_id)
+
+    @property
+    def identity_id(self):
+        """The authenticated user's identity_id"""
+        return self.data.get("identity_id")
+
+    @property
+    def name(self):
+        """The authenticated user's name"""
+        return "{} {}".format(self.data.get("first_name"), self.data.get("last_name"))
+
+    @property
+    def business_memberships(self):
+        """The authenticated user's businesses and their role in that business."""
+        return self.data.get("business_memberships")

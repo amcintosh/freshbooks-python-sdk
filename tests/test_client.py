@@ -1,9 +1,14 @@
 from datetime import datetime
 import json
+from unittest.mock import patch
 import httpretty
+import pytest
 
 from freshbooks import Client as FreshBooksClient
 from freshbooks import FreshBooksError
+from freshbooks.api.accounting import AccountingResource
+from freshbooks.api.projects import ProjectsResource
+from freshbooks.api.resource import HttpVerbs
 from freshbooks.client import API_BASE_URL
 from tests import get_fixture
 
@@ -110,3 +115,76 @@ class TestClientAuth:
         assert result.refresh_token == "my_refresh_token"
         assert self.freshBooksClient.access_token_expires_at == datetime(2010, 10, 17)
         assert result.access_token_expires_at == datetime(2010, 10, 17)
+
+
+class TestClientResources:
+    def setup_method(self, method):
+        self.freshBooksClient = FreshBooksClient(client_id="some_client", redirect_uri="https://example.com")
+
+    @pytest.mark.parametrize(
+        "resource_name, single_name, delete_via_update",
+        [
+            ("clients", "client", True),
+            ("taxes", "tax", False)
+        ]
+    )
+    @patch.object(AccountingResource, "_get_url", return_value="some_url")
+    def test_accounting_resource_methods(self, mock_url, resource_name, single_name, delete_via_update):
+        account_id = 1234
+        resource_id = 2345
+        resource_ = getattr(self.freshBooksClient, resource_name)
+
+        list_response = {resource_name: [], "page": 1, "pages": 0, "per_page": 15, "total": 0}
+        single_response = {single_name: {}}
+
+        with patch.object(AccountingResource, "_request", return_value=list_response) as mock_request:
+            resource_.list(account_id)
+            mock_request.assert_called_with("some_url", HttpVerbs.GET)
+
+        with patch.object(AccountingResource, "_request", return_value=single_response) as mock_request:
+            resource_.get(account_id, resource_id)
+            mock_request.assert_called_with("some_url", HttpVerbs.GET)
+
+            resource_.create(account_id, {})
+            mock_request.assert_called_with("some_url", HttpVerbs.POST, data={single_name: {}})
+
+            resource_.update(account_id, resource_id, {})
+            mock_request.assert_called_with("some_url", HttpVerbs.PUT, data={single_name: {}})
+
+            resource_.delete(account_id, resource_id)
+            if delete_via_update:
+                mock_request.assert_called_with("some_url", HttpVerbs.PUT, data={single_name: {"vis_state": 1}})
+            else:
+                mock_request.assert_called_with("some_url", HttpVerbs.DELETE)
+
+    @pytest.mark.parametrize(
+        "resource_name, single_name",
+        [
+            ("projects", "project")
+        ]
+    )
+    @patch.object(ProjectsResource, "_get_url", return_value="some_url")
+    def test_project_resource_methods(self, mock_url, resource_name, single_name):
+        business_id = 1234
+        resource_id = 2345
+        resource_ = getattr(self.freshBooksClient, resource_name)
+
+        list_response = {resource_name: [], "meta": {"page": 1, "pages": 0, "per_page": 15, "total": 0}}
+        single_response = {single_name: {}}
+
+        with patch.object(ProjectsResource, "_request", return_value=list_response) as mock_request:
+            resource_.list(business_id)
+            mock_request.assert_called_with("some_url", HttpVerbs.GET)
+
+        with patch.object(ProjectsResource, "_request", return_value=single_response) as mock_request:
+            resource_.get(business_id, resource_id)
+            mock_request.assert_called_with("some_url", HttpVerbs.GET)
+
+            resource_.create(business_id, {})
+            mock_request.assert_called_with("some_url", HttpVerbs.POST, data={single_name: {}})
+
+            resource_.update(business_id, resource_id, {})
+            mock_request.assert_called_with("some_url", HttpVerbs.PUT, data={single_name: {}})
+
+            resource_.delete(business_id, resource_id)
+            mock_request.assert_called_with("some_url", HttpVerbs.DELETE)

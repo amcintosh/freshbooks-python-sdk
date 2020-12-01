@@ -256,6 +256,8 @@ FilterBuilder(&search[start_date]=2020-11-21)
 
 ##### Includes
 
+##### Sorting
+
 ## Development
 
 ### Testing

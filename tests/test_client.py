@@ -128,6 +128,7 @@ class TestClientResources:
             ("clients", "client", True),
             ("invoices", "invoice", False),
             ("expenses", "expense", True),
+            ("other_income", "other_income", False),
             ("taxes", "tax", False)
         ]
     )
@@ -195,30 +196,27 @@ class TestClientResources:
             mock_request.assert_called_with("some_url", HttpVerbs.DELETE)
 
     @patch.object(AccountingResource, "_get_url", return_value="some_url")
-    def test_accounting_staffs_resource_methods(self, mock_url):
+    def test_accounting_staff_resource_methods(self, mock_url):
         """Test methods on accounting staff resource, which has no create"""
         account_id = 1234
         resource_id = 2345
-        resource_name = "staffs"
-        single_name = "staff"
-        resource_ = getattr(self.freshBooksClient, resource_name)
 
-        list_response = {resource_name: [], "page": 1, "pages": 0, "per_page": 15, "total": 0}
-        single_response = {single_name: {}}
+        list_response = {"staffs": [], "page": 1, "pages": 0, "per_page": 15, "total": 0}
+        single_response = {"staff": {}}
 
         with patch.object(AccountingResource, "_request", return_value=list_response) as mock_request:
-            resource_.list(account_id)
+            self.freshBooksClient.staff.list(account_id)
             mock_request.assert_called_with("some_url", HttpVerbs.GET)
 
         with patch.object(AccountingResource, "_request", return_value=single_response) as mock_request:
-            resource_.get(account_id, resource_id)
+            self.freshBooksClient.staff.get(account_id, resource_id)
             mock_request.assert_called_with("some_url", HttpVerbs.GET)
 
             with pytest.raises(FreshBooksNotImplementedError):
-                resource_.create(account_id, {})
+                self.freshBooksClient.staff.create(account_id, {})
 
-            resource_.update(account_id, resource_id, {})
-            mock_request.assert_called_with("some_url", HttpVerbs.PUT, data={single_name: {}})
+            self.freshBooksClient.staff.update(account_id, resource_id, {})
+            mock_request.assert_called_with("some_url", HttpVerbs.PUT, data={"staff": {}})
 
-            resource_.delete(account_id, resource_id)
-            mock_request.assert_called_with("some_url", HttpVerbs.PUT, data={single_name: {"vis_state": 1}})
+            self.freshBooksClient.staff.delete(account_id, resource_id)
+            mock_request.assert_called_with("some_url", HttpVerbs.PUT, data={"staff": {"vis_state": 1}})

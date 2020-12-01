@@ -36,6 +36,7 @@ class Client:
         TODO: sorting
         TODO: type hints
         TODO: revoke token
+        TODO: vis_state values
 
         Args:
             client_id: The FreshBooks application client id
@@ -167,6 +168,8 @@ class Client:
         refresh_token = refresh_token or self.refresh_token
         return self._authorize_call("refresh_token", "refresh_token", refresh_token)
 
+    # Auth Resources
+
     @property
     def current_user(self):
         """The identity details of the currently authenticated user.
@@ -174,6 +177,8 @@ class Client:
         See https://www.freshbooks.com/api/me_endpoint
         """
         return AuthResource(self._client_resource_config()).me_endpoint()
+
+    # Accounting Resources
 
     @property
     def clients(self):
@@ -193,7 +198,14 @@ class Client:
         )
 
     @property
-    def staffs(self):
+    def other_income(self):
+        """FreshBooks other_incomes resource with calls to get, list, create, update, delete"""
+        return AccountingResource(
+            self._client_resource_config(), "other_incomes/other_incomes", "other_income", "other_income", delete_via_update=False
+        )
+
+    @property
+    def staff(self):
         """FreshBooks staff resource with calls to get, list, update, delete"""
         return AccountingResource(
             self._client_resource_config(), "users/staffs", "staff", "staffs", missing_endpoints=["create"]
@@ -205,6 +217,8 @@ class Client:
         return AccountingResource(
             self._client_resource_config(), "taxes/taxes", "tax", "taxes", delete_via_update=False
         )
+
+    # Project Resources
 
     @property
     def projects(self):

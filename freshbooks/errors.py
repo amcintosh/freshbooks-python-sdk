@@ -23,3 +23,15 @@ class FreshBooksError(Exception):
         self.status_code = status_code
         self.error_code = error_code
         self.raw_response = raw_response
+
+
+class FreshBooksNotImplementedError(Exception):
+    """Exception thrown when making a resource call that does not exist.
+    Eg.
+    ```python
+    >>> freshBooksClient.staff.create()
+    ```
+    """
+
+    def __init__(self, resource_name, method_name):
+        super().__init__(f"The method '{method_name}' does not exist for {resource_name}")

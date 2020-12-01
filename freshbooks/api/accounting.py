@@ -1,16 +1,18 @@
-from freshbooks.errors import FreshBooksError
+from freshbooks.errors import FreshBooksError, FreshBooksNotImplementedError
 from freshbooks.api.resource import HttpVerbs, Resource
 from freshbooks.models import Result, ListResult
 from decimal import Decimal
 
 
 class AccountingResource(Resource):
-    def __init__(self, client_config, accounting_path, single_name, list_name, delete_via_update=True):
+    def __init__(self, client_config, accounting_path, single_name, list_name,
+                 delete_via_update=True, missing_endpoints=None):
         super().__init__(client_config)
         self.accounting_path = accounting_path
         self.single_name = single_name
         self.list_name = list_name
         self.delete_via_update = delete_via_update
+        self.missing_endpoints = missing_endpoints if missing_endpoints else []
 
     def _get_url(self, account_id, resource_id=None):
         if resource_id:
@@ -52,27 +54,36 @@ class AccountingResource(Resource):
         except KeyError:
             return response
 
+    def _reject_missing(self, name):
+        if name in self.missing_endpoints:
+            raise FreshBooksNotImplementedError(self.list_name, name)
+
     def get(self, account_id, resource_id):
+        self._reject_missing("get")
         data = self._request(self._get_url(account_id, resource_id), HttpVerbs.GET)
         return Result(self.single_name, data)
 
     def list(self, account_id, builders=None):
+        self._reject_missing("list")
         resource_url = self._get_url(account_id)
         query_string = self._build_query_string(builders)
         data = self._request(f"{resource_url}{query_string}", HttpVerbs.GET)
         return ListResult(self.list_name, self.single_name, data)
 
     def create(self, account_id, data):
+        self._reject_missing("create")
         response = self._request(self._get_url(account_id), HttpVerbs.POST, data={self.single_name: data})
         return Result(self.single_name, response)
 
     def update(self, account_id, resource_id, data):
+        self._reject_missing("update")
         response = self._request(
             self._get_url(account_id, resource_id), HttpVerbs.PUT, data={self.single_name: data}
         )
         return Result(self.single_name, response)
 
     def delete(self, account_id, resource_id):
+        self._reject_missing("delete")
         if self.delete_via_update:
             response = self._request(
                 self._get_url(account_id, resource_id), HttpVerbs.PUT, data={self.single_name: {"vis_state": 1}}

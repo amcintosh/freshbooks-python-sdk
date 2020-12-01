@@ -10,6 +10,7 @@ from freshbooks.api.accounting import AccountingResource
 from freshbooks.api.projects import ProjectsResource
 from freshbooks.api.resource import HttpVerbs
 from freshbooks.client import API_BASE_URL
+from freshbooks.errors import FreshBooksNotImplementedError
 from tests import get_fixture
 
 
@@ -125,11 +126,14 @@ class TestClientResources:
         "resource_name, single_name, delete_via_update",
         [
             ("clients", "client", True),
+            ("invoices", "invoice", False),
+            ("expenses", "expense", True),
             ("taxes", "tax", False)
         ]
     )
     @patch.object(AccountingResource, "_get_url", return_value="some_url")
     def test_accounting_resource_methods(self, mock_url, resource_name, single_name, delete_via_update):
+        """Test general methods on accounting resources"""
         account_id = 1234
         resource_id = 2345
         resource_ = getattr(self.freshBooksClient, resource_name)
@@ -165,6 +169,7 @@ class TestClientResources:
     )
     @patch.object(ProjectsResource, "_get_url", return_value="some_url")
     def test_project_resource_methods(self, mock_url, resource_name, single_name):
+        """Test general methods on project resources"""
         business_id = 1234
         resource_id = 2345
         resource_ = getattr(self.freshBooksClient, resource_name)
@@ -188,3 +193,32 @@ class TestClientResources:
 
             resource_.delete(business_id, resource_id)
             mock_request.assert_called_with("some_url", HttpVerbs.DELETE)
+
+    @patch.object(AccountingResource, "_get_url", return_value="some_url")
+    def test_accounting_staffs_resource_methods(self, mock_url):
+        """Test methods on accounting staff resource, which has no create"""
+        account_id = 1234
+        resource_id = 2345
+        resource_name = "staffs"
+        single_name = "staff"
+        resource_ = getattr(self.freshBooksClient, resource_name)
+
+        list_response = {resource_name: [], "page": 1, "pages": 0, "per_page": 15, "total": 0}
+        single_response = {single_name: {}}
+
+        with patch.object(AccountingResource, "_request", return_value=list_response) as mock_request:
+            resource_.list(account_id)
+            mock_request.assert_called_with("some_url", HttpVerbs.GET)
+
+        with patch.object(AccountingResource, "_request", return_value=single_response) as mock_request:
+            resource_.get(account_id, resource_id)
+            mock_request.assert_called_with("some_url", HttpVerbs.GET)
+
+            with pytest.raises(FreshBooksNotImplementedError):
+                resource_.create(account_id, {})
+
+            resource_.update(account_id, resource_id, {})
+            mock_request.assert_called_with("some_url", HttpVerbs.PUT, data={single_name: {}})
+
+            resource_.delete(account_id, resource_id)
+            mock_request.assert_called_with("some_url", HttpVerbs.PUT, data={single_name: {"vis_state": 1}})

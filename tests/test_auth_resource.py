@@ -28,6 +28,7 @@ class TestAuthResources:
         assert current_user.name == "Simon Kovalic"
         assert current_user.email == "skovalic@cis.com"
         assert current_user.data["email"] == "skovalic@cis.com"
+        assert len(current_user.business_memberships) == 2
         assert httpretty.last_request().headers["Authorization"] == "Bearer some_token"
 
     @httpretty.activate

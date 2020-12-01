@@ -31,9 +31,11 @@ class Client:
         TODO: Rate limits, change timeout, retries
         TODO: identity: get business_id from account and vice
         TODO: identity: get businesses by role
+        TODO: includes, sort
         TODO: sub-objects
         TODO: sorting
         TODO: type hints
+        TODO: revoke token
 
         Args:
             client_id: The FreshBooks application client id
@@ -179,6 +181,25 @@ class Client:
         return AccountingResource(self._client_resource_config(), "users/clients", "client", "clients")
 
     @property
+    def expenses(self):
+        """FreshBooks expenses resource with calls to get, list, create, update, delete"""
+        return AccountingResource(self._client_resource_config(), "expenses/expenses", "expense", "expenses")
+
+    @property
+    def invoices(self):
+        """FreshBooks invoices resource with calls to get, list, create, update, delete"""
+        return AccountingResource(
+            self._client_resource_config(), "invoices/invoices", "invoice", "invoices", delete_via_update=False
+        )
+
+    @property
+    def staffs(self):
+        """FreshBooks staff resource with calls to get, list, update, delete"""
+        return AccountingResource(
+            self._client_resource_config(), "users/staffs", "staff", "staffs", missing_endpoints=["create"]
+        )
+
+    @property
     def taxes(self):
         """FreshBooks taxes resource with calls to get, list, create, update, delete"""
         return AccountingResource(
@@ -187,5 +208,5 @@ class Client:
 
     @property
     def projects(self):
-        """FreshBooks projects resource with calls to get, list."""
+        """FreshBooks projects resource with calls to get, list, create, update, delete"""
         return ProjectsResource(self._client_resource_config(), "projects", "project")

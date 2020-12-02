@@ -126,9 +126,14 @@ class TestClientResources:
         "resource_name, single_name, delete_via_update",
         [
             ("clients", "client", True),
-            ("invoices", "invoice", False),
+            ("credit_notes", "credit_note", True),
+            ("estimates", "estimate", False),
             ("expenses", "expense", True),
+            ("invoices", "invoice", False),
+            ("invoice_profiles", "invoice_profile", True),
+            ("items", "item", True),
             ("other_income", "other_income", False),
+            ("payments", "payment", True),
             ("taxes", "tax", False)
         ]
     )
@@ -196,6 +201,32 @@ class TestClientResources:
             mock_request.assert_called_with("some_url", HttpVerbs.DELETE)
 
     @patch.object(AccountingResource, "_get_url", return_value="some_url")
+    def test_accounting_expense_categories_resource_methods(self, mock_url):
+        """Test methods on accounting expense categories resource, which has only list and get"""
+        account_id = 1234
+        resource_id = 2345
+
+        list_response = {"categories": [], "page": 1, "pages": 0, "per_page": 15, "total": 0}
+        single_response = {"category": {}}
+
+        with patch.object(AccountingResource, "_request", return_value=list_response) as mock_request:
+            self.freshBooksClient.expenses_categories.list(account_id)
+            mock_request.assert_called_with("some_url", HttpVerbs.GET)
+
+        with patch.object(AccountingResource, "_request", return_value=single_response) as mock_request:
+            self.freshBooksClient.expenses_categories.get(account_id, resource_id)
+            mock_request.assert_called_with("some_url", HttpVerbs.GET)
+
+        with pytest.raises(FreshBooksNotImplementedError):
+            self.freshBooksClient.expenses_categories.create(account_id, {})
+
+        with pytest.raises(FreshBooksNotImplementedError):
+            self.freshBooksClient.expenses_categories.update(account_id, resource_id, {})
+
+        with pytest.raises(FreshBooksNotImplementedError):
+            self.freshBooksClient.expenses_categories.delete(account_id, resource_id)
+
+    @patch.object(AccountingResource, "_get_url", return_value="some_url")
     def test_accounting_staff_resource_methods(self, mock_url):
         """Test methods on accounting staff resource, which has no create"""
         account_id = 1234
@@ -220,3 +251,27 @@ class TestClientResources:
 
             self.freshBooksClient.staff.delete(account_id, resource_id)
             mock_request.assert_called_with("some_url", HttpVerbs.PUT, data={"staff": {"vis_state": 1}})
+
+    @patch.object(AccountingResource, "_get_url", return_value="some_url")
+    def test_accounting_system_resource_methods(self, mock_url):
+        """Test methods on accounting systems resource, which has only get"""
+        account_id = 1234
+        resource_id = 2345
+
+        single_response = {"system": {}}
+
+        with patch.object(AccountingResource, "_request", return_value=single_response) as mock_request:
+            self.freshBooksClient.systems.get(account_id, resource_id)
+            mock_request.assert_called_with("some_url", HttpVerbs.GET)
+
+        with pytest.raises(FreshBooksNotImplementedError):
+            self.freshBooksClient.systems.list(account_id)
+
+        with pytest.raises(FreshBooksNotImplementedError):
+            self.freshBooksClient.systems.create(account_id, {})
+
+        with pytest.raises(FreshBooksNotImplementedError):
+            self.freshBooksClient.systems.update(account_id, resource_id, {})
+
+        with pytest.raises(FreshBooksNotImplementedError):
+            self.freshBooksClient.systems.delete(account_id, resource_id)

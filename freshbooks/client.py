@@ -186,9 +186,31 @@ class Client:
         return AccountingResource(self._client_resource_config(), "users/clients", "client", "clients")
 
     @property
+    def credit_notes(self):
+        """FreshBooks credit_notes resource with calls to get, list, create, update, delete"""
+        return AccountingResource(
+            self._client_resource_config(), "credit_notes/credit_notes", "credit_note", "credit_notes"
+        )
+
+    @property
+    def estimates(self):
+        """FreshBooks estimates resource with calls to get, list, create, update, delete"""
+        return AccountingResource(
+            self._client_resource_config(), "estimates/estimates", "estimate", "estimates", delete_via_update=False
+        )
+
+    @property
     def expenses(self):
         """FreshBooks expenses resource with calls to get, list, create, update, delete"""
         return AccountingResource(self._client_resource_config(), "expenses/expenses", "expense", "expenses")
+
+    @property
+    def expenses_categories(self):
+        """FreshBooks expenses categories resource with calls to get and list"""
+        return AccountingResource(
+            self._client_resource_config(), "expenses/categories", "category", "categories",
+            missing_endpoints=["create", "update", "delete"]
+        )
 
     @property
     def invoices(self):
@@ -198,6 +220,18 @@ class Client:
         )
 
     @property
+    def invoice_profiles(self):
+        """FreshBooks invoice_profiles resource with calls to get, list, create, update, delete"""
+        return AccountingResource(
+            self._client_resource_config(), "invoice_profiles/invoice_profiles", "invoice_profile", "invoice_profiles"
+        )
+
+    @property
+    def items(self):
+        """FreshBooks items resource with calls to get, list, create, update, delete"""
+        return AccountingResource(self._client_resource_config(), "items/items", "item", "items")
+
+    @property
     def other_income(self):
         """FreshBooks other_incomes resource with calls to get, list, create, update, delete"""
         return AccountingResource(
@@ -205,10 +239,23 @@ class Client:
         )
 
     @property
+    def payments(self):
+        """FreshBooks payments resource with calls to get, list, create, update, delete"""
+        return AccountingResource(self._client_resource_config(), "payments/payments", "payment", "payments")
+
+    @property
     def staff(self):
         """FreshBooks staff resource with calls to get, list, update, delete"""
         return AccountingResource(
             self._client_resource_config(), "users/staffs", "staff", "staffs", missing_endpoints=["create"]
+        )
+
+    @property
+    def systems(self):
+        """FreshBooks systems resource with calls to get only"""
+        return AccountingResource(
+            self._client_resource_config(), "systems/systems", "system", "systems",
+            missing_endpoints=["create", "update", "delete", "list"]
         )
 
     @property

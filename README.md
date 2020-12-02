@@ -169,6 +169,32 @@ client = freshBooksClient.clients.delete(account_id, client_id)
 assert client.vis_state == 1  # Deleted state
 ```
 
+#### Error Handling
+
+Calls made to the FreshBooks API with a non-2xx response are wrapped in a `FreshBooksError` exception.
+This exception class contains the error message, HTTP response code, FreshBooks-specific error number if one exists, and the HTTP response body.
+
+Example:
+
+```python
+from freshbooks import FreshBooksError
+
+try:
+    client = freshBooksClient.clients.get(account_id, client_id)
+except FreshBooksError as e:
+    assert str(e) == "Client not found."
+    assert e.status_code == 404
+    assert e.error_code == 1012
+    assert e.raw_response ==  ("{'response': {'errors': [{'errno': 1012, "
+                               "'field': 'userid', 'message': 'Client not found.', "
+                               "'object': 'client', 'value': '134'}]}}")
+```
+
+Not all resources have full CRUD methods available. For example expense categories have `list` and `get`
+calls, but are deletable. If you attempt to call a method that does not exist, the SDK will raise a
+`FreshBooksNotImplementedError` exception, but this is not something you will likely have to account
+for outside of development.
+
 #### Pagination, Filters, and Includes
 
 `list` calls take a list of builder objects that can be used to paginate, filter, and include

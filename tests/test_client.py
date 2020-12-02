@@ -195,6 +195,31 @@ class TestClientResources:
             self.freshBooksClient.expenses_categories.delete(account_id, resource_id)
 
     @patch.object(AccountingResource, "_get_url", return_value="some_url")
+    def test_accounting_gateways_resource_methods(self, mock_url):
+        """Test methods on accounting systems resource, which has only get"""
+        account_id = 1234
+        resource_id = 2345
+
+        list_response = {"gateways": [], "page": 1, "pages": 0, "per_page": 15, "total": 0}
+        single_response = {}
+        with patch.object(AccountingResource, "_request", return_value=list_response) as mock_request:
+            self.freshBooksClient.gateways.list(account_id)
+            mock_request.assert_called_with("some_url", HttpVerbs.GET)
+
+        with patch.object(AccountingResource, "_request", return_value=single_response) as mock_request:
+            self.freshBooksClient.gateways.delete(account_id, resource_id)
+            mock_request.assert_called_with("some_url", HttpVerbs.DELETE)
+
+        with pytest.raises(FreshBooksNotImplementedError):
+            self.freshBooksClient.gateways.get(account_id, resource_id)
+
+        with pytest.raises(FreshBooksNotImplementedError):
+            self.freshBooksClient.gateways.create(account_id, {})
+
+        with pytest.raises(FreshBooksNotImplementedError):
+            self.freshBooksClient.gateways.update(account_id, resource_id, {})
+
+    @patch.object(AccountingResource, "_get_url", return_value="some_url")
     def test_accounting_staff_resource_methods(self, mock_url):
         """Test methods on accounting staff resource, which has no create"""
         account_id = 1234

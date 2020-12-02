@@ -214,6 +214,14 @@ class Client:
         )
 
     @property
+    def gateways(self):
+        """FreshBooks gateways resource with calls to list, delete"""
+        return AccountingResource(
+            self._client_resource_config(), "systems/gateways", "gateway", "gateways", delete_via_update=False,
+            missing_endpoints=["create", "update", "get"]
+        )
+
+    @property
     def invoices(self):
         """FreshBooks invoices resource with calls to get, list, create, update, delete"""
         return AccountingResource(
@@ -236,7 +244,8 @@ class Client:
     def other_income(self):
         """FreshBooks other_incomes resource with calls to get, list, create, update, delete"""
         return AccountingResource(
-            self._client_resource_config(), "other_incomes/other_incomes", "other_income", "other_income", delete_via_update=False
+            self._client_resource_config(), "other_incomes/other_incomes", "other_income", "other_income",
+            delete_via_update=False
         )
 
     @property

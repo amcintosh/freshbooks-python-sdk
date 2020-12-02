@@ -1,5 +1,5 @@
 class FreshBooksError(Exception):
-    """Exception thrown when FreshBooks returns a non-200 response.
+    """Exception thrown when FreshBooks returns a non-2xx response.
 
     Example:
     ```python

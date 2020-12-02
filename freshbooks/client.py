@@ -6,6 +6,7 @@ from requests.models import urlencode
 from freshbooks.api.accounting import AccountingResource
 from freshbooks.api.auth import AuthResource
 from freshbooks.api.projects import ProjectsResource
+from freshbooks.api.timetracking import TimetrackingResource
 from freshbooks.errors import FreshBooksError
 
 API_BASE_URL = "https://api.freshbooks.com"
@@ -271,3 +272,10 @@ class Client:
     def projects(self):
         """FreshBooks projects resource with calls to get, list, create, update, delete"""
         return ProjectsResource(self._client_resource_config(), "projects", "project")
+
+    # Time tracking Resources
+
+    @property
+    def time_entries(self):
+        """FreshBooks time_entries resource with calls to get, list, create, update, delete"""
+        return TimetrackingResource(self._client_resource_config(), "time_entries", "time_entry")

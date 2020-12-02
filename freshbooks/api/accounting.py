@@ -5,6 +5,8 @@ from decimal import Decimal
 
 
 class AccountingResource(Resource):
+    """Handles resources under the `/accounting` endpoints."""
+
     def __init__(self, client_config, accounting_path, single_name, list_name,
                  delete_via_update=True, missing_endpoints=None):
         super().__init__(client_config)

@@ -9,6 +9,7 @@ from freshbooks import FreshBooksError
 from freshbooks.api.accounting import AccountingResource
 from freshbooks.api.projects import ProjectsResource
 from freshbooks.api.resource import HttpVerbs
+from freshbooks.api.timetracking import TimetrackingResource
 from freshbooks.client import API_BASE_URL
 from freshbooks.errors import FreshBooksNotImplementedError
 from tests import get_fixture
@@ -167,39 +168,6 @@ class TestClientResources:
             else:
                 mock_request.assert_called_with("some_url", HttpVerbs.DELETE)
 
-    @pytest.mark.parametrize(
-        "resource_name, single_name",
-        [
-            ("projects", "project")
-        ]
-    )
-    @patch.object(ProjectsResource, "_get_url", return_value="some_url")
-    def test_project_resource_methods(self, mock_url, resource_name, single_name):
-        """Test general methods on project resources"""
-        business_id = 1234
-        resource_id = 2345
-        resource_ = getattr(self.freshBooksClient, resource_name)
-
-        list_response = {resource_name: [], "meta": {"page": 1, "pages": 0, "per_page": 15, "total": 0}}
-        single_response = {single_name: {}}
-
-        with patch.object(ProjectsResource, "_request", return_value=list_response) as mock_request:
-            resource_.list(business_id)
-            mock_request.assert_called_with("some_url", HttpVerbs.GET)
-
-        with patch.object(ProjectsResource, "_request", return_value=single_response) as mock_request:
-            resource_.get(business_id, resource_id)
-            mock_request.assert_called_with("some_url", HttpVerbs.GET)
-
-            resource_.create(business_id, {})
-            mock_request.assert_called_with("some_url", HttpVerbs.POST, data={single_name: {}})
-
-            resource_.update(business_id, resource_id, {})
-            mock_request.assert_called_with("some_url", HttpVerbs.PUT, data={single_name: {}})
-
-            resource_.delete(business_id, resource_id)
-            mock_request.assert_called_with("some_url", HttpVerbs.DELETE)
-
     @patch.object(AccountingResource, "_get_url", return_value="some_url")
     def test_accounting_expense_categories_resource_methods(self, mock_url):
         """Test methods on accounting expense categories resource, which has only list and get"""
@@ -275,3 +243,69 @@ class TestClientResources:
 
         with pytest.raises(FreshBooksNotImplementedError):
             self.freshBooksClient.systems.delete(account_id, resource_id)
+
+    @pytest.mark.parametrize(
+        "resource_name, single_name",
+        [
+            ("projects", "project")
+        ]
+    )
+    @patch.object(ProjectsResource, "_get_url", return_value="some_url")
+    def test_project_resource_methods(self, mock_url, resource_name, single_name):
+        """Test general methods on project resources"""
+        business_id = 1234
+        resource_id = 2345
+        resource_ = getattr(self.freshBooksClient, resource_name)
+
+        list_response = {resource_name: [], "meta": {"page": 1, "pages": 0, "per_page": 15, "total": 0}}
+        single_response = {single_name: {}}
+
+        with patch.object(ProjectsResource, "_request", return_value=list_response) as mock_request:
+            resource_.list(business_id)
+            mock_request.assert_called_with("some_url", HttpVerbs.GET)
+
+        with patch.object(ProjectsResource, "_request", return_value=single_response) as mock_request:
+            resource_.get(business_id, resource_id)
+            mock_request.assert_called_with("some_url", HttpVerbs.GET)
+
+            resource_.create(business_id, {})
+            mock_request.assert_called_with("some_url", HttpVerbs.POST, data={single_name: {}})
+
+            resource_.update(business_id, resource_id, {})
+            mock_request.assert_called_with("some_url", HttpVerbs.PUT, data={single_name: {}})
+
+            resource_.delete(business_id, resource_id)
+            mock_request.assert_called_with("some_url", HttpVerbs.DELETE)
+
+    @pytest.mark.parametrize(
+        "resource_name, single_name",
+        [
+            ("time_entries", "time_entry")
+        ]
+    )
+    @patch.object(TimetrackingResource, "_get_url", return_value="some_url")
+    def test_timetracking_resource_methods(self, mock_url, resource_name, single_name):
+        """Test general methods on project resources"""
+        business_id = 1234
+        resource_id = 2345
+        resource_ = getattr(self.freshBooksClient, resource_name)
+
+        list_response = {resource_name: [], "meta": {"page": 1, "pages": 0, "per_page": 15, "total": 0}}
+        single_response = {single_name: {}}
+
+        with patch.object(TimetrackingResource, "_request", return_value=list_response) as mock_request:
+            resource_.list(business_id)
+            mock_request.assert_called_with("some_url", HttpVerbs.GET)
+
+        with patch.object(TimetrackingResource, "_request", return_value=single_response) as mock_request:
+            resource_.get(business_id, resource_id)
+            mock_request.assert_called_with("some_url", HttpVerbs.GET)
+
+            resource_.create(business_id, {})
+            mock_request.assert_called_with("some_url", HttpVerbs.POST, data={single_name: {}})
+
+            resource_.update(business_id, resource_id, {})
+            mock_request.assert_called_with("some_url", HttpVerbs.PUT, data={single_name: {}})
+
+            resource_.delete(business_id, resource_id)
+            mock_request.assert_called_with("some_url", HttpVerbs.DELETE)

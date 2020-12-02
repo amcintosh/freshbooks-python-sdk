@@ -5,18 +5,20 @@ from decimal import Decimal
 
 
 class ProjectsResource(Resource):
-    def __init__(self, client_config, project_path, single_name, list_name=None):
+    """Handles resources under the `/projects` endpoints."""
+
+    def __init__(self, client_config, resource_path, single_name, list_name=None):
         super().__init__(client_config)
-        self.project_path = project_path
+        self.resource_path = resource_path
         self.single_name = single_name
         self.list_name = list_name
         if not list_name:
-            self.list_name = project_path
+            self.list_name = resource_path
 
     def _get_url(self, business_id, resource_id=None):
         if resource_id:
-            return "{}/projects/business/{}/{}/{}".format(self.base_url, business_id, self.project_path, resource_id)
-        return "{}/projects/business/{}/{}".format(self.base_url, business_id, self.project_path)
+            return "{}/projects/business/{}/{}/{}".format(self.base_url, business_id, self.resource_path, resource_id)
+        return "{}/projects/business/{}/{}".format(self.base_url, business_id, self.resource_path)
 
     def _request(self, url, method, data=None):
         response = self._send_request(url, method, data)
@@ -35,7 +37,7 @@ class ProjectsResource(Resource):
 
         if status >= 400:
             code = content.get("errno")
-            message = content.get("error", "Unknown error")
+            message = content.get("message") or content.get("error", "Unknown error")
             raise FreshBooksError(status, message, error_code=code, raw_response=content)
         return content
 

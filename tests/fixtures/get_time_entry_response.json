@@ -1,0 +1,24 @@
+{
+    "time_entry": {
+        "id": 419546,
+        "identity_id": 12345,
+        "is_logged": true,
+        "started_at": "2020-10-17T05:00:00Z",
+        "created_at": "2020-10-17T01:09:41Z",
+        "client_id": 56789,
+        "project_id": 654321,
+        "pending_client": null,
+        "pending_project": null,
+        "pending_task": null,
+        "task_id": null,
+        "service_id": 2345,
+        "note": "Stuff",
+        "active": true,
+        "billable": true,
+        "billed": false,
+        "internal": false,
+        "retainer_id": null,
+        "duration": 3600,
+        "timer": null
+    }
+}

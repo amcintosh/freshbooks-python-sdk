@@ -5,6 +5,7 @@ class TimetrackingResource(ProjectsResource):
     """Handles resources under the `/timetracking` endpoints.
 
     These are handled identically to `/projects` endpoints.
+    Refer to `freshbooks.api.projects.ProjectsResource`.
     """
 
     def _get_url(self, business_id, resource_id=None):

@@ -21,7 +21,8 @@ with open(os.path.join(os.path.dirname(__file__), "VERSION")) as f:
 
 class Client:
     def __init__(self, client_id, client_secret=None, redirect_uri=None,
-                 access_token=None, refresh_token=None, user_agent=None):
+                 access_token=None, refresh_token=None, user_agent=None,
+                 auto_retry=True):
         """
         Create a new API client instance for the given `client_id` and `client_secret`.
         This will allow you to follow the authentication flow to get an `access_token`.
@@ -29,11 +30,10 @@ class Client:
         Alternatively, you can provide an `access_token` directly, in which case then you don't need
         to specify a `client_secret` (though the token cannot be refreshed in this case).
 
-        TODO: Rate limits, change timeout, retries
+        TODO: change timeout
         TODO: identity: get business_id from account and vice
         TODO: identity: get businesses by role
         TODO: includes, sort
-        TODO: sub-objects
         TODO: sorting
         TODO: type hints
         TODO: revoke token
@@ -46,6 +46,7 @@ class Client:
             access_token: An already authenticated access token to use
             refresh_token: An already authenticated refresh token to use
             user_agent: A user-agent string to override the default
+            auto_retry: If the SDK should retry failed call up to 3 times. Defaults to True.
 
         Returns:
             The Client instance
@@ -56,6 +57,7 @@ class Client:
         self.access_token = access_token
         self.refresh_token = refresh_token
         self.access_token_expires_at = None
+        self.auto_retry = auto_retry
 
         self.base_url = os.getenv("FRESHBOOKS_API_URL", API_BASE_URL)
         self.authorization_url = "{}{}".format(os.getenv("FRESHBOOKS_AUTH_URL", AUTH_BASE_URL), AUTH_URL)
@@ -76,7 +78,8 @@ class Client:
         return SimpleNamespace(
             access_token=self.access_token,
             base_url=self.base_url,
-            user_agent=self.user_agent
+            user_agent=self.user_agent,
+            auto_retry=self.auto_retry
         )
 
     def get_auth_request_url(self, scopes=None):

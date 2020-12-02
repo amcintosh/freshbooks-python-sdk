@@ -1,5 +1,7 @@
 import json
 import requests
+from requests.adapters import HTTPAdapter
+from requests.packages.urllib3.util.retry import Retry
 
 
 class HttpVerbs(object):
@@ -13,13 +15,30 @@ class HttpVerbs(object):
 
 class Resource:
     DEFAULT_TIMEOUT = 30
+    API_RETRIES = 3
     """Default request timeout to FreshBooks"""
 
     def __init__(self, client_config):
         self.base_url = client_config.base_url
         self.access_token = client_config.access_token
         self.user_agent = client_config.user_agent
-        self.session = requests.Session()
+        self.session = self._config_session(client_config.auto_retry)
+
+    def _config_session(self, auto_retry):
+        session = requests.Session()
+
+        if auto_retry:
+            retry = Retry(
+                total=self.API_RETRIES,
+                backoff_factor=0.3,
+                allowed_methods=["HEAD", "GET", "PUT", "DELETE", "OPTIONS", "TRACE"],
+                status_forcelist=[400, 408, 429, 500, 502, 503, 504]
+            )
+            adapter = HTTPAdapter(max_retries=retry)
+            session.mount('http://', adapter)
+            session.mount('https://', adapter)
+
+        return session
 
     def headers(self, method):
         """Get headers required for API calls"""

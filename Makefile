@@ -7,12 +7,11 @@ env:
 install-dev: env
 	pip install -r requirements-dev.txt
 
-generate-docs: install-dev
+generate-docs:
 	rm -rf docs
 	pdoc --html -o docs --force freshbooks
 	mv docs/freshbooks/* docs/
 	rm -rf docs/freshbooks/
-
 
 check-style:
 	flake8 . --count --show-source --statistics
@@ -20,7 +19,7 @@ check-style:
 check-types:
 	mypy freshbooks
 
-test: install-dev
+test:
 	py.test --junitxml=junit.xml \
 		--cov=freshbooks \
 		--cov-branch \

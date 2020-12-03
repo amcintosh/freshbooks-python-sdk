@@ -35,15 +35,6 @@ class Client:
         Alternatively, you can provide an `access_token` directly, in which case then you don't need
         to specify a `client_secret` (though the token cannot be refreshed in this case).
 
-        TODO: change timeout
-        TODO: identity: get business_id from account and vice
-        TODO: identity: get businesses by role
-        TODO: includes, sort
-        TODO: sorting
-        TODO: type hints
-        TODO: revoke token
-        TODO: vis_state values
-
         Args:
             client_id: The FreshBooks application client id
             client_secret: The FreshBooks application client secret
@@ -173,6 +164,9 @@ class Client:
 
         Returns:
             Simplre namespace containing `access_token`, `refresh_token`, and `access_token_expires_at`
+
+        Raises:
+            FreshBooksClientConfigError: If a refresh token is not set on the client instance and is not provided.
         """
         refresh_token = refresh_token or self.refresh_token
         if not refresh_token:

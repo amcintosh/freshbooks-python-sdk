@@ -637,7 +637,7 @@ to specify a <code>client_secret</code> (though the token cannot be refreshed in
 </details>
 <h3>Instance variables</h3>
 <dl>
-<dt id="freshbooks.client.Client.clients"><code class="name">var <span class="ident">clients</span> : <a title="freshbooks.api.resource.Resource" href="api/resource.html#freshbooks.api.resource.Resource">Resource</a></code></dt>
+<dt id="freshbooks.client.Client.clients"><code class="name">var <span class="ident">clients</span> : freshbooks.api.resource.Resource</code></dt>
 <dd>
 <div class="desc"><p>FreshBooks clients resource with calls to get, list, create, update, delete</p></div>
 <details class="source">
@@ -650,7 +650,7 @@ def clients(self) -&gt; Resource:
     return AccountingResource(self._client_resource_config(), &#34;users/clients&#34;, &#34;client&#34;, &#34;clients&#34;)</code></pre>
 </details>
 </dd>
-<dt id="freshbooks.client.Client.credit_notes"><code class="name">var <span class="ident">credit_notes</span> : <a title="freshbooks.api.resource.Resource" href="api/resource.html#freshbooks.api.resource.Resource">Resource</a></code></dt>
+<dt id="freshbooks.client.Client.credit_notes"><code class="name">var <span class="ident">credit_notes</span> : freshbooks.api.resource.Resource</code></dt>
 <dd>
 <div class="desc"><p>FreshBooks credit_notes resource with calls to get, list, create, update, delete</p></div>
 <details class="source">
@@ -682,7 +682,7 @@ def current_user(self) -&gt; Identity:
     return AuthResource(self._client_resource_config()).me_endpoint()</code></pre>
 </details>
 </dd>
-<dt id="freshbooks.client.Client.estimates"><code class="name">var <span class="ident">estimates</span> : <a title="freshbooks.api.resource.Resource" href="api/resource.html#freshbooks.api.resource.Resource">Resource</a></code></dt>
+<dt id="freshbooks.client.Client.estimates"><code class="name">var <span class="ident">estimates</span> : freshbooks.api.resource.Resource</code></dt>
 <dd>
 <div class="desc"><p>FreshBooks estimates resource with calls to get, list, create, update, delete</p></div>
 <details class="source">
@@ -697,7 +697,7 @@ def estimates(self) -&gt; Resource:
     )</code></pre>
 </details>
 </dd>
-<dt id="freshbooks.client.Client.expenses"><code class="name">var <span class="ident">expenses</span> : <a title="freshbooks.api.resource.Resource" href="api/resource.html#freshbooks.api.resource.Resource">Resource</a></code></dt>
+<dt id="freshbooks.client.Client.expenses"><code class="name">var <span class="ident">expenses</span> : freshbooks.api.resource.Resource</code></dt>
 <dd>
 <div class="desc"><p>FreshBooks expenses resource with calls to get, list, create, update, delete</p></div>
 <details class="source">
@@ -710,7 +710,7 @@ def expenses(self) -&gt; Resource:
     return AccountingResource(self._client_resource_config(), &#34;expenses/expenses&#34;, &#34;expense&#34;, &#34;expenses&#34;)</code></pre>
 </details>
 </dd>
-<dt id="freshbooks.client.Client.expenses_categories"><code class="name">var <span class="ident">expenses_categories</span> : <a title="freshbooks.api.resource.Resource" href="api/resource.html#freshbooks.api.resource.Resource">Resource</a></code></dt>
+<dt id="freshbooks.client.Client.expenses_categories"><code class="name">var <span class="ident">expenses_categories</span> : freshbooks.api.resource.Resource</code></dt>
 <dd>
 <div class="desc"><p>FreshBooks expenses categories resource with calls to get and list</p></div>
 <details class="source">
@@ -726,7 +726,7 @@ def expenses_categories(self) -&gt; Resource:
     )</code></pre>
 </details>
 </dd>
-<dt id="freshbooks.client.Client.gateways"><code class="name">var <span class="ident">gateways</span> : <a title="freshbooks.api.resource.Resource" href="api/resource.html#freshbooks.api.resource.Resource">Resource</a></code></dt>
+<dt id="freshbooks.client.Client.gateways"><code class="name">var <span class="ident">gateways</span> : freshbooks.api.resource.Resource</code></dt>
 <dd>
 <div class="desc"><p>FreshBooks gateways resource with calls to list, delete</p></div>
 <details class="source">
@@ -742,7 +742,7 @@ def gateways(self) -&gt; Resource:
     )</code></pre>
 </details>
 </dd>
-<dt id="freshbooks.client.Client.invoice_profiles"><code class="name">var <span class="ident">invoice_profiles</span> : <a title="freshbooks.api.resource.Resource" href="api/resource.html#freshbooks.api.resource.Resource">Resource</a></code></dt>
+<dt id="freshbooks.client.Client.invoice_profiles"><code class="name">var <span class="ident">invoice_profiles</span> : freshbooks.api.resource.Resource</code></dt>
 <dd>
 <div class="desc"><p>FreshBooks invoice_profiles resource with calls to get, list, create, update, delete</p></div>
 <details class="source">
@@ -757,7 +757,7 @@ def invoice_profiles(self) -&gt; Resource:
     )</code></pre>
 </details>
 </dd>
-<dt id="freshbooks.client.Client.invoices"><code class="name">var <span class="ident">invoices</span> : <a title="freshbooks.api.resource.Resource" href="api/resource.html#freshbooks.api.resource.Resource">Resource</a></code></dt>
+<dt id="freshbooks.client.Client.invoices"><code class="name">var <span class="ident">invoices</span> : freshbooks.api.resource.Resource</code></dt>
 <dd>
 <div class="desc"><p>FreshBooks invoices resource with calls to get, list, create, update, delete</p></div>
 <details class="source">
@@ -772,7 +772,7 @@ def invoices(self) -&gt; Resource:
     )</code></pre>
 </details>
 </dd>
-<dt id="freshbooks.client.Client.items"><code class="name">var <span class="ident">items</span> : <a title="freshbooks.api.resource.Resource" href="api/resource.html#freshbooks.api.resource.Resource">Resource</a></code></dt>
+<dt id="freshbooks.client.Client.items"><code class="name">var <span class="ident">items</span> : freshbooks.api.resource.Resource</code></dt>
 <dd>
 <div class="desc"><p>FreshBooks items resource with calls to get, list, create, update, delete</p></div>
 <details class="source">
@@ -785,7 +785,7 @@ def items(self) -&gt; Resource:
     return AccountingResource(self._client_resource_config(), &#34;items/items&#34;, &#34;item&#34;, &#34;items&#34;)</code></pre>
 </details>
 </dd>
-<dt id="freshbooks.client.Client.other_income"><code class="name">var <span class="ident">other_income</span> : <a title="freshbooks.api.resource.Resource" href="api/resource.html#freshbooks.api.resource.Resource">Resource</a></code></dt>
+<dt id="freshbooks.client.Client.other_income"><code class="name">var <span class="ident">other_income</span> : freshbooks.api.resource.Resource</code></dt>
 <dd>
 <div class="desc"><p>FreshBooks other_incomes resource with calls to get, list, create, update, delete</p></div>
 <details class="source">
@@ -801,7 +801,7 @@ def other_income(self) -&gt; Resource:
     )</code></pre>
 </details>
 </dd>
-<dt id="freshbooks.client.Client.payments"><code class="name">var <span class="ident">payments</span> : <a title="freshbooks.api.resource.Resource" href="api/resource.html#freshbooks.api.resource.Resource">Resource</a></code></dt>
+<dt id="freshbooks.client.Client.payments"><code class="name">var <span class="ident">payments</span> : freshbooks.api.resource.Resource</code></dt>
 <dd>
 <div class="desc"><p>FreshBooks payments resource with calls to get, list, create, update, delete</p></div>
 <details class="source">
@@ -814,7 +814,7 @@ def payments(self) -&gt; Resource:
     return AccountingResource(self._client_resource_config(), &#34;payments/payments&#34;, &#34;payment&#34;, &#34;payments&#34;)</code></pre>
 </details>
 </dd>
-<dt id="freshbooks.client.Client.projects"><code class="name">var <span class="ident">projects</span> : <a title="freshbooks.api.resource.Resource" href="api/resource.html#freshbooks.api.resource.Resource">Resource</a></code></dt>
+<dt id="freshbooks.client.Client.projects"><code class="name">var <span class="ident">projects</span> : freshbooks.api.resource.Resource</code></dt>
 <dd>
 <div class="desc"><p>FreshBooks projects resource with calls to get, list, create, update, delete</p></div>
 <details class="source">
@@ -827,7 +827,7 @@ def projects(self) -&gt; Resource:
     return ProjectsResource(self._client_resource_config(), &#34;projects&#34;, &#34;project&#34;)</code></pre>
 </details>
 </dd>
-<dt id="freshbooks.client.Client.staff"><code class="name">var <span class="ident">staff</span> : <a title="freshbooks.api.resource.Resource" href="api/resource.html#freshbooks.api.resource.Resource">Resource</a></code></dt>
+<dt id="freshbooks.client.Client.staff"><code class="name">var <span class="ident">staff</span> : freshbooks.api.resource.Resource</code></dt>
 <dd>
 <div class="desc"><p>FreshBooks staff resource with calls to get, list, update, delete</p></div>
 <details class="source">
@@ -842,7 +842,7 @@ def staff(self) -&gt; Resource:
     )</code></pre>
 </details>
 </dd>
-<dt id="freshbooks.client.Client.systems"><code class="name">var <span class="ident">systems</span> : <a title="freshbooks.api.resource.Resource" href="api/resource.html#freshbooks.api.resource.Resource">Resource</a></code></dt>
+<dt id="freshbooks.client.Client.systems"><code class="name">var <span class="ident">systems</span> : freshbooks.api.resource.Resource</code></dt>
 <dd>
 <div class="desc"><p>FreshBooks systems resource with calls to get only</p></div>
 <details class="source">
@@ -858,7 +858,7 @@ def systems(self) -&gt; Resource:
     )</code></pre>
 </details>
 </dd>
-<dt id="freshbooks.client.Client.taxes"><code class="name">var <span class="ident">taxes</span> : <a title="freshbooks.api.resource.Resource" href="api/resource.html#freshbooks.api.resource.Resource">Resource</a></code></dt>
+<dt id="freshbooks.client.Client.taxes"><code class="name">var <span class="ident">taxes</span> : freshbooks.api.resource.Resource</code></dt>
 <dd>
 <div class="desc"><p>FreshBooks taxes resource with calls to get, list, create, update, delete</p></div>
 <details class="source">
@@ -873,7 +873,7 @@ def taxes(self) -&gt; Resource:
     )</code></pre>
 </details>
 </dd>
-<dt id="freshbooks.client.Client.time_entries"><code class="name">var <span class="ident">time_entries</span> : <a title="freshbooks.api.resource.Resource" href="api/resource.html#freshbooks.api.resource.Resource">Resource</a></code></dt>
+<dt id="freshbooks.client.Client.time_entries"><code class="name">var <span class="ident">time_entries</span> : freshbooks.api.resource.Resource</code></dt>
 <dd>
 <div class="desc"><p>FreshBooks time_entries resource with calls to get, list, create, update, delete</p></div>
 <details class="source">

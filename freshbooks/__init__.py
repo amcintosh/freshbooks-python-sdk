@@ -12,6 +12,7 @@ from freshbooks.client import Client  # noqa
 from freshbooks.errors import FreshBooksError  # noqa
 
 __pdoc__ = {
+    "freshbooks.api.resource": False,
     "freshbooks.builders.paginator.PaginateBuilder.MIN_PAGE": False,
     "freshbooks.builders.paginator.PaginateBuilder.MAX_PER_PAGE": False
 }

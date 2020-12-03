@@ -19,8 +19,9 @@ class HttpVerbs(object):
 
 class Resource:
     DEFAULT_TIMEOUT = 30
-    API_RETRIES = 3
     """Default request timeout to FreshBooks"""
+    API_RETRIES = 3
+    """Default number of retries"""
 
     def __init__(self, client_config: SimpleNamespace):
         self.base_url = client_config.base_url

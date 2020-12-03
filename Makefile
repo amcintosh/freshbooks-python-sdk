@@ -8,6 +8,7 @@ install-dev: env
 	pip install -r requirements-dev.txt
 
 generate-docs: install-dev
+	rm -rf docs
 	pdoc --html -o docs --force freshbooks
 	mv docs/freshbooks/* docs/
 	rm -rf docs/freshbooks/

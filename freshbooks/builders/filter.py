@@ -1,7 +1,10 @@
 from datetime import date, datetime
+from typing import Any, Optional, Union, List, Tuple
+
+from freshbooks.builders import Builder
 
 
-class FilterBuilder:
+class FilterBuilder(Builder):
     """Builder for making filtered list queries.
 
     Filters can be builts with the methods:
@@ -33,18 +36,18 @@ class FilterBuilder:
     ```
     """
 
-    def __init__(self):
-        self._filters = []
+    def __init__(self) -> None:
+        self._filters: List[Tuple[str, str, Any]] = []
 
-    def __str__(self):
+    def __str__(self) -> str:
         query_string = self.build()
         return f"FilterBuilder({query_string})"
 
-    def __repr__(self):  # pragma: no cover
+    def __repr__(self) -> str:  # pragma: no cover
         query_string = self.build()
         return f"FilterBuilder({query_string})"
 
-    def boolean(self, field, value):
+    def boolean(self, field: str, value: bool) -> Builder:
         """Filters results where the field is equal to true or false.
 
         Example:
@@ -60,7 +63,7 @@ class FilterBuilder:
         self._filters.append(("bool", field, value))
         return self
 
-    def equals(self, field, value):
+    def equals(self, field: str, value: Any) -> Builder:
         """Filters results where the field is equal to the provided value.
 
         Example:
@@ -76,7 +79,7 @@ class FilterBuilder:
         self._filters.append(("equals", field, value))
         return self
 
-    def in_list(self, field, values):
+    def in_list(self, field: str, values: list) -> Builder:
         """Filters if the provided field matches a value in a list.
 
         In general, an 'in' filter will be bound to the plural form of the field.
@@ -101,7 +104,7 @@ class FilterBuilder:
         self._filters.append(("in", field, values))
         return self
 
-    def like(self, field, value):
+    def like(self, field: str, value: Any) -> Builder:
         """Filters for a match contained within the field being searched. For example,
         "leaf" will Like-match "aleaf" and "leafy", but not "leav", and "leafs" would
         not Like-match "leaf".
@@ -116,7 +119,7 @@ class FilterBuilder:
         self._filters.append(("like", field, value))
         return self
 
-    def between(self, field, min=None, max=None):
+    def between(self, field: str, min: Optional[Any] = None, max: Optional[Any] = None) -> Builder:
         """Filters results where the provided field is between two values.
 
         In general 'between' filters end in a `_min` or `_max` (as in `amount_min` or `amount_max`)
@@ -153,19 +156,19 @@ class FilterBuilder:
             self._filters.append(("between", max_field, max_value))
         return self
 
-    def _convert_between_field_name(self, field, min_max):
+    def _convert_between_field_name(self, field: str, min_max: str) -> str:
         if field[-4:] not in ["_min", "_max"] and field[-5:] != "_date":
             return f"{field}{min_max}"
         return field
 
-    def _convert_between_value(self, value):
+    def _convert_between_value(self, value: Union[str, Any]) -> str:
         if isinstance(value, datetime):
             return value.date().isoformat()
         elif isinstance(value, date):
             return value.isoformat()
         return value
 
-    def build(self):
+    def build(self) -> str:
         """Builds the query string parameters from the FilterBuilder.
 
         Returns:

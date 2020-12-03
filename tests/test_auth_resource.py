@@ -9,7 +9,7 @@ from tests import get_fixture
 class TestAuthResources:
     def setup_method(self, method):
         self.business_id = 98765
-        self.freshBooksClient = FreshBooksClient(client_id="some_client", access_token="some_token")
+        self.freshBooksClient = FreshBooksClient(client_id="some_client", access_token="some_token", auto_retry=False)
 
     @httpretty.activate
     def test_get_me(self):
@@ -25,7 +25,7 @@ class TestAuthResources:
 
         assert str(current_user) == "Identity(12345, skovalic@cis.com)"
         assert current_user.identity_id == 12345
-        assert current_user.name == "Simon Kovalic"
+        assert current_user.full_name == "Simon Kovalic"
         assert current_user.email == "skovalic@cis.com"
         assert current_user.data["email"] == "skovalic@cis.com"
         assert len(current_user.business_memberships) == 2

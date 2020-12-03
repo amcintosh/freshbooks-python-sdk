@@ -1,5 +1,9 @@
 import json
+from types import SimpleNamespace
+from typing import Any, Dict, List, Optional
+
 import requests
+from freshbooks.builders import Builder
 from requests.adapters import HTTPAdapter
 from requests.packages.urllib3.util.retry import Retry
 
@@ -18,13 +22,13 @@ class Resource:
     API_RETRIES = 3
     """Default request timeout to FreshBooks"""
 
-    def __init__(self, client_config):
+    def __init__(self, client_config: SimpleNamespace):
         self.base_url = client_config.base_url
         self.access_token = client_config.access_token
         self.user_agent = client_config.user_agent
         self.session = self._config_session(client_config.auto_retry)
 
-    def _config_session(self, auto_retry):
+    def _config_session(self, auto_retry: bool) -> requests.Session:
         session = requests.Session()
 
         if auto_retry:
@@ -32,7 +36,7 @@ class Resource:
                 total=self.API_RETRIES,
                 backoff_factor=0.3,
                 allowed_methods=["HEAD", "GET", "PUT", "DELETE", "OPTIONS", "TRACE"],
-                status_forcelist=[400, 408, 429, 500, 502, 503, 504]
+                status_forcelist=[400, 408, 429, 500, 502, 503, 504],  # type: ignore
             )
             adapter = HTTPAdapter(max_retries=retry)
             session.mount('http://', adapter)
@@ -40,7 +44,7 @@ class Resource:
 
         return session
 
-    def headers(self, method):
+    def headers(self, method: str) -> Dict[str, str]:
         """Get headers required for API calls"""
 
         headers = {
@@ -51,26 +55,27 @@ class Resource:
             headers["Content-Type"] = "application/json"
         return headers
 
-    def _send_request(self, uri, method, data):
+    def _send_request(self, uri: str, method: str, data: Optional[dict] = None) -> Any:
+        payload = None
         if method is HttpVerbs.GET:
             session = self.session.get
         elif method is HttpVerbs.POST:
             session = self.session.post
-            data = json.dumps(data)
+            payload = json.dumps(data)
         elif method is HttpVerbs.PUT:
             session = self.session.put
-            data = json.dumps(data)
-        elif method is HttpVerbs.PATCH:
+            payload = json.dumps(data)
+        elif method is HttpVerbs.PATCH:  # pragma: no cover
             session = self.session.patch
-            data = json.dumps(data)
+            payload = json.dumps(data)
         elif method is HttpVerbs.DELETE:
             session = self.session.delete
-        elif method is HttpVerbs.HEAD:
+        elif method is HttpVerbs.HEAD:  # pragma: no cover
             session = self.session.head
 
-        return session(uri, data=data, headers=self.headers(method), timeout=self.DEFAULT_TIMEOUT)
+        return session(uri, data=payload, headers=self.headers(method), timeout=self.DEFAULT_TIMEOUT)
 
-    def _build_query_string(self, builders):
+    def _build_query_string(self, builders: Optional[List[Builder]]) -> str:
         query_string = ""
         if builders:
             for builder in builders:

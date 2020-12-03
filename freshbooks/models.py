@@ -1,4 +1,5 @@
 from collections import namedtuple
+from typing import Any
 
 
 class Result:
@@ -22,17 +23,17 @@ class Result:
     ```
     """
 
-    def __init__(self, name, data):
+    def __init__(self, name: str, data: dict):
         self.name = name
         self.data = data.get(name, {})
 
-    def __str__(self):
+    def __str__(self) -> str:
         return "Result({})".format(self.name)
 
-    def __repr__(self):  # pragma: no cover
+    def __repr__(self) -> str:  # pragma: no cover
         return "Result({})".format(self.name)
 
-    def __getattr__(self, field):
+    def __getattr__(self, field: str) -> Any:
         return self.data.get(field)
 
 
@@ -74,30 +75,30 @@ class ListResult:
     For including pagination in requests, see `freshbooks.builders.paginator.PaginateBuilder`.
     """
 
-    def __init__(self, name, single_name, data):
+    def __init__(self, name: str, single_name: str, data: dict):
         self.name = name
         self.single_name = single_name
         self.data = data
         self.pages = self._constructPages(data)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return "Result({})".format(self.name)
 
-    def __repr__(self):  # pragma: no cover
+    def __repr__(self) -> str:  # pragma: no cover
         return "Result({})".format(self.name)
 
-    def __len__(self):
+    def __len__(self) -> int:
         return len(self.data.get(self.name, []))
 
-    def __getitem__(self, index):
+    def __getitem__(self, index: int) -> Result:
         results = self.data.get(self.name, [])
         return Result(self.single_name, {self.single_name: results[index]})
 
-    def __iter__(self):
+    def __iter__(self) -> Any:
         self.n = 0
         return self
 
-    def __next__(self):
+    def __next__(self) -> Result:
         results = self.data.get(self.name, [])
         if self.n < len(results):
             result = Result(self.single_name, {self.single_name: results[self.n]})
@@ -106,7 +107,7 @@ class ListResult:
         else:
             raise StopIteration
 
-    def _constructPages(self, data):
+    def _constructPages(self, data: dict) -> Any:
         if data.get("meta"):  # Project-style endpoint
             data = data["meta"]
         page = data["page"]
@@ -132,26 +133,26 @@ class Identity(Result):
     ```
     """
 
-    def __init__(self, data):
+    def __init__(self, data: dict):
         self.data = data
 
-    def __str__(self):
+    def __str__(self) -> str:
         return "Identity({}, {})".format(self.identity_id, self.data.get("email"))
 
-    def __repr__(self):  # pragma: no cover
+    def __repr__(self) -> str:  # pragma: no cover
         return "Identity({})".format(self.identity_id)
 
     @property
-    def identity_id(self):
+    def identity_id(self) -> int:
         """The authenticated user's identity_id"""
-        return self.data.get("identity_id")
+        return self.data.get("identity_id")  # type: ignore
 
     @property
-    def name(self):
+    def full_name(self) -> str:
         """The authenticated user's name"""
         return "{} {}".format(self.data.get("first_name"), self.data.get("last_name"))
 
     @property
-    def business_memberships(self):
+    def business_memberships(self) -> Any:
         """The authenticated user's businesses and their role in that business."""
         return self.data.get("business_memberships")

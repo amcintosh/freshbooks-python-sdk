@@ -1,3 +1,6 @@
+from typing import Optional
+
+
 class FreshBooksError(Exception):
     """Exception thrown when FreshBooks returns a non-2xx response.
 
@@ -18,7 +21,9 @@ class FreshBooksError(Exception):
         raw_response: Content response from the server.
     """
 
-    def __init__(self, status_code, message, raw_response=None, error_code=None):
+    def __init__(self, status_code: int, message: str,
+                 raw_response: Optional[str] = None,
+                 error_code: Optional[int] = None):
         super().__init__(message)
         self.status_code = status_code
         self.error_code = error_code
@@ -33,5 +38,10 @@ class FreshBooksNotImplementedError(Exception):
     ```
     """
 
-    def __init__(self, resource_name, method_name):
+    def __init__(self, resource_name: str, method_name: str):
         super().__init__(f"The method '{method_name}' does not exist for {resource_name}")
+
+
+class FreshBooksClientConfigError(Exception):
+    """Exception thrown when optional client parameters are not set, but and required."""
+    pass

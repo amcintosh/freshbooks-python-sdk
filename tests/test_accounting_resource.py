@@ -11,7 +11,7 @@ from tests import get_fixture
 class TestAccountingResources:
     def setup_method(self, method):
         self.account_id = "ACM123"
-        self.freshBooksClient = FreshBooksClient(client_id="some_client", access_token="some_token")
+        self.freshBooksClient = FreshBooksClient(client_id="some_client", access_token="some_token", auto_retry=False)
 
     @httpretty.activate
     def test_get_client(self):

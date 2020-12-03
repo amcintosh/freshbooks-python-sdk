@@ -1,13 +1,19 @@
-from freshbooks.errors import FreshBooksError
-from freshbooks.api.resource import Resource, HttpVerbs
-from freshbooks.models import Result, ListResult
 from decimal import Decimal
+from types import SimpleNamespace
+from typing import Any, List, Optional
+
+from freshbooks.api.resource import HttpVerbs, Resource
+from freshbooks.builders import Builder
+from freshbooks.errors import FreshBooksError
+from freshbooks.models import ListResult, Result
 
 
 class ProjectsResource(Resource):
     """Handles resources under the `/projects` endpoints."""
 
-    def __init__(self, client_config, resource_path, single_name, list_name=None):
+    def __init__(self, client_config: SimpleNamespace, resource_path: str,
+                 single_name: str, list_name: Optional[str] = None):
+
         super().__init__(client_config)
         self.resource_path = resource_path
         self.single_name = single_name
@@ -15,12 +21,12 @@ class ProjectsResource(Resource):
         if not list_name:
             self.list_name = resource_path
 
-    def _get_url(self, business_id, resource_id=None):
+    def _get_url(self, business_id: int, resource_id: Optional[int] = None) -> str:
         if resource_id:
             return "{}/projects/business/{}/{}/{}".format(self.base_url, business_id, self.resource_path, resource_id)
         return "{}/projects/business/{}/{}".format(self.base_url, business_id, self.resource_path)
 
-    def _request(self, url, method, data=None):
+    def _request(self, url: str, method: str, data: Optional[dict] = None) -> Any:
         response = self._send_request(url, method, data)
 
         status = response.status_code
@@ -41,26 +47,26 @@ class ProjectsResource(Resource):
             raise FreshBooksError(status, message, error_code=code, raw_response=content)
         return content
 
-    def get(self, business_id, resource_id):
+    def get(self, business_id: int, resource_id: int) -> Result:
         data = self._request(self._get_url(business_id, resource_id), HttpVerbs.GET)
         return Result(self.single_name, data)
 
-    def list(self, business_id, builders=None):
+    def list(self, business_id: int, builders: Optional[List[Builder]] = None) -> ListResult:
         resource_url = self._get_url(business_id)
         query_string = self._build_query_string(builders)
         data = self._request(f"{resource_url}{query_string}", HttpVerbs.GET)
-        return ListResult(self.list_name, self.single_name, data)
+        return ListResult(self.list_name, self.single_name, data)  # type: ignore
 
-    def create(self, business_id, data):
+    def create(self, business_id: int, data: dict) -> Result:
         response = self._request(self._get_url(business_id), HttpVerbs.POST, data={self.single_name: data})
         return Result(self.single_name, response)
 
-    def update(self, business_id, resource_id, data):
+    def update(self, business_id: int, resource_id: int, data: dict) -> Result:
         response = self._request(
             self._get_url(business_id, resource_id), HttpVerbs.PUT, data={self.single_name: data}
         )
         return Result(self.single_name, response)
 
-    def delete(self, business_id, resource_id):
+    def delete(self, business_id: int, resource_id: int) -> Result:
         response = self._request(self._get_url(business_id, resource_id), HttpVerbs.DELETE)
         return Result(self.single_name, response)

@@ -11,6 +11,7 @@ generate-docs: install-dev
 	pdoc --html -o docs --force freshbooks
 
 test: install-dev
+	mypy freshbooks
 	py.test --junitxml=junit.xml \
 		--cov=freshbooks \
 		--cov-branch \

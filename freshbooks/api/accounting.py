@@ -1,14 +1,19 @@
-from freshbooks.errors import FreshBooksError, FreshBooksNotImplementedError
-from freshbooks.api.resource import HttpVerbs, Resource
-from freshbooks.models import Result, ListResult
 from decimal import Decimal
+from types import SimpleNamespace
+from typing import Any, List, Optional, Tuple, Union
+
+from freshbooks.api.resource import HttpVerbs, Resource
+from freshbooks.builders import Builder
+from freshbooks.errors import FreshBooksError, FreshBooksNotImplementedError
+from freshbooks.models import ListResult, Result
 
 
 class AccountingResource(Resource):
     """Handles resources under the `/accounting` endpoints."""
 
-    def __init__(self, client_config, accounting_path, single_name, list_name,
-                 delete_via_update=True, missing_endpoints=None):
+    def __init__(self, client_config: SimpleNamespace, accounting_path: str,
+                 single_name: str, list_name: str,
+                 delete_via_update: bool = True, missing_endpoints: Optional[List[str]] = None):
         super().__init__(client_config)
         self.accounting_path = accounting_path
         self.single_name = single_name
@@ -16,13 +21,13 @@ class AccountingResource(Resource):
         self.delete_via_update = delete_via_update
         self.missing_endpoints = missing_endpoints if missing_endpoints else []
 
-    def _get_url(self, account_id, resource_id=None):
+    def _get_url(self, account_id: str, resource_id: Optional[int] = None) -> str:
         if resource_id:
             return "{}/accounting/account/{}/{}/{}".format(
                 self.base_url, account_id, self.accounting_path, resource_id)
         return "{}/accounting/account/{}/{}".format(self.base_url, account_id, self.accounting_path)
 
-    def _extract_error(self, errors):
+    def _extract_error(self, errors: Union[list, dict]) -> Tuple[str, Optional[int]]:
         if not errors:  # pragma: no cover
             return "Unknown error", None
 
@@ -31,7 +36,7 @@ class AccountingResource(Resource):
 
         return errors["message"], int(errors["errno"])
 
-    def _request(self, url, method, data=None):
+    def _request(self, url: str, method: str, data: Optional[dict] = None) -> Any:
         response = self._send_request(url, method, data)
 
         status = response.status_code
@@ -47,44 +52,68 @@ class AccountingResource(Resource):
         if "response" not in content:
             raise FreshBooksError(status, "Returned an unexpected response", raw_response=response.text)
 
-        response = content["response"]
+        response_data = content["response"]
         if status >= 400:
-            message, code = self._extract_error(response["errors"])
+            message, code = self._extract_error(response_data["errors"])
             raise FreshBooksError(status, message, error_code=code, raw_response=content)
         try:
-            return response["result"]
+            return response_data["result"]
         except KeyError:
-            return response
+            return response_data
 
-    def _reject_missing(self, name):
+    def _reject_missing(self, name: str) -> None:
         if name in self.missing_endpoints:
             raise FreshBooksNotImplementedError(self.list_name, name)
 
-    def get(self, account_id, resource_id):
+    def get(self, account_id: str, resource_id: int) -> Result:
+        """Get a single entry with the corresponding id.
+
+        Args:
+            account_id: The alpha-numeric account id
+            resource_id: Id of the resource to return
+
+        Returns:
+            Result: Result object with the resource's response data.
+
+        Raises:
+            FreshBooksError: If the call is not successful.
+        """
         self._reject_missing("get")
         data = self._request(self._get_url(account_id, resource_id), HttpVerbs.GET)
         return Result(self.single_name, data)
 
-    def list(self, account_id, builders=None):
+    def list(self, account_id: str, builders: Optional[List[Builder]] = None) -> ListResult:
+        """Get a list of entries.
+
+        Args:
+            account_id: The alpha-numeric account id
+            builders: List of builder objects for filters, pagination, etc.
+
+        Returns:
+            ListResult: ListResult object with the resources response data.
+
+        Raises:
+            FreshBooksError: If the call is not successful.
+        """
         self._reject_missing("list")
         resource_url = self._get_url(account_id)
         query_string = self._build_query_string(builders)
         data = self._request(f"{resource_url}{query_string}", HttpVerbs.GET)
         return ListResult(self.list_name, self.single_name, data)
 
-    def create(self, account_id, data):
+    def create(self, account_id: str, data: dict) -> Result:
         self._reject_missing("create")
         response = self._request(self._get_url(account_id), HttpVerbs.POST, data={self.single_name: data})
         return Result(self.single_name, response)
 
-    def update(self, account_id, resource_id, data):
+    def update(self, account_id: str, resource_id: int, data: dict) -> Result:
         self._reject_missing("update")
         response = self._request(
             self._get_url(account_id, resource_id), HttpVerbs.PUT, data={self.single_name: data}
         )
         return Result(self.single_name, response)
 
-    def delete(self, account_id, resource_id):
+    def delete(self, account_id: str, resource_id: int) -> Result:
         self._reject_missing("delete")
         if self.delete_via_update:
             response = self._request(

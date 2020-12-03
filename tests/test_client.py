@@ -11,7 +11,7 @@ from freshbooks.api.projects import ProjectsResource
 from freshbooks.api.resource import HttpVerbs
 from freshbooks.api.timetracking import TimetrackingResource
 from freshbooks.client import API_BASE_URL
-from freshbooks.errors import FreshBooksNotImplementedError
+from freshbooks.errors import FreshBooksNotImplementedError, FreshBooksClientConfigError
 from tests import get_fixture
 
 
@@ -117,6 +117,11 @@ class TestClientAuth:
         assert result.refresh_token == "my_refresh_token"
         assert self.freshBooksClient.access_token_expires_at == datetime(2010, 10, 17)
         assert result.access_token_expires_at == datetime(2010, 10, 17)
+
+    @httpretty.activate
+    def test_get_refresh_token__uninitialized_client_not_provided(self):
+        with pytest.raises(FreshBooksClientConfigError):
+            self.freshBooksClient.refresh_access_token()
 
 
 class TestClientResources:

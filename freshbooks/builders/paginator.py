@@ -1,4 +1,8 @@
-class PaginateBuilder:
+from typing import Any, Optional, Union
+from freshbooks.builders import Builder
+
+
+class PaginateBuilder(Builder):
     """Builder for making paginated list queries.
 
     Has two attributes, `page` and `per_page`. When a `PaginateBuilder` object is passed
@@ -21,7 +25,7 @@ class PaginateBuilder:
     MAX_PER_PAGE = 100
     MIN_PAGE = 1
 
-    def __init__(self, page=None, per_page=None):
+    def __init__(self, page: Optional[int] = None, per_page: Optional[int] = None):
         """Builder for making paginated list queries.
 
         Args:
@@ -38,13 +42,13 @@ class PaginateBuilder:
         if per_page is not None:
             self._per_page = min(per_page, self.MAX_PER_PAGE)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"PaginateBuilder(page={self._page}, per_page={self._per_page})"
 
-    def __repr__(self):  # pragma: no cover
+    def __repr__(self) -> str:  # pragma: no cover
         return f"PaginateBuilder(page={self._page}, per_page={self._per_page})"
 
-    def page(self, page=None):
+    def page(self, page: Optional[int] = None) -> Union[Optional[int], Builder]:
         """Set the page you wish to fetch in a list call, or get the currently set the page.
         When setting, can be chained.
 
@@ -73,7 +77,7 @@ class PaginateBuilder:
             return self
         return self._page
 
-    def per_page(self, per_page=None):
+    def per_page(self, per_page: Optional[int] = None) -> Union[Optional[int], Builder]:
         """Set the number of results you wish to fetch in a page of a list call,
         or get the currently set per_page. When setting, can be chained.
 
@@ -104,7 +108,7 @@ class PaginateBuilder:
             return self
         return self._per_page
 
-    def build(self):
+    def build(self) -> str:
         """Builds the query string parameters from the PaginateBuilder.
 
         Returns:

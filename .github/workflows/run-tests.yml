@@ -24,6 +24,8 @@ jobs:
       run: |
         make check-style
     - name: Type check with mypy
+      with:
+        python-version: '3.9'
       run: |
         make check-types
     - name: Test with pytest

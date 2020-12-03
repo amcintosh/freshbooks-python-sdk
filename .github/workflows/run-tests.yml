@@ -26,8 +26,6 @@ jobs:
     - name: Type check with mypy
       run: |
         make check-types
-      with:
-        python-version: '3.9'
     - name: Test with pytest
       run: |
         make test

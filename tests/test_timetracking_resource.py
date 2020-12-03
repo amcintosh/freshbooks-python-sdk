@@ -2,7 +2,6 @@ import json
 import httpretty
 
 from freshbooks import Client as FreshBooksClient
-from freshbooks import PaginateBuilder, FilterBuilder, FreshBooksError
 from freshbooks.client import API_BASE_URL
 from tests import get_fixture
 

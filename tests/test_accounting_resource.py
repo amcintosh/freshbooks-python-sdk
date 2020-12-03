@@ -89,7 +89,9 @@ class TestAccountingResources:
 
     @httpretty.activate
     def test_list_clients(self):
-        freshBooksClient = FreshBooksClient(client_id="some_client", access_token="some_token", user_agent="phone_home")
+        freshBooksClient = FreshBooksClient(
+            client_id="some_client", access_token="some_token", user_agent="phone_home"
+        )
         client_ids = [12345, 12346, 12457]
         url = "{}/accounting/account/{}/users/clients".format(API_BASE_URL, self.account_id)
         httpretty.register_uri(

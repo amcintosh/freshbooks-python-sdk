@@ -36,8 +36,8 @@ class Resource:
             retry = Retry(
                 total=self.API_RETRIES,
                 backoff_factor=0.3,
-                allowed_methods=["HEAD", "GET", "PUT", "DELETE", "OPTIONS", "TRACE"],
-                status_forcelist=[400, 408, 429, 500, 502, 503, 504],  # type: ignore
+                allowed_methods=["HEAD", "GET", "PUT", "DELETE", "OPTIONS", "TRACE"],  # type: ignore
+                status_forcelist=[400, 408, 429, 500, 502, 503, 504],
             )
             adapter = HTTPAdapter(max_retries=retry)
             session.mount('http://', adapter)

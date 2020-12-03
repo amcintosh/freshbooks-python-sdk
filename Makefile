@@ -9,6 +9,8 @@ install-dev: env
 
 generate-docs: install-dev
 	pdoc --html -o docs --force freshbooks
+	mv docs/freshbooks/* docs/
+	rm -rf docs/freshbooks/
 
 test: install-dev
 	mypy freshbooks

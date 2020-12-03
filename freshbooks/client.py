@@ -1,5 +1,6 @@
 import os
 from datetime import datetime, timedelta
+import logging
 from types import SimpleNamespace
 from typing import Optional, List
 
@@ -19,6 +20,8 @@ API_TOKEN_URL = "auth/oauth/token"
 AUTH_BASE_URL = "https://auth.freshbooks.com"
 AUTH_URL = "/service/auth/oauth/authorize"
 DEFAULT_TIMEOUT = 30
+
+logging.getLogger('freshbooks').addHandler(logging.NullHandler())
 
 with open(os.path.join(os.path.dirname(__file__), "VERSION")) as f:
     VERSION = f.readlines()[0].strip()

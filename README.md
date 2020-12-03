@@ -8,6 +8,8 @@ TBD when in pypi.
 
 ## Usage
 
+See [https://freshbooks.github.io/freshbooks-python-sdk/](https://freshbooks.github.io/freshbooks-python-sdk/) for module documentation.
+
 ### Configuring the API client
 
 You can create an instance of the API client in one of two ways:

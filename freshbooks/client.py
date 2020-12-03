@@ -124,7 +124,7 @@ class Client:
         try:
             self.access_token = content["access_token"]
             self.refresh_token = content["refresh_token"]
-            created_at = datetime.fromtimestamp(content["created_at"])
+            created_at = datetime.utcfromtimestamp(content["created_at"])
             expires_in = timedelta(seconds=content["expires_in"])
             self.access_token_expires_at = created_at + expires_in
         except KeyError:

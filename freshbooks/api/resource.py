@@ -73,7 +73,15 @@ class Resource:
         elif method is HttpVerbs.HEAD:  # pragma: no cover
             session = self.session.head
 
-        return session(uri, data=payload, headers=self.headers(method), timeout=self.DEFAULT_TIMEOUT)
+        try:
+            res = session(uri, data=payload, headers=self.headers(method), timeout=self.DEFAULT_TIMEOUT)
+        except requests.exceptions.RetryError:
+            adapter = HTTPAdapter()
+            self.session.mount('http://', adapter)
+            self.session.mount('https://', adapter)
+            res = session(uri, data=payload, headers=self.headers(method), timeout=self.DEFAULT_TIMEOUT)
+
+        return res
 
     def _build_query_string(self, builders: Optional[List[Builder]]) -> str:
         query_string = ""

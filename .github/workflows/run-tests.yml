@@ -24,10 +24,10 @@ jobs:
       run: |
         make check-style
     - name: Type check with mypy
-      with:
-        python-version: '3.9'
       run: |
         make check-types
+      with:
+        python-version: '3.9'
     - name: Test with pytest
       run: |
         make test

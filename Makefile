@@ -13,8 +13,14 @@ generate-docs: install-dev
 	mv docs/freshbooks/* docs/
 	rm -rf docs/freshbooks/
 
-test: install-dev
+
+check-style:
+	flake8 . --count --show-source --statistics
+
+check-types:
 	mypy freshbooks
+
+test: install-dev
 	py.test --junitxml=junit.xml \
 		--cov=freshbooks \
 		--cov-branch \

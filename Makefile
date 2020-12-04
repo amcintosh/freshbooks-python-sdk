@@ -31,13 +31,13 @@ tag:
 		exit 1; \
 	fi;
 	pip install bumpversion
-	git clone $(GIT_URL) $(GIT_RELEASE_WORKING_DIR) && cd $(GIT_RELEASE_WORKING_DIR) && \
+	git stash && \
 	git fetch --all && \
 	git reset --hard origin/master && \
-	bumpversion --verbose $(VERSION_PART) && \
+	bumpversion $(VERSION_PART) && \
 	git push origin --tags && \
-	git push origin master
-	cd / && rm -rf $(GIT_RELEASE_WORKING_DIR)
+	git push origin master && \
+	git stash pop
 
 check-style:
 	flake8 . --count --show-source --statistics

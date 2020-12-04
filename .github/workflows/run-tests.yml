@@ -1,3 +1,5 @@
+# This workflows will run tests (flake8, mypy, pytest) when a pull_request is created
+
 name: Run Tests
 
 on: [push, pull_request]

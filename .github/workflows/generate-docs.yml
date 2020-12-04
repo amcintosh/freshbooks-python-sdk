@@ -1,0 +1,31 @@
+# This workflows will re-generate the python docs when there are changes on master
+
+name: Generate Documentation
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Run generate-docs
+      run: |
+        make generate-docs
+    - name: Commit files
+      run: |
+        echo ${{ github.ref }}
+        git add docs
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git commit -m "CI: automated Generate Documentation" -a | exit 0
+    - name: Push changes
+      if: github.ref == 'refs/heads/master'
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: master

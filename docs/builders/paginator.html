@@ -26,7 +26,7 @@
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">from typing import Any, Optional, Union
+<pre><code class="python">from typing import Optional, Union
 from freshbooks.builders import Builder
 
 
@@ -161,7 +161,7 @@ class PaginateBuilder(Builder):
 <dl>
 <dt id="freshbooks.builders.paginator.PaginateBuilder"><code class="flex name class">
 <span>class <span class="ident">PaginateBuilder</span></span>
-<span>(</span><span>page: Union[int, NoneType] = None, per_page: Union[int, NoneType] = None)</span>
+<span>(</span><span>page: Optional[int] = None, per_page: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Builder for making paginated list queries.</p>
@@ -343,7 +343,7 @@ PageResult(page=2, pages=3, per_page=4, total=9)
 </details>
 </dd>
 <dt id="freshbooks.builders.paginator.PaginateBuilder.page"><code class="name flex">
-<span>def <span class="ident">page</span></span>(<span>self, page: Union[int, NoneType] = None) ‑> Union[int, NoneType, <a title="freshbooks.builders.Builder" href="index.html#freshbooks.builders.Builder">Builder</a>]</span>
+<span>def <span class="ident">page</span></span>(<span>self, page: Optional[int] = None) ‑> Union[int, NoneType, <a title="freshbooks.builders.Builder" href="index.html#freshbooks.builders.Builder">Builder</a>]</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Set the page you wish to fetch in a list call, or get the currently set the page.
@@ -402,7 +402,7 @@ returns the currently set <code>page</code> value.</p></div>
 </details>
 </dd>
 <dt id="freshbooks.builders.paginator.PaginateBuilder.per_page"><code class="name flex">
-<span>def <span class="ident">per_page</span></span>(<span>self, per_page: Union[int, NoneType] = None) ‑> Union[int, NoneType, <a title="freshbooks.builders.Builder" href="index.html#freshbooks.builders.Builder">Builder</a>]</span>
+<span>def <span class="ident">per_page</span></span>(<span>self, per_page: Optional[int] = None) ‑> Union[int, NoneType, <a title="freshbooks.builders.Builder" href="index.html#freshbooks.builders.Builder">Builder</a>]</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Set the number of results you wish to fetch in a page of a list call,

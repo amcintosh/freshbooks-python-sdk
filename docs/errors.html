@@ -106,7 +106,7 @@ class FreshBooksClientConfigError(Exception):
 </dd>
 <dt id="freshbooks.errors.FreshBooksError"><code class="flex name class">
 <span>class <span class="ident">FreshBooksError</span></span>
-<span>(</span><span>status_code: int, message: str, raw_response: Union[str, NoneType] = None, error_code: Union[int, NoneType] = None)</span>
+<span>(</span><span>status_code: int, message: str, raw_response: Optional[str] = None, error_code: Optional[int] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Exception thrown when FreshBooks returns a non-2xx response.</p>

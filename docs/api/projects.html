@@ -111,7 +111,7 @@ class ProjectsResource(Resource):
 <dl>
 <dt id="freshbooks.api.projects.ProjectsResource"><code class="flex name class">
 <span>class <span class="ident">ProjectsResource</span></span>
-<span>(</span><span>client_config: types.SimpleNamespace, resource_path: str, single_name: str, list_name: Union[str, NoneType] = None)</span>
+<span>(</span><span>client_config: types.SimpleNamespace, resource_path: str, single_name: str, list_name: Optional[str] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Handles resources under the <code>/projects</code> endpoints.</p></div>
@@ -235,7 +235,7 @@ class ProjectsResource(Resource):
 </details>
 </dd>
 <dt id="freshbooks.api.projects.ProjectsResource.list"><code class="name flex">
-<span>def <span class="ident">list</span></span>(<span>self, business_id: int, builders: Union[List[<a title="freshbooks.builders.Builder" href="../builders/index.html#freshbooks.builders.Builder">Builder</a>], NoneType] = None) ‑> <a title="freshbooks.models.ListResult" href="../models.html#freshbooks.models.ListResult">ListResult</a></span>
+<span>def <span class="ident">list</span></span>(<span>self, business_id: int, builders: Optional[List[<a title="freshbooks.builders.Builder" href="../builders/index.html#freshbooks.builders.Builder">Builder</a>]] = None) ‑> <a title="freshbooks.models.ListResult" href="../models.html#freshbooks.models.ListResult">ListResult</a></span>
 </code></dt>
 <dd>
 <div class="desc"></div>

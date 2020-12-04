@@ -152,7 +152,7 @@ class Client:
         try:
             self.access_token = content[&#34;access_token&#34;]
             self.refresh_token = content[&#34;refresh_token&#34;]
-            created_at = datetime.fromtimestamp(content[&#34;created_at&#34;])
+            created_at = datetime.utcfromtimestamp(content[&#34;created_at&#34;])
             expires_in = timedelta(seconds=content[&#34;expires_in&#34;])
             self.access_token_expires_at = created_at + expires_in
         except KeyError:
@@ -336,7 +336,7 @@ class Client:
 <dl>
 <dt id="freshbooks.client.Client"><code class="flex name class">
 <span>class <span class="ident">Client</span></span>
-<span>(</span><span>client_id: str, client_secret: Union[str, NoneType] = None, redirect_uri: Union[str, NoneType] = None, access_token: Union[str, NoneType] = None, refresh_token: Union[str, NoneType] = None, user_agent: Union[str, NoneType] = None, auto_retry: bool = True)</span>
+<span>(</span><span>client_id: str, client_secret: Optional[str] = None, redirect_uri: Optional[str] = None, access_token: Optional[str] = None, refresh_token: Optional[str] = None, user_agent: Optional[str] = None, auto_retry: bool = True)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Create a new API client instance for the given <code>client_id</code> and <code>client_secret</code>.
@@ -463,7 +463,7 @@ to specify a <code>client_secret</code> (though the token cannot be refreshed in
         try:
             self.access_token = content[&#34;access_token&#34;]
             self.refresh_token = content[&#34;refresh_token&#34;]
-            created_at = datetime.fromtimestamp(content[&#34;created_at&#34;])
+            created_at = datetime.utcfromtimestamp(content[&#34;created_at&#34;])
             expires_in = timedelta(seconds=content[&#34;expires_in&#34;])
             self.access_token_expires_at = created_at + expires_in
         except KeyError:
@@ -928,7 +928,7 @@ on the Client instance and also returns those values in an object.</p>
 </details>
 </dd>
 <dt id="freshbooks.client.Client.get_auth_request_url"><code class="name flex">
-<span>def <span class="ident">get_auth_request_url</span></span>(<span>self, scopes: Union[List[str], NoneType] = None) ‑> str</span>
+<span>def <span class="ident">get_auth_request_url</span></span>(<span>self, scopes: Optional[List[str]] = None) ‑> str</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Returns the url that a client needs to request an oauth grant from the server.</p>
@@ -981,7 +981,7 @@ application is registered for.</p>
 </details>
 </dd>
 <dt id="freshbooks.client.Client.refresh_access_token"><code class="name flex">
-<span>def <span class="ident">refresh_access_token</span></span>(<span>self, refresh_token: Union[str, NoneType] = None) ‑> types.SimpleNamespace</span>
+<span>def <span class="ident">refresh_access_token</span></span>(<span>self, refresh_token: Optional[str] = None) ‑> types.SimpleNamespace</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Makes a call to the FreshBooks token URL to refresh an access_token.</p>

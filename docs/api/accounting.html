@@ -163,7 +163,7 @@ class AccountingResource(Resource):
 <dl>
 <dt id="freshbooks.api.accounting.AccountingResource"><code class="flex name class">
 <span>class <span class="ident">AccountingResource</span></span>
-<span>(</span><span>client_config: types.SimpleNamespace, accounting_path: str, single_name: str, list_name: str, delete_via_update: bool = True, missing_endpoints: Union[List[str], NoneType] = None)</span>
+<span>(</span><span>client_config: types.SimpleNamespace, accounting_path: str, single_name: str, list_name: str, delete_via_update: bool = True, missing_endpoints: Optional[List[str]] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Handles resources under the <code>/accounting</code> endpoints.</p></div>
@@ -372,7 +372,7 @@ class AccountingResource(Resource):
 </details>
 </dd>
 <dt id="freshbooks.api.accounting.AccountingResource.list"><code class="name flex">
-<span>def <span class="ident">list</span></span>(<span>self, account_id: str, builders: Union[List[<a title="freshbooks.builders.Builder" href="../builders/index.html#freshbooks.builders.Builder">Builder</a>], NoneType] = None) ‑> <a title="freshbooks.models.ListResult" href="../models.html#freshbooks.models.ListResult">ListResult</a></span>
+<span>def <span class="ident">list</span></span>(<span>self, account_id: str, builders: Optional[List[<a title="freshbooks.builders.Builder" href="../builders/index.html#freshbooks.builders.Builder">Builder</a>]] = None) ‑> <a title="freshbooks.models.ListResult" href="../models.html#freshbooks.models.ListResult">ListResult</a></span>
 </code></dt>
 <dd>
 <div class="desc"><p>Get a list of entries.</p>

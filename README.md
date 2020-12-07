@@ -4,7 +4,9 @@ The FreshBooks Python SDK allows you to more easily utilize the [FreshBooks API]
 
 ## Installation
 
-TBD when in pypi.
+```bash
+pip install freshbooks-sdk
+```
 
 ## Usage
 

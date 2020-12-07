@@ -15,7 +15,7 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/freshbooks/freshbooks-python-sdk",
-    download_url="https://github.com/freshbooks/freshbooks-python-sdk/archive/{}.tar.gz".format(version),
+    download_url="https://github.com/freshbooks/freshbooks-python-sdk/archive/release/{}.tar.gz".format(version),
     keywords=["FreshBooks"],
     license="MIT",
     packages=find_packages(exclude=["*.test", "*.test.*"]),

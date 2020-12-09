@@ -27,7 +27,15 @@
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">from collections import namedtuple
-from typing import Any
+from enum import IntEnum
+from typing import Any, Union
+
+
+class VisState(IntEnum):
+    &#34;&#34;&#34;Enum of FreshBooks entity vis_status values&#34;&#34;&#34;
+    ACTIVE = 0
+    DELETED = 1
+    ARCHIVED = 2
 
 
 class Result:
@@ -63,6 +71,12 @@ class Result:
 
     def __getattr__(self, field: str) -&gt; Any:
         return self.data.get(field)
+
+    @property
+    def vis_state(self) -&gt; Union[VisState, None]:
+        if self.data.get(&#39;vis_state&#39;) in list(VisState):
+            return VisState(self.data[&#39;vis_state&#39;])
+        return None
 
 
 class ListResult:
@@ -466,12 +480,73 @@ assert client.data[&quot;userid&quot;] == user_id
         return &#34;Result({})&#34;.format(self.name)
 
     def __getattr__(self, field: str) -&gt; Any:
-        return self.data.get(field)</code></pre>
+        return self.data.get(field)
+
+    @property
+    def vis_state(self) -&gt; Union[VisState, None]:
+        if self.data.get(&#39;vis_state&#39;) in list(VisState):
+            return VisState(self.data[&#39;vis_state&#39;])
+        return None</code></pre>
 </details>
 <h3>Subclasses</h3>
 <ul class="hlist">
 <li><a title="freshbooks.models.Identity" href="#freshbooks.models.Identity">Identity</a></li>
 </ul>
+<h3>Instance variables</h3>
+<dl>
+<dt id="freshbooks.models.Result.vis_state"><code class="name">var <span class="ident">vis_state</span> : Optional[<a title="freshbooks.models.VisState" href="#freshbooks.models.VisState">VisState</a>]</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def vis_state(self) -&gt; Union[VisState, None]:
+    if self.data.get(&#39;vis_state&#39;) in list(VisState):
+        return VisState(self.data[&#39;vis_state&#39;])
+    return None</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="freshbooks.models.VisState"><code class="flex name class">
+<span>class <span class="ident">VisState</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Enum of FreshBooks entity vis_status values</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class VisState(IntEnum):
+    &#34;&#34;&#34;Enum of FreshBooks entity vis_status values&#34;&#34;&#34;
+    ACTIVE = 0
+    DELETED = 1
+    ARCHIVED = 2</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.IntEnum</li>
+<li>builtins.int</li>
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="freshbooks.models.VisState.ACTIVE"><code class="name">var <span class="ident">ACTIVE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="freshbooks.models.VisState.ARCHIVED"><code class="name">var <span class="ident">ARCHIVED</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="freshbooks.models.VisState.DELETED"><code class="name">var <span class="ident">DELETED</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
 </dd>
 </dl>
 </section>
@@ -502,6 +577,17 @@ assert client.data[&quot;userid&quot;] == user_id
 </li>
 <li>
 <h4><code><a title="freshbooks.models.Result" href="#freshbooks.models.Result">Result</a></code></h4>
+<ul class="">
+<li><code><a title="freshbooks.models.Result.vis_state" href="#freshbooks.models.Result.vis_state">vis_state</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="freshbooks.models.VisState" href="#freshbooks.models.VisState">VisState</a></code></h4>
+<ul class="">
+<li><code><a title="freshbooks.models.VisState.ACTIVE" href="#freshbooks.models.VisState.ACTIVE">ACTIVE</a></code></li>
+<li><code><a title="freshbooks.models.VisState.ARCHIVED" href="#freshbooks.models.VisState.ARCHIVED">ARCHIVED</a></code></li>
+<li><code><a title="freshbooks.models.VisState.DELETED" href="#freshbooks.models.VisState.DELETED">DELETED</a></code></li>
+</ul>
 </li>
 </ul>
 </li>

@@ -129,6 +129,17 @@ assert client.data["organization"] == "FreshBooks"
 assert client.data["userid"] == user_id
 ```
 
+`vis_state` returns an Enum. See [FreshBooks API - Active and Deleted Objects](https://www.freshbooks.com/api/active_deleted) for details.
+
+```python
+from freshbooks import VisState
+
+assert client.vis_state == VisState.ACTIVE
+assert client.vis_state == 0
+assert client.data['vis_state'] == VisState.ACTIVE
+assert client.data['vis_state'] == 0
+```
+
 API calls with returning a list of resources return a `ListResult` object. The resources in the list can be accessed by index and iterated over. Similarly, the raw dictionary can be accessed via the `data` attribute.
 
 ```python

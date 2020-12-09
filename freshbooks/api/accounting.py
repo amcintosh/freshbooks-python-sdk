@@ -5,7 +5,7 @@ from typing import Any, List, Optional, Tuple, Union
 from freshbooks.api.resource import HttpVerbs, Resource
 from freshbooks.builders import Builder
 from freshbooks.errors import FreshBooksError, FreshBooksNotImplementedError
-from freshbooks.models import ListResult, Result
+from freshbooks.models import ListResult, Result, VisState
 
 
 class AccountingResource(Resource):
@@ -117,7 +117,9 @@ class AccountingResource(Resource):
         self._reject_missing("delete")
         if self.delete_via_update:
             response = self._request(
-                self._get_url(account_id, resource_id), HttpVerbs.PUT, data={self.single_name: {"vis_state": 1}}
+                self._get_url(account_id, resource_id),
+                HttpVerbs.PUT,
+                data={self.single_name: {"vis_state": VisState.DELETED}}
             )
         else:
             response = self._request(self._get_url(account_id, resource_id), HttpVerbs.DELETE)

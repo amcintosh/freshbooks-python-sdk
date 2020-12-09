@@ -1,5 +1,13 @@
 from collections import namedtuple
-from typing import Any
+from enum import IntEnum
+from typing import Any, Union
+
+
+class VisState(IntEnum):
+    """Enum of FreshBooks entity vis_status values"""
+    ACTIVE = 0
+    DELETED = 1
+    ARCHIVED = 2
 
 
 class Result:
@@ -35,6 +43,12 @@ class Result:
 
     def __getattr__(self, field: str) -> Any:
         return self.data.get(field)
+
+    @property
+    def vis_state(self) -> Union[VisState, None]:
+        if self.data.get('vis_state') in list(VisState):
+            return VisState(self.data['vis_state'])
+        return None
 
 
 class ListResult:

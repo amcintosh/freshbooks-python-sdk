@@ -3,7 +3,7 @@ import json
 import httpretty
 
 from freshbooks import Client as FreshBooksClient
-from freshbooks import PaginateBuilder, FilterBuilder, FreshBooksError
+from freshbooks import PaginateBuilder, FilterBuilder, FreshBooksError, VisState
 from freshbooks.client import API_BASE_URL, VERSION
 from tests import get_fixture
 
@@ -241,7 +241,9 @@ class TestAccountingResources:
         client = self.freshBooksClient.clients.delete(self.account_id, client_id)
 
         assert str(client) == "Result(client)"
+        assert client.vis_state == VisState.DELETED
         assert client.vis_state == 1
+        assert client.data['vis_state'] == VisState.DELETED
         assert httpretty.last_request().headers["Authorization"] == "Bearer some_token"
         assert httpretty.last_request().headers["Content-Type"] == "application/json"
         assert httpretty.last_request().body == "{\"client\": {\"vis_state\": 1}}".encode("utf-8")

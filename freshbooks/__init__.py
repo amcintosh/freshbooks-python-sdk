@@ -10,6 +10,7 @@ from freshbooks.builders.filter import FilterBuilder  # noqa
 from freshbooks.builders.paginator import PaginateBuilder  # noqa
 from freshbooks.client import Client  # noqa
 from freshbooks.errors import FreshBooksError  # noqa
+from freshbooks.models import VisState  # noqa
 
 __pdoc__ = {
     "freshbooks.api.resource": False,

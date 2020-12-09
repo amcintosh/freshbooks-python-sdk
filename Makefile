@@ -40,7 +40,8 @@ tag:
 	git stash pop
 
 check-style:
-	flake8 . --count --show-source --statistics
+	flake8 freshbooks --count --show-source --statistics
+	flake8 tests --count --show-source --statistics
 
 check-types:
 	mypy freshbooks

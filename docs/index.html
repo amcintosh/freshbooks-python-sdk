@@ -26,7 +26,8 @@
 <ul>
 <li>See <code><a title="freshbooks.client.Client" href="client.html#freshbooks.client.Client">Client</a></code> for instantiating a Client, auth, and resource calls</li>
 <li>See <code><a title="freshbooks.api.accounting" href="api/accounting.html">freshbooks.api.accounting</a></code> and <code><a title="freshbooks.api.projects" href="api/projects.html">freshbooks.api.projects</a></code> for resource methods (<code>get</code>, <code>list</code>, <code>create</code>, etc.)</li>
-<li>See <code><a title="freshbooks.builders" href="builders/index.html">freshbooks.builders</a></code> for list filters, pagination, etc.</li>
+<li>See <code><a title="freshbooks.builders" href="builders/index.html">freshbooks.builders</a></code> for list filters, pagination, includes, etc.</li>
+<li>See <code><a title="freshbooks.models" href="models.html">freshbooks.models</a></code> for Result objects, lists, identities, and vis state objects.</li>
 </ul>
 <details class="source">
 <summary>
@@ -37,10 +38,12 @@ The FreshBooks Python SDK allows you to more easily utilize the [FreshBooks API]
 
 - See `freshbooks.client.Client` for instantiating a Client, auth, and resource calls
 - See `freshbooks.api.accounting` and `freshbooks.api.projects` for resource methods (`get`, `list`, `create`, etc.)
-- See `freshbooks.builders` for list filters, pagination, etc.
+- See `freshbooks.builders` for list filters, pagination, includes, etc.
+- See `freshbooks.models` for Result objects, lists, identities, and vis state objects.
 &#34;&#34;&#34;
 
 from freshbooks.builders.filter import FilterBuilder  # noqa
+from freshbooks.builders.includes import IncludesBuilder  # noqa
 from freshbooks.builders.paginator import PaginateBuilder  # noqa
 from freshbooks.client import Client  # noqa
 from freshbooks.errors import FreshBooksError  # noqa

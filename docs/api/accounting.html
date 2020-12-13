@@ -93,7 +93,7 @@ class AccountingResource(Resource):
         if name in self.missing_endpoints:
             raise FreshBooksNotImplementedError(self.list_name, name)
 
-    def get(self, account_id: str, resource_id: int) -&gt; Result:
+    def get(self, account_id: str, resource_id: int, builders: Optional[List[Builder]] = None) -&gt; Result:
         &#34;&#34;&#34;Get a single entry with the corresponding id.
 
         Args:
@@ -107,7 +107,9 @@ class AccountingResource(Resource):
             FreshBooksError: If the call is not successful.
         &#34;&#34;&#34;
         self._reject_missing(&#34;get&#34;)
-        data = self._request(self._get_url(account_id, resource_id), HttpVerbs.GET)
+        resource_url = self._get_url(account_id, resource_id)
+        query_string = self._build_query_string(builders)
+        data = self._request(f&#34;{resource_url}{query_string}&#34;, HttpVerbs.GET)
         return Result(self.single_name, data)
 
     def list(self, account_id: str, builders: Optional[List[Builder]] = None) -&gt; ListResult:
@@ -230,7 +232,7 @@ class AccountingResource(Resource):
         if name in self.missing_endpoints:
             raise FreshBooksNotImplementedError(self.list_name, name)
 
-    def get(self, account_id: str, resource_id: int) -&gt; Result:
+    def get(self, account_id: str, resource_id: int, builders: Optional[List[Builder]] = None) -&gt; Result:
         &#34;&#34;&#34;Get a single entry with the corresponding id.
 
         Args:
@@ -244,7 +246,9 @@ class AccountingResource(Resource):
             FreshBooksError: If the call is not successful.
         &#34;&#34;&#34;
         self._reject_missing(&#34;get&#34;)
-        data = self._request(self._get_url(account_id, resource_id), HttpVerbs.GET)
+        resource_url = self._get_url(account_id, resource_id)
+        query_string = self._build_query_string(builders)
+        data = self._request(f&#34;{resource_url}{query_string}&#34;, HttpVerbs.GET)
         return Result(self.single_name, data)
 
     def list(self, account_id: str, builders: Optional[List[Builder]] = None) -&gt; ListResult:
@@ -334,7 +338,7 @@ class AccountingResource(Resource):
 </details>
 </dd>
 <dt id="freshbooks.api.accounting.AccountingResource.get"><code class="name flex">
-<span>def <span class="ident">get</span></span>(<span>self, account_id: str, resource_id: int) ‑> <a title="freshbooks.models.Result" href="../models.html#freshbooks.models.Result">Result</a></span>
+<span>def <span class="ident">get</span></span>(<span>self, account_id: str, resource_id: int, builders: Optional[List[<a title="freshbooks.builders.Builder" href="../builders/index.html#freshbooks.builders.Builder">Builder</a>]] = None) ‑> <a title="freshbooks.models.Result" href="../models.html#freshbooks.models.Result">Result</a></span>
 </code></dt>
 <dd>
 <div class="desc"><p>Get a single entry with the corresponding id.</p>
@@ -359,7 +363,7 @@ class AccountingResource(Resource):
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def get(self, account_id: str, resource_id: int) -&gt; Result:
+<pre><code class="python">def get(self, account_id: str, resource_id: int, builders: Optional[List[Builder]] = None) -&gt; Result:
     &#34;&#34;&#34;Get a single entry with the corresponding id.
 
     Args:
@@ -373,7 +377,9 @@ class AccountingResource(Resource):
         FreshBooksError: If the call is not successful.
     &#34;&#34;&#34;
     self._reject_missing(&#34;get&#34;)
-    data = self._request(self._get_url(account_id, resource_id), HttpVerbs.GET)
+    resource_url = self._get_url(account_id, resource_id)
+    query_string = self._build_query_string(builders)
+    data = self._request(f&#34;{resource_url}{query_string}&#34;, HttpVerbs.GET)
     return Result(self.single_name, data)</code></pre>
 </details>
 </dd>

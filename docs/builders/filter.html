@@ -55,7 +55,7 @@ class FilterBuilder(Builder):
     FilterBuilder(&amp;active=False&amp;search[clientids][]=123&amp;search[clientids][]=456)
 
     &gt;&gt;&gt; f = FilterBuilder()
-    &gt;&gt;&gt; f.between(&#34;amount&#34;, [1, 10])
+    &gt;&gt;&gt; f.between(&#34;amount&#34;, 1, 10)
     FilterBuilder(&amp;search[amount_min]=1&amp;search[amount_max]=10)
 
     &gt;&gt;&gt; f = FilterBuilder()
@@ -246,7 +246,7 @@ FilterBuilder(&amp;search[clientids][]=123&amp;search[clientids][]=456&amp;activ
 FilterBuilder(&amp;active=False&amp;search[clientids][]=123&amp;search[clientids][]=456)
 
 &gt;&gt;&gt; f = FilterBuilder()
-&gt;&gt;&gt; f.between(&quot;amount&quot;, [1, 10])
+&gt;&gt;&gt; f.between(&quot;amount&quot;, 1, 10)
 FilterBuilder(&amp;search[amount_min]=1&amp;search[amount_max]=10)
 
 &gt;&gt;&gt; f = FilterBuilder()
@@ -280,7 +280,7 @@ FilterBuilder(&amp;search[start_date]=2020-11-21)
     FilterBuilder(&amp;active=False&amp;search[clientids][]=123&amp;search[clientids][]=456)
 
     &gt;&gt;&gt; f = FilterBuilder()
-    &gt;&gt;&gt; f.between(&#34;amount&#34;, [1, 10])
+    &gt;&gt;&gt; f.between(&#34;amount&#34;, 1, 10)
     FilterBuilder(&amp;search[amount_min]=1&amp;search[amount_max]=10)
 
     &gt;&gt;&gt; f = FilterBuilder()

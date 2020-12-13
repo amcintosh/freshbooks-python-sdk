@@ -307,9 +307,10 @@ class Client:
     def tasks(self) -&gt; Resource:
         &#34;&#34;&#34;FreshBooks tasks resource with calls to get, list, create, update, delete
 
-        Note: Tasks are the older implementation of `services` and you should probably look there
-        first to do what you need unless tasks provides a better interface. Creating a task should
-        create the corresponding service and vice versa.
+        Note: There is a lot of overlap between Services and Tasks. In general services are used
+        to add categories of work to projects, and tasks are used to add billable work to invoices.
+
+        Creating a task should create the corresponding service and vice versa.
         &#34;&#34;&#34;
         return AccountingResource(self._client_resource_config(), &#34;projects/tasks&#34;, &#34;task&#34;, &#34;tasks&#34;)
 
@@ -628,9 +629,10 @@ to specify a <code>client_secret</code> (though the token cannot be refreshed in
     def tasks(self) -&gt; Resource:
         &#34;&#34;&#34;FreshBooks tasks resource with calls to get, list, create, update, delete
 
-        Note: Tasks are the older implementation of `services` and you should probably look there
-        first to do what you need unless tasks provides a better interface. Creating a task should
-        create the corresponding service and vice versa.
+        Note: There is a lot of overlap between Services and Tasks. In general services are used
+        to add categories of work to projects, and tasks are used to add billable work to invoices.
+
+        Creating a task should create the corresponding service and vice versa.
         &#34;&#34;&#34;
         return AccountingResource(self._client_resource_config(), &#34;projects/tasks&#34;, &#34;task&#34;, &#34;tasks&#34;)
 
@@ -881,9 +883,9 @@ def systems(self) -&gt; Resource:
 <dt id="freshbooks.client.Client.tasks"><code class="name">var <span class="ident">tasks</span> : freshbooks.api.resource.Resource</code></dt>
 <dd>
 <div class="desc"><p>FreshBooks tasks resource with calls to get, list, create, update, delete</p>
-<p>Note: Tasks are the older implementation of <code>services</code> and you should probably look there
-first to do what you need unless tasks provides a better interface. Creating a task should
-create the corresponding service and vice versa.</p></div>
+<p>Note: There is a lot of overlap between Services and Tasks. In general services are used
+to add categories of work to projects, and tasks are used to add billable work to invoices.</p>
+<p>Creating a task should create the corresponding service and vice versa.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -892,9 +894,10 @@ create the corresponding service and vice versa.</p></div>
 def tasks(self) -&gt; Resource:
     &#34;&#34;&#34;FreshBooks tasks resource with calls to get, list, create, update, delete
 
-    Note: Tasks are the older implementation of `services` and you should probably look there
-    first to do what you need unless tasks provides a better interface. Creating a task should
-    create the corresponding service and vice versa.
+    Note: There is a lot of overlap between Services and Tasks. In general services are used
+    to add categories of work to projects, and tasks are used to add billable work to invoices.
+
+    Creating a task should create the corresponding service and vice versa.
     &#34;&#34;&#34;
     return AccountingResource(self._client_resource_config(), &#34;projects/tasks&#34;, &#34;task&#34;, &#34;tasks&#34;)</code></pre>
 </details>

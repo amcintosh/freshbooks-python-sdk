@@ -32,6 +32,7 @@ from typing import Any, List, Optional, Tuple, Union
 
 from freshbooks.api.resource import HttpVerbs, Resource
 from freshbooks.builders import Builder
+from freshbooks.builders.includes import IncludesBuilder
 from freshbooks.errors import FreshBooksError, FreshBooksNotImplementedError
 from freshbooks.models import ListResult, Result, VisState
 
@@ -93,13 +94,13 @@ class AccountingResource(Resource):
         if name in self.missing_endpoints:
             raise FreshBooksNotImplementedError(self.list_name, name)
 
-    def get(self, account_id: str, resource_id: int, builders: Optional[List[Builder]] = None) -&gt; Result:
-        &#34;&#34;&#34;Get a single entry with the corresponding id.
+    def get(self, account_id: str, resource_id: int, includes: Optional[IncludesBuilder] = None) -&gt; Result:
+        &#34;&#34;&#34;Get a single resource with the corresponding id.
 
         Args:
             account_id: The alpha-numeric account id
             resource_id: Id of the resource to return
-
+            builders: (Optional) IncludesBuilder object for including additional data, sub-resources, etc.
         Returns:
             Result: Result object with the resource&#39;s response data.
 
@@ -108,16 +109,16 @@ class AccountingResource(Resource):
         &#34;&#34;&#34;
         self._reject_missing(&#34;get&#34;)
         resource_url = self._get_url(account_id, resource_id)
-        query_string = self._build_query_string(builders)
+        query_string = self._build_query_string(includes)
         data = self._request(f&#34;{resource_url}{query_string}&#34;, HttpVerbs.GET)
         return Result(self.single_name, data)
 
     def list(self, account_id: str, builders: Optional[List[Builder]] = None) -&gt; ListResult:
-        &#34;&#34;&#34;Get a list of entries.
+        &#34;&#34;&#34;Get a list of resources.
 
         Args:
             account_id: The alpha-numeric account id
-            builders: List of builder objects for filters, pagination, etc.
+            builders: (Optional) List of builder objects for filters, pagination, etc.
 
         Returns:
             ListResult: ListResult object with the resources response data.
@@ -132,11 +133,36 @@ class AccountingResource(Resource):
         return ListResult(self.list_name, self.single_name, data)
 
     def create(self, account_id: str, data: dict) -&gt; Result:
+        &#34;&#34;&#34;Create a resource.
+
+        Args:
+            account_id: The alpha-numeric account id
+            data: Dictionary of data to populate the resource
+
+        Returns:
+            Result: Result object with the new resource&#39;s response data.
+
+        Raises:
+            FreshBooksError: If the call is not successful.
+        &#34;&#34;&#34;
         self._reject_missing(&#34;create&#34;)
         response = self._request(self._get_url(account_id), HttpVerbs.POST, data={self.single_name: data})
         return Result(self.single_name, response)
 
     def update(self, account_id: str, resource_id: int, data: dict) -&gt; Result:
+        &#34;&#34;&#34;Update a resource.
+
+        Args:
+            account_id: The alpha-numeric account id
+            resource_id: Id of the resource to update
+            data: Dictionary of data to update the resource to
+
+        Returns:
+            Result: Result object with the updated resource&#39;s response data.
+
+        Raises:
+            FreshBooksError: If the call is not successful.
+        &#34;&#34;&#34;
         self._reject_missing(&#34;update&#34;)
         response = self._request(
             self._get_url(account_id, resource_id), HttpVerbs.PUT, data={self.single_name: data}
@@ -144,6 +170,21 @@ class AccountingResource(Resource):
         return Result(self.single_name, response)
 
     def delete(self, account_id: str, resource_id: int) -&gt; Result:
+        &#34;&#34;&#34;Delete a resource.
+
+        Note: Most FreshBooks resources are soft-deleted,
+        See [FreshBooks API - Active and Deleted Objects](https://www.freshbooks.com/api/active_deleted)
+
+        Args:
+            account_id: The alpha-numeric account id
+            resource_id: Id of the resource to delete
+
+        Returns:
+            Result: An empty Result object.
+
+        Raises:
+            FreshBooksError: If the call is not successful.
+        &#34;&#34;&#34;
         self._reject_missing(&#34;delete&#34;)
         if self.delete_via_update:
             response = self._request(
@@ -232,13 +273,13 @@ class AccountingResource(Resource):
         if name in self.missing_endpoints:
             raise FreshBooksNotImplementedError(self.list_name, name)
 
-    def get(self, account_id: str, resource_id: int, builders: Optional[List[Builder]] = None) -&gt; Result:
-        &#34;&#34;&#34;Get a single entry with the corresponding id.
+    def get(self, account_id: str, resource_id: int, includes: Optional[IncludesBuilder] = None) -&gt; Result:
+        &#34;&#34;&#34;Get a single resource with the corresponding id.
 
         Args:
             account_id: The alpha-numeric account id
             resource_id: Id of the resource to return
-
+            builders: (Optional) IncludesBuilder object for including additional data, sub-resources, etc.
         Returns:
             Result: Result object with the resource&#39;s response data.
 
@@ -247,16 +288,16 @@ class AccountingResource(Resource):
         &#34;&#34;&#34;
         self._reject_missing(&#34;get&#34;)
         resource_url = self._get_url(account_id, resource_id)
-        query_string = self._build_query_string(builders)
+        query_string = self._build_query_string(includes)
         data = self._request(f&#34;{resource_url}{query_string}&#34;, HttpVerbs.GET)
         return Result(self.single_name, data)
 
     def list(self, account_id: str, builders: Optional[List[Builder]] = None) -&gt; ListResult:
-        &#34;&#34;&#34;Get a list of entries.
+        &#34;&#34;&#34;Get a list of resources.
 
         Args:
             account_id: The alpha-numeric account id
-            builders: List of builder objects for filters, pagination, etc.
+            builders: (Optional) List of builder objects for filters, pagination, etc.
 
         Returns:
             ListResult: ListResult object with the resources response data.
@@ -271,11 +312,36 @@ class AccountingResource(Resource):
         return ListResult(self.list_name, self.single_name, data)
 
     def create(self, account_id: str, data: dict) -&gt; Result:
+        &#34;&#34;&#34;Create a resource.
+
+        Args:
+            account_id: The alpha-numeric account id
+            data: Dictionary of data to populate the resource
+
+        Returns:
+            Result: Result object with the new resource&#39;s response data.
+
+        Raises:
+            FreshBooksError: If the call is not successful.
+        &#34;&#34;&#34;
         self._reject_missing(&#34;create&#34;)
         response = self._request(self._get_url(account_id), HttpVerbs.POST, data={self.single_name: data})
         return Result(self.single_name, response)
 
     def update(self, account_id: str, resource_id: int, data: dict) -&gt; Result:
+        &#34;&#34;&#34;Update a resource.
+
+        Args:
+            account_id: The alpha-numeric account id
+            resource_id: Id of the resource to update
+            data: Dictionary of data to update the resource to
+
+        Returns:
+            Result: Result object with the updated resource&#39;s response data.
+
+        Raises:
+            FreshBooksError: If the call is not successful.
+        &#34;&#34;&#34;
         self._reject_missing(&#34;update&#34;)
         response = self._request(
             self._get_url(account_id, resource_id), HttpVerbs.PUT, data={self.single_name: data}
@@ -283,6 +349,21 @@ class AccountingResource(Resource):
         return Result(self.single_name, response)
 
     def delete(self, account_id: str, resource_id: int) -&gt; Result:
+        &#34;&#34;&#34;Delete a resource.
+
+        Note: Most FreshBooks resources are soft-deleted,
+        See [FreshBooks API - Active and Deleted Objects](https://www.freshbooks.com/api/active_deleted)
+
+        Args:
+            account_id: The alpha-numeric account id
+            resource_id: Id of the resource to delete
+
+        Returns:
+            Result: An empty Result object.
+
+        Raises:
+            FreshBooksError: If the call is not successful.
+        &#34;&#34;&#34;
         self._reject_missing(&#34;delete&#34;)
         if self.delete_via_update:
             response = self._request(
@@ -304,12 +385,41 @@ class AccountingResource(Resource):
 <span>def <span class="ident">create</span></span>(<span>self, account_id: str, data: dict) ‑> <a title="freshbooks.models.Result" href="../models.html#freshbooks.models.Result">Result</a></span>
 </code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Create a resource.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>account_id</code></strong></dt>
+<dd>The alpha-numeric account id</dd>
+<dt><strong><code>data</code></strong></dt>
+<dd>Dictionary of data to populate the resource</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>Result</code></dt>
+<dd>Result object with the new resource's response data.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>FreshBooksError</code></dt>
+<dd>If the call is not successful.</dd>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def create(self, account_id: str, data: dict) -&gt; Result:
+    &#34;&#34;&#34;Create a resource.
+
+    Args:
+        account_id: The alpha-numeric account id
+        data: Dictionary of data to populate the resource
+
+    Returns:
+        Result: Result object with the new resource&#39;s response data.
+
+    Raises:
+        FreshBooksError: If the call is not successful.
+    &#34;&#34;&#34;
     self._reject_missing(&#34;create&#34;)
     response = self._request(self._get_url(account_id), HttpVerbs.POST, data={self.single_name: data})
     return Result(self.single_name, response)</code></pre>
@@ -319,12 +429,46 @@ class AccountingResource(Resource):
 <span>def <span class="ident">delete</span></span>(<span>self, account_id: str, resource_id: int) ‑> <a title="freshbooks.models.Result" href="../models.html#freshbooks.models.Result">Result</a></span>
 </code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Delete a resource.</p>
+<p>Note: Most FreshBooks resources are soft-deleted,
+See <a href="https://www.freshbooks.com/api/active_deleted">FreshBooks API - Active and Deleted Objects</a></p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>account_id</code></strong></dt>
+<dd>The alpha-numeric account id</dd>
+<dt><strong><code>resource_id</code></strong></dt>
+<dd>Id of the resource to delete</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>Result</code></dt>
+<dd>An empty Result object.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>FreshBooksError</code></dt>
+<dd>If the call is not successful.</dd>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def delete(self, account_id: str, resource_id: int) -&gt; Result:
+    &#34;&#34;&#34;Delete a resource.
+
+    Note: Most FreshBooks resources are soft-deleted,
+    See [FreshBooks API - Active and Deleted Objects](https://www.freshbooks.com/api/active_deleted)
+
+    Args:
+        account_id: The alpha-numeric account id
+        resource_id: Id of the resource to delete
+
+    Returns:
+        Result: An empty Result object.
+
+    Raises:
+        FreshBooksError: If the call is not successful.
+    &#34;&#34;&#34;
     self._reject_missing(&#34;delete&#34;)
     if self.delete_via_update:
         response = self._request(
@@ -338,16 +482,18 @@ class AccountingResource(Resource):
 </details>
 </dd>
 <dt id="freshbooks.api.accounting.AccountingResource.get"><code class="name flex">
-<span>def <span class="ident">get</span></span>(<span>self, account_id: str, resource_id: int, builders: Optional[List[<a title="freshbooks.builders.Builder" href="../builders/index.html#freshbooks.builders.Builder">Builder</a>]] = None) ‑> <a title="freshbooks.models.Result" href="../models.html#freshbooks.models.Result">Result</a></span>
+<span>def <span class="ident">get</span></span>(<span>self, account_id: str, resource_id: int, includes: Optional[<a title="freshbooks.builders.includes.IncludesBuilder" href="../builders/includes.html#freshbooks.builders.includes.IncludesBuilder">IncludesBuilder</a>] = None) ‑> <a title="freshbooks.models.Result" href="../models.html#freshbooks.models.Result">Result</a></span>
 </code></dt>
 <dd>
-<div class="desc"><p>Get a single entry with the corresponding id.</p>
+<div class="desc"><p>Get a single resource with the corresponding id.</p>
 <h2 id="args">Args</h2>
 <dl>
 <dt><strong><code>account_id</code></strong></dt>
 <dd>The alpha-numeric account id</dd>
 <dt><strong><code>resource_id</code></strong></dt>
 <dd>Id of the resource to return</dd>
+<dt><strong><code>builders</code></strong></dt>
+<dd>(Optional) IncludesBuilder object for including additional data, sub-resources, etc.</dd>
 </dl>
 <h2 id="returns">Returns</h2>
 <dl>
@@ -363,13 +509,13 @@ class AccountingResource(Resource):
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def get(self, account_id: str, resource_id: int, builders: Optional[List[Builder]] = None) -&gt; Result:
-    &#34;&#34;&#34;Get a single entry with the corresponding id.
+<pre><code class="python">def get(self, account_id: str, resource_id: int, includes: Optional[IncludesBuilder] = None) -&gt; Result:
+    &#34;&#34;&#34;Get a single resource with the corresponding id.
 
     Args:
         account_id: The alpha-numeric account id
         resource_id: Id of the resource to return
-
+        builders: (Optional) IncludesBuilder object for including additional data, sub-resources, etc.
     Returns:
         Result: Result object with the resource&#39;s response data.
 
@@ -378,7 +524,7 @@ class AccountingResource(Resource):
     &#34;&#34;&#34;
     self._reject_missing(&#34;get&#34;)
     resource_url = self._get_url(account_id, resource_id)
-    query_string = self._build_query_string(builders)
+    query_string = self._build_query_string(includes)
     data = self._request(f&#34;{resource_url}{query_string}&#34;, HttpVerbs.GET)
     return Result(self.single_name, data)</code></pre>
 </details>
@@ -387,13 +533,13 @@ class AccountingResource(Resource):
 <span>def <span class="ident">list</span></span>(<span>self, account_id: str, builders: Optional[List[<a title="freshbooks.builders.Builder" href="../builders/index.html#freshbooks.builders.Builder">Builder</a>]] = None) ‑> <a title="freshbooks.models.ListResult" href="../models.html#freshbooks.models.ListResult">ListResult</a></span>
 </code></dt>
 <dd>
-<div class="desc"><p>Get a list of entries.</p>
+<div class="desc"><p>Get a list of resources.</p>
 <h2 id="args">Args</h2>
 <dl>
 <dt><strong><code>account_id</code></strong></dt>
 <dd>The alpha-numeric account id</dd>
 <dt><strong><code>builders</code></strong></dt>
-<dd>List of builder objects for filters, pagination, etc.</dd>
+<dd>(Optional) List of builder objects for filters, pagination, etc.</dd>
 </dl>
 <h2 id="returns">Returns</h2>
 <dl>
@@ -410,11 +556,11 @@ class AccountingResource(Resource):
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def list(self, account_id: str, builders: Optional[List[Builder]] = None) -&gt; ListResult:
-    &#34;&#34;&#34;Get a list of entries.
+    &#34;&#34;&#34;Get a list of resources.
 
     Args:
         account_id: The alpha-numeric account id
-        builders: List of builder objects for filters, pagination, etc.
+        builders: (Optional) List of builder objects for filters, pagination, etc.
 
     Returns:
         ListResult: ListResult object with the resources response data.
@@ -433,12 +579,44 @@ class AccountingResource(Resource):
 <span>def <span class="ident">update</span></span>(<span>self, account_id: str, resource_id: int, data: dict) ‑> <a title="freshbooks.models.Result" href="../models.html#freshbooks.models.Result">Result</a></span>
 </code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Update a resource.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>account_id</code></strong></dt>
+<dd>The alpha-numeric account id</dd>
+<dt><strong><code>resource_id</code></strong></dt>
+<dd>Id of the resource to update</dd>
+<dt><strong><code>data</code></strong></dt>
+<dd>Dictionary of data to update the resource to</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>Result</code></dt>
+<dd>Result object with the updated resource's response data.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>FreshBooksError</code></dt>
+<dd>If the call is not successful.</dd>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def update(self, account_id: str, resource_id: int, data: dict) -&gt; Result:
+    &#34;&#34;&#34;Update a resource.
+
+    Args:
+        account_id: The alpha-numeric account id
+        resource_id: Id of the resource to update
+        data: Dictionary of data to update the resource to
+
+    Returns:
+        Result: Result object with the updated resource&#39;s response data.
+
+    Raises:
+        FreshBooksError: If the call is not successful.
+    &#34;&#34;&#34;
     self._reject_missing(&#34;update&#34;)
     response = self._request(
         self._get_url(account_id, resource_id), HttpVerbs.PUT, data={self.single_name: data}

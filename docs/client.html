@@ -48,6 +48,7 @@ API_TOKEN_URL = &#34;auth/oauth/token&#34;
 AUTH_BASE_URL = &#34;https://auth.freshbooks.com&#34;
 AUTH_URL = &#34;/service/auth/oauth/authorize&#34;
 DEFAULT_TIMEOUT = 30
+&#34;&#34;&#34;Default request timeout to FreshBooks&#34;&#34;&#34;
 
 logging.getLogger(&#39;freshbooks&#39;).addHandler(logging.NullHandler())
 
@@ -58,7 +59,8 @@ with open(os.path.join(os.path.dirname(__file__), &#34;VERSION&#34;)) as f:
 class Client:
     def __init__(self, client_id: str, client_secret: Optional[str] = None, redirect_uri: Optional[str] = None,
                  access_token: Optional[str] = None, refresh_token: Optional[str] = None,
-                 user_agent: Optional[str] = None, auto_retry: bool = True):
+                 user_agent: Optional[str] = None, timeout: Optional[int] = DEFAULT_TIMEOUT,
+                 auto_retry: bool = True):
         &#34;&#34;&#34;
         Create a new API client instance for the given `client_id` and `client_secret`.
         This will allow you to follow the authentication flow to get an `access_token`.
@@ -68,11 +70,12 @@ class Client:
 
         Args:
             client_id: The FreshBooks application client id
-            client_secret: The FreshBooks application client secret
-            redirect_uri: Where the user should be redirected to after authentication
-            access_token: An already authenticated access token to use
-            refresh_token: An already authenticated refresh token to use
-            user_agent: A user-agent string to override the default
+            client_secret: (Optional) The FreshBooks application client secret
+            redirect_uri: (Optional) Where the user should be redirected to after authentication
+            access_token: (Optional) An already authenticated access token to use
+            refresh_token: (Optional) An already authenticated refresh token to use
+            user_agent: (Optional) A user-agent string to override the default
+            timeout: (Optional) Set the timeout for API calls. Defaults to 30
             auto_retry: If the SDK should retry failed call up to 3 times. Defaults to True.
 
         Returns:
@@ -84,6 +87,7 @@ class Client:
         self.access_token = access_token
         self.refresh_token = refresh_token
         self.access_token_expires_at: Optional[datetime] = None
+        self.timeout = timeout
         self.auto_retry = auto_retry
 
         self.base_url = os.getenv(&#34;FRESHBOOKS_API_URL&#34;, API_BASE_URL)
@@ -106,7 +110,8 @@ class Client:
             access_token=self.access_token,
             base_url=self.base_url,
             user_agent=self.user_agent,
-            auto_retry=self.auto_retry
+            auto_retry=self.auto_retry,
+            timeout=self.timeout
         )
 
     def get_auth_request_url(self, scopes: Optional[List[str]] = None) -&gt; str:
@@ -147,7 +152,7 @@ class Client:
             &#34;redirect_uri&#34;: self.redirect_uri,
             code_type: code
         }
-        response = requests.post(f&#34;{self.base_url}/{API_TOKEN_URL}&#34;, payload, timeout=DEFAULT_TIMEOUT)
+        response = requests.post(f&#34;{self.base_url}/{API_TOKEN_URL}&#34;, payload, timeout=self.timeout)
         content = response.json()
         try:
             self.access_token = content[&#34;access_token&#34;]
@@ -339,6 +344,13 @@ class Client:
 <section>
 </section>
 <section>
+<h2 class="section-title" id="header-variables">Global variables</h2>
+<dl>
+<dt id="freshbooks.client.DEFAULT_TIMEOUT"><code class="name">var <span class="ident">DEFAULT_TIMEOUT</span></code></dt>
+<dd>
+<div class="desc"><p>Default request timeout to FreshBooks</p></div>
+</dd>
+</dl>
 </section>
 <section>
 </section>
@@ -347,7 +359,7 @@ class Client:
 <dl>
 <dt id="freshbooks.client.Client"><code class="flex name class">
 <span>class <span class="ident">Client</span></span>
-<span>(</span><span>client_id: str, client_secret: Optional[str] = None, redirect_uri: Optional[str] = None, access_token: Optional[str] = None, refresh_token: Optional[str] = None, user_agent: Optional[str] = None, auto_retry: bool = True)</span>
+<span>(</span><span>client_id: str, client_secret: Optional[str] = None, redirect_uri: Optional[str] = None, access_token: Optional[str] = None, refresh_token: Optional[str] = None, user_agent: Optional[str] = None, timeout: Optional[int] = 30, auto_retry: bool = True)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Create a new API client instance for the given <code>client_id</code> and <code>client_secret</code>.
@@ -359,15 +371,17 @@ to specify a <code>client_secret</code> (though the token cannot be refreshed in
 <dt><strong><code>client_id</code></strong></dt>
 <dd>The FreshBooks application client id</dd>
 <dt><strong><code>client_secret</code></strong></dt>
-<dd>The FreshBooks application client secret</dd>
+<dd>(Optional) The FreshBooks application client secret</dd>
 <dt><strong><code>redirect_uri</code></strong></dt>
-<dd>Where the user should be redirected to after authentication</dd>
+<dd>(Optional) Where the user should be redirected to after authentication</dd>
 <dt><strong><code>access_token</code></strong></dt>
-<dd>An already authenticated access token to use</dd>
+<dd>(Optional) An already authenticated access token to use</dd>
 <dt><strong><code>refresh_token</code></strong></dt>
-<dd>An already authenticated refresh token to use</dd>
+<dd>(Optional) An already authenticated refresh token to use</dd>
 <dt><strong><code>user_agent</code></strong></dt>
-<dd>A user-agent string to override the default</dd>
+<dd>(Optional) A user-agent string to override the default</dd>
+<dt><strong><code>timeout</code></strong></dt>
+<dd>(Optional) Set the timeout for API calls. Defaults to 30</dd>
 <dt><strong><code>auto_retry</code></strong></dt>
 <dd>If the SDK should retry failed call up to 3 times. Defaults to True.</dd>
 </dl>
@@ -380,7 +394,8 @@ to specify a <code>client_secret</code> (though the token cannot be refreshed in
 <pre><code class="python">class Client:
     def __init__(self, client_id: str, client_secret: Optional[str] = None, redirect_uri: Optional[str] = None,
                  access_token: Optional[str] = None, refresh_token: Optional[str] = None,
-                 user_agent: Optional[str] = None, auto_retry: bool = True):
+                 user_agent: Optional[str] = None, timeout: Optional[int] = DEFAULT_TIMEOUT,
+                 auto_retry: bool = True):
         &#34;&#34;&#34;
         Create a new API client instance for the given `client_id` and `client_secret`.
         This will allow you to follow the authentication flow to get an `access_token`.
@@ -390,11 +405,12 @@ to specify a <code>client_secret</code> (though the token cannot be refreshed in
 
         Args:
             client_id: The FreshBooks application client id
-            client_secret: The FreshBooks application client secret
-            redirect_uri: Where the user should be redirected to after authentication
-            access_token: An already authenticated access token to use
-            refresh_token: An already authenticated refresh token to use
-            user_agent: A user-agent string to override the default
+            client_secret: (Optional) The FreshBooks application client secret
+            redirect_uri: (Optional) Where the user should be redirected to after authentication
+            access_token: (Optional) An already authenticated access token to use
+            refresh_token: (Optional) An already authenticated refresh token to use
+            user_agent: (Optional) A user-agent string to override the default
+            timeout: (Optional) Set the timeout for API calls. Defaults to 30
             auto_retry: If the SDK should retry failed call up to 3 times. Defaults to True.
 
         Returns:
@@ -406,6 +422,7 @@ to specify a <code>client_secret</code> (though the token cannot be refreshed in
         self.access_token = access_token
         self.refresh_token = refresh_token
         self.access_token_expires_at: Optional[datetime] = None
+        self.timeout = timeout
         self.auto_retry = auto_retry
 
         self.base_url = os.getenv(&#34;FRESHBOOKS_API_URL&#34;, API_BASE_URL)
@@ -428,7 +445,8 @@ to specify a <code>client_secret</code> (though the token cannot be refreshed in
             access_token=self.access_token,
             base_url=self.base_url,
             user_agent=self.user_agent,
-            auto_retry=self.auto_retry
+            auto_retry=self.auto_retry,
+            timeout=self.timeout
         )
 
     def get_auth_request_url(self, scopes: Optional[List[str]] = None) -&gt; str:
@@ -469,7 +487,7 @@ to specify a <code>client_secret</code> (though the token cannot be refreshed in
             &#34;redirect_uri&#34;: self.redirect_uri,
             code_type: code
         }
-        response = requests.post(f&#34;{self.base_url}/{API_TOKEN_URL}&#34;, payload, timeout=DEFAULT_TIMEOUT)
+        response = requests.post(f&#34;{self.base_url}/{API_TOKEN_URL}&#34;, payload, timeout=self.timeout)
         content = response.json()
         try:
             self.access_token = content[&#34;access_token&#34;]
@@ -1089,6 +1107,11 @@ in an object.</p>
 <li><h3>Super-module</h3>
 <ul>
 <li><code><a title="freshbooks" href="index.html">freshbooks</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-variables">Global variables</a></h3>
+<ul class="">
+<li><code><a title="freshbooks.client.DEFAULT_TIMEOUT" href="#freshbooks.client.DEFAULT_TIMEOUT">DEFAULT_TIMEOUT</a></code></li>
 </ul>
 </li>
 <li><h3><a href="#header-classes">Classes</a></h3>

@@ -18,7 +18,7 @@ class ProjectsResource(Resource):
         self.resource_path = resource_path
         self.single_name = single_name
         self.list_name = list_name
-        if not list_name:
+        if not list_name:  # pragma: no branch
             self.list_name = resource_path
 
     def _get_url(self, business_id: int, resource_id: Optional[int] = None) -> str:

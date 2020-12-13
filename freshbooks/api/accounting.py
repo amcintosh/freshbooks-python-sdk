@@ -65,7 +65,7 @@ class AccountingResource(Resource):
         if name in self.missing_endpoints:
             raise FreshBooksNotImplementedError(self.list_name, name)
 
-    def get(self, account_id: str, resource_id: int) -> Result:
+    def get(self, account_id: str, resource_id: int, builders: Optional[List[Builder]] = None) -> Result:
         """Get a single entry with the corresponding id.
 
         Args:
@@ -79,7 +79,9 @@ class AccountingResource(Resource):
             FreshBooksError: If the call is not successful.
         """
         self._reject_missing("get")
-        data = self._request(self._get_url(account_id, resource_id), HttpVerbs.GET)
+        resource_url = self._get_url(account_id, resource_id)
+        query_string = self._build_query_string(builders)
+        data = self._request(f"{resource_url}{query_string}", HttpVerbs.GET)
         return Result(self.single_name, data)
 
     def list(self, account_id: str, builders: Optional[List[Builder]] = None) -> ListResult:

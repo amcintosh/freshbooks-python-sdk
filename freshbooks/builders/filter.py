@@ -27,7 +27,7 @@ class FilterBuilder(Builder):
     FilterBuilder(&active=False&search[clientids][]=123&search[clientids][]=456)
 
     >>> f = FilterBuilder()
-    >>> f.between("amount", [1, 10])
+    >>> f.between("amount", 1, 10)
     FilterBuilder(&search[amount_min]=1&search[amount_max]=10)
 
     >>> f = FilterBuilder()

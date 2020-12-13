@@ -1,5 +1,5 @@
 from datetime import date, datetime
-from freshbooks import PaginateBuilder, FilterBuilder
+from freshbooks import PaginateBuilder, FilterBuilder, IncludesBuilder
 
 
 class TestPaginateBuilder:
@@ -117,3 +117,13 @@ class TestFilter:
         filter.between("start_date", min=datetime(year=2020, month=10, day=17, hour=13, minute=14))
 
         assert filter.build() == "&search[start_date]=2020-10-17"
+
+
+class TestInclude:
+
+    def test_boolean_true(self):
+        includes = IncludesBuilder()
+        includes.include("late_reminders")
+
+        assert includes.build() == "&include[]=late_reminders"
+        assert str(includes) == "IncludesBuilder(&include[]=late_reminders)"

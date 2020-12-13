@@ -315,7 +315,7 @@ Which can then be passed into `list` or `get` calls:
 >>> clients[0].outstanding_balance
 [{'amount': {'amount': '100.00', 'code': 'USD'}}]
 
->>> client = freshBooksClient.clients.get(account_id, client_id, builders=[includes])
+>>> client = freshBooksClient.clients.get(account_id, client_id, includes=[includes])
 >>> client.outstanding_balance
 [{'amount': {'amount': '100.00', 'code': 'USD'}}]
 ```

@@ -18,8 +18,6 @@ class HttpVerbs(object):
 
 
 class Resource:
-    DEFAULT_TIMEOUT = 30
-    """Default request timeout to FreshBooks"""
     API_RETRIES = 3
     """Default number of retries"""
 
@@ -27,6 +25,7 @@ class Resource:
         self.base_url = client_config.base_url
         self.access_token = client_config.access_token
         self.user_agent = client_config.user_agent
+        self.timeout = client_config.timeout
         self.session = self._config_session(client_config.auto_retry)
 
     def _config_session(self, auto_retry: bool) -> requests.Session:
@@ -75,12 +74,12 @@ class Resource:
             session = self.session.head
 
         try:
-            res = session(uri, data=payload, headers=self.headers(method), timeout=self.DEFAULT_TIMEOUT)
+            res = session(uri, data=payload, headers=self.headers(method), timeout=self.timeout)
         except requests.exceptions.RetryError:
             adapter = HTTPAdapter()
             self.session.mount('http://', adapter)
             self.session.mount('https://', adapter)
-            res = session(uri, data=payload, headers=self.headers(method), timeout=self.DEFAULT_TIMEOUT)
+            res = session(uri, data=payload, headers=self.headers(method), timeout=self.timeout)
 
         return res
 

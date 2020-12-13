@@ -81,7 +81,7 @@ class AccountingResource(Resource):
         """
         self._reject_missing("get")
         resource_url = self._get_url(account_id, resource_id)
-        query_string = self._build_query_string(includes)
+        query_string = self._build_query_string([includes])
         data = self._request(f"{resource_url}{query_string}", HttpVerbs.GET)
         return Result(self.single_name, data)
 

@@ -1,9 +1,8 @@
 import json
 from types import SimpleNamespace
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, Optional
 
 import requests
-from freshbooks.builders import Builder
 from requests.adapters import HTTPAdapter
 from requests.packages.urllib3.util.retry import Retry
 
@@ -83,7 +82,7 @@ class Resource:
 
         return res
 
-    def _build_query_string(self, builders: Optional[List[Builder]]) -> str:
+    def _build_query_string(self, builders: Any) -> str:
         query_string = ""
         if builders:
             for builder in builders:

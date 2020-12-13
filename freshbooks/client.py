@@ -276,6 +276,16 @@ class Client:
         )
 
     @property
+    def tasks(self) -> Resource:
+        """FreshBooks tasks resource with calls to get, list, create, update, delete
+
+        Note: Tasks are the older implementation of `services` and you should probably look there
+        first to do what you need unless tasks provides a better interface. Creating a task should
+        create the corresponding service and vice versa.
+        """
+        return AccountingResource(self._client_resource_config(), "projects/tasks", "task", "tasks")
+
+    @property
     def taxes(self) -> Resource:
         """FreshBooks taxes resource with calls to get, list, create, update, delete"""
         return AccountingResource(

@@ -140,6 +140,7 @@ class TestClientResources:
             ("items", "item", True),
             ("other_income", "other_income", False),
             ("payments", "payment", True),
+            ("tasks", "task", True),
             ("taxes", "tax", False)
         ]
     )

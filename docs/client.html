@@ -304,6 +304,16 @@ class Client:
         )
 
     @property
+    def tasks(self) -&gt; Resource:
+        &#34;&#34;&#34;FreshBooks tasks resource with calls to get, list, create, update, delete
+
+        Note: Tasks are the older implementation of `services` and you should probably look there
+        first to do what you need unless tasks provides a better interface. Creating a task should
+        create the corresponding service and vice versa.
+        &#34;&#34;&#34;
+        return AccountingResource(self._client_resource_config(), &#34;projects/tasks&#34;, &#34;task&#34;, &#34;tasks&#34;)
+
+    @property
     def taxes(self) -&gt; Resource:
         &#34;&#34;&#34;FreshBooks taxes resource with calls to get, list, create, update, delete&#34;&#34;&#34;
         return AccountingResource(
@@ -615,6 +625,16 @@ to specify a <code>client_secret</code> (though the token cannot be refreshed in
         )
 
     @property
+    def tasks(self) -&gt; Resource:
+        &#34;&#34;&#34;FreshBooks tasks resource with calls to get, list, create, update, delete
+
+        Note: Tasks are the older implementation of `services` and you should probably look there
+        first to do what you need unless tasks provides a better interface. Creating a task should
+        create the corresponding service and vice versa.
+        &#34;&#34;&#34;
+        return AccountingResource(self._client_resource_config(), &#34;projects/tasks&#34;, &#34;task&#34;, &#34;tasks&#34;)
+
+    @property
     def taxes(self) -&gt; Resource:
         &#34;&#34;&#34;FreshBooks taxes resource with calls to get, list, create, update, delete&#34;&#34;&#34;
         return AccountingResource(
@@ -858,6 +878,27 @@ def systems(self) -&gt; Resource:
     )</code></pre>
 </details>
 </dd>
+<dt id="freshbooks.client.Client.tasks"><code class="name">var <span class="ident">tasks</span> : freshbooks.api.resource.Resource</code></dt>
+<dd>
+<div class="desc"><p>FreshBooks tasks resource with calls to get, list, create, update, delete</p>
+<p>Note: Tasks are the older implementation of <code>services</code> and you should probably look there
+first to do what you need unless tasks provides a better interface. Creating a task should
+create the corresponding service and vice versa.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def tasks(self) -&gt; Resource:
+    &#34;&#34;&#34;FreshBooks tasks resource with calls to get, list, create, update, delete
+
+    Note: Tasks are the older implementation of `services` and you should probably look there
+    first to do what you need unless tasks provides a better interface. Creating a task should
+    create the corresponding service and vice versa.
+    &#34;&#34;&#34;
+    return AccountingResource(self._client_resource_config(), &#34;projects/tasks&#34;, &#34;task&#34;, &#34;tasks&#34;)</code></pre>
+</details>
+</dd>
 <dt id="freshbooks.client.Client.taxes"><code class="name">var <span class="ident">taxes</span> : freshbooks.api.resource.Resource</code></dt>
 <dd>
 <div class="desc"><p>FreshBooks taxes resource with calls to get, list, create, update, delete</p></div>
@@ -1070,6 +1111,7 @@ in an object.</p>
 <li><code><a title="freshbooks.client.Client.refresh_access_token" href="#freshbooks.client.Client.refresh_access_token">refresh_access_token</a></code></li>
 <li><code><a title="freshbooks.client.Client.staff" href="#freshbooks.client.Client.staff">staff</a></code></li>
 <li><code><a title="freshbooks.client.Client.systems" href="#freshbooks.client.Client.systems">systems</a></code></li>
+<li><code><a title="freshbooks.client.Client.tasks" href="#freshbooks.client.Client.tasks">tasks</a></code></li>
 <li><code><a title="freshbooks.client.Client.taxes" href="#freshbooks.client.Client.taxes">taxes</a></code></li>
 <li><code><a title="freshbooks.client.Client.time_entries" href="#freshbooks.client.Client.time_entries">time_entries</a></code></li>
 </ul>

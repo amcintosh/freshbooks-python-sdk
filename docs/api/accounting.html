@@ -109,7 +109,9 @@ class AccountingResource(Resource):
         &#34;&#34;&#34;
         self._reject_missing(&#34;get&#34;)
         resource_url = self._get_url(account_id, resource_id)
-        query_string = self._build_query_string([includes])
+        query_string = &#34;&#34;
+        if includes:
+            query_string = self._build_query_string([includes])
         data = self._request(f&#34;{resource_url}{query_string}&#34;, HttpVerbs.GET)
         return Result(self.single_name, data)
 
@@ -288,7 +290,9 @@ class AccountingResource(Resource):
         &#34;&#34;&#34;
         self._reject_missing(&#34;get&#34;)
         resource_url = self._get_url(account_id, resource_id)
-        query_string = self._build_query_string([includes])
+        query_string = &#34;&#34;
+        if includes:
+            query_string = self._build_query_string([includes])
         data = self._request(f&#34;{resource_url}{query_string}&#34;, HttpVerbs.GET)
         return Result(self.single_name, data)
 
@@ -524,7 +528,9 @@ See <a href="https://www.freshbooks.com/api/active_deleted">FreshBooks API - Act
     &#34;&#34;&#34;
     self._reject_missing(&#34;get&#34;)
     resource_url = self._get_url(account_id, resource_id)
-    query_string = self._build_query_string([includes])
+    query_string = &#34;&#34;
+    if includes:
+        query_string = self._build_query_string([includes])
     data = self._request(f&#34;{resource_url}{query_string}&#34;, HttpVerbs.GET)
     return Result(self.single_name, data)</code></pre>
 </details>

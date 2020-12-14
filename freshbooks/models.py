@@ -42,7 +42,12 @@ class Result:
         return "Result({})".format(self.name)
 
     def __getattr__(self, field: str) -> Any:
-        return self.data.get(field)
+        field_data = self.data.get(field)
+        if isinstance(field_data, dict):
+            return Result(field, {field: field_data})
+        if isinstance(field_data, list):
+            return ListResult(field, field, {field: field_data}, include_pages=False)
+        return field_data
 
     @property
     def vis_state(self) -> Union[VisState, None]:
@@ -89,17 +94,18 @@ class ListResult:
     For including pagination in requests, see `freshbooks.builders.paginator.PaginateBuilder`.
     """
 
-    def __init__(self, name: str, single_name: str, data: dict):
+    def __init__(self, name: str, single_name: str, data: dict, include_pages: bool = True):
         self.name = name
         self.single_name = single_name
         self.data = data
-        self.pages = self._constructPages(data)
+        if include_pages:
+            self.pages = self._constructPages(data)
 
     def __str__(self) -> str:
-        return "Result({})".format(self.name)
+        return "ListResult({})".format(self.name)
 
     def __repr__(self) -> str:  # pragma: no cover
-        return "Result({})".format(self.name)
+        return "ListResult({})".format(self.name)
 
     def __len__(self) -> int:
         return len(self.data.get(self.name, []))

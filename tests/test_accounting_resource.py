@@ -1,6 +1,7 @@
 from datetime import datetime
 import json
 import httpretty
+import pytest
 
 from freshbooks import Client as FreshBooksClient
 from freshbooks import PaginateBuilder, FilterBuilder, IncludesBuilder, FreshBooksError, VisState
@@ -31,6 +32,7 @@ class TestAccountingResources:
         assert client.data["organization"] == "American Cyanamid"
         assert client.organization == "American Cyanamid"
         assert client.userid == client_id
+
         assert httpretty.last_request().headers["Authorization"] == "Bearer some_token"
         assert httpretty.last_request().headers["Content-Type"] is None
         assert (httpretty.last_request().headers["user-agent"]
@@ -60,6 +62,37 @@ class TestAccountingResources:
         assert str(client) == "Result(client)"
         assert client.name == "client"
         assert httpretty.last_request().querystring == expected_params
+
+    @httpretty.activate
+    def test_get_client__sub_lists(self):
+        client_id = 12345
+        url = "{}/accounting/account/{}/users/clients/{}".format(API_BASE_URL, self.account_id, client_id)
+        httpretty.register_uri(
+            httpretty.GET,
+            url,
+            body=json.dumps(get_fixture("get_client_response")),
+            status=200
+        )
+
+        client = self.freshBooksClient.clients.get(self.account_id, client_id)
+
+        assert str(client) == "Result(client)"
+        assert str(client.outstanding_balance) == "ListResult(outstanding_balance)"
+        assert client.data["outstanding_balance"][0]["amount"] == {"amount": 10, "code": "CAD"}
+
+        assert str(client.outstanding_balance[0]) == "Result(outstanding_balance)"
+        assert client.outstanding_balance[0].data == {"amount": {"amount": 10, "code": "CAD"}}
+        assert client.outstanding_balance[0].amount.code == "CAD"
+
+        for balance in client.outstanding_balance:
+            assert balance.amount.code == "CAD"
+
+        assert str(client.test_amount) == "Result(test_amount)"
+        assert client.test_amount.code == "CAD"
+
+        assert str(client.grand_total_balance) == "ListResult(grand_total_balance)"
+        with pytest.raises(IndexError):
+            assert client.grand_total_balance[0].code is None
 
     @httpretty.activate
     def test_get_client__not_found(self):
@@ -128,7 +161,7 @@ class TestAccountingResources:
 
         clients = freshBooksClient.clients.list(self.account_id)
 
-        assert str(clients) == "Result(clients)"
+        assert str(clients) == "ListResult(clients)"
         assert clients.name == "clients"
         assert len(clients) == 3
         assert clients.pages.total == 3

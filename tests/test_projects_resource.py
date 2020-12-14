@@ -29,6 +29,9 @@ class TestProjectsResources:
         assert project.data["title"] == "Awesome Project"
         assert project.title == "Awesome Project"
         assert project.id == project_id
+
+        for service in project.services:
+            assert service.billable is True
         assert httpretty.last_request().headers["Authorization"] == "Bearer some_token"
 
     @httpretty.activate

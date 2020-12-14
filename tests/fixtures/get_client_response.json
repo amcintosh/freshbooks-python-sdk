@@ -14,6 +14,7 @@
                 "email": "gordon.shumway@AmericanCyanamid.com",
                 "fax": "",
                 "fname": "Gordon",
+                "grand_total_balance": [],
                 "has_retainer": "None",
                 "home_phone": "None",
                 "id": 640807,
@@ -27,6 +28,24 @@
                 "notified": false,
                 "num_logins": 0,
                 "organization": "American Cyanamid",
+                "test_amount": {
+                    "amount": 10,
+                    "code": "CAD"
+                },
+                "outstanding_balance": [
+                    {
+                        "amount": {
+                            "amount": 10,
+                            "code": "CAD"
+                        }
+                    },
+                    {
+                        "amount": {
+                            "amount": 11,
+                            "code": "CAD"
+                        }
+                    }
+                ],
                 "p_city": "Torono",
                 "p_code": "M5T 2B3",
                 "p_country": "Canada",

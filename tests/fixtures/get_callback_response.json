@@ -1,0 +1,13 @@
+{
+    "response": {
+        "result": {
+            "callback": {
+                "callbackid": 123,
+                "verified": true,
+                "uri": "http://freshbooks.com/hook/123",
+                "event": "invoice.create",
+                "updated_at": "2017-08-23T11:45:09Z"
+            }
+        }
+    }
+}

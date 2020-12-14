@@ -37,6 +37,7 @@ from requests.models import urlencode  # type: ignore
 
 from freshbooks.api.accounting import AccountingResource
 from freshbooks.api.auth import AuthResource
+from freshbooks.api.events import EventsResource
 from freshbooks.api.projects import ProjectsResource
 from freshbooks.api.resource import Resource
 from freshbooks.api.timetracking import TimetrackingResource
@@ -324,6 +325,17 @@ class Client:
         &#34;&#34;&#34;FreshBooks taxes resource with calls to get, list, create, update, delete&#34;&#34;&#34;
         return AccountingResource(
             self._client_resource_config(), &#34;taxes/taxes&#34;, &#34;tax&#34;, &#34;taxes&#34;, delete_via_update=False
+        )
+
+    # Events Resources
+
+    @property
+    def callbacks(self) -&gt; Resource:
+        &#34;&#34;&#34;FreshBooks callbacks (webhook callbacks) resource with calls to
+        get, list, create, update, delete, resend_verification, verify
+        &#34;&#34;&#34;
+        return EventsResource(
+            self._client_resource_config(), &#34;events/callbacks&#34;, &#34;callback&#34;, &#34;callbacks&#34;, delete_via_update=False
         )
 
     # Project Resources
@@ -661,6 +673,17 @@ to specify a <code>client_secret</code> (though the token cannot be refreshed in
             self._client_resource_config(), &#34;taxes/taxes&#34;, &#34;tax&#34;, &#34;taxes&#34;, delete_via_update=False
         )
 
+    # Events Resources
+
+    @property
+    def callbacks(self) -&gt; Resource:
+        &#34;&#34;&#34;FreshBooks callbacks (webhook callbacks) resource with calls to
+        get, list, create, update, delete, resend_verification, verify
+        &#34;&#34;&#34;
+        return EventsResource(
+            self._client_resource_config(), &#34;events/callbacks&#34;, &#34;callback&#34;, &#34;callbacks&#34;, delete_via_update=False
+        )
+
     # Project Resources
 
     @property
@@ -677,6 +700,24 @@ to specify a <code>client_secret</code> (though the token cannot be refreshed in
 </details>
 <h3>Instance variables</h3>
 <dl>
+<dt id="freshbooks.client.Client.callbacks"><code class="name">var <span class="ident">callbacks</span> : freshbooks.api.resource.Resource</code></dt>
+<dd>
+<div class="desc"><p>FreshBooks callbacks (webhook callbacks) resource with calls to
+get, list, create, update, delete, resend_verification, verify</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def callbacks(self) -&gt; Resource:
+    &#34;&#34;&#34;FreshBooks callbacks (webhook callbacks) resource with calls to
+    get, list, create, update, delete, resend_verification, verify
+    &#34;&#34;&#34;
+    return EventsResource(
+        self._client_resource_config(), &#34;events/callbacks&#34;, &#34;callback&#34;, &#34;callbacks&#34;, delete_via_update=False
+    )</code></pre>
+</details>
+</dd>
 <dt id="freshbooks.client.Client.clients"><code class="name">var <span class="ident">clients</span> : freshbooks.api.resource.Resource</code></dt>
 <dd>
 <div class="desc"><p>FreshBooks clients resource with calls to get, list, create, update, delete</p></div>
@@ -1119,6 +1160,7 @@ in an object.</p>
 <li>
 <h4><code><a title="freshbooks.client.Client" href="#freshbooks.client.Client">Client</a></code></h4>
 <ul class="">
+<li><code><a title="freshbooks.client.Client.callbacks" href="#freshbooks.client.Client.callbacks">callbacks</a></code></li>
 <li><code><a title="freshbooks.client.Client.clients" href="#freshbooks.client.Client.clients">clients</a></code></li>
 <li><code><a title="freshbooks.client.Client.credit_notes" href="#freshbooks.client.Client.credit_notes">credit_notes</a></code></li>
 <li><code><a title="freshbooks.client.Client.current_user" href="#freshbooks.client.Client.current_user">current_user</a></code></li>

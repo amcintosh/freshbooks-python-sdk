@@ -70,7 +70,12 @@ class Result:
         return &#34;Result({})&#34;.format(self.name)
 
     def __getattr__(self, field: str) -&gt; Any:
-        return self.data.get(field)
+        field_data = self.data.get(field)
+        if isinstance(field_data, dict):
+            return Result(field, {field: field_data})
+        if isinstance(field_data, list):
+            return ListResult(field, field, {field: field_data}, include_pages=False)
+        return field_data
 
     @property
     def vis_state(self) -&gt; Union[VisState, None]:
@@ -117,17 +122,18 @@ class ListResult:
     For including pagination in requests, see `freshbooks.builders.paginator.PaginateBuilder`.
     &#34;&#34;&#34;
 
-    def __init__(self, name: str, single_name: str, data: dict):
+    def __init__(self, name: str, single_name: str, data: dict, include_pages: bool = True):
         self.name = name
         self.single_name = single_name
         self.data = data
-        self.pages = self._constructPages(data)
+        if include_pages:
+            self.pages = self._constructPages(data)
 
     def __str__(self) -&gt; str:
-        return &#34;Result({})&#34;.format(self.name)
+        return &#34;ListResult({})&#34;.format(self.name)
 
     def __repr__(self) -&gt; str:  # pragma: no cover
-        return &#34;Result({})&#34;.format(self.name)
+        return &#34;ListResult({})&#34;.format(self.name)
 
     def __len__(self) -&gt; int:
         return len(self.data.get(self.name, []))
@@ -316,7 +322,7 @@ def identity_id(self) -&gt; int:
 </dd>
 <dt id="freshbooks.models.ListResult"><code class="flex name class">
 <span>class <span class="ident">ListResult</span></span>
-<span>(</span><span>name: str, single_name: str, data: dict)</span>
+<span>(</span><span>name: str, single_name: str, data: dict, include_pages: bool = True)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Result object from API calls with a list of resources returned.</p>
@@ -384,17 +390,18 @@ PageResult(page=1, pages=1, per_page=30, total=6)
     For including pagination in requests, see `freshbooks.builders.paginator.PaginateBuilder`.
     &#34;&#34;&#34;
 
-    def __init__(self, name: str, single_name: str, data: dict):
+    def __init__(self, name: str, single_name: str, data: dict, include_pages: bool = True):
         self.name = name
         self.single_name = single_name
         self.data = data
-        self.pages = self._constructPages(data)
+        if include_pages:
+            self.pages = self._constructPages(data)
 
     def __str__(self) -&gt; str:
-        return &#34;Result({})&#34;.format(self.name)
+        return &#34;ListResult({})&#34;.format(self.name)
 
     def __repr__(self) -&gt; str:  # pragma: no cover
-        return &#34;Result({})&#34;.format(self.name)
+        return &#34;ListResult({})&#34;.format(self.name)
 
     def __len__(self) -&gt; int:
         return len(self.data.get(self.name, []))
@@ -480,7 +487,12 @@ assert client.data[&quot;userid&quot;] == user_id
         return &#34;Result({})&#34;.format(self.name)
 
     def __getattr__(self, field: str) -&gt; Any:
-        return self.data.get(field)
+        field_data = self.data.get(field)
+        if isinstance(field_data, dict):
+            return Result(field, {field: field_data})
+        if isinstance(field_data, list):
+            return ListResult(field, field, {field: field_data}, include_pages=False)
+        return field_data
 
     @property
     def vis_state(self) -&gt; Union[VisState, None]:

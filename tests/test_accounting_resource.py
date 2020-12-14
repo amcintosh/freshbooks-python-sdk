@@ -3,7 +3,7 @@ import json
 import httpretty
 
 from freshbooks import Client as FreshBooksClient
-from freshbooks import PaginateBuilder, FilterBuilder, FreshBooksError, VisState
+from freshbooks import PaginateBuilder, FilterBuilder, IncludesBuilder, FreshBooksError, VisState
 from freshbooks.client import API_BASE_URL, VERSION
 from tests import get_fixture
 
@@ -35,6 +35,31 @@ class TestAccountingResources:
         assert httpretty.last_request().headers["Content-Type"] is None
         assert (httpretty.last_request().headers["user-agent"]
                 == f"FreshBooks python sdk/{VERSION} client_id some_client")
+
+    @httpretty.activate
+    def test_get_client__includes(self):
+        client_id = 12345
+        url = "{}/accounting/account/{}/users/clients/{}?include[]=late_reminders&include[]=last_activity".format(
+            API_BASE_URL, self.account_id, client_id
+        )
+        httpretty.register_uri(
+            httpretty.GET,
+            url,
+            body=json.dumps(get_fixture("get_client_response")),
+            status=200
+        )
+
+        includes = IncludesBuilder()
+        includes.include("late_reminders").include("last_activity")
+
+        client = self.freshBooksClient.clients.get(self.account_id, client_id, includes=includes)
+
+        expected_params = {
+            "include[]": ["late_reminders", "last_activity"]
+        }
+        assert str(client) == "Result(client)"
+        assert client.name == "client"
+        assert httpretty.last_request().querystring == expected_params
 
     @httpretty.activate
     def test_get_client__not_found(self):
@@ -184,6 +209,28 @@ class TestAccountingResources:
             "search[date_max]": ["2012-11-21"],
             "search[date_min]": ["2010-10-17"],
             "search[userids][]": ["1", "2"]}
+        assert httpretty.last_request().querystring == expected_params
+
+    @httpretty.activate
+    def test_list_clients__includes(self):
+        url = (
+            "{}/accounting/account/{}/users/clients?include[]=late_reminders&include[]=last_activity"
+        ).format(API_BASE_URL, self.account_id)
+        httpretty.register_uri(
+            httpretty.GET,
+            url,
+            body=json.dumps(get_fixture("list_clients_response")),
+            status=200
+        )
+
+        includes = IncludesBuilder()
+        includes.include("late_reminders").include("last_activity")
+
+        self.freshBooksClient.clients.list(self.account_id, builders=[includes])
+
+        expected_params = {
+            "include[]": ["late_reminders", "last_activity"]
+        }
         assert httpretty.last_request().querystring == expected_params
 
     @httpretty.activate

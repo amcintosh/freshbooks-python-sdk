@@ -25,7 +25,7 @@ class TestProjectsResources:
 
         project = self.freshBooksClient.projects.get(self.business_id, project_id)
 
-        assert project.name == "project"
+        assert str(project) == "Result(project)"
         assert project.data["title"] == "Awesome Project"
         assert project.title == "Awesome Project"
         assert project.id == project_id
@@ -83,7 +83,7 @@ class TestProjectsResources:
 
         projects = self.freshBooksClient.projects.list(self.business_id)
 
-        assert projects.name == "projects"
+        assert str(projects) == "ListResult(projects)"
         assert len(projects) == 3
         assert projects.pages.total == 3
         assert projects.data["meta"]["total"] == 3

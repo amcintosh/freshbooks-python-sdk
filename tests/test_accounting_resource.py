@@ -28,7 +28,6 @@ class TestAccountingResources:
         client = self.freshBooksClient.clients.get(self.account_id, client_id)
 
         assert str(client) == "Result(client)"
-        assert client.name == "client"
         assert client.data["organization"] == "American Cyanamid"
         assert client.organization == "American Cyanamid"
         assert client.userid == client_id
@@ -60,7 +59,6 @@ class TestAccountingResources:
             "include[]": ["late_reminders", "last_activity"]
         }
         assert str(client) == "Result(client)"
-        assert client.name == "client"
         assert httpretty.last_request().querystring == expected_params
 
     @httpretty.activate
@@ -162,7 +160,6 @@ class TestAccountingResources:
         clients = freshBooksClient.clients.list(self.account_id)
 
         assert str(clients) == "ListResult(clients)"
-        assert clients.name == "clients"
         assert len(clients) == 3
         assert clients.pages.total == 3
         assert clients.data["total"] == 3
@@ -197,7 +194,6 @@ class TestAccountingResources:
 
         clients = self.freshBooksClient.clients.list(self.account_id)
 
-        assert clients.name == "clients"
         assert clients.data["total"] == 0
         assert clients.data["clients"] == []
         for client in clients:
@@ -281,7 +277,6 @@ class TestAccountingResources:
         client = self.freshBooksClient.clients.create(self.account_id, payload)
 
         assert str(client) == "Result(client)"
-        assert client.name == "client"
         assert client.data["email"] == "john.doe@abcorp.com"
         assert client.email == "john.doe@abcorp.com"
         assert client.userid == client_id
@@ -303,7 +298,6 @@ class TestAccountingResources:
         client = self.freshBooksClient.clients.update(self.account_id, client_id, payload)
 
         assert str(client) == "Result(client)"
-        assert client.name == "client"
         assert client.data["email"] == "john.doe@abcorp.com"
         assert client.email == "john.doe@abcorp.com"
         assert client.userid == client_id

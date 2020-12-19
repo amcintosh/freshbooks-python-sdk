@@ -100,7 +100,6 @@ class TestEventsResources:
         callbacks = self.freshBooksClient.callbacks.list(self.account_id)
 
         assert str(callbacks) == "ListResult(callbacks)"
-        assert callbacks.name == "callbacks"
         assert len(callbacks) == 3
         assert callbacks.pages.total == 3
         for index, callback in enumerate(callbacks):

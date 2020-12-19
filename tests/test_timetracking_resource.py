@@ -24,7 +24,7 @@ class TestTimetrackingResources:
 
         time_entry = self.freshBooksClient.time_entries.get(self.business_id, time_entry_id)
 
-        assert time_entry.name == "time_entry"
+        assert str(time_entry) == "Result(time_entry)"
         assert time_entry.data["duration"] == 3600
         assert time_entry.duration == 3600
         assert time_entry.id == time_entry_id

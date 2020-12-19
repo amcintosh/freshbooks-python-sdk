@@ -32,14 +32,14 @@ class Result:
     """
 
     def __init__(self, name: str, data: dict):
-        self.name = name
+        self._name = name
         self.data = data.get(name, {})
 
     def __str__(self) -> str:
-        return "Result({})".format(self.name)
+        return "Result({})".format(self._name)
 
     def __repr__(self) -> str:  # pragma: no cover
-        return "Result({})".format(self.name)
+        return "Result({})".format(self._name)
 
     def __getattr__(self, field: str) -> Any:
         field_data = self.data.get(field)
@@ -95,33 +95,33 @@ class ListResult:
     """
 
     def __init__(self, name: str, single_name: str, data: dict, include_pages: bool = True):
-        self.name = name
-        self.single_name = single_name
+        self._name = name
+        self._single_name = single_name
         self.data = data
         if include_pages:
             self.pages = self._constructPages(data)
 
     def __str__(self) -> str:
-        return "ListResult({})".format(self.name)
+        return "ListResult({})".format(self._name)
 
     def __repr__(self) -> str:  # pragma: no cover
-        return "ListResult({})".format(self.name)
+        return "ListResult({})".format(self._name)
 
     def __len__(self) -> int:
-        return len(self.data.get(self.name, []))
+        return len(self.data.get(self._name, []))
 
     def __getitem__(self, index: int) -> Result:
-        results = self.data.get(self.name, [])
-        return Result(self.single_name, {self.single_name: results[index]})
+        results = self.data.get(self._name, [])
+        return Result(self._single_name, {self._single_name: results[index]})
 
     def __iter__(self) -> Any:
         self.n = 0
         return self
 
     def __next__(self) -> Result:
-        results = self.data.get(self.name, [])
+        results = self.data.get(self._name, [])
         if self.n < len(results):
-            result = Result(self.single_name, {self.single_name: results[self.n]})
+            result = Result(self._single_name, {self._single_name: results[self.n]})
             self.n += 1
             return result
         else:

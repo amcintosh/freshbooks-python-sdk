@@ -37,6 +37,7 @@ from requests.models import urlencode  # type: ignore
 
 from freshbooks.api.accounting import AccountingResource
 from freshbooks.api.auth import AuthResource
+from freshbooks.api.comments import CommentsResource
 from freshbooks.api.events import EventsResource
 from freshbooks.api.projects import ProjectsResource
 from freshbooks.api.resource import Resource
@@ -350,7 +351,16 @@ class Client:
     @property
     def time_entries(self) -&gt; Resource:
         &#34;&#34;&#34;FreshBooks time_entries resource with calls to get, list, create, update, delete&#34;&#34;&#34;
-        return TimetrackingResource(self._client_resource_config(), &#34;time_entries&#34;, &#34;time_entry&#34;)</code></pre>
+        return TimetrackingResource(
+            self._client_resource_config(), &#34;time_entries&#34;, &#34;time_entries&#34;, single_name=&#34;time_entry&#34;
+        )
+
+    # Comments Resources
+
+    @property
+    def services(self) -&gt; Resource:
+        &#34;&#34;&#34;FreshBooks services resource with calls to get, list, create, update, delete&#34;&#34;&#34;
+        return CommentsResource(self._client_resource_config(), &#34;services&#34;, &#34;service&#34;)</code></pre>
 </details>
 </section>
 <section>
@@ -696,7 +706,16 @@ to specify a <code>client_secret</code> (though the token cannot be refreshed in
     @property
     def time_entries(self) -&gt; Resource:
         &#34;&#34;&#34;FreshBooks time_entries resource with calls to get, list, create, update, delete&#34;&#34;&#34;
-        return TimetrackingResource(self._client_resource_config(), &#34;time_entries&#34;, &#34;time_entry&#34;)</code></pre>
+        return TimetrackingResource(
+            self._client_resource_config(), &#34;time_entries&#34;, &#34;time_entries&#34;, single_name=&#34;time_entry&#34;
+        )
+
+    # Comments Resources
+
+    @property
+    def services(self) -&gt; Resource:
+        &#34;&#34;&#34;FreshBooks services resource with calls to get, list, create, update, delete&#34;&#34;&#34;
+        return CommentsResource(self._client_resource_config(), &#34;services&#34;, &#34;service&#34;)</code></pre>
 </details>
 <h3>Instance variables</h3>
 <dl>
@@ -908,6 +927,19 @@ def projects(self) -&gt; Resource:
     return ProjectsResource(self._client_resource_config(), &#34;projects&#34;, &#34;project&#34;)</code></pre>
 </details>
 </dd>
+<dt id="freshbooks.client.Client.services"><code class="name">var <span class="ident">services</span> : freshbooks.api.resource.Resource</code></dt>
+<dd>
+<div class="desc"><p>FreshBooks services resource with calls to get, list, create, update, delete</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def services(self) -&gt; Resource:
+    &#34;&#34;&#34;FreshBooks services resource with calls to get, list, create, update, delete&#34;&#34;&#34;
+    return CommentsResource(self._client_resource_config(), &#34;services&#34;, &#34;service&#34;)</code></pre>
+</details>
+</dd>
 <dt id="freshbooks.client.Client.staff"><code class="name">var <span class="ident">staff</span> : freshbooks.api.resource.Resource</code></dt>
 <dd>
 <div class="desc"><p>FreshBooks staff resource with calls to get, list, update, delete</p></div>
@@ -986,7 +1018,9 @@ def taxes(self) -&gt; Resource:
 <pre><code class="python">@property
 def time_entries(self) -&gt; Resource:
     &#34;&#34;&#34;FreshBooks time_entries resource with calls to get, list, create, update, delete&#34;&#34;&#34;
-    return TimetrackingResource(self._client_resource_config(), &#34;time_entries&#34;, &#34;time_entry&#34;)</code></pre>
+    return TimetrackingResource(
+        self._client_resource_config(), &#34;time_entries&#34;, &#34;time_entries&#34;, single_name=&#34;time_entry&#34;
+    )</code></pre>
 </details>
 </dd>
 </dl>
@@ -1177,6 +1211,7 @@ in an object.</p>
 <li><code><a title="freshbooks.client.Client.payments" href="#freshbooks.client.Client.payments">payments</a></code></li>
 <li><code><a title="freshbooks.client.Client.projects" href="#freshbooks.client.Client.projects">projects</a></code></li>
 <li><code><a title="freshbooks.client.Client.refresh_access_token" href="#freshbooks.client.Client.refresh_access_token">refresh_access_token</a></code></li>
+<li><code><a title="freshbooks.client.Client.services" href="#freshbooks.client.Client.services">services</a></code></li>
 <li><code><a title="freshbooks.client.Client.staff" href="#freshbooks.client.Client.staff">staff</a></code></li>
 <li><code><a title="freshbooks.client.Client.systems" href="#freshbooks.client.Client.systems">systems</a></code></li>
 <li><code><a title="freshbooks.client.Client.tasks" href="#freshbooks.client.Client.tasks">tasks</a></code></li>

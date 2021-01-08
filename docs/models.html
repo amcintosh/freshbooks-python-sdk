@@ -28,7 +28,7 @@
 </summary>
 <pre><code class="python">from collections import namedtuple
 from enum import IntEnum
-from typing import Any, Union
+from typing import Any, Optional, Union
 
 
 class VisState(IntEnum):
@@ -59,7 +59,7 @@ class Result:
     ```
     &#34;&#34;&#34;
 
-    def __init__(self, name: str, data: dict):
+    def __init__(self, name: Optional[str], data: dict):
         self._name = name
         self.data = data.get(name, {})
 
@@ -436,7 +436,7 @@ PageResult(page=1, pages=1, per_page=30, total=6)
 </dd>
 <dt id="freshbooks.models.Result"><code class="flex name class">
 <span>class <span class="ident">Result</span></span>
-<span>(</span><span>name: str, data: dict)</span>
+<span>(</span><span>name: Optional[str], data: dict)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Result object from API calls with a single resource returned.</p>
@@ -476,7 +476,7 @@ assert client.data[&quot;userid&quot;] == user_id
     ```
     &#34;&#34;&#34;
 
-    def __init__(self, name: str, data: dict):
+    def __init__(self, name: Optional[str], data: dict):
         self._name = name
         self.data = data.get(name, {})
 

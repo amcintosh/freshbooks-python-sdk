@@ -21,7 +21,7 @@ See [https://freshbooks.github.io/freshbooks-python-sdk/](https://freshbooks.git
 You can create an instance of the API client in one of two ways:
 
 - By providing your application's OAuth2 `client_id` and `client_secret` and following through the auth flow, which when complete will return an access token
-- Or if you already have a valid access token, you can instanciate the client directly using that token, however token refresh flows will not function without the application id and secret.
+- Or if you already have a valid access token, you can instantiate the client directly using that token, however token refresh flows will not function without the application id and secret.
 
 ```python
 from freshbooks import Client

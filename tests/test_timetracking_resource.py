@@ -32,6 +32,28 @@ class TestTimetrackingResources:
         assert httpretty.last_request().headers["Content-Type"] is None
 
     @httpretty.activate
+    def test_list_time_entries(self):
+        time_entry_ids = [419546, 419547]
+        url = "{}/timetracking/business/{}/time_entries".format(API_BASE_URL, self.business_id)
+        httpretty.register_uri(
+            httpretty.GET,
+            url,
+            body=json.dumps(get_fixture("list_time_entries_response")),
+            status=200
+        )
+
+        time_entries = self.freshBooksClient.time_entries.list(self.business_id)
+
+        assert str(time_entries) == "ListResult(time_entries)"
+        assert len(time_entries) == 2
+        assert time_entries.pages.total == 2
+        assert time_entries.data["meta"]["total"] == 2
+        assert time_entries.data["time_entries"][0]["id"] == time_entry_ids[0]
+        for index, time_entry in enumerate(time_entries):
+            assert time_entry.id == time_entry_ids[index]
+        assert httpretty.last_request().headers["Authorization"] == "Bearer some_token"
+
+    @httpretty.activate
     def test_create_time_entry(self):
         url = "{}/timetracking/business/{}/time_entries".format(API_BASE_URL, self.business_id)
         httpretty.register_uri(

@@ -11,20 +11,28 @@ from freshbooks.models import ListResult, Result
 class ProjectsResource(Resource):
     """Handles resources under the `/projects` endpoints."""
 
-    def __init__(self, client_config: SimpleNamespace, resource_path: str,
-                 single_name: str, list_name: Optional[str] = None):
+    def __init__(self, client_config: SimpleNamespace,
+                 list_resource_path: str, single_resource_path: str,
+                 list_name: Optional[str] = None, single_name: Optional[str] = None):
 
         super().__init__(client_config)
-        self.resource_path = resource_path
-        self.single_name = single_name
+        self.list_resource_path = list_resource_path
         self.list_name = list_name
         if not list_name:  # pragma: no branch
-            self.list_name = resource_path
+            self.list_name = list_resource_path
 
-    def _get_url(self, business_id: int, resource_id: Optional[int] = None) -> str:
+        self.single_resource_path = single_resource_path
+        self.single_name = single_name
+        if not single_name:  # pragma: no branch
+            self.single_name = single_resource_path
+
+    def _get_url(self, business_id: int, resource_id: Optional[int] = None, is_list: Optional[bool] = False) -> str:
         if resource_id:
-            return "{}/projects/business/{}/{}/{}".format(self.base_url, business_id, self.resource_path, resource_id)
-        return "{}/projects/business/{}/{}".format(self.base_url, business_id, self.resource_path)
+            return "{}/projects/business/{}/{}/{}".format(
+                self.base_url, business_id, self.single_resource_path, resource_id)
+        if is_list:
+            return "{}/projects/business/{}/{}".format(self.base_url, business_id, self.list_resource_path)
+        return "{}/projects/business/{}/{}".format(self.base_url, business_id, self.single_resource_path)
 
     def _request(self, url: str, method: str, data: Optional[dict] = None) -> Any:
         response = self._send_request(url, method, data)
@@ -52,7 +60,7 @@ class ProjectsResource(Resource):
         return Result(self.single_name, data)
 
     def list(self, business_id: int, builders: Optional[List[Builder]] = None) -> ListResult:
-        resource_url = self._get_url(business_id)
+        resource_url = self._get_url(business_id, is_list=True)
         query_string = self._build_query_string(builders)
         data = self._request(f"{resource_url}{query_string}", HttpVerbs.GET)
         return ListResult(self.list_name, self.single_name, data)  # type: ignore

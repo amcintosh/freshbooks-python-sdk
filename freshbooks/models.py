@@ -1,6 +1,6 @@
 from collections import namedtuple
 from enum import IntEnum
-from typing import Any, Union
+from typing import Any, Optional, Union
 
 
 class VisState(IntEnum):
@@ -31,7 +31,7 @@ class Result:
     ```
     """
 
-    def __init__(self, name: str, data: dict):
+    def __init__(self, name: Optional[str], data: dict):
         self._name = name
         self.data = data.get(name, {})
 

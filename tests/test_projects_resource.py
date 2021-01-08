@@ -15,7 +15,7 @@ class TestProjectsResources:
     @httpretty.activate
     def test_get_project(self):
         project_id = 654321
-        url = "{}/projects/business/{}/projects/{}".format(API_BASE_URL, self.business_id, project_id)
+        url = "{}/projects/business/{}/project/{}".format(API_BASE_URL, self.business_id, project_id)
         httpretty.register_uri(
             httpretty.GET,
             url,
@@ -29,6 +29,7 @@ class TestProjectsResources:
         assert project.data["title"] == "Awesome Project"
         assert project.title == "Awesome Project"
         assert project.id == project_id
+        assert project.vis_state is None, "Projects use active, not vis_state"
 
         for service in project.services:
             assert service.billable is True
@@ -37,7 +38,7 @@ class TestProjectsResources:
     @httpretty.activate
     def test_get_project__not_found(self):
         project_id = 654321
-        url = "{}/projects/business/{}/projects/{}".format(API_BASE_URL, self.business_id, project_id)
+        url = "{}/projects/business/{}/project/{}".format(API_BASE_URL, self.business_id, project_id)
         httpretty.register_uri(
             httpretty.GET,
             url,
@@ -55,7 +56,7 @@ class TestProjectsResources:
     @httpretty.activate
     def test_get_project__bad_response(self):
         project_id = 654321
-        url = "{}/projects/business/{}/projects/{}".format(API_BASE_URL, self.business_id, project_id)
+        url = "{}/projects/business/{}/project/{}".format(API_BASE_URL, self.business_id, project_id)
         httpretty.register_uri(
             httpretty.GET,
             url,
@@ -127,7 +128,7 @@ class TestProjectsResources:
 
     @httpretty.activate
     def test_create_project(self):
-        url = "{}/projects/business/{}/projects".format(API_BASE_URL, self.business_id)
+        url = "{}/projects/business/{}/project".format(API_BASE_URL, self.business_id)
         httpretty.register_uri(
             httpretty.POST,
             url,
@@ -153,7 +154,7 @@ class TestProjectsResources:
     @httpretty.activate
     def test_update_project(self):
         project_id = 12345
-        url = "{}/projects/business/{}/projects/{}".format(API_BASE_URL, self.business_id, project_id)
+        url = "{}/projects/business/{}/project/{}".format(API_BASE_URL, self.business_id, project_id)
         httpretty.register_uri(
             httpretty.PUT,
             url,
@@ -179,7 +180,7 @@ class TestProjectsResources:
     @httpretty.activate
     def test_delete_project(self):
         project_id = 654321
-        url = "{}/projects/business/{}/projects/{}".format(API_BASE_URL, self.business_id, project_id)
+        url = "{}/projects/business/{}/project/{}".format(API_BASE_URL, self.business_id, project_id)
         httpretty.register_uri(httpretty.DELETE, url, status=204)
 
         tax = self.freshBooksClient.projects.delete(self.business_id, project_id)

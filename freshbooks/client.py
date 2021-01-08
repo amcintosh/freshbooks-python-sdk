@@ -12,7 +12,6 @@ from freshbooks.api.auth import AuthResource
 from freshbooks.api.comments import CommentsResource
 from freshbooks.api.events import EventsResource
 from freshbooks.api.projects import ProjectsResource
-from freshbooks.api.resource import Resource
 from freshbooks.api.timetracking import TimetrackingResource
 from freshbooks.errors import FreshBooksError, FreshBooksClientConfigError
 from freshbooks.models import Identity
@@ -196,31 +195,31 @@ class Client:
     # Accounting Resources
 
     @property
-    def clients(self) -> Resource:
+    def clients(self) -> AccountingResource:
         """FreshBooks clients resource with calls to get, list, create, update, delete"""
         return AccountingResource(self._client_resource_config(), "users/clients", "client", "clients")
 
     @property
-    def credit_notes(self) -> Resource:
+    def credit_notes(self) -> AccountingResource:
         """FreshBooks credit_notes resource with calls to get, list, create, update, delete"""
         return AccountingResource(
             self._client_resource_config(), "credit_notes/credit_notes", "credit_note", "credit_notes"
         )
 
     @property
-    def estimates(self) -> Resource:
+    def estimates(self) -> AccountingResource:
         """FreshBooks estimates resource with calls to get, list, create, update, delete"""
         return AccountingResource(
             self._client_resource_config(), "estimates/estimates", "estimate", "estimates", delete_via_update=False
         )
 
     @property
-    def expenses(self) -> Resource:
+    def expenses(self) -> AccountingResource:
         """FreshBooks expenses resource with calls to get, list, create, update, delete"""
         return AccountingResource(self._client_resource_config(), "expenses/expenses", "expense", "expenses")
 
     @property
-    def expenses_categories(self) -> Resource:
+    def expenses_categories(self) -> AccountingResource:
         """FreshBooks expenses categories resource with calls to get and list"""
         return AccountingResource(
             self._client_resource_config(), "expenses/categories", "category", "categories",
@@ -228,7 +227,7 @@ class Client:
         )
 
     @property
-    def gateways(self) -> Resource:
+    def gateways(self) -> AccountingResource:
         """FreshBooks gateways resource with calls to list, delete"""
         return AccountingResource(
             self._client_resource_config(), "systems/gateways", "gateway", "gateways", delete_via_update=False,
@@ -236,26 +235,26 @@ class Client:
         )
 
     @property
-    def invoices(self) -> Resource:
+    def invoices(self) -> AccountingResource:
         """FreshBooks invoices resource with calls to get, list, create, update, delete"""
         return AccountingResource(
             self._client_resource_config(), "invoices/invoices", "invoice", "invoices", delete_via_update=False
         )
 
     @property
-    def invoice_profiles(self) -> Resource:
+    def invoice_profiles(self) -> AccountingResource:
         """FreshBooks invoice_profiles resource with calls to get, list, create, update, delete"""
         return AccountingResource(
             self._client_resource_config(), "invoice_profiles/invoice_profiles", "invoice_profile", "invoice_profiles"
         )
 
     @property
-    def items(self) -> Resource:
+    def items(self) -> AccountingResource:
         """FreshBooks items resource with calls to get, list, create, update, delete"""
         return AccountingResource(self._client_resource_config(), "items/items", "item", "items")
 
     @property
-    def other_income(self) -> Resource:
+    def other_income(self) -> AccountingResource:
         """FreshBooks other_incomes resource with calls to get, list, create, update, delete"""
         return AccountingResource(
             self._client_resource_config(), "other_incomes/other_incomes", "other_income", "other_income",
@@ -263,19 +262,19 @@ class Client:
         )
 
     @property
-    def payments(self) -> Resource:
+    def payments(self) -> AccountingResource:
         """FreshBooks payments resource with calls to get, list, create, update, delete"""
         return AccountingResource(self._client_resource_config(), "payments/payments", "payment", "payments")
 
     @property
-    def staff(self) -> Resource:
+    def staff(self) -> AccountingResource:
         """FreshBooks staff resource with calls to get, list, update, delete"""
         return AccountingResource(
             self._client_resource_config(), "users/staffs", "staff", "staffs", missing_endpoints=["create"]
         )
 
     @property
-    def systems(self) -> Resource:
+    def systems(self) -> AccountingResource:
         """FreshBooks systems resource with calls to get only"""
         return AccountingResource(
             self._client_resource_config(), "systems/systems", "system", "systems",
@@ -283,7 +282,7 @@ class Client:
         )
 
     @property
-    def tasks(self) -> Resource:
+    def tasks(self) -> AccountingResource:
         """FreshBooks tasks resource with calls to get, list, create, update, delete
 
         Note: There is a lot of overlap between Services and Tasks. In general services are used
@@ -294,7 +293,7 @@ class Client:
         return AccountingResource(self._client_resource_config(), "projects/tasks", "task", "tasks")
 
     @property
-    def taxes(self) -> Resource:
+    def taxes(self) -> AccountingResource:
         """FreshBooks taxes resource with calls to get, list, create, update, delete"""
         return AccountingResource(
             self._client_resource_config(), "taxes/taxes", "tax", "taxes", delete_via_update=False
@@ -303,7 +302,7 @@ class Client:
     # Events Resources
 
     @property
-    def callbacks(self) -> Resource:
+    def callbacks(self) -> EventsResource:
         """FreshBooks callbacks (webhook callbacks) resource with calls to
         get, list, create, update, delete, resend_verification, verify
         """
@@ -314,14 +313,14 @@ class Client:
     # Project Resources
 
     @property
-    def projects(self) -> Resource:
+    def projects(self) -> ProjectsResource:
         """FreshBooks projects resource with calls to get, list, create, update, delete"""
         return ProjectsResource(self._client_resource_config(), "projects", "project")
 
     # Time tracking Resources
 
     @property
-    def time_entries(self) -> Resource:
+    def time_entries(self) -> TimetrackingResource:
         """FreshBooks time_entries resource with calls to get, list, create, update, delete"""
         return TimetrackingResource(
             self._client_resource_config(), "time_entries", "time_entries", single_name="time_entry"
@@ -330,6 +329,6 @@ class Client:
     # Comments Resources
 
     @property
-    def services(self) -> Resource:
+    def services(self) -> CommentsResource:
         """FreshBooks services resource with calls to get, list, create, update, delete"""
         return CommentsResource(self._client_resource_config(), "services", "service")

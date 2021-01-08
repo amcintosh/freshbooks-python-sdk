@@ -1,8 +1,8 @@
 # FreshBooks Python SDK
 
-![PyPI](https://img.shields.io/pypi/v/freshbooks-sdk?style=plastic)
-![PyPI - Python Version](https://img.shields.io/pypi/pyversions/freshbooks-sdk?color=brightgreen&style=plastic)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/freshbooks/freshbooks-python-sdk/Run%20Tests?style=plastic)
+[![PyPI](https://img.shields.io/pypi/v/freshbooks-sdk)](https://pypi.org/project/freshbooks-sdk/)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/freshbooks-sdk)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/freshbooks/freshbooks-python-sdk/Run%20Tests)](https://github.com/freshbooks/freshbooks-python-sdk/actions?query=workflow%3A%22Run+Tests%22)
 
 The FreshBooks Python SDK allows you to more easily utilize the [FreshBooks API](https://www.freshbooks.com/api).
 

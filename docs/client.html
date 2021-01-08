@@ -40,7 +40,6 @@ from freshbooks.api.auth import AuthResource
 from freshbooks.api.comments import CommentsResource
 from freshbooks.api.events import EventsResource
 from freshbooks.api.projects import ProjectsResource
-from freshbooks.api.resource import Resource
 from freshbooks.api.timetracking import TimetrackingResource
 from freshbooks.errors import FreshBooksError, FreshBooksClientConfigError
 from freshbooks.models import Identity
@@ -224,31 +223,31 @@ class Client:
     # Accounting Resources
 
     @property
-    def clients(self) -&gt; Resource:
+    def clients(self) -&gt; AccountingResource:
         &#34;&#34;&#34;FreshBooks clients resource with calls to get, list, create, update, delete&#34;&#34;&#34;
         return AccountingResource(self._client_resource_config(), &#34;users/clients&#34;, &#34;client&#34;, &#34;clients&#34;)
 
     @property
-    def credit_notes(self) -&gt; Resource:
+    def credit_notes(self) -&gt; AccountingResource:
         &#34;&#34;&#34;FreshBooks credit_notes resource with calls to get, list, create, update, delete&#34;&#34;&#34;
         return AccountingResource(
             self._client_resource_config(), &#34;credit_notes/credit_notes&#34;, &#34;credit_note&#34;, &#34;credit_notes&#34;
         )
 
     @property
-    def estimates(self) -&gt; Resource:
+    def estimates(self) -&gt; AccountingResource:
         &#34;&#34;&#34;FreshBooks estimates resource with calls to get, list, create, update, delete&#34;&#34;&#34;
         return AccountingResource(
             self._client_resource_config(), &#34;estimates/estimates&#34;, &#34;estimate&#34;, &#34;estimates&#34;, delete_via_update=False
         )
 
     @property
-    def expenses(self) -&gt; Resource:
+    def expenses(self) -&gt; AccountingResource:
         &#34;&#34;&#34;FreshBooks expenses resource with calls to get, list, create, update, delete&#34;&#34;&#34;
         return AccountingResource(self._client_resource_config(), &#34;expenses/expenses&#34;, &#34;expense&#34;, &#34;expenses&#34;)
 
     @property
-    def expenses_categories(self) -&gt; Resource:
+    def expenses_categories(self) -&gt; AccountingResource:
         &#34;&#34;&#34;FreshBooks expenses categories resource with calls to get and list&#34;&#34;&#34;
         return AccountingResource(
             self._client_resource_config(), &#34;expenses/categories&#34;, &#34;category&#34;, &#34;categories&#34;,
@@ -256,7 +255,7 @@ class Client:
         )
 
     @property
-    def gateways(self) -&gt; Resource:
+    def gateways(self) -&gt; AccountingResource:
         &#34;&#34;&#34;FreshBooks gateways resource with calls to list, delete&#34;&#34;&#34;
         return AccountingResource(
             self._client_resource_config(), &#34;systems/gateways&#34;, &#34;gateway&#34;, &#34;gateways&#34;, delete_via_update=False,
@@ -264,26 +263,26 @@ class Client:
         )
 
     @property
-    def invoices(self) -&gt; Resource:
+    def invoices(self) -&gt; AccountingResource:
         &#34;&#34;&#34;FreshBooks invoices resource with calls to get, list, create, update, delete&#34;&#34;&#34;
         return AccountingResource(
             self._client_resource_config(), &#34;invoices/invoices&#34;, &#34;invoice&#34;, &#34;invoices&#34;, delete_via_update=False
         )
 
     @property
-    def invoice_profiles(self) -&gt; Resource:
+    def invoice_profiles(self) -&gt; AccountingResource:
         &#34;&#34;&#34;FreshBooks invoice_profiles resource with calls to get, list, create, update, delete&#34;&#34;&#34;
         return AccountingResource(
             self._client_resource_config(), &#34;invoice_profiles/invoice_profiles&#34;, &#34;invoice_profile&#34;, &#34;invoice_profiles&#34;
         )
 
     @property
-    def items(self) -&gt; Resource:
+    def items(self) -&gt; AccountingResource:
         &#34;&#34;&#34;FreshBooks items resource with calls to get, list, create, update, delete&#34;&#34;&#34;
         return AccountingResource(self._client_resource_config(), &#34;items/items&#34;, &#34;item&#34;, &#34;items&#34;)
 
     @property
-    def other_income(self) -&gt; Resource:
+    def other_income(self) -&gt; AccountingResource:
         &#34;&#34;&#34;FreshBooks other_incomes resource with calls to get, list, create, update, delete&#34;&#34;&#34;
         return AccountingResource(
             self._client_resource_config(), &#34;other_incomes/other_incomes&#34;, &#34;other_income&#34;, &#34;other_income&#34;,
@@ -291,19 +290,19 @@ class Client:
         )
 
     @property
-    def payments(self) -&gt; Resource:
+    def payments(self) -&gt; AccountingResource:
         &#34;&#34;&#34;FreshBooks payments resource with calls to get, list, create, update, delete&#34;&#34;&#34;
         return AccountingResource(self._client_resource_config(), &#34;payments/payments&#34;, &#34;payment&#34;, &#34;payments&#34;)
 
     @property
-    def staff(self) -&gt; Resource:
+    def staff(self) -&gt; AccountingResource:
         &#34;&#34;&#34;FreshBooks staff resource with calls to get, list, update, delete&#34;&#34;&#34;
         return AccountingResource(
             self._client_resource_config(), &#34;users/staffs&#34;, &#34;staff&#34;, &#34;staffs&#34;, missing_endpoints=[&#34;create&#34;]
         )
 
     @property
-    def systems(self) -&gt; Resource:
+    def systems(self) -&gt; AccountingResource:
         &#34;&#34;&#34;FreshBooks systems resource with calls to get only&#34;&#34;&#34;
         return AccountingResource(
             self._client_resource_config(), &#34;systems/systems&#34;, &#34;system&#34;, &#34;systems&#34;,
@@ -311,7 +310,7 @@ class Client:
         )
 
     @property
-    def tasks(self) -&gt; Resource:
+    def tasks(self) -&gt; AccountingResource:
         &#34;&#34;&#34;FreshBooks tasks resource with calls to get, list, create, update, delete
 
         Note: There is a lot of overlap between Services and Tasks. In general services are used
@@ -322,7 +321,7 @@ class Client:
         return AccountingResource(self._client_resource_config(), &#34;projects/tasks&#34;, &#34;task&#34;, &#34;tasks&#34;)
 
     @property
-    def taxes(self) -&gt; Resource:
+    def taxes(self) -&gt; AccountingResource:
         &#34;&#34;&#34;FreshBooks taxes resource with calls to get, list, create, update, delete&#34;&#34;&#34;
         return AccountingResource(
             self._client_resource_config(), &#34;taxes/taxes&#34;, &#34;tax&#34;, &#34;taxes&#34;, delete_via_update=False
@@ -331,7 +330,7 @@ class Client:
     # Events Resources
 
     @property
-    def callbacks(self) -&gt; Resource:
+    def callbacks(self) -&gt; EventsResource:
         &#34;&#34;&#34;FreshBooks callbacks (webhook callbacks) resource with calls to
         get, list, create, update, delete, resend_verification, verify
         &#34;&#34;&#34;
@@ -342,14 +341,14 @@ class Client:
     # Project Resources
 
     @property
-    def projects(self) -&gt; Resource:
+    def projects(self) -&gt; ProjectsResource:
         &#34;&#34;&#34;FreshBooks projects resource with calls to get, list, create, update, delete&#34;&#34;&#34;
         return ProjectsResource(self._client_resource_config(), &#34;projects&#34;, &#34;project&#34;)
 
     # Time tracking Resources
 
     @property
-    def time_entries(self) -&gt; Resource:
+    def time_entries(self) -&gt; TimetrackingResource:
         &#34;&#34;&#34;FreshBooks time_entries resource with calls to get, list, create, update, delete&#34;&#34;&#34;
         return TimetrackingResource(
             self._client_resource_config(), &#34;time_entries&#34;, &#34;time_entries&#34;, single_name=&#34;time_entry&#34;
@@ -358,7 +357,7 @@ class Client:
     # Comments Resources
 
     @property
-    def services(self) -&gt; Resource:
+    def services(self) -&gt; CommentsResource:
         &#34;&#34;&#34;FreshBooks services resource with calls to get, list, create, update, delete&#34;&#34;&#34;
         return CommentsResource(self._client_resource_config(), &#34;services&#34;, &#34;service&#34;)</code></pre>
 </details>
@@ -579,31 +578,31 @@ to specify a <code>client_secret</code> (though the token cannot be refreshed in
     # Accounting Resources
 
     @property
-    def clients(self) -&gt; Resource:
+    def clients(self) -&gt; AccountingResource:
         &#34;&#34;&#34;FreshBooks clients resource with calls to get, list, create, update, delete&#34;&#34;&#34;
         return AccountingResource(self._client_resource_config(), &#34;users/clients&#34;, &#34;client&#34;, &#34;clients&#34;)
 
     @property
-    def credit_notes(self) -&gt; Resource:
+    def credit_notes(self) -&gt; AccountingResource:
         &#34;&#34;&#34;FreshBooks credit_notes resource with calls to get, list, create, update, delete&#34;&#34;&#34;
         return AccountingResource(
             self._client_resource_config(), &#34;credit_notes/credit_notes&#34;, &#34;credit_note&#34;, &#34;credit_notes&#34;
         )
 
     @property
-    def estimates(self) -&gt; Resource:
+    def estimates(self) -&gt; AccountingResource:
         &#34;&#34;&#34;FreshBooks estimates resource with calls to get, list, create, update, delete&#34;&#34;&#34;
         return AccountingResource(
             self._client_resource_config(), &#34;estimates/estimates&#34;, &#34;estimate&#34;, &#34;estimates&#34;, delete_via_update=False
         )
 
     @property
-    def expenses(self) -&gt; Resource:
+    def expenses(self) -&gt; AccountingResource:
         &#34;&#34;&#34;FreshBooks expenses resource with calls to get, list, create, update, delete&#34;&#34;&#34;
         return AccountingResource(self._client_resource_config(), &#34;expenses/expenses&#34;, &#34;expense&#34;, &#34;expenses&#34;)
 
     @property
-    def expenses_categories(self) -&gt; Resource:
+    def expenses_categories(self) -&gt; AccountingResource:
         &#34;&#34;&#34;FreshBooks expenses categories resource with calls to get and list&#34;&#34;&#34;
         return AccountingResource(
             self._client_resource_config(), &#34;expenses/categories&#34;, &#34;category&#34;, &#34;categories&#34;,
@@ -611,7 +610,7 @@ to specify a <code>client_secret</code> (though the token cannot be refreshed in
         )
 
     @property
-    def gateways(self) -&gt; Resource:
+    def gateways(self) -&gt; AccountingResource:
         &#34;&#34;&#34;FreshBooks gateways resource with calls to list, delete&#34;&#34;&#34;
         return AccountingResource(
             self._client_resource_config(), &#34;systems/gateways&#34;, &#34;gateway&#34;, &#34;gateways&#34;, delete_via_update=False,
@@ -619,26 +618,26 @@ to specify a <code>client_secret</code> (though the token cannot be refreshed in
         )
 
     @property
-    def invoices(self) -&gt; Resource:
+    def invoices(self) -&gt; AccountingResource:
         &#34;&#34;&#34;FreshBooks invoices resource with calls to get, list, create, update, delete&#34;&#34;&#34;
         return AccountingResource(
             self._client_resource_config(), &#34;invoices/invoices&#34;, &#34;invoice&#34;, &#34;invoices&#34;, delete_via_update=False
         )
 
     @property
-    def invoice_profiles(self) -&gt; Resource:
+    def invoice_profiles(self) -&gt; AccountingResource:
         &#34;&#34;&#34;FreshBooks invoice_profiles resource with calls to get, list, create, update, delete&#34;&#34;&#34;
         return AccountingResource(
             self._client_resource_config(), &#34;invoice_profiles/invoice_profiles&#34;, &#34;invoice_profile&#34;, &#34;invoice_profiles&#34;
         )
 
     @property
-    def items(self) -&gt; Resource:
+    def items(self) -&gt; AccountingResource:
         &#34;&#34;&#34;FreshBooks items resource with calls to get, list, create, update, delete&#34;&#34;&#34;
         return AccountingResource(self._client_resource_config(), &#34;items/items&#34;, &#34;item&#34;, &#34;items&#34;)
 
     @property
-    def other_income(self) -&gt; Resource:
+    def other_income(self) -&gt; AccountingResource:
         &#34;&#34;&#34;FreshBooks other_incomes resource with calls to get, list, create, update, delete&#34;&#34;&#34;
         return AccountingResource(
             self._client_resource_config(), &#34;other_incomes/other_incomes&#34;, &#34;other_income&#34;, &#34;other_income&#34;,
@@ -646,19 +645,19 @@ to specify a <code>client_secret</code> (though the token cannot be refreshed in
         )
 
     @property
-    def payments(self) -&gt; Resource:
+    def payments(self) -&gt; AccountingResource:
         &#34;&#34;&#34;FreshBooks payments resource with calls to get, list, create, update, delete&#34;&#34;&#34;
         return AccountingResource(self._client_resource_config(), &#34;payments/payments&#34;, &#34;payment&#34;, &#34;payments&#34;)
 
     @property
-    def staff(self) -&gt; Resource:
+    def staff(self) -&gt; AccountingResource:
         &#34;&#34;&#34;FreshBooks staff resource with calls to get, list, update, delete&#34;&#34;&#34;
         return AccountingResource(
             self._client_resource_config(), &#34;users/staffs&#34;, &#34;staff&#34;, &#34;staffs&#34;, missing_endpoints=[&#34;create&#34;]
         )
 
     @property
-    def systems(self) -&gt; Resource:
+    def systems(self) -&gt; AccountingResource:
         &#34;&#34;&#34;FreshBooks systems resource with calls to get only&#34;&#34;&#34;
         return AccountingResource(
             self._client_resource_config(), &#34;systems/systems&#34;, &#34;system&#34;, &#34;systems&#34;,
@@ -666,7 +665,7 @@ to specify a <code>client_secret</code> (though the token cannot be refreshed in
         )
 
     @property
-    def tasks(self) -&gt; Resource:
+    def tasks(self) -&gt; AccountingResource:
         &#34;&#34;&#34;FreshBooks tasks resource with calls to get, list, create, update, delete
 
         Note: There is a lot of overlap between Services and Tasks. In general services are used
@@ -677,7 +676,7 @@ to specify a <code>client_secret</code> (though the token cannot be refreshed in
         return AccountingResource(self._client_resource_config(), &#34;projects/tasks&#34;, &#34;task&#34;, &#34;tasks&#34;)
 
     @property
-    def taxes(self) -&gt; Resource:
+    def taxes(self) -&gt; AccountingResource:
         &#34;&#34;&#34;FreshBooks taxes resource with calls to get, list, create, update, delete&#34;&#34;&#34;
         return AccountingResource(
             self._client_resource_config(), &#34;taxes/taxes&#34;, &#34;tax&#34;, &#34;taxes&#34;, delete_via_update=False
@@ -686,7 +685,7 @@ to specify a <code>client_secret</code> (though the token cannot be refreshed in
     # Events Resources
 
     @property
-    def callbacks(self) -&gt; Resource:
+    def callbacks(self) -&gt; EventsResource:
         &#34;&#34;&#34;FreshBooks callbacks (webhook callbacks) resource with calls to
         get, list, create, update, delete, resend_verification, verify
         &#34;&#34;&#34;
@@ -697,14 +696,14 @@ to specify a <code>client_secret</code> (though the token cannot be refreshed in
     # Project Resources
 
     @property
-    def projects(self) -&gt; Resource:
+    def projects(self) -&gt; ProjectsResource:
         &#34;&#34;&#34;FreshBooks projects resource with calls to get, list, create, update, delete&#34;&#34;&#34;
         return ProjectsResource(self._client_resource_config(), &#34;projects&#34;, &#34;project&#34;)
 
     # Time tracking Resources
 
     @property
-    def time_entries(self) -&gt; Resource:
+    def time_entries(self) -&gt; TimetrackingResource:
         &#34;&#34;&#34;FreshBooks time_entries resource with calls to get, list, create, update, delete&#34;&#34;&#34;
         return TimetrackingResource(
             self._client_resource_config(), &#34;time_entries&#34;, &#34;time_entries&#34;, single_name=&#34;time_entry&#34;
@@ -713,13 +712,13 @@ to specify a <code>client_secret</code> (though the token cannot be refreshed in
     # Comments Resources
 
     @property
-    def services(self) -&gt; Resource:
+    def services(self) -&gt; CommentsResource:
         &#34;&#34;&#34;FreshBooks services resource with calls to get, list, create, update, delete&#34;&#34;&#34;
         return CommentsResource(self._client_resource_config(), &#34;services&#34;, &#34;service&#34;)</code></pre>
 </details>
 <h3>Instance variables</h3>
 <dl>
-<dt id="freshbooks.client.Client.callbacks"><code class="name">var <span class="ident">callbacks</span> : freshbooks.api.resource.Resource</code></dt>
+<dt id="freshbooks.client.Client.callbacks"><code class="name">var <span class="ident">callbacks</span> : <a title="freshbooks.api.events.EventsResource" href="api/events.html#freshbooks.api.events.EventsResource">EventsResource</a></code></dt>
 <dd>
 <div class="desc"><p>FreshBooks callbacks (webhook callbacks) resource with calls to
 get, list, create, update, delete, resend_verification, verify</p></div>
@@ -728,7 +727,7 @@ get, list, create, update, delete, resend_verification, verify</p></div>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">@property
-def callbacks(self) -&gt; Resource:
+def callbacks(self) -&gt; EventsResource:
     &#34;&#34;&#34;FreshBooks callbacks (webhook callbacks) resource with calls to
     get, list, create, update, delete, resend_verification, verify
     &#34;&#34;&#34;
@@ -737,7 +736,7 @@ def callbacks(self) -&gt; Resource:
     )</code></pre>
 </details>
 </dd>
-<dt id="freshbooks.client.Client.clients"><code class="name">var <span class="ident">clients</span> : freshbooks.api.resource.Resource</code></dt>
+<dt id="freshbooks.client.Client.clients"><code class="name">var <span class="ident">clients</span> : <a title="freshbooks.api.accounting.AccountingResource" href="api/accounting.html#freshbooks.api.accounting.AccountingResource">AccountingResource</a></code></dt>
 <dd>
 <div class="desc"><p>FreshBooks clients resource with calls to get, list, create, update, delete</p></div>
 <details class="source">
@@ -745,12 +744,12 @@ def callbacks(self) -&gt; Resource:
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">@property
-def clients(self) -&gt; Resource:
+def clients(self) -&gt; AccountingResource:
     &#34;&#34;&#34;FreshBooks clients resource with calls to get, list, create, update, delete&#34;&#34;&#34;
     return AccountingResource(self._client_resource_config(), &#34;users/clients&#34;, &#34;client&#34;, &#34;clients&#34;)</code></pre>
 </details>
 </dd>
-<dt id="freshbooks.client.Client.credit_notes"><code class="name">var <span class="ident">credit_notes</span> : freshbooks.api.resource.Resource</code></dt>
+<dt id="freshbooks.client.Client.credit_notes"><code class="name">var <span class="ident">credit_notes</span> : <a title="freshbooks.api.accounting.AccountingResource" href="api/accounting.html#freshbooks.api.accounting.AccountingResource">AccountingResource</a></code></dt>
 <dd>
 <div class="desc"><p>FreshBooks credit_notes resource with calls to get, list, create, update, delete</p></div>
 <details class="source">
@@ -758,7 +757,7 @@ def clients(self) -&gt; Resource:
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">@property
-def credit_notes(self) -&gt; Resource:
+def credit_notes(self) -&gt; AccountingResource:
     &#34;&#34;&#34;FreshBooks credit_notes resource with calls to get, list, create, update, delete&#34;&#34;&#34;
     return AccountingResource(
         self._client_resource_config(), &#34;credit_notes/credit_notes&#34;, &#34;credit_note&#34;, &#34;credit_notes&#34;
@@ -782,7 +781,7 @@ def current_user(self) -&gt; Identity:
     return AuthResource(self._client_resource_config()).me_endpoint()</code></pre>
 </details>
 </dd>
-<dt id="freshbooks.client.Client.estimates"><code class="name">var <span class="ident">estimates</span> : freshbooks.api.resource.Resource</code></dt>
+<dt id="freshbooks.client.Client.estimates"><code class="name">var <span class="ident">estimates</span> : <a title="freshbooks.api.accounting.AccountingResource" href="api/accounting.html#freshbooks.api.accounting.AccountingResource">AccountingResource</a></code></dt>
 <dd>
 <div class="desc"><p>FreshBooks estimates resource with calls to get, list, create, update, delete</p></div>
 <details class="source">
@@ -790,14 +789,14 @@ def current_user(self) -&gt; Identity:
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">@property
-def estimates(self) -&gt; Resource:
+def estimates(self) -&gt; AccountingResource:
     &#34;&#34;&#34;FreshBooks estimates resource with calls to get, list, create, update, delete&#34;&#34;&#34;
     return AccountingResource(
         self._client_resource_config(), &#34;estimates/estimates&#34;, &#34;estimate&#34;, &#34;estimates&#34;, delete_via_update=False
     )</code></pre>
 </details>
 </dd>
-<dt id="freshbooks.client.Client.expenses"><code class="name">var <span class="ident">expenses</span> : freshbooks.api.resource.Resource</code></dt>
+<dt id="freshbooks.client.Client.expenses"><code class="name">var <span class="ident">expenses</span> : <a title="freshbooks.api.accounting.AccountingResource" href="api/accounting.html#freshbooks.api.accounting.AccountingResource">AccountingResource</a></code></dt>
 <dd>
 <div class="desc"><p>FreshBooks expenses resource with calls to get, list, create, update, delete</p></div>
 <details class="source">
@@ -805,12 +804,12 @@ def estimates(self) -&gt; Resource:
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">@property
-def expenses(self) -&gt; Resource:
+def expenses(self) -&gt; AccountingResource:
     &#34;&#34;&#34;FreshBooks expenses resource with calls to get, list, create, update, delete&#34;&#34;&#34;
     return AccountingResource(self._client_resource_config(), &#34;expenses/expenses&#34;, &#34;expense&#34;, &#34;expenses&#34;)</code></pre>
 </details>
 </dd>
-<dt id="freshbooks.client.Client.expenses_categories"><code class="name">var <span class="ident">expenses_categories</span> : freshbooks.api.resource.Resource</code></dt>
+<dt id="freshbooks.client.Client.expenses_categories"><code class="name">var <span class="ident">expenses_categories</span> : <a title="freshbooks.api.accounting.AccountingResource" href="api/accounting.html#freshbooks.api.accounting.AccountingResource">AccountingResource</a></code></dt>
 <dd>
 <div class="desc"><p>FreshBooks expenses categories resource with calls to get and list</p></div>
 <details class="source">
@@ -818,7 +817,7 @@ def expenses(self) -&gt; Resource:
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">@property
-def expenses_categories(self) -&gt; Resource:
+def expenses_categories(self) -&gt; AccountingResource:
     &#34;&#34;&#34;FreshBooks expenses categories resource with calls to get and list&#34;&#34;&#34;
     return AccountingResource(
         self._client_resource_config(), &#34;expenses/categories&#34;, &#34;category&#34;, &#34;categories&#34;,
@@ -826,7 +825,7 @@ def expenses_categories(self) -&gt; Resource:
     )</code></pre>
 </details>
 </dd>
-<dt id="freshbooks.client.Client.gateways"><code class="name">var <span class="ident">gateways</span> : freshbooks.api.resource.Resource</code></dt>
+<dt id="freshbooks.client.Client.gateways"><code class="name">var <span class="ident">gateways</span> : <a title="freshbooks.api.accounting.AccountingResource" href="api/accounting.html#freshbooks.api.accounting.AccountingResource">AccountingResource</a></code></dt>
 <dd>
 <div class="desc"><p>FreshBooks gateways resource with calls to list, delete</p></div>
 <details class="source">
@@ -834,7 +833,7 @@ def expenses_categories(self) -&gt; Resource:
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">@property
-def gateways(self) -&gt; Resource:
+def gateways(self) -&gt; AccountingResource:
     &#34;&#34;&#34;FreshBooks gateways resource with calls to list, delete&#34;&#34;&#34;
     return AccountingResource(
         self._client_resource_config(), &#34;systems/gateways&#34;, &#34;gateway&#34;, &#34;gateways&#34;, delete_via_update=False,
@@ -842,7 +841,7 @@ def gateways(self) -&gt; Resource:
     )</code></pre>
 </details>
 </dd>
-<dt id="freshbooks.client.Client.invoice_profiles"><code class="name">var <span class="ident">invoice_profiles</span> : freshbooks.api.resource.Resource</code></dt>
+<dt id="freshbooks.client.Client.invoice_profiles"><code class="name">var <span class="ident">invoice_profiles</span> : <a title="freshbooks.api.accounting.AccountingResource" href="api/accounting.html#freshbooks.api.accounting.AccountingResource">AccountingResource</a></code></dt>
 <dd>
 <div class="desc"><p>FreshBooks invoice_profiles resource with calls to get, list, create, update, delete</p></div>
 <details class="source">
@@ -850,14 +849,14 @@ def gateways(self) -&gt; Resource:
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">@property
-def invoice_profiles(self) -&gt; Resource:
+def invoice_profiles(self) -&gt; AccountingResource:
     &#34;&#34;&#34;FreshBooks invoice_profiles resource with calls to get, list, create, update, delete&#34;&#34;&#34;
     return AccountingResource(
         self._client_resource_config(), &#34;invoice_profiles/invoice_profiles&#34;, &#34;invoice_profile&#34;, &#34;invoice_profiles&#34;
     )</code></pre>
 </details>
 </dd>
-<dt id="freshbooks.client.Client.invoices"><code class="name">var <span class="ident">invoices</span> : freshbooks.api.resource.Resource</code></dt>
+<dt id="freshbooks.client.Client.invoices"><code class="name">var <span class="ident">invoices</span> : <a title="freshbooks.api.accounting.AccountingResource" href="api/accounting.html#freshbooks.api.accounting.AccountingResource">AccountingResource</a></code></dt>
 <dd>
 <div class="desc"><p>FreshBooks invoices resource with calls to get, list, create, update, delete</p></div>
 <details class="source">
@@ -865,14 +864,14 @@ def invoice_profiles(self) -&gt; Resource:
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">@property
-def invoices(self) -&gt; Resource:
+def invoices(self) -&gt; AccountingResource:
     &#34;&#34;&#34;FreshBooks invoices resource with calls to get, list, create, update, delete&#34;&#34;&#34;
     return AccountingResource(
         self._client_resource_config(), &#34;invoices/invoices&#34;, &#34;invoice&#34;, &#34;invoices&#34;, delete_via_update=False
     )</code></pre>
 </details>
 </dd>
-<dt id="freshbooks.client.Client.items"><code class="name">var <span class="ident">items</span> : freshbooks.api.resource.Resource</code></dt>
+<dt id="freshbooks.client.Client.items"><code class="name">var <span class="ident">items</span> : <a title="freshbooks.api.accounting.AccountingResource" href="api/accounting.html#freshbooks.api.accounting.AccountingResource">AccountingResource</a></code></dt>
 <dd>
 <div class="desc"><p>FreshBooks items resource with calls to get, list, create, update, delete</p></div>
 <details class="source">
@@ -880,12 +879,12 @@ def invoices(self) -&gt; Resource:
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">@property
-def items(self) -&gt; Resource:
+def items(self) -&gt; AccountingResource:
     &#34;&#34;&#34;FreshBooks items resource with calls to get, list, create, update, delete&#34;&#34;&#34;
     return AccountingResource(self._client_resource_config(), &#34;items/items&#34;, &#34;item&#34;, &#34;items&#34;)</code></pre>
 </details>
 </dd>
-<dt id="freshbooks.client.Client.other_income"><code class="name">var <span class="ident">other_income</span> : freshbooks.api.resource.Resource</code></dt>
+<dt id="freshbooks.client.Client.other_income"><code class="name">var <span class="ident">other_income</span> : <a title="freshbooks.api.accounting.AccountingResource" href="api/accounting.html#freshbooks.api.accounting.AccountingResource">AccountingResource</a></code></dt>
 <dd>
 <div class="desc"><p>FreshBooks other_incomes resource with calls to get, list, create, update, delete</p></div>
 <details class="source">
@@ -893,7 +892,7 @@ def items(self) -&gt; Resource:
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">@property
-def other_income(self) -&gt; Resource:
+def other_income(self) -&gt; AccountingResource:
     &#34;&#34;&#34;FreshBooks other_incomes resource with calls to get, list, create, update, delete&#34;&#34;&#34;
     return AccountingResource(
         self._client_resource_config(), &#34;other_incomes/other_incomes&#34;, &#34;other_income&#34;, &#34;other_income&#34;,
@@ -901,7 +900,7 @@ def other_income(self) -&gt; Resource:
     )</code></pre>
 </details>
 </dd>
-<dt id="freshbooks.client.Client.payments"><code class="name">var <span class="ident">payments</span> : freshbooks.api.resource.Resource</code></dt>
+<dt id="freshbooks.client.Client.payments"><code class="name">var <span class="ident">payments</span> : <a title="freshbooks.api.accounting.AccountingResource" href="api/accounting.html#freshbooks.api.accounting.AccountingResource">AccountingResource</a></code></dt>
 <dd>
 <div class="desc"><p>FreshBooks payments resource with calls to get, list, create, update, delete</p></div>
 <details class="source">
@@ -909,12 +908,12 @@ def other_income(self) -&gt; Resource:
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">@property
-def payments(self) -&gt; Resource:
+def payments(self) -&gt; AccountingResource:
     &#34;&#34;&#34;FreshBooks payments resource with calls to get, list, create, update, delete&#34;&#34;&#34;
     return AccountingResource(self._client_resource_config(), &#34;payments/payments&#34;, &#34;payment&#34;, &#34;payments&#34;)</code></pre>
 </details>
 </dd>
-<dt id="freshbooks.client.Client.projects"><code class="name">var <span class="ident">projects</span> : freshbooks.api.resource.Resource</code></dt>
+<dt id="freshbooks.client.Client.projects"><code class="name">var <span class="ident">projects</span> : <a title="freshbooks.api.projects.ProjectsResource" href="api/projects.html#freshbooks.api.projects.ProjectsResource">ProjectsResource</a></code></dt>
 <dd>
 <div class="desc"><p>FreshBooks projects resource with calls to get, list, create, update, delete</p></div>
 <details class="source">
@@ -922,12 +921,12 @@ def payments(self) -&gt; Resource:
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">@property
-def projects(self) -&gt; Resource:
+def projects(self) -&gt; ProjectsResource:
     &#34;&#34;&#34;FreshBooks projects resource with calls to get, list, create, update, delete&#34;&#34;&#34;
     return ProjectsResource(self._client_resource_config(), &#34;projects&#34;, &#34;project&#34;)</code></pre>
 </details>
 </dd>
-<dt id="freshbooks.client.Client.services"><code class="name">var <span class="ident">services</span> : freshbooks.api.resource.Resource</code></dt>
+<dt id="freshbooks.client.Client.services"><code class="name">var <span class="ident">services</span> : <a title="freshbooks.api.comments.CommentsResource" href="api/comments.html#freshbooks.api.comments.CommentsResource">CommentsResource</a></code></dt>
 <dd>
 <div class="desc"><p>FreshBooks services resource with calls to get, list, create, update, delete</p></div>
 <details class="source">
@@ -935,12 +934,12 @@ def projects(self) -&gt; Resource:
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">@property
-def services(self) -&gt; Resource:
+def services(self) -&gt; CommentsResource:
     &#34;&#34;&#34;FreshBooks services resource with calls to get, list, create, update, delete&#34;&#34;&#34;
     return CommentsResource(self._client_resource_config(), &#34;services&#34;, &#34;service&#34;)</code></pre>
 </details>
 </dd>
-<dt id="freshbooks.client.Client.staff"><code class="name">var <span class="ident">staff</span> : freshbooks.api.resource.Resource</code></dt>
+<dt id="freshbooks.client.Client.staff"><code class="name">var <span class="ident">staff</span> : <a title="freshbooks.api.accounting.AccountingResource" href="api/accounting.html#freshbooks.api.accounting.AccountingResource">AccountingResource</a></code></dt>
 <dd>
 <div class="desc"><p>FreshBooks staff resource with calls to get, list, update, delete</p></div>
 <details class="source">
@@ -948,14 +947,14 @@ def services(self) -&gt; Resource:
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">@property
-def staff(self) -&gt; Resource:
+def staff(self) -&gt; AccountingResource:
     &#34;&#34;&#34;FreshBooks staff resource with calls to get, list, update, delete&#34;&#34;&#34;
     return AccountingResource(
         self._client_resource_config(), &#34;users/staffs&#34;, &#34;staff&#34;, &#34;staffs&#34;, missing_endpoints=[&#34;create&#34;]
     )</code></pre>
 </details>
 </dd>
-<dt id="freshbooks.client.Client.systems"><code class="name">var <span class="ident">systems</span> : freshbooks.api.resource.Resource</code></dt>
+<dt id="freshbooks.client.Client.systems"><code class="name">var <span class="ident">systems</span> : <a title="freshbooks.api.accounting.AccountingResource" href="api/accounting.html#freshbooks.api.accounting.AccountingResource">AccountingResource</a></code></dt>
 <dd>
 <div class="desc"><p>FreshBooks systems resource with calls to get only</p></div>
 <details class="source">
@@ -963,7 +962,7 @@ def staff(self) -&gt; Resource:
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">@property
-def systems(self) -&gt; Resource:
+def systems(self) -&gt; AccountingResource:
     &#34;&#34;&#34;FreshBooks systems resource with calls to get only&#34;&#34;&#34;
     return AccountingResource(
         self._client_resource_config(), &#34;systems/systems&#34;, &#34;system&#34;, &#34;systems&#34;,
@@ -971,7 +970,7 @@ def systems(self) -&gt; Resource:
     )</code></pre>
 </details>
 </dd>
-<dt id="freshbooks.client.Client.tasks"><code class="name">var <span class="ident">tasks</span> : freshbooks.api.resource.Resource</code></dt>
+<dt id="freshbooks.client.Client.tasks"><code class="name">var <span class="ident">tasks</span> : <a title="freshbooks.api.accounting.AccountingResource" href="api/accounting.html#freshbooks.api.accounting.AccountingResource">AccountingResource</a></code></dt>
 <dd>
 <div class="desc"><p>FreshBooks tasks resource with calls to get, list, create, update, delete</p>
 <p>Note: There is a lot of overlap between Services and Tasks. In general services are used
@@ -982,7 +981,7 @@ to add categories of work to projects, and tasks are used to add billable work t
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">@property
-def tasks(self) -&gt; Resource:
+def tasks(self) -&gt; AccountingResource:
     &#34;&#34;&#34;FreshBooks tasks resource with calls to get, list, create, update, delete
 
     Note: There is a lot of overlap between Services and Tasks. In general services are used
@@ -993,7 +992,7 @@ def tasks(self) -&gt; Resource:
     return AccountingResource(self._client_resource_config(), &#34;projects/tasks&#34;, &#34;task&#34;, &#34;tasks&#34;)</code></pre>
 </details>
 </dd>
-<dt id="freshbooks.client.Client.taxes"><code class="name">var <span class="ident">taxes</span> : freshbooks.api.resource.Resource</code></dt>
+<dt id="freshbooks.client.Client.taxes"><code class="name">var <span class="ident">taxes</span> : <a title="freshbooks.api.accounting.AccountingResource" href="api/accounting.html#freshbooks.api.accounting.AccountingResource">AccountingResource</a></code></dt>
 <dd>
 <div class="desc"><p>FreshBooks taxes resource with calls to get, list, create, update, delete</p></div>
 <details class="source">
@@ -1001,14 +1000,14 @@ def tasks(self) -&gt; Resource:
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">@property
-def taxes(self) -&gt; Resource:
+def taxes(self) -&gt; AccountingResource:
     &#34;&#34;&#34;FreshBooks taxes resource with calls to get, list, create, update, delete&#34;&#34;&#34;
     return AccountingResource(
         self._client_resource_config(), &#34;taxes/taxes&#34;, &#34;tax&#34;, &#34;taxes&#34;, delete_via_update=False
     )</code></pre>
 </details>
 </dd>
-<dt id="freshbooks.client.Client.time_entries"><code class="name">var <span class="ident">time_entries</span> : freshbooks.api.resource.Resource</code></dt>
+<dt id="freshbooks.client.Client.time_entries"><code class="name">var <span class="ident">time_entries</span> : <a title="freshbooks.api.timetracking.TimetrackingResource" href="api/timetracking.html#freshbooks.api.timetracking.TimetrackingResource">TimetrackingResource</a></code></dt>
 <dd>
 <div class="desc"><p>FreshBooks time_entries resource with calls to get, list, create, update, delete</p></div>
 <details class="source">
@@ -1016,7 +1015,7 @@ def taxes(self) -&gt; Resource:
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">@property
-def time_entries(self) -&gt; Resource:
+def time_entries(self) -&gt; TimetrackingResource:
     &#34;&#34;&#34;FreshBooks time_entries resource with calls to get, list, create, update, delete&#34;&#34;&#34;
     return TimetrackingResource(
         self._client_resource_config(), &#34;time_entries&#34;, &#34;time_entries&#34;, single_name=&#34;time_entry&#34;

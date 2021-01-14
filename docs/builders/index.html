@@ -28,7 +28,7 @@
 </summary>
 <pre><code class="python">class Builder:
 
-    def build(self) -&gt; str:  # pragma: no cover
+    def build(self, resource_name: str) -&gt; str:  # pragma: no cover
         raise NotImplementedError</code></pre>
 </details>
 </section>
@@ -67,7 +67,7 @@
 </summary>
 <pre><code class="python">class Builder:
 
-    def build(self) -&gt; str:  # pragma: no cover
+    def build(self, resource_name: str) -&gt; str:  # pragma: no cover
         raise NotImplementedError</code></pre>
 </details>
 <h3>Subclasses</h3>
@@ -79,7 +79,7 @@
 <h3>Methods</h3>
 <dl>
 <dt id="freshbooks.builders.Builder.build"><code class="name flex">
-<span>def <span class="ident">build</span></span>(<span>self) ‑> str</span>
+<span>def <span class="ident">build</span></span>(<span>self, resource_name: str) ‑> str</span>
 </code></dt>
 <dd>
 <div class="desc"></div>
@@ -87,7 +87,7 @@
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def build(self) -&gt; str:  # pragma: no cover
+<pre><code class="python">def build(self, resource_name: str) -&gt; str:  # pragma: no cover
     raise NotImplementedError</code></pre>
 </details>
 </dd>

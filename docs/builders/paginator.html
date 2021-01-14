@@ -136,7 +136,7 @@ class PaginateBuilder(Builder):
             return self
         return self._per_page
 
-    def build(self) -&gt; str:
+    def build(self, resource_name: Optional[str] = None) -&gt; str:
         &#34;&#34;&#34;Builds the query string parameters from the PaginateBuilder.
 
         Returns:
@@ -298,7 +298,7 @@ PageResult(page=2, pages=3, per_page=4, total=9)
             return self
         return self._per_page
 
-    def build(self) -&gt; str:
+    def build(self, resource_name: Optional[str] = None) -&gt; str:
         &#34;&#34;&#34;Builds the query string parameters from the PaginateBuilder.
 
         Returns:
@@ -318,7 +318,7 @@ PageResult(page=2, pages=3, per_page=4, total=9)
 <h3>Methods</h3>
 <dl>
 <dt id="freshbooks.builders.paginator.PaginateBuilder.build"><code class="name flex">
-<span>def <span class="ident">build</span></span>(<span>self) ‑> str</span>
+<span>def <span class="ident">build</span></span>(<span>self, resource_name: Optional[str] = None) ‑> str</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Builds the query string parameters from the PaginateBuilder.</p>
@@ -328,7 +328,7 @@ PageResult(page=2, pages=3, per_page=4, total=9)
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def build(self) -&gt; str:
+<pre><code class="python">def build(self, resource_name: Optional[str] = None) -&gt; str:
     &#34;&#34;&#34;Builds the query string parameters from the PaginateBuilder.
 
     Returns:

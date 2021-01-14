@@ -147,6 +147,25 @@ class FilterBuilder(Builder):
         self._filters.append((&#34;like&#34;, field, value))
         return self
 
+    def date_time(self, field: str, value: Union[str, datetime]) -&gt; Builder:
+        &#34;&#34;&#34;Filters for entries that come before or after a particular time, as specified
+        by the field. Eg. &#34;updated_since&#34; on Time Entries will return time entries updated
+        after the provided time.
+
+        The url parameter must be in ISO 8601 format (eg. 2010-10-17T05:45:53Z)
+
+        Args:
+            field: The API response field to filter on
+            value: The datetime, or ISO 8601 format string value
+
+        Returns:
+            The FilterBuilder instance
+        &#34;&#34;&#34;
+        if isinstance(value, datetime):
+            value = value.isoformat()
+        self._filters.append((&#34;date_time&#34;, field, value))
+        return self
+
     def between(self, field: str, min: Optional[Any] = None, max: Optional[Any] = None) -&gt; Builder:
         &#34;&#34;&#34;Filters results where the provided field is between two values.
 
@@ -196,7 +215,7 @@ class FilterBuilder(Builder):
             return value.isoformat()
         return value
 
-    def build(self) -&gt; str:
+    def build(self, resource_name: Optional[str] = None) -&gt; str:
         &#34;&#34;&#34;Builds the query string parameters from the FilterBuilder.
 
         Returns:
@@ -209,7 +228,7 @@ class FilterBuilder(Builder):
             if filter_type == &#34;in&#34;:
                 for val in value:
                     query_string = f&#34;{query_string}&amp;search[{field}][]={val}&#34;
-            if filter_type == &#34;bool&#34;:
+            if filter_type in [&#34;bool&#34;, &#34;date_time&#34;]:
                 query_string = f&#34;{query_string}&amp;{field}={value}&#34;
         return query_string</code></pre>
 </details>
@@ -372,6 +391,25 @@ FilterBuilder(&amp;search[start_date]=2020-11-21)
         self._filters.append((&#34;like&#34;, field, value))
         return self
 
+    def date_time(self, field: str, value: Union[str, datetime]) -&gt; Builder:
+        &#34;&#34;&#34;Filters for entries that come before or after a particular time, as specified
+        by the field. Eg. &#34;updated_since&#34; on Time Entries will return time entries updated
+        after the provided time.
+
+        The url parameter must be in ISO 8601 format (eg. 2010-10-17T05:45:53Z)
+
+        Args:
+            field: The API response field to filter on
+            value: The datetime, or ISO 8601 format string value
+
+        Returns:
+            The FilterBuilder instance
+        &#34;&#34;&#34;
+        if isinstance(value, datetime):
+            value = value.isoformat()
+        self._filters.append((&#34;date_time&#34;, field, value))
+        return self
+
     def between(self, field: str, min: Optional[Any] = None, max: Optional[Any] = None) -&gt; Builder:
         &#34;&#34;&#34;Filters results where the provided field is between two values.
 
@@ -421,7 +459,7 @@ FilterBuilder(&amp;search[start_date]=2020-11-21)
             return value.isoformat()
         return value
 
-    def build(self) -&gt; str:
+    def build(self, resource_name: Optional[str] = None) -&gt; str:
         &#34;&#34;&#34;Builds the query string parameters from the FilterBuilder.
 
         Returns:
@@ -434,7 +472,7 @@ FilterBuilder(&amp;search[start_date]=2020-11-21)
             if filter_type == &#34;in&#34;:
                 for val in value:
                     query_string = f&#34;{query_string}&amp;search[{field}][]={val}&#34;
-            if filter_type == &#34;bool&#34;:
+            if filter_type in [&#34;bool&#34;, &#34;date_time&#34;]:
                 query_string = f&#34;{query_string}&amp;{field}={value}&#34;
         return query_string</code></pre>
 </details>
@@ -554,7 +592,7 @@ will be converted to the proper string format.</p>
 </details>
 </dd>
 <dt id="freshbooks.builders.filter.FilterBuilder.build"><code class="name flex">
-<span>def <span class="ident">build</span></span>(<span>self) ‑> str</span>
+<span>def <span class="ident">build</span></span>(<span>self, resource_name: Optional[str] = None) ‑> str</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Builds the query string parameters from the FilterBuilder.</p>
@@ -564,7 +602,7 @@ will be converted to the proper string format.</p>
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def build(self) -&gt; str:
+<pre><code class="python">def build(self, resource_name: Optional[str] = None) -&gt; str:
     &#34;&#34;&#34;Builds the query string parameters from the FilterBuilder.
 
     Returns:
@@ -577,9 +615,50 @@ will be converted to the proper string format.</p>
         if filter_type == &#34;in&#34;:
             for val in value:
                 query_string = f&#34;{query_string}&amp;search[{field}][]={val}&#34;
-        if filter_type == &#34;bool&#34;:
+        if filter_type in [&#34;bool&#34;, &#34;date_time&#34;]:
             query_string = f&#34;{query_string}&amp;{field}={value}&#34;
     return query_string</code></pre>
+</details>
+</dd>
+<dt id="freshbooks.builders.filter.FilterBuilder.date_time"><code class="name flex">
+<span>def <span class="ident">date_time</span></span>(<span>self, field: str, value: Union[str, datetime.datetime]) ‑> <a title="freshbooks.builders.Builder" href="index.html#freshbooks.builders.Builder">Builder</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Filters for entries that come before or after a particular time, as specified
+by the field. Eg. "updated_since" on Time Entries will return time entries updated
+after the provided time.</p>
+<p>The url parameter must be in ISO 8601 format (eg. 2010-10-17T05:45:53Z)</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>field</code></strong></dt>
+<dd>The API response field to filter on</dd>
+<dt><strong><code>value</code></strong></dt>
+<dd>The datetime, or ISO 8601 format string value</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>The FilterBuilder instance</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def date_time(self, field: str, value: Union[str, datetime]) -&gt; Builder:
+    &#34;&#34;&#34;Filters for entries that come before or after a particular time, as specified
+    by the field. Eg. &#34;updated_since&#34; on Time Entries will return time entries updated
+    after the provided time.
+
+    The url parameter must be in ISO 8601 format (eg. 2010-10-17T05:45:53Z)
+
+    Args:
+        field: The API response field to filter on
+        value: The datetime, or ISO 8601 format string value
+
+    Returns:
+        The FilterBuilder instance
+    &#34;&#34;&#34;
+    if isinstance(value, datetime):
+        value = value.isoformat()
+    self._filters.append((&#34;date_time&#34;, field, value))
+    return self</code></pre>
 </details>
 </dd>
 <dt id="freshbooks.builders.filter.FilterBuilder.equals"><code class="name flex">
@@ -730,6 +809,7 @@ not Like-match "leaf".</p>
 <li><code><a title="freshbooks.builders.filter.FilterBuilder.between" href="#freshbooks.builders.filter.FilterBuilder.between">between</a></code></li>
 <li><code><a title="freshbooks.builders.filter.FilterBuilder.boolean" href="#freshbooks.builders.filter.FilterBuilder.boolean">boolean</a></code></li>
 <li><code><a title="freshbooks.builders.filter.FilterBuilder.build" href="#freshbooks.builders.filter.FilterBuilder.build">build</a></code></li>
+<li><code><a title="freshbooks.builders.filter.FilterBuilder.date_time" href="#freshbooks.builders.filter.FilterBuilder.date_time">date_time</a></code></li>
 <li><code><a title="freshbooks.builders.filter.FilterBuilder.equals" href="#freshbooks.builders.filter.FilterBuilder.equals">equals</a></code></li>
 <li><code><a title="freshbooks.builders.filter.FilterBuilder.in_list" href="#freshbooks.builders.filter.FilterBuilder.in_list">in_list</a></code></li>
 <li><code><a title="freshbooks.builders.filter.FilterBuilder.like" href="#freshbooks.builders.filter.FilterBuilder.like">like</a></code></li>

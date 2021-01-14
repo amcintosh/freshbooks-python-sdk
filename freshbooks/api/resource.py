@@ -86,7 +86,7 @@ class Resource:
         query_string = ""
         if builders:
             for builder in builders:
-                query_string += builder.build()
+                query_string += builder.build(self.__class__.__name__)
         if query_string:
             query_string = "?" + query_string[1:]
         return query_string

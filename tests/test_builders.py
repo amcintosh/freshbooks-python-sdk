@@ -118,12 +118,30 @@ class TestFilter:
 
         assert filter.build() == "&search[start_date]=2020-10-17"
 
+    def test_date_time_string(self):
+        filter = FilterBuilder()
+        filter.date_time("updated_since", "2020-10-17T13:14:07")
+
+        assert filter.build() == "&updated_since=2020-10-17T13:14:07"
+
+    def test_date_time_datetime(self):
+        filter = FilterBuilder()
+        filter.date_time("updated_since", datetime(year=2020, month=10, day=17, hour=13, minute=14, second=7))
+
+        assert filter.build() == "&updated_since=2020-10-17T13:14:07"
+
 
 class TestInclude:
 
-    def test_boolean_true(self):
+    def test_accounting_include(self):
         includes = IncludesBuilder()
         includes.include("late_reminders")
 
-        assert includes.build() == "&include[]=late_reminders"
+        assert includes.build("AccountingResource") == "&include[]=late_reminders"
         assert str(includes) == "IncludesBuilder(&include[]=late_reminders)"
+
+    def test_project_include(self):
+        includes = IncludesBuilder()
+        includes.include("include_overdue_fees")
+
+        assert includes.build("ProjectResource") == "&include_overdue_fees=true"

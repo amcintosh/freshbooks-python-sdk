@@ -1,4 +1,4 @@
 class Builder:
 
-    def build(self) -> str:  # pragma: no cover
+    def build(self, resource_name: str) -> str:  # pragma: no cover
         raise NotImplementedError

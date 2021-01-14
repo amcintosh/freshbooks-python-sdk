@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Optional
 
 from freshbooks.builders import Builder
 
@@ -40,7 +40,7 @@ class IncludesBuilder(Builder):
         self._includes.append(key)
         return self
 
-    def build(self) -> str:
+    def build(self, resource_name: Optional[str] = None) -> str:
         """Builds the query string parameters from the IncludesBuilder.
 
         Returns:
@@ -48,5 +48,8 @@ class IncludesBuilder(Builder):
         """
         query_string = ""
         for key in self._includes:
-            query_string = f"{query_string}&include[]={key}"
+            if not resource_name or resource_name in ["AccountingResource", "EventsResource"]:
+                query_string = f"{query_string}&include[]={key}"
+            else:
+                query_string = f"{query_string}&{key}=true"
         return query_string

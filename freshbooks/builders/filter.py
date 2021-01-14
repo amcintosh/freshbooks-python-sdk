@@ -119,6 +119,25 @@ class FilterBuilder(Builder):
         self._filters.append(("like", field, value))
         return self
 
+    def date_time(self, field: str, value: Union[str, datetime]) -> Builder:
+        """Filters for entries that come before or after a particular time, as specified
+        by the field. Eg. "updated_since" on Time Entries will return time entries updated
+        after the provided time.
+
+        The url parameter must be in ISO 8601 format (eg. 2010-10-17T05:45:53Z)
+
+        Args:
+            field: The API response field to filter on
+            value: The datetime, or ISO 8601 format string value
+
+        Returns:
+            The FilterBuilder instance
+        """
+        if isinstance(value, datetime):
+            value = value.isoformat()
+        self._filters.append(("date_time", field, value))
+        return self
+
     def between(self, field: str, min: Optional[Any] = None, max: Optional[Any] = None) -> Builder:
         """Filters results where the provided field is between two values.
 
@@ -168,7 +187,7 @@ class FilterBuilder(Builder):
             return value.isoformat()
         return value
 
-    def build(self) -> str:
+    def build(self, resource_name: Optional[str] = None) -> str:
         """Builds the query string parameters from the FilterBuilder.
 
         Returns:
@@ -181,6 +200,6 @@ class FilterBuilder(Builder):
             if filter_type == "in":
                 for val in value:
                     query_string = f"{query_string}&search[{field}][]={val}"
-            if filter_type == "bool":
+            if filter_type in ["bool", "date_time"]:
                 query_string = f"{query_string}&{field}={value}"
         return query_string

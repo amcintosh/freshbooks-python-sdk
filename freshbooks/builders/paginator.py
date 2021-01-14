@@ -108,7 +108,7 @@ class PaginateBuilder(Builder):
             return self
         return self._per_page
 
-    def build(self) -> str:
+    def build(self, resource_name: Optional[str] = None) -> str:
         """Builds the query string parameters from the PaginateBuilder.
 
         Returns:

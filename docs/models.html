@@ -27,8 +27,17 @@
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">from collections import namedtuple
+from datetime import date, datetime, timezone
 from enum import IntEnum
 from typing import Any, Optional, Union
+
+try:
+    from zoneinfo import ZoneInfo  # type: ignore
+except ImportError:
+    from backports.zoneinfo import ZoneInfo  # type: ignore
+
+from backports.datetime_fromisoformat import MonkeyPatch  # Remove when we drop python 3.6 support
+MonkeyPatch.patch_fromisoformat()
 
 
 class VisState(IntEnum):
@@ -75,6 +84,31 @@ class Result:
             return Result(field, {field: field_data})
         if isinstance(field_data, list):
             return ListResult(field, field, {field: field_data}, include_pages=False)
+        if isinstance(field_data, str):
+            # Check if the String is a date
+            try:
+                return date.fromisoformat(field_data)  # type: ignore
+            except ValueError:
+                pass
+
+            # Check if the String is a datetime
+            try:
+                # This logic pains me, but datetimes in FreshBooks:
+                # - Project-like resources return dates in UTC.
+                #   Most use proper ISO 8601 format, but many omit the UTC time zone
+                #   designator (&#34;Z&#34;) at the end (but are still UTC). Python `fromisoformat`
+                #   doesn&#39;t like the &#34;Z&#34;, so we strip it.
+                # - Accounting resources return dates in &#34;US/Eastern&#34;,
+                #   except the client signup date, which is UTC.
+                #   These dates are in the format &#34;yyyy-MM-dd HH:mm:ss&#34;,
+                #   so we can distinguish them with the absent &#34;T&#34;.
+                parsed_date = datetime.fromisoformat(field_data.rstrip(&#34;Z&#34;))  # type: ignore
+                if &#34;T&#34; in field_data or (self._name == &#34;client&#34; and field == &#34;signup_date&#34;):
+                    return parsed_date.replace(tzinfo=timezone.utc)
+                return parsed_date.replace(tzinfo=ZoneInfo(&#34;US/Eastern&#34;)).astimezone(timezone.utc)
+            except ValueError:
+                return field_data
+
         return field_data
 
     @property
@@ -492,6 +526,31 @@ assert client.data[&quot;userid&quot;] == user_id
             return Result(field, {field: field_data})
         if isinstance(field_data, list):
             return ListResult(field, field, {field: field_data}, include_pages=False)
+        if isinstance(field_data, str):
+            # Check if the String is a date
+            try:
+                return date.fromisoformat(field_data)  # type: ignore
+            except ValueError:
+                pass
+
+            # Check if the String is a datetime
+            try:
+                # This logic pains me, but datetimes in FreshBooks:
+                # - Project-like resources return dates in UTC.
+                #   Most use proper ISO 8601 format, but many omit the UTC time zone
+                #   designator (&#34;Z&#34;) at the end (but are still UTC). Python `fromisoformat`
+                #   doesn&#39;t like the &#34;Z&#34;, so we strip it.
+                # - Accounting resources return dates in &#34;US/Eastern&#34;,
+                #   except the client signup date, which is UTC.
+                #   These dates are in the format &#34;yyyy-MM-dd HH:mm:ss&#34;,
+                #   so we can distinguish them with the absent &#34;T&#34;.
+                parsed_date = datetime.fromisoformat(field_data.rstrip(&#34;Z&#34;))  # type: ignore
+                if &#34;T&#34; in field_data or (self._name == &#34;client&#34; and field == &#34;signup_date&#34;):
+                    return parsed_date.replace(tzinfo=timezone.utc)
+                return parsed_date.replace(tzinfo=ZoneInfo(&#34;US/Eastern&#34;)).astimezone(timezone.utc)
+            except ValueError:
+                return field_data
+
         return field_data
 
     @property

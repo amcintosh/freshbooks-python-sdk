@@ -3,7 +3,7 @@
         "id": 654321,
         "title": "Awesome Project",
         "description": null,
-        "due_date": null,
+        "due_date": "2021-01-02",
         "client_id": null,
         "internal": true,
         "budget": null,

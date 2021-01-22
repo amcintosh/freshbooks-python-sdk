@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 import json
 import httpretty
 import pytest
@@ -28,9 +28,13 @@ class TestAccountingResources:
         client = self.freshBooksClient.clients.get(self.account_id, client_id)
 
         assert str(client) == "Result(client)"
+        assert client.userid == client_id
         assert client.data["organization"] == "American Cyanamid"
         assert client.organization == "American Cyanamid"
-        assert client.userid == client_id
+        assert client.data["updated"] == "2020-11-01 13:11:10"
+        assert client.updated == datetime(
+            year=2020, month=11, day=1, hour=18, minute=11, second=10, tzinfo=timezone.utc
+        )
 
         assert httpretty.last_request().headers["Authorization"] == "Bearer some_token"
         assert httpretty.last_request().headers["Content-Type"] is None

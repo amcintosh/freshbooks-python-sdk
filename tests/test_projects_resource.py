@@ -1,9 +1,11 @@
 import json
-import httpretty
+from datetime import date, datetime, timezone
 
+import httpretty
 from freshbooks import Client as FreshBooksClient
-from freshbooks import PaginateBuilder, FilterBuilder, FreshBooksError
+from freshbooks import FilterBuilder, FreshBooksError, PaginateBuilder
 from freshbooks.client import API_BASE_URL
+
 from tests import get_fixture
 
 
@@ -30,6 +32,12 @@ class TestProjectsResources:
         assert project.title == "Awesome Project"
         assert project.id == project_id
         assert project.vis_state is None, "Projects use active, not vis_state"
+        assert project.data["updated_at"] == "2020-09-13T03:10:13"
+        assert project.updated_at == datetime(
+            year=2020, month=9, day=13, hour=3, minute=10, second=13, tzinfo=timezone.utc
+        )
+        assert project.data["due_date"] == "2021-01-02"
+        assert project.due_date == date(year=2021, month=1, day=2)
 
         for service in project.services:
             assert service.billable is True

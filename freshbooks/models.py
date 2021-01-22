@@ -1,6 +1,15 @@
 from collections import namedtuple
+from datetime import date, datetime, timezone
 from enum import IntEnum
 from typing import Any, Optional, Union
+
+try:
+    from zoneinfo import ZoneInfo  # type: ignore
+except ImportError:
+    from backports.zoneinfo import ZoneInfo  # type: ignore
+
+from backports.datetime_fromisoformat import MonkeyPatch  # Remove when we drop python 3.6 support
+MonkeyPatch.patch_fromisoformat()
 
 
 class VisState(IntEnum):
@@ -47,6 +56,31 @@ class Result:
             return Result(field, {field: field_data})
         if isinstance(field_data, list):
             return ListResult(field, field, {field: field_data}, include_pages=False)
+        if isinstance(field_data, str):
+            # Check if the String is a date
+            try:
+                return date.fromisoformat(field_data)  # type: ignore
+            except ValueError:
+                pass
+
+            # Check if the String is a datetime
+            try:
+                # This logic pains me, but datetimes in FreshBooks:
+                # - Project-like resources return dates in UTC.
+                #   Most use proper ISO 8601 format, but many omit the UTC time zone
+                #   designator ("Z") at the end (but are still UTC). Python `fromisoformat`
+                #   doesn't like the "Z", so we strip it.
+                # - Accounting resources return dates in "US/Eastern",
+                #   except the client signup date, which is UTC.
+                #   These dates are in the format "yyyy-MM-dd HH:mm:ss",
+                #   so we can distinguish them with the absent "T".
+                parsed_date = datetime.fromisoformat(field_data.rstrip("Z"))  # type: ignore
+                if "T" in field_data or (self._name == "client" and field == "signup_date"):
+                    return parsed_date.replace(tzinfo=timezone.utc)
+                return parsed_date.replace(tzinfo=ZoneInfo("US/Eastern")).astimezone(timezone.utc)
+            except ValueError:
+                return field_data
+
         return field_data
 
     @property

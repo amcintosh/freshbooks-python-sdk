@@ -1,9 +1,11 @@
 import json
-import httpretty
+from datetime import datetime, timezone
 
+import httpretty
 from freshbooks import Client as FreshBooksClient
-from freshbooks import PaginateBuilder, FilterBuilder, FreshBooksError
+from freshbooks import FilterBuilder, FreshBooksError, PaginateBuilder
 from freshbooks.client import API_BASE_URL, VERSION
+
 from tests import get_fixture
 
 
@@ -28,6 +30,10 @@ class TestEventsResources:
         assert str(callback) == "Result(callback)"
         assert callback.callbackid == 123
         assert callback.data["callbackid"] == 123
+        assert callback.data["updated_at"] == "2017-08-23T11:45:09Z"
+        assert callback.updated_at == datetime(
+            year=2017, month=8, day=23, hour=11, minute=45, second=9, tzinfo=timezone.utc
+        )
 
         assert httpretty.last_request().headers["Authorization"] == "Bearer some_token"
         assert httpretty.last_request().headers["Content-Type"] is None

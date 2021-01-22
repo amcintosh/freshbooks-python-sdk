@@ -1,8 +1,11 @@
 import json
-import httpretty
+from datetime import datetime, timezone
 
-from freshbooks import Client as FreshBooksClient, FreshBooksError
+import httpretty
+from freshbooks import Client as FreshBooksClient
+from freshbooks import FreshBooksError
 from freshbooks.client import API_BASE_URL
+
 from tests import get_fixture
 
 
@@ -28,6 +31,11 @@ class TestAuthResources:
         assert current_user.full_name == "Simon Kovalic"
         assert current_user.email == "skovalic@cis.com"
         assert current_user.data["email"] == "skovalic@cis.com"
+        assert current_user.confirmed_at == datetime(
+            year=2017, month=5, day=23, hour=5, minute=57, second=24, tzinfo=timezone.utc
+        )
+        assert current_user.data["confirmed_at"] == "2017-05-23T05:57:24Z"
+
         assert len(current_user.business_memberships) == 2
         assert httpretty.last_request().headers["Authorization"] == "Bearer some_token"
 

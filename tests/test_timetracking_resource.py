@@ -1,8 +1,10 @@
 import json
-import httpretty
+from datetime import datetime, timezone
 
+import httpretty
 from freshbooks import Client as FreshBooksClient
 from freshbooks.client import API_BASE_URL
+
 from tests import get_fixture
 
 
@@ -25,9 +27,14 @@ class TestTimetrackingResources:
         time_entry = self.freshBooksClient.time_entries.get(self.business_id, time_entry_id)
 
         assert str(time_entry) == "Result(time_entry)"
+        assert time_entry.id == time_entry_id
         assert time_entry.data["duration"] == 3600
         assert time_entry.duration == 3600
-        assert time_entry.id == time_entry_id
+        assert time_entry.data["created_at"] == "2020-10-17T01:09:41Z"
+        assert time_entry.created_at == datetime(
+            year=2020, month=10, day=17, hour=1, minute=9, second=41, tzinfo=timezone.utc
+        )
+
         assert httpretty.last_request().headers["Authorization"] == "Bearer some_token"
         assert httpretty.last_request().headers["Content-Type"] is None
 

@@ -37,7 +37,7 @@
         "billed_amount": "0.00",
         "billed_status": "unbilled",
         "retainer_id": null,
-        "expense_markup": 0,
+        "expense_markup": "0",
         "group": {
             "id": 764645,
             "members": [

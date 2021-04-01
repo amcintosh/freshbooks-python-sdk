@@ -121,16 +121,16 @@ project = freshBooksClient.projects.get(business_id, project_id)
 
 #### Get and List
 
-API calls with a single resouce return a `Result` object with the returned data accessible via attributes. The raw json-parsed dictionary can also be accessed via the `data` attribute.
+API calls with a single resource return a `Result` object with the returned data accessible via attributes. The raw json-parsed dictionary can also be accessed via the `data` attribute.
 
 ```python
 client = freshBooksClient.clients.get(account_id, client_user_id)
 
 assert client.organization == "FreshBooks"
-assert client.userid == user_id
+assert client.userid == client_user_id
 
 assert client.data["organization"] == "FreshBooks"
-assert client.data["userid"] == user_id
+assert client.data["userid"] == client_user_id
 ```
 
 `vis_state` returns an Enum. See [FreshBooks API - Active and Deleted Objects](https://www.freshbooks.com/api/active_deleted) for details.
@@ -210,7 +210,7 @@ except FreshBooksError as e:
 ```
 
 Not all resources have full CRUD methods available. For example expense categories have `list` and `get`
-calls, but are deletable. If you attempt to call a method that does not exist, the SDK will raise a
+calls, but are not deletable. If you attempt to call a method that does not exist, the SDK will raise a
 `FreshBooksNotImplementedError` exception, but this is not something you will likely have to account
 for outside of development.
 

@@ -30,5 +30,15 @@ class AuthResource(Resource):
         return content["response"]
 
     def me_endpoint(self) -> Identity:
+        """Get the identity details of the currently authenticated user.
+
+        See [FreshBooks API - Business, Roles, and Identity](https://www.freshbooks.com/api/me_endpoint)
+
+        Returns:
+            Result: Result object with the authenticated user's identity and business details.
+
+        Raises:
+            FreshBooksError: If the call is not successful.
+        """
         data = self._request(self._get_url("users/me"), HttpVerbs.GET)
         return Identity(data)

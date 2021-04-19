@@ -84,26 +84,89 @@ class ProjectsResource(Resource):
         return content
 
     def get(self, business_id: int, resource_id: int) -&gt; Result:
+        &#34;&#34;&#34;Get a single resource with the corresponding id.
+
+        Args:
+            business_id: The business id
+            resource_id: Id of the resource to return
+        Returns:
+            Result: Result object with the resource&#39;s response data.
+
+        Raises:
+            FreshBooksError: If the call is not successful.
+        &#34;&#34;&#34;
         data = self._request(self._get_url(business_id, resource_id), HttpVerbs.GET)
         return Result(self.single_name, data)
 
     def list(self, business_id: int, builders: Optional[List[Builder]] = None) -&gt; ListResult:
+        &#34;&#34;&#34;Get a list of resources.
+
+        Args:
+            business_id: The business id
+            builders: (Optional) List of builder objects for filters, pagination, etc.
+
+        Returns:
+            ListResult: ListResult object with the resources response data.
+
+        Raises:
+            FreshBooksError: If the call is not successful.
+        &#34;&#34;&#34;
         resource_url = self._get_url(business_id, is_list=True)
         query_string = self._build_query_string(builders)
         data = self._request(f&#34;{resource_url}{query_string}&#34;, HttpVerbs.GET)
         return ListResult(self.list_name, self.single_name, data)  # type: ignore
 
     def create(self, business_id: int, data: dict) -&gt; Result:
+        &#34;&#34;&#34;Create a resource.
+
+        Args:
+            business_id: The business id
+            data: Dictionary of data to populate the resource
+
+        Returns:
+            Result: Result object with the new resource&#39;s response data.
+
+        Raises:
+            FreshBooksError: If the call is not successful.
+        &#34;&#34;&#34;
         response = self._request(self._get_url(business_id), HttpVerbs.POST, data={self.single_name: data})
         return Result(self.single_name, response)
 
     def update(self, business_id: int, resource_id: int, data: dict) -&gt; Result:
+        &#34;&#34;&#34;Update a resource.
+
+        Args:
+            business_id: The business id
+            resource_id: Id of the resource to update
+            data: Dictionary of data to update the resource to
+
+        Returns:
+            Result: Result object with the updated resource&#39;s response data.
+
+        Raises:
+            FreshBooksError: If the call is not successful.
+        &#34;&#34;&#34;
         response = self._request(
             self._get_url(business_id, resource_id), HttpVerbs.PUT, data={self.single_name: data}
         )
         return Result(self.single_name, response)
 
     def delete(self, business_id: int, resource_id: int) -&gt; Result:
+        &#34;&#34;&#34;Delete a resource.
+
+        Note: Most FreshBooks resources are soft-deleted,
+        See [FreshBooks API - Active and Deleted Objects](https://www.freshbooks.com/api/active_deleted)
+
+        Args:
+            business_id: The business id
+            resource_id: Id of the resource to delete
+
+        Returns:
+            Result: An empty Result object.
+
+        Raises:
+            FreshBooksError: If the call is not successful.
+        &#34;&#34;&#34;
         response = self._request(self._get_url(business_id, resource_id), HttpVerbs.DELETE)
         return Result(self.single_name, response)</code></pre>
 </details>
@@ -175,26 +238,89 @@ class ProjectsResource(Resource):
         return content
 
     def get(self, business_id: int, resource_id: int) -&gt; Result:
+        &#34;&#34;&#34;Get a single resource with the corresponding id.
+
+        Args:
+            business_id: The business id
+            resource_id: Id of the resource to return
+        Returns:
+            Result: Result object with the resource&#39;s response data.
+
+        Raises:
+            FreshBooksError: If the call is not successful.
+        &#34;&#34;&#34;
         data = self._request(self._get_url(business_id, resource_id), HttpVerbs.GET)
         return Result(self.single_name, data)
 
     def list(self, business_id: int, builders: Optional[List[Builder]] = None) -&gt; ListResult:
+        &#34;&#34;&#34;Get a list of resources.
+
+        Args:
+            business_id: The business id
+            builders: (Optional) List of builder objects for filters, pagination, etc.
+
+        Returns:
+            ListResult: ListResult object with the resources response data.
+
+        Raises:
+            FreshBooksError: If the call is not successful.
+        &#34;&#34;&#34;
         resource_url = self._get_url(business_id, is_list=True)
         query_string = self._build_query_string(builders)
         data = self._request(f&#34;{resource_url}{query_string}&#34;, HttpVerbs.GET)
         return ListResult(self.list_name, self.single_name, data)  # type: ignore
 
     def create(self, business_id: int, data: dict) -&gt; Result:
+        &#34;&#34;&#34;Create a resource.
+
+        Args:
+            business_id: The business id
+            data: Dictionary of data to populate the resource
+
+        Returns:
+            Result: Result object with the new resource&#39;s response data.
+
+        Raises:
+            FreshBooksError: If the call is not successful.
+        &#34;&#34;&#34;
         response = self._request(self._get_url(business_id), HttpVerbs.POST, data={self.single_name: data})
         return Result(self.single_name, response)
 
     def update(self, business_id: int, resource_id: int, data: dict) -&gt; Result:
+        &#34;&#34;&#34;Update a resource.
+
+        Args:
+            business_id: The business id
+            resource_id: Id of the resource to update
+            data: Dictionary of data to update the resource to
+
+        Returns:
+            Result: Result object with the updated resource&#39;s response data.
+
+        Raises:
+            FreshBooksError: If the call is not successful.
+        &#34;&#34;&#34;
         response = self._request(
             self._get_url(business_id, resource_id), HttpVerbs.PUT, data={self.single_name: data}
         )
         return Result(self.single_name, response)
 
     def delete(self, business_id: int, resource_id: int) -&gt; Result:
+        &#34;&#34;&#34;Delete a resource.
+
+        Note: Most FreshBooks resources are soft-deleted,
+        See [FreshBooks API - Active and Deleted Objects](https://www.freshbooks.com/api/active_deleted)
+
+        Args:
+            business_id: The business id
+            resource_id: Id of the resource to delete
+
+        Returns:
+            Result: An empty Result object.
+
+        Raises:
+            FreshBooksError: If the call is not successful.
+        &#34;&#34;&#34;
         response = self._request(self._get_url(business_id, resource_id), HttpVerbs.DELETE)
         return Result(self.single_name, response)</code></pre>
 </details>
@@ -213,12 +339,41 @@ class ProjectsResource(Resource):
 <span>def <span class="ident">create</span></span>(<span>self, business_id: int, data: dict) ‑> <a title="freshbooks.models.Result" href="../models.html#freshbooks.models.Result">Result</a></span>
 </code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Create a resource.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>business_id</code></strong></dt>
+<dd>The business id</dd>
+<dt><strong><code>data</code></strong></dt>
+<dd>Dictionary of data to populate the resource</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>Result</code></dt>
+<dd>Result object with the new resource's response data.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>FreshBooksError</code></dt>
+<dd>If the call is not successful.</dd>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def create(self, business_id: int, data: dict) -&gt; Result:
+    &#34;&#34;&#34;Create a resource.
+
+    Args:
+        business_id: The business id
+        data: Dictionary of data to populate the resource
+
+    Returns:
+        Result: Result object with the new resource&#39;s response data.
+
+    Raises:
+        FreshBooksError: If the call is not successful.
+    &#34;&#34;&#34;
     response = self._request(self._get_url(business_id), HttpVerbs.POST, data={self.single_name: data})
     return Result(self.single_name, response)</code></pre>
 </details>
@@ -227,12 +382,46 @@ class ProjectsResource(Resource):
 <span>def <span class="ident">delete</span></span>(<span>self, business_id: int, resource_id: int) ‑> <a title="freshbooks.models.Result" href="../models.html#freshbooks.models.Result">Result</a></span>
 </code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Delete a resource.</p>
+<p>Note: Most FreshBooks resources are soft-deleted,
+See <a href="https://www.freshbooks.com/api/active_deleted">FreshBooks API - Active and Deleted Objects</a></p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>business_id</code></strong></dt>
+<dd>The business id</dd>
+<dt><strong><code>resource_id</code></strong></dt>
+<dd>Id of the resource to delete</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>Result</code></dt>
+<dd>An empty Result object.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>FreshBooksError</code></dt>
+<dd>If the call is not successful.</dd>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def delete(self, business_id: int, resource_id: int) -&gt; Result:
+    &#34;&#34;&#34;Delete a resource.
+
+    Note: Most FreshBooks resources are soft-deleted,
+    See [FreshBooks API - Active and Deleted Objects](https://www.freshbooks.com/api/active_deleted)
+
+    Args:
+        business_id: The business id
+        resource_id: Id of the resource to delete
+
+    Returns:
+        Result: An empty Result object.
+
+    Raises:
+        FreshBooksError: If the call is not successful.
+    &#34;&#34;&#34;
     response = self._request(self._get_url(business_id, resource_id), HttpVerbs.DELETE)
     return Result(self.single_name, response)</code></pre>
 </details>
@@ -241,12 +430,40 @@ class ProjectsResource(Resource):
 <span>def <span class="ident">get</span></span>(<span>self, business_id: int, resource_id: int) ‑> <a title="freshbooks.models.Result" href="../models.html#freshbooks.models.Result">Result</a></span>
 </code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Get a single resource with the corresponding id.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>business_id</code></strong></dt>
+<dd>The business id</dd>
+<dt><strong><code>resource_id</code></strong></dt>
+<dd>Id of the resource to return</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>Result</code></dt>
+<dd>Result object with the resource's response data.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>FreshBooksError</code></dt>
+<dd>If the call is not successful.</dd>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def get(self, business_id: int, resource_id: int) -&gt; Result:
+    &#34;&#34;&#34;Get a single resource with the corresponding id.
+
+    Args:
+        business_id: The business id
+        resource_id: Id of the resource to return
+    Returns:
+        Result: Result object with the resource&#39;s response data.
+
+    Raises:
+        FreshBooksError: If the call is not successful.
+    &#34;&#34;&#34;
     data = self._request(self._get_url(business_id, resource_id), HttpVerbs.GET)
     return Result(self.single_name, data)</code></pre>
 </details>
@@ -255,12 +472,41 @@ class ProjectsResource(Resource):
 <span>def <span class="ident">list</span></span>(<span>self, business_id: int, builders: Optional[List[<a title="freshbooks.builders.Builder" href="../builders/index.html#freshbooks.builders.Builder">Builder</a>]] = None) ‑> <a title="freshbooks.models.ListResult" href="../models.html#freshbooks.models.ListResult">ListResult</a></span>
 </code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Get a list of resources.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>business_id</code></strong></dt>
+<dd>The business id</dd>
+<dt><strong><code>builders</code></strong></dt>
+<dd>(Optional) List of builder objects for filters, pagination, etc.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>ListResult</code></dt>
+<dd>ListResult object with the resources response data.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>FreshBooksError</code></dt>
+<dd>If the call is not successful.</dd>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def list(self, business_id: int, builders: Optional[List[Builder]] = None) -&gt; ListResult:
+    &#34;&#34;&#34;Get a list of resources.
+
+    Args:
+        business_id: The business id
+        builders: (Optional) List of builder objects for filters, pagination, etc.
+
+    Returns:
+        ListResult: ListResult object with the resources response data.
+
+    Raises:
+        FreshBooksError: If the call is not successful.
+    &#34;&#34;&#34;
     resource_url = self._get_url(business_id, is_list=True)
     query_string = self._build_query_string(builders)
     data = self._request(f&#34;{resource_url}{query_string}&#34;, HttpVerbs.GET)
@@ -271,12 +517,44 @@ class ProjectsResource(Resource):
 <span>def <span class="ident">update</span></span>(<span>self, business_id: int, resource_id: int, data: dict) ‑> <a title="freshbooks.models.Result" href="../models.html#freshbooks.models.Result">Result</a></span>
 </code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Update a resource.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>business_id</code></strong></dt>
+<dd>The business id</dd>
+<dt><strong><code>resource_id</code></strong></dt>
+<dd>Id of the resource to update</dd>
+<dt><strong><code>data</code></strong></dt>
+<dd>Dictionary of data to update the resource to</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>Result</code></dt>
+<dd>Result object with the updated resource's response data.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>FreshBooksError</code></dt>
+<dd>If the call is not successful.</dd>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def update(self, business_id: int, resource_id: int, data: dict) -&gt; Result:
+    &#34;&#34;&#34;Update a resource.
+
+    Args:
+        business_id: The business id
+        resource_id: Id of the resource to update
+        data: Dictionary of data to update the resource to
+
+    Returns:
+        Result: Result object with the updated resource&#39;s response data.
+
+    Raises:
+        FreshBooksError: If the call is not successful.
+    &#34;&#34;&#34;
     response = self._request(
         self._get_url(business_id, resource_id), HttpVerbs.PUT, data={self.single_name: data}
     )

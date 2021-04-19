@@ -58,6 +58,16 @@ class AuthResource(Resource):
         return content[&#34;response&#34;]
 
     def me_endpoint(self) -&gt; Identity:
+        &#34;&#34;&#34;Get the identity details of the currently authenticated user.
+
+        See [FreshBooks API - Business, Roles, and Identity](https://www.freshbooks.com/api/me_endpoint)
+
+        Returns:
+            Result: Result object with the authenticated user&#39;s identity and business details.
+
+        Raises:
+            FreshBooksError: If the call is not successful.
+        &#34;&#34;&#34;
         data = self._request(self._get_url(&#34;users/me&#34;), HttpVerbs.GET)
         return Identity(data)</code></pre>
 </details>
@@ -105,6 +115,16 @@ class AuthResource(Resource):
         return content[&#34;response&#34;]
 
     def me_endpoint(self) -&gt; Identity:
+        &#34;&#34;&#34;Get the identity details of the currently authenticated user.
+
+        See [FreshBooks API - Business, Roles, and Identity](https://www.freshbooks.com/api/me_endpoint)
+
+        Returns:
+            Result: Result object with the authenticated user&#39;s identity and business details.
+
+        Raises:
+            FreshBooksError: If the call is not successful.
+        &#34;&#34;&#34;
         data = self._request(self._get_url(&#34;users/me&#34;), HttpVerbs.GET)
         return Identity(data)</code></pre>
 </details>
@@ -118,12 +138,33 @@ class AuthResource(Resource):
 <span>def <span class="ident">me_endpoint</span></span>(<span>self) ‑> <a title="freshbooks.models.Identity" href="../models.html#freshbooks.models.Identity">Identity</a></span>
 </code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Get the identity details of the currently authenticated user.</p>
+<p>See <a href="https://www.freshbooks.com/api/me_endpoint">FreshBooks API - Business, Roles, and Identity</a></p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>Result</code></dt>
+<dd>Result object with the authenticated user's identity and business details.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>FreshBooksError</code></dt>
+<dd>If the call is not successful.</dd>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def me_endpoint(self) -&gt; Identity:
+    &#34;&#34;&#34;Get the identity details of the currently authenticated user.
+
+    See [FreshBooks API - Business, Roles, and Identity](https://www.freshbooks.com/api/me_endpoint)
+
+    Returns:
+        Result: Result object with the authenticated user&#39;s identity and business details.
+
+    Raises:
+        FreshBooksError: If the call is not successful.
+    &#34;&#34;&#34;
     data = self._request(self._get_url(&#34;users/me&#34;), HttpVerbs.GET)
     return Identity(data)</code></pre>
 </details>

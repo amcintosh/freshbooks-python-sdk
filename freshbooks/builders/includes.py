@@ -12,6 +12,7 @@ class IncludesBuilder(Builder):
     >>> includes = IncludesBuilder()
     >>> includes.include("late_reminders")
     IncludesBuilder(&include[]=late_reminders)
+    ```
     """
 
     def __init__(self) -> None:

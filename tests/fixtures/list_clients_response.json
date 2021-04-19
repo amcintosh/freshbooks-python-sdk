@@ -50,6 +50,7 @@
                     "updated": "2020-11-01 13:11:10",
                     "userid": 12345,
                     "username": "alf",
+                    "uuid": "ab1c33f1-8827-4a46-b335-75a6a4149db8",
                     "vat_name": null,
                     "vat_number": null,
                     "vis_state": 0
@@ -102,6 +103,7 @@
                     "updated": "2020-10-17 06:25:34",
                     "userid": 12346,
                     "username": "willie",
+                    "uuid": "135686c8-a635-46d9-a078-dfcac9761a7a",
                     "vat_name": null,
                     "vat_number": null,
                     "vis_state": 0
@@ -154,6 +156,7 @@
                     "updated": "2020-02-07 19:55:04",
                     "userid": 12457,
                     "username": "sir",
+                    "uuid": "ceb0e0b4-b0bd-4c78-80aa-7d6339ffb5f9",
                     "vat_name": null,
                     "vat_number": null,
                     "vis_state": 0

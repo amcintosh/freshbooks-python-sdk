@@ -30,7 +30,8 @@
 
 
 class FreshBooksError(Exception):
-    &#34;&#34;&#34;Exception thrown when FreshBooks returns a non-2xx response.
+    &#34;&#34;&#34;Exception thrown when FreshBooks returns a non-2xx response or when the response
+    is missing expected content.
 
     Example:
     ```python
@@ -109,7 +110,8 @@ class FreshBooksClientConfigError(Exception):
 <span>(</span><span>status_code: int, message: str, raw_response: Optional[str] = None, error_code: Optional[int] = None)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Exception thrown when FreshBooks returns a non-2xx response.</p>
+<div class="desc"><p>Exception thrown when FreshBooks returns a non-2xx response or when the response
+is missing expected content.</p>
 <p>Example:</p>
 <pre><code class="language-python">try:
     client = freshBooksClient.clients.get(self.account_id, client_id)
@@ -134,7 +136,8 @@ except FreshBooksError as e:
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">class FreshBooksError(Exception):
-    &#34;&#34;&#34;Exception thrown when FreshBooks returns a non-2xx response.
+    &#34;&#34;&#34;Exception thrown when FreshBooks returns a non-2xx response or when the response
+    is missing expected content.
 
     Example:
     ```python

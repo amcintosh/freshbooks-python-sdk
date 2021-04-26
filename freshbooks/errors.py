@@ -2,7 +2,8 @@ from typing import Optional
 
 
 class FreshBooksError(Exception):
-    """Exception thrown when FreshBooks returns a non-2xx response.
+    """Exception thrown when FreshBooks returns a non-2xx response or when the response
+    is missing expected content.
 
     Example:
     ```python

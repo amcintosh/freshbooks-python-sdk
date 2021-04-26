@@ -9,6 +9,8 @@ with open("freshbooks/VERSION") as f:
 setup(
     name="freshbooks-sdk",
     version=version,
+    maintainer="FreshBooks",
+    maintainer_email="dev@freshbooks.com",
     author="Andrew McIntosh",
     author_email="andrew@amcintosh.net",
     description="API client for FreshBooks",

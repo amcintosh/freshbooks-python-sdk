@@ -331,8 +331,11 @@ Which can then be passed into `list` or `get` calls:
 For historical reasons, some resources in the FreshBooks API (mostly accounting-releated) return date/times in "US/Eastern" timezone. Some effort is taken to return `datetime` objects as zone-aware and normalized to UTC. In these cases, the raw response string will differ from the attribute. For example:
 
 ```python
-assert client.data["upated"] == "2020-11-01 13:11:10"  # Zone-naive string in "US/Eastern"
-assert client.upated.isoformat() == '2020-11-01T18:11:10+00:00'  # Zone-aware datetime in UTC
+from datetime import datetime, timezone
+
+assert client.data["updated"] == "2021-04-16 10:31:59"  # Zone-naive string in "US/Eastern"
+assert client.updated.isoformat() == '2021-04-16T14:31:59+00:00'  # Zone-aware datetime in UTC
+assert client.updated == datetime(year=2021, month=4, day=16, hour=14, minute=31, second=59, tzinfo=timezone.utc)
 ```
 
 ## Development

@@ -154,7 +154,7 @@ class Client:
             code: access_grant code from the authorization redirect
 
         Returns:
-            Simplre namespace containing `access_token`, `refresh_token`, and `access_token_expires_at`
+            Simple namespace containing `access_token`, `refresh_token`, and `access_token_expires_at`
         """
         return self._authorize_call("authorization_code", "code", code)
 
@@ -172,7 +172,7 @@ class Client:
             refresh_token: (Optional) refresh_token from initial `get_access_token` call
 
         Returns:
-            Simplre namespace containing `access_token`, `refresh_token`, and `access_token_expires_at`
+            Simple namespace containing `access_token`, `refresh_token`, and `access_token_expires_at`
 
         Raises:
             FreshBooksClientConfigError: If a refresh token is not set on the client instance and is not provided.

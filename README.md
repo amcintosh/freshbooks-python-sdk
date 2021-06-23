@@ -102,7 +102,7 @@ See [FreshBooks API - Business, Roles, and Identity](https://www.freshbooks.com/
 The current user can be accessed by:
 
 ```python
->>> current_user = freshBooksClient.current_user
+>>> current_user = freshBooksClient.current_user()
 >>> current_user.email
 <some email>
 
@@ -224,6 +224,7 @@ optional data in the response. See [FreshBooks API - Parameters](https://www.fre
 Pagination results are included in `list` responses in the `pages` attribute:
 
 ```python
+>>> clients = freshBooksClient.clients.list(account_id)
 >>> clients.pages
 PageResult(page=1, pages=1, per_page=30, total=6)
 
@@ -231,7 +232,7 @@ PageResult(page=1, pages=1, per_page=30, total=6)
 6
 ```
 
-To make change a paginated call, first build a `PaginateBuilder` object that can be passed into the `list` method.
+To make a paginated call, first create a `PaginateBuilder` object that can be passed into the `list` method.
 
 ```python
 >>> from freshbooks import PaginateBuilder
@@ -258,6 +259,17 @@ PaginateBuilder(page=1, per_page=3)
 >>> paginator.page(2).per_page(4)
 >>> paginator
 PaginateBuilder(page=2, per_page=4)
+```
+
+ListResults can be combined, allowing your to use pagination to get all the results of a resource.
+
+```python
+paginator = PaginateBuilder(1, 100)
+clients = freshBooksClient.clients.list(self.account_id, builders=[paginator])
+while clients.pages.page < clients.pages.pages:
+    paginator.page(clients.pages.page + 1)
+    new_clients = freshBooksClient.clients.list(self.account_id, builders=[paginator])
+    clients = clients + new_clients
 ```
 
 ##### Filters

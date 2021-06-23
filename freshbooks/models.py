@@ -1,4 +1,5 @@
 from collections import namedtuple
+from copy import deepcopy
 from datetime import date, datetime, timezone
 from enum import IntEnum
 from typing import Any, Optional, Union
@@ -8,7 +9,9 @@ try:
 except ImportError:
     from backports.zoneinfo import ZoneInfo  # type: ignore
 
-from backports.datetime_fromisoformat import MonkeyPatch  # Remove when we drop python 3.6 support
+from backports.datetime_fromisoformat import MonkeyPatch  # type: ignore
+
+# Remove when we drop python 3.6 support
 MonkeyPatch.patch_fromisoformat()
 
 
@@ -141,6 +144,21 @@ class ListResult:
     def __repr__(self) -> str:  # pragma: no cover
         return "ListResult({})".format(self._name)
 
+    def __add__(self, other: "ListResult") -> "ListResult":
+        if not isinstance(other, ListResult) or (self._name != other._name):
+            raise TypeError("Objects not of same ListResult type")
+
+        data = deepcopy(self.data)
+        data.get(self._name, []).extend(other.data.get(self._name))
+        new_result = ListResult(self._name, self._single_name, data, include_pages=False)
+
+        if other.pages and other.pages.page > self.pages.page:
+            new_result.pages = new_result._constructPages(other.data)
+        elif self.pages:  # pragma: no branch
+            new_result.pages = new_result._constructPages(self.data)
+
+        return new_result
+
     def __len__(self) -> int:
         return len(self.data.get(self._name, []))
 
@@ -178,7 +196,7 @@ class Identity(Result):
 
     Example:
     ```python
-    >>> current_user = freshBooksClient.current_user
+    >>> current_user = freshBooksClient.current_user()
     >>> current_user.email
     <some email>
 

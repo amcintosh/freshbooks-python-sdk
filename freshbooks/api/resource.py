@@ -59,13 +59,13 @@ class Resource:
         if method is HttpVerbs.GET:
             session = self.session.get
         elif method is HttpVerbs.POST:
-            session = self.session.post
+            session = self.session.post  # type: ignore
             payload = json.dumps(data)
         elif method is HttpVerbs.PUT:
-            session = self.session.put
+            session = self.session.put  # type: ignore
             payload = json.dumps(data)
         elif method is HttpVerbs.PATCH:  # pragma: no cover
-            session = self.session.patch
+            session = self.session.patch  # type: ignore
             payload = json.dumps(data)
         elif method is HttpVerbs.DELETE:
             session = self.session.delete

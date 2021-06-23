@@ -141,6 +141,19 @@ class ListResult:
     def __repr__(self) -> str:  # pragma: no cover
         return "ListResult({})".format(self._name)
 
+    def __add__(self, other: "ListResult") -> "ListResult":
+        if not isinstance(other, ListResult) or (self._name != other._name):
+            raise TypeError("Objects not of same ListResult type")
+
+        data = self.data
+        data[self._name] = self.data.get(self._name, []) + other.data.get(self._name)
+        new_result = ListResult(self._name, self._single_name, data, include_pages=False)
+        if other.pages and other.pages.page > self.pages.page:
+            new_result.pages = new_result._constructPages(other.data)
+        elif self.pages:  # pragma: no branch
+            new_result.pages = new_result._constructPages(self.data)
+        return new_result
+
     def __len__(self) -> int:
         return len(self.data.get(self._name, []))
 

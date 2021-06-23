@@ -44,7 +44,7 @@ check-style:
 	flake8 tests --count --show-source --statistics
 
 check-types:
-	mypy freshbooks
+	mypy --install-types --non-interactive freshbooks
 
 test:
 	py.test --junitxml=junit.xml \

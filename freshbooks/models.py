@@ -1,4 +1,5 @@
 from collections import namedtuple
+from copy import deepcopy
 from datetime import date, datetime, timezone
 from enum import IntEnum
 from typing import Any, Optional, Union
@@ -9,6 +10,7 @@ except ImportError:
     from backports.zoneinfo import ZoneInfo  # type: ignore
 
 from backports.datetime_fromisoformat import MonkeyPatch  # type: ignore
+
 # Remove when we drop python 3.6 support
 MonkeyPatch.patch_fromisoformat()
 
@@ -146,13 +148,15 @@ class ListResult:
         if not isinstance(other, ListResult) or (self._name != other._name):
             raise TypeError("Objects not of same ListResult type")
 
-        data = self.data
-        data[self._name] = self.data.get(self._name, []) + other.data.get(self._name)
+        data = deepcopy(self.data)
+        data.get(self._name, []).extend(other.data.get(self._name))
         new_result = ListResult(self._name, self._single_name, data, include_pages=False)
+
         if other.pages and other.pages.page > self.pages.page:
             new_result.pages = new_result._constructPages(other.data)
         elif self.pages:  # pragma: no branch
             new_result.pages = new_result._constructPages(self.data)
+
         return new_result
 
     def __len__(self) -> int:

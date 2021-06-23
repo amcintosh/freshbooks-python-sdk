@@ -21,6 +21,8 @@ class TestListResult:
         assert client_results_2.pages.page == 2
 
         full_results = client_results_1 + client_results_2
+        assert len(client_results_1) == 3
+        assert len(client_results_2) == 3
         assert len(full_results) == 6
         assert full_results[0].id == 12345
         assert full_results[5].id == 12457

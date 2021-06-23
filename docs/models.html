@@ -27,6 +27,7 @@
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">from collections import namedtuple
+from copy import deepcopy
 from datetime import date, datetime, timezone
 from enum import IntEnum
 from typing import Any, Optional, Union
@@ -36,7 +37,9 @@ try:
 except ImportError:
     from backports.zoneinfo import ZoneInfo  # type: ignore
 
-from backports.datetime_fromisoformat import MonkeyPatch  # Remove when we drop python 3.6 support
+from backports.datetime_fromisoformat import MonkeyPatch  # type: ignore
+
+# Remove when we drop python 3.6 support
 MonkeyPatch.patch_fromisoformat()
 
 
@@ -169,6 +172,21 @@ class ListResult:
     def __repr__(self) -&gt; str:  # pragma: no cover
         return &#34;ListResult({})&#34;.format(self._name)
 
+    def __add__(self, other: &#34;ListResult&#34;) -&gt; &#34;ListResult&#34;:
+        if not isinstance(other, ListResult) or (self._name != other._name):
+            raise TypeError(&#34;Objects not of same ListResult type&#34;)
+
+        data = deepcopy(self.data)
+        data.get(self._name, []).extend(other.data.get(self._name))
+        new_result = ListResult(self._name, self._single_name, data, include_pages=False)
+
+        if other.pages and other.pages.page &gt; self.pages.page:
+            new_result.pages = new_result._constructPages(other.data)
+        elif self.pages:  # pragma: no branch
+            new_result.pages = new_result._constructPages(self.data)
+
+        return new_result
+
     def __len__(self) -&gt; int:
         return len(self.data.get(self._name, []))
 
@@ -206,7 +224,7 @@ class Identity(Result):
 
     Example:
     ```python
-    &gt;&gt;&gt; current_user = freshBooksClient.current_user
+    &gt;&gt;&gt; current_user = freshBooksClient.current_user()
     &gt;&gt;&gt; current_user.email
     &lt;some email&gt;
 
@@ -257,7 +275,7 @@ class Identity(Result):
 <div class="desc"><p>An Identity is a <code><a title="freshbooks.models.Result" href="#freshbooks.models.Result">Result</a></code> object with additional properties and helper methods
 to make accessing the current user's identity easier.</p>
 <p>Example:</p>
-<pre><code class="language-python">&gt;&gt;&gt; current_user = freshBooksClient.current_user
+<pre><code class="language-python">&gt;&gt;&gt; current_user = freshBooksClient.current_user()
 &gt;&gt;&gt; current_user.email
 &lt;some email&gt;
 
@@ -274,7 +292,7 @@ to make accessing the current user's identity easier.</p>
 
     Example:
     ```python
-    &gt;&gt;&gt; current_user = freshBooksClient.current_user
+    &gt;&gt;&gt; current_user = freshBooksClient.current_user()
     &gt;&gt;&gt; current_user.email
     &lt;some email&gt;
 
@@ -436,6 +454,21 @@ PageResult(page=1, pages=1, per_page=30, total=6)
 
     def __repr__(self) -&gt; str:  # pragma: no cover
         return &#34;ListResult({})&#34;.format(self._name)
+
+    def __add__(self, other: &#34;ListResult&#34;) -&gt; &#34;ListResult&#34;:
+        if not isinstance(other, ListResult) or (self._name != other._name):
+            raise TypeError(&#34;Objects not of same ListResult type&#34;)
+
+        data = deepcopy(self.data)
+        data.get(self._name, []).extend(other.data.get(self._name))
+        new_result = ListResult(self._name, self._single_name, data, include_pages=False)
+
+        if other.pages and other.pages.page &gt; self.pages.page:
+            new_result.pages = new_result._constructPages(other.data)
+        elif self.pages:  # pragma: no branch
+            new_result.pages = new_result._constructPages(self.data)
+
+        return new_result
 
     def __len__(self) -&gt; int:
         return len(self.data.get(self._name, []))

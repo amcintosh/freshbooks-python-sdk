@@ -182,7 +182,7 @@ class Client:
             code: access_grant code from the authorization redirect
 
         Returns:
-            Simplre namespace containing `access_token`, `refresh_token`, and `access_token_expires_at`
+            Simple namespace containing `access_token`, `refresh_token`, and `access_token_expires_at`
         &#34;&#34;&#34;
         return self._authorize_call(&#34;authorization_code&#34;, &#34;code&#34;, code)
 
@@ -200,7 +200,7 @@ class Client:
             refresh_token: (Optional) refresh_token from initial `get_access_token` call
 
         Returns:
-            Simplre namespace containing `access_token`, `refresh_token`, and `access_token_expires_at`
+            Simple namespace containing `access_token`, `refresh_token`, and `access_token_expires_at`
 
         Raises:
             FreshBooksClientConfigError: If a refresh token is not set on the client instance and is not provided.
@@ -212,7 +212,6 @@ class Client:
 
     # Auth Resources
 
-    @property
     def current_user(self) -&gt; Identity:
         &#34;&#34;&#34;The identity details of the currently authenticated user.
 
@@ -537,7 +536,7 @@ to specify a <code>client_secret</code> (though the token cannot be refreshed in
             code: access_grant code from the authorization redirect
 
         Returns:
-            Simplre namespace containing `access_token`, `refresh_token`, and `access_token_expires_at`
+            Simple namespace containing `access_token`, `refresh_token`, and `access_token_expires_at`
         &#34;&#34;&#34;
         return self._authorize_call(&#34;authorization_code&#34;, &#34;code&#34;, code)
 
@@ -555,7 +554,7 @@ to specify a <code>client_secret</code> (though the token cannot be refreshed in
             refresh_token: (Optional) refresh_token from initial `get_access_token` call
 
         Returns:
-            Simplre namespace containing `access_token`, `refresh_token`, and `access_token_expires_at`
+            Simple namespace containing `access_token`, `refresh_token`, and `access_token_expires_at`
 
         Raises:
             FreshBooksClientConfigError: If a refresh token is not set on the client instance and is not provided.
@@ -567,7 +566,6 @@ to specify a <code>client_secret</code> (though the token cannot be refreshed in
 
     # Auth Resources
 
-    @property
     def current_user(self) -&gt; Identity:
         &#34;&#34;&#34;The identity details of the currently authenticated user.
 
@@ -762,23 +760,6 @@ def credit_notes(self) -&gt; AccountingResource:
     return AccountingResource(
         self._client_resource_config(), &#34;credit_notes/credit_notes&#34;, &#34;credit_note&#34;, &#34;credit_notes&#34;
     )</code></pre>
-</details>
-</dd>
-<dt id="freshbooks.client.Client.current_user"><code class="name">var <span class="ident">current_user</span> : <a title="freshbooks.models.Identity" href="models.html#freshbooks.models.Identity">Identity</a></code></dt>
-<dd>
-<div class="desc"><p>The identity details of the currently authenticated user.</p>
-<p>See <a href="https://www.freshbooks.com/api/me_endpoint">https://www.freshbooks.com/api/me_endpoint</a></p></div>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">@property
-def current_user(self) -&gt; Identity:
-    &#34;&#34;&#34;The identity details of the currently authenticated user.
-
-    See https://www.freshbooks.com/api/me_endpoint
-    &#34;&#34;&#34;
-    return AuthResource(self._client_resource_config()).me_endpoint()</code></pre>
 </details>
 </dd>
 <dt id="freshbooks.client.Client.estimates"><code class="name">var <span class="ident">estimates</span> : <a title="freshbooks.api.accounting.AccountingResource" href="api/accounting.html#freshbooks.api.accounting.AccountingResource">AccountingResource</a></code></dt>
@@ -1025,6 +1006,24 @@ def time_entries(self) -&gt; TimetrackingResource:
 </dl>
 <h3>Methods</h3>
 <dl>
+<dt id="freshbooks.client.Client.current_user"><code class="name flex">
+<span>def <span class="ident">current_user</span></span>(<span>self) ‑> <a title="freshbooks.models.Identity" href="models.html#freshbooks.models.Identity">Identity</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>The identity details of the currently authenticated user.</p>
+<p>See <a href="https://www.freshbooks.com/api/me_endpoint">https://www.freshbooks.com/api/me_endpoint</a></p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def current_user(self) -&gt; Identity:
+    &#34;&#34;&#34;The identity details of the currently authenticated user.
+
+    See https://www.freshbooks.com/api/me_endpoint
+    &#34;&#34;&#34;
+    return AuthResource(self._client_resource_config()).me_endpoint()</code></pre>
+</details>
+</dd>
 <dt id="freshbooks.client.Client.get_access_token"><code class="name flex">
 <span>def <span class="ident">get_access_token</span></span>(<span>self, code: str) ‑> types.SimpleNamespace</span>
 </code></dt>
@@ -1040,7 +1039,7 @@ on the Client instance and also returns those values in an object.</p>
 <dd>access_grant code from the authorization redirect</dd>
 </dl>
 <h2 id="returns">Returns</h2>
-<p>Simplre namespace containing <code>access_token</code>, <code>refresh_token</code>, and <code>access_token_expires_at</code></p></div>
+<p>Simple namespace containing <code>access_token</code>, <code>refresh_token</code>, and <code>access_token_expires_at</code></p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1058,7 +1057,7 @@ on the Client instance and also returns those values in an object.</p>
         code: access_grant code from the authorization redirect
 
     Returns:
-        Simplre namespace containing `access_token`, `refresh_token`, and `access_token_expires_at`
+        Simple namespace containing `access_token`, `refresh_token`, and `access_token_expires_at`
     &#34;&#34;&#34;
     return self._authorize_call(&#34;authorization_code&#34;, &#34;code&#34;, code)</code></pre>
 </details>
@@ -1132,7 +1131,7 @@ in an object.</p>
 <dd>(Optional) refresh_token from initial <code>get_access_token</code> call</dd>
 </dl>
 <h2 id="returns">Returns</h2>
-<p>Simplre namespace containing <code>access_token</code>, <code>refresh_token</code>, and <code>access_token_expires_at</code></p>
+<p>Simple namespace containing <code>access_token</code>, <code>refresh_token</code>, and <code>access_token_expires_at</code></p>
 <h2 id="raises">Raises</h2>
 <dl>
 <dt><code>FreshBooksClientConfigError</code></dt>
@@ -1156,7 +1155,7 @@ in an object.</p>
         refresh_token: (Optional) refresh_token from initial `get_access_token` call
 
     Returns:
-        Simplre namespace containing `access_token`, `refresh_token`, and `access_token_expires_at`
+        Simple namespace containing `access_token`, `refresh_token`, and `access_token_expires_at`
 
     Raises:
         FreshBooksClientConfigError: If a refresh token is not set on the client instance and is not provided.

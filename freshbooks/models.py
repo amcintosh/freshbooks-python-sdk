@@ -196,7 +196,7 @@ class Identity(Result):
 
     Example:
     ```python
-    >>> current_user = freshBooksClient.current_user
+    >>> current_user = freshBooksClient.current_user()
     >>> current_user.email
     <some email>
 

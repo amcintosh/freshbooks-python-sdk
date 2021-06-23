@@ -24,7 +24,7 @@ class TestAuthResources:
             status=200
         )
 
-        current_user = self.freshBooksClient.current_user
+        current_user = self.freshBooksClient.current_user()
 
         assert str(current_user) == "Identity(12345, skovalic@cis.com)"
         assert current_user.identity_id == 12345
@@ -50,7 +50,7 @@ class TestAuthResources:
         )
 
         try:
-            self.freshBooksClient.current_user
+            self.freshBooksClient.current_user()
         except FreshBooksError as e:
             assert str(e) == "This action requires authentication to continue."
             assert e.status_code == 403
@@ -67,7 +67,7 @@ class TestAuthResources:
         )
 
         try:
-            self.freshBooksClient.current_user
+            self.freshBooksClient.current_user()
         except FreshBooksError as e:
             assert str(e) == "Failed to parse response"
             assert e.status_code == 500
@@ -84,7 +84,7 @@ class TestAuthResources:
         )
 
         try:
-            self.freshBooksClient.current_user
+            self.freshBooksClient.current_user()
         except FreshBooksError as e:
             assert str(e) == "Returned an unexpected response"
             assert e.status_code == 200

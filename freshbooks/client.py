@@ -184,7 +184,6 @@ class Client:
 
     # Auth Resources
 
-    @property
     def current_user(self) -> Identity:
         """The identity details of the currently authenticated user.
 

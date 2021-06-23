@@ -102,7 +102,7 @@ See [FreshBooks API - Business, Roles, and Identity](https://www.freshbooks.com/
 The current user can be accessed by:
 
 ```python
->>> current_user = freshBooksClient.current_user
+>>> current_user = freshBooksClient.current_user()
 >>> current_user.email
 <some email>
 

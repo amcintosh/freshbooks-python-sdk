@@ -8,7 +8,8 @@ try:
 except ImportError:
     from backports.zoneinfo import ZoneInfo  # type: ignore
 
-from backports.datetime_fromisoformat import MonkeyPatch  # Remove when we drop python 3.6 support
+from backports.datetime_fromisoformat import MonkeyPatch  # type: ignore
+# Remove when we drop python 3.6 support
 MonkeyPatch.patch_fromisoformat()
 
 

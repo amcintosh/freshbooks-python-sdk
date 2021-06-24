@@ -58,11 +58,23 @@ class TestFilter:
 
         assert filter.build() == "&active=False"
 
-    def test_equals(self):
+    def test_equals__accounting(self):
+        filter = FilterBuilder()
+        filter.equals("username", "Bob")
+
+        assert filter.build("AccountingResource") == "&search[username]=Bob"
+
+    def test_equals__resource_not_specified(self):
         filter = FilterBuilder()
         filter.equals("username", "Bob")
 
         assert filter.build() == "&search[username]=Bob"
+
+    def test_equals__project(self):
+        filter = FilterBuilder()
+        filter.equals("username", "Bob")
+
+        assert filter.build("ProjectResource") == "&username=Bob"
 
     def test_in_list__plural(self):
         filter = FilterBuilder()
@@ -133,14 +145,14 @@ class TestFilter:
 
 class TestInclude:
 
-    def test_accounting_include(self):
+    def test_include__accounting(self):
         includes = IncludesBuilder()
         includes.include("late_reminders")
 
         assert includes.build("AccountingResource") == "&include[]=late_reminders"
         assert str(includes) == "IncludesBuilder(&include[]=late_reminders)"
 
-    def test_project_include(self):
+    def test_include__project(self):
         includes = IncludesBuilder()
         includes.include("include_overdue_fees")
 

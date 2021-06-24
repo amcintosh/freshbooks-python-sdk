@@ -190,16 +190,23 @@ class FilterBuilder(Builder):
     def build(self, resource_name: Optional[str] = None) -> str:
         """Builds the query string parameters from the FilterBuilder.
 
+        Args:
+            resource_name: The type of resource to generate the query string for.
+                           Eg. AccountingResource, ProjectsResource
+
         Returns:
             The built query string
         """
+        is_accounting_like = False
+        if not resource_name or resource_name in ["AccountingResource", "EventsResource"]:
+            is_accounting_like = True
         query_string = ""
         for filter_type, field, value in self._filters:
-            if filter_type in ["equals", "like", "between"]:
+            if filter_type in ["like", "between"] or (is_accounting_like and filter_type == "equals"):
                 query_string = f"{query_string}&search[{field}]={value}"
             if filter_type == "in":
                 for val in value:
                     query_string = f"{query_string}&search[{field}][]={val}"
-            if filter_type in ["bool", "date_time"]:
+            if filter_type in ["bool", "date_time"] or (not is_accounting_like and filter_type == "equals"):
                 query_string = f"{query_string}&{field}={value}"
         return query_string

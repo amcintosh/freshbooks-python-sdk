@@ -44,6 +44,10 @@ class IncludesBuilder(Builder):
     def build(self, resource_name: Optional[str] = None) -> str:
         """Builds the query string parameters from the IncludesBuilder.
 
+        Args:
+            resource_name: The type of resource to generate the query string for.
+                           Eg. AccountingResource, ProjectsResource
+
         Returns:
             The built query string
         """

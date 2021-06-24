@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Fix equals filters for project-like resource
+
 ## 0.7.0
 
 - *BREAKING* `client.current_user` is not a method, not a property for more consistency.

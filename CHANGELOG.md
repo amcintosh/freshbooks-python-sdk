@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.7.1
+
 - Fix equals filters for project-like resource
 
 ## 0.7.0

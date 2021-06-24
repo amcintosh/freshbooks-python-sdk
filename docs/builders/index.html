@@ -29,6 +29,15 @@
 <pre><code class="python">class Builder:
 
     def build(self, resource_name: str) -&gt; str:  # pragma: no cover
+        &#34;&#34;&#34;Builds the query string parameters from the Builder.
+
+        Args:
+            resource_name: The type of resource to generate the query string for.
+                           Eg. AccountingResource, ProjectsResource
+
+        Returns:
+            The built query string
+        &#34;&#34;&#34;
         raise NotImplementedError</code></pre>
 </details>
 </section>
@@ -68,6 +77,15 @@
 <pre><code class="python">class Builder:
 
     def build(self, resource_name: str) -&gt; str:  # pragma: no cover
+        &#34;&#34;&#34;Builds the query string parameters from the Builder.
+
+        Args:
+            resource_name: The type of resource to generate the query string for.
+                           Eg. AccountingResource, ProjectsResource
+
+        Returns:
+            The built query string
+        &#34;&#34;&#34;
         raise NotImplementedError</code></pre>
 </details>
 <h3>Subclasses</h3>
@@ -82,12 +100,29 @@
 <span>def <span class="ident">build</span></span>(<span>self, resource_name: str) ‑> str</span>
 </code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Builds the query string parameters from the Builder.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>resource_name</code></strong></dt>
+<dd>The type of resource to generate the query string for.
+Eg. AccountingResource, ProjectsResource</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>The built query string</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def build(self, resource_name: str) -&gt; str:  # pragma: no cover
+    &#34;&#34;&#34;Builds the query string parameters from the Builder.
+
+    Args:
+        resource_name: The type of resource to generate the query string for.
+                       Eg. AccountingResource, ProjectsResource
+
+    Returns:
+        The built query string
+    &#34;&#34;&#34;
     raise NotImplementedError</code></pre>
 </details>
 </dd>

@@ -72,6 +72,10 @@ class IncludesBuilder(Builder):
     def build(self, resource_name: Optional[str] = None) -&gt; str:
         &#34;&#34;&#34;Builds the query string parameters from the IncludesBuilder.
 
+        Args:
+            resource_name: The type of resource to generate the query string for.
+                           Eg. AccountingResource, ProjectsResource
+
         Returns:
             The built query string
         &#34;&#34;&#34;
@@ -149,6 +153,10 @@ IncludesBuilder(&amp;include[]=late_reminders)
     def build(self, resource_name: Optional[str] = None) -&gt; str:
         &#34;&#34;&#34;Builds the query string parameters from the IncludesBuilder.
 
+        Args:
+            resource_name: The type of resource to generate the query string for.
+                           Eg. AccountingResource, ProjectsResource
+
         Returns:
             The built query string
         &#34;&#34;&#34;
@@ -171,6 +179,12 @@ IncludesBuilder(&amp;include[]=late_reminders)
 </code></dt>
 <dd>
 <div class="desc"><p>Builds the query string parameters from the IncludesBuilder.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>resource_name</code></strong></dt>
+<dd>The type of resource to generate the query string for.
+Eg. AccountingResource, ProjectsResource</dd>
+</dl>
 <h2 id="returns">Returns</h2>
 <p>The built query string</p></div>
 <details class="source">
@@ -179,6 +193,10 @@ IncludesBuilder(&amp;include[]=late_reminders)
 </summary>
 <pre><code class="python">def build(self, resource_name: Optional[str] = None) -&gt; str:
     &#34;&#34;&#34;Builds the query string parameters from the IncludesBuilder.
+
+    Args:
+        resource_name: The type of resource to generate the query string for.
+                       Eg. AccountingResource, ProjectsResource
 
     Returns:
         The built query string

@@ -218,17 +218,24 @@ class FilterBuilder(Builder):
     def build(self, resource_name: Optional[str] = None) -&gt; str:
         &#34;&#34;&#34;Builds the query string parameters from the FilterBuilder.
 
+        Args:
+            resource_name: The type of resource to generate the query string for.
+                           Eg. AccountingResource, ProjectsResource
+
         Returns:
             The built query string
         &#34;&#34;&#34;
+        is_accounting_like = False
+        if not resource_name or resource_name in [&#34;AccountingResource&#34;, &#34;EventsResource&#34;]:
+            is_accounting_like = True
         query_string = &#34;&#34;
         for filter_type, field, value in self._filters:
-            if filter_type in [&#34;equals&#34;, &#34;like&#34;, &#34;between&#34;]:
+            if filter_type in [&#34;like&#34;, &#34;between&#34;] or (is_accounting_like and filter_type == &#34;equals&#34;):
                 query_string = f&#34;{query_string}&amp;search[{field}]={value}&#34;
             if filter_type == &#34;in&#34;:
                 for val in value:
                     query_string = f&#34;{query_string}&amp;search[{field}][]={val}&#34;
-            if filter_type in [&#34;bool&#34;, &#34;date_time&#34;]:
+            if filter_type in [&#34;bool&#34;, &#34;date_time&#34;] or (not is_accounting_like and filter_type == &#34;equals&#34;):
                 query_string = f&#34;{query_string}&amp;{field}={value}&#34;
         return query_string</code></pre>
 </details>
@@ -462,17 +469,24 @@ FilterBuilder(&amp;search[start_date]=2020-11-21)
     def build(self, resource_name: Optional[str] = None) -&gt; str:
         &#34;&#34;&#34;Builds the query string parameters from the FilterBuilder.
 
+        Args:
+            resource_name: The type of resource to generate the query string for.
+                           Eg. AccountingResource, ProjectsResource
+
         Returns:
             The built query string
         &#34;&#34;&#34;
+        is_accounting_like = False
+        if not resource_name or resource_name in [&#34;AccountingResource&#34;, &#34;EventsResource&#34;]:
+            is_accounting_like = True
         query_string = &#34;&#34;
         for filter_type, field, value in self._filters:
-            if filter_type in [&#34;equals&#34;, &#34;like&#34;, &#34;between&#34;]:
+            if filter_type in [&#34;like&#34;, &#34;between&#34;] or (is_accounting_like and filter_type == &#34;equals&#34;):
                 query_string = f&#34;{query_string}&amp;search[{field}]={value}&#34;
             if filter_type == &#34;in&#34;:
                 for val in value:
                     query_string = f&#34;{query_string}&amp;search[{field}][]={val}&#34;
-            if filter_type in [&#34;bool&#34;, &#34;date_time&#34;]:
+            if filter_type in [&#34;bool&#34;, &#34;date_time&#34;] or (not is_accounting_like and filter_type == &#34;equals&#34;):
                 query_string = f&#34;{query_string}&amp;{field}={value}&#34;
         return query_string</code></pre>
 </details>
@@ -596,6 +610,12 @@ will be converted to the proper string format.</p>
 </code></dt>
 <dd>
 <div class="desc"><p>Builds the query string parameters from the FilterBuilder.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>resource_name</code></strong></dt>
+<dd>The type of resource to generate the query string for.
+Eg. AccountingResource, ProjectsResource</dd>
+</dl>
 <h2 id="returns">Returns</h2>
 <p>The built query string</p></div>
 <details class="source">
@@ -605,17 +625,24 @@ will be converted to the proper string format.</p>
 <pre><code class="python">def build(self, resource_name: Optional[str] = None) -&gt; str:
     &#34;&#34;&#34;Builds the query string parameters from the FilterBuilder.
 
+    Args:
+        resource_name: The type of resource to generate the query string for.
+                       Eg. AccountingResource, ProjectsResource
+
     Returns:
         The built query string
     &#34;&#34;&#34;
+    is_accounting_like = False
+    if not resource_name or resource_name in [&#34;AccountingResource&#34;, &#34;EventsResource&#34;]:
+        is_accounting_like = True
     query_string = &#34;&#34;
     for filter_type, field, value in self._filters:
-        if filter_type in [&#34;equals&#34;, &#34;like&#34;, &#34;between&#34;]:
+        if filter_type in [&#34;like&#34;, &#34;between&#34;] or (is_accounting_like and filter_type == &#34;equals&#34;):
             query_string = f&#34;{query_string}&amp;search[{field}]={value}&#34;
         if filter_type == &#34;in&#34;:
             for val in value:
                 query_string = f&#34;{query_string}&amp;search[{field}][]={val}&#34;
-        if filter_type in [&#34;bool&#34;, &#34;date_time&#34;]:
+        if filter_type in [&#34;bool&#34;, &#34;date_time&#34;] or (not is_accounting_like and filter_type == &#34;equals&#34;):
             query_string = f&#34;{query_string}&amp;{field}={value}&#34;
     return query_string</code></pre>
 </details>

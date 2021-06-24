@@ -31,6 +31,10 @@ tag:
 		exit 1; \
 	fi;
 	pip install bumpversion
+	./scripts/update_changelog.sh $(VERSION_PART)
+	git add CHANGELOG.md && \
+	git commit -m "🔖 Update CHANGELOG for release" && \
+	git push origin master
 	git stash && \
 	git fetch --all && \
 	git reset --hard origin/master && \

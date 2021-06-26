@@ -187,7 +187,7 @@ class Client:
     def current_user(self) -> Identity:
         """The identity details of the currently authenticated user.
 
-        See https://www.freshbooks.com/api/me_endpoint
+        See [FreshBooks API - Business, Roles, and Identity](https://www.freshbooks.com/api/me_endpoint)
         """
         return AuthResource(self._client_resource_config()).me_endpoint()
 

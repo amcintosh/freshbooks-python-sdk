@@ -215,7 +215,7 @@ class Client:
     def current_user(self) -&gt; Identity:
         &#34;&#34;&#34;The identity details of the currently authenticated user.
 
-        See https://www.freshbooks.com/api/me_endpoint
+        See [FreshBooks API - Business, Roles, and Identity](https://www.freshbooks.com/api/me_endpoint)
         &#34;&#34;&#34;
         return AuthResource(self._client_resource_config()).me_endpoint()
 
@@ -569,7 +569,7 @@ to specify a <code>client_secret</code> (though the token cannot be refreshed in
     def current_user(self) -&gt; Identity:
         &#34;&#34;&#34;The identity details of the currently authenticated user.
 
-        See https://www.freshbooks.com/api/me_endpoint
+        See [FreshBooks API - Business, Roles, and Identity](https://www.freshbooks.com/api/me_endpoint)
         &#34;&#34;&#34;
         return AuthResource(self._client_resource_config()).me_endpoint()
 
@@ -1011,7 +1011,7 @@ def time_entries(self) -&gt; TimetrackingResource:
 </code></dt>
 <dd>
 <div class="desc"><p>The identity details of the currently authenticated user.</p>
-<p>See <a href="https://www.freshbooks.com/api/me_endpoint">https://www.freshbooks.com/api/me_endpoint</a></p></div>
+<p>See <a href="https://www.freshbooks.com/api/me_endpoint">FreshBooks API - Business, Roles, and Identity</a></p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -1019,7 +1019,7 @@ def time_entries(self) -&gt; TimetrackingResource:
 <pre><code class="python">def current_user(self) -&gt; Identity:
     &#34;&#34;&#34;The identity details of the currently authenticated user.
 
-    See https://www.freshbooks.com/api/me_endpoint
+    See [FreshBooks API - Business, Roles, and Identity](https://www.freshbooks.com/api/me_endpoint)
     &#34;&#34;&#34;
     return AuthResource(self._client_resource_config()).me_endpoint()</code></pre>
 </details>

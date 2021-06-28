@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Allow includes for create, updates of accounting resources
+
 ## 0.7.1
 
 - Fix equals filters for project-like resource

@@ -313,7 +313,7 @@ FilterBuilder(&search[start_date]=2020-11-21)
 
 ##### Includes
 
-To include additional relationships, sub-resources, or data in a list or get response, a `IncludesBuilder`
+To include additional relationships, sub-resources, or data in a response an `IncludesBuilder`
 can be constructed.
 
 ```python
@@ -331,9 +331,18 @@ Which can then be passed into `list` or `get` calls:
 >>> clients[0].outstanding_balance
 [{'amount': {'amount': '100.00', 'code': 'USD'}}]
 
->>> client = freshBooksClient.clients.get(account_id, client_id, includes=[includes])
+>>> client = freshBooksClient.clients.get(account_id, client_id, includes=includes)
 >>> client.outstanding_balance
 [{'amount': {'amount': '100.00', 'code': 'USD'}}]
+```
+
+Includes can also be passed into `create` and `update` calls to include the data in the response of the updated resource:
+
+```python
+>>> payload = {"email": "john.doe@abcorp.com"}
+>>> new_client = FreshBooksClient.clients.create(account_id, payload, includes=includes)
+>>> new_client.outstanding_balance
+[]  # New client has no balance
 ```
 
 ##### Sorting

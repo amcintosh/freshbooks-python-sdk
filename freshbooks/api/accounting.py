@@ -106,12 +106,13 @@ class AccountingResource(Resource):
         data = self._request(f"{resource_url}{query_string}", HttpVerbs.GET)
         return ListResult(self.list_name, self.single_name, data)
 
-    def create(self, account_id: str, data: dict) -> Result:
+    def create(self, account_id: str, data: dict, includes: Optional[IncludesBuilder] = None) -> Result:
         """Create a resource.
 
         Args:
             account_id: The alpha-numeric account id
             data: Dictionary of data to populate the resource
+            builders: (Optional) IncludesBuilder object for including additional data, sub-resources, etc.
 
         Returns:
             Result: Result object with the new resource's response data.
@@ -120,16 +121,23 @@ class AccountingResource(Resource):
             FreshBooksError: If the call is not successful.
         """
         self._reject_missing("create")
-        response = self._request(self._get_url(account_id), HttpVerbs.POST, data={self.single_name: data})
+        resource_url = self._get_url(account_id)
+        query_string = ""
+        if includes:
+            query_string = self._build_query_string([includes])
+        response = self._request(f"{resource_url}{query_string}", HttpVerbs.POST, data={self.single_name: data})
         return Result(self.single_name, response)
 
-    def update(self, account_id: str, resource_id: int, data: dict) -> Result:
+    def update(
+        self, account_id: str, resource_id: int, data: dict, includes: Optional[IncludesBuilder] = None
+    ) -> Result:
         """Update a resource.
 
         Args:
             account_id: The alpha-numeric account id
             resource_id: Id of the resource to update
             data: Dictionary of data to update the resource to
+            builders: (Optional) IncludesBuilder object for including additional data, sub-resources, etc.
 
         Returns:
             Result: Result object with the updated resource's response data.
@@ -138,9 +146,11 @@ class AccountingResource(Resource):
             FreshBooksError: If the call is not successful.
         """
         self._reject_missing("update")
-        response = self._request(
-            self._get_url(account_id, resource_id), HttpVerbs.PUT, data={self.single_name: data}
-        )
+        resource_url = self._get_url(account_id, resource_id)
+        query_string = ""
+        if includes:
+            query_string = self._build_query_string([includes])
+        response = self._request(f"{resource_url}{query_string}", HttpVerbs.PUT, data={self.single_name: data})
         return Result(self.single_name, response)
 
     def delete(self, account_id: str, resource_id: int) -> Result:

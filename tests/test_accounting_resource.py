@@ -288,6 +288,29 @@ class TestAccountingResources:
         assert httpretty.last_request().headers["Content-Type"] == "application/json"
 
     @httpretty.activate
+    def test_create_client__includes(self):
+        client_id = 56789
+        url = "{}/accounting/account/{}/users/clients".format(API_BASE_URL, self.account_id)
+        httpretty.register_uri(
+            httpretty.POST,
+            url,
+            body=json.dumps(get_fixture("create_client_response")),
+            status=200
+        )
+
+        includes = IncludesBuilder()
+        includes.include("late_reminders").include("last_activity")
+
+        payload = {"email": "john.doe@abcorp.com"}
+        client = self.freshBooksClient.clients.create(self.account_id, payload, includes)
+
+        expected_params = {
+            "include[]": ["late_reminders", "last_activity"]
+        }
+        assert str(client) == "Result(client)"
+        assert httpretty.last_request().querystring == expected_params
+
+    @httpretty.activate
     def test_update_client(self):
         client_id = 56789
         url = "{}/accounting/account/{}/users/clients/{}".format(API_BASE_URL, self.account_id, client_id)
@@ -307,6 +330,29 @@ class TestAccountingResources:
         assert client.userid == client_id
         assert httpretty.last_request().headers["Authorization"] == "Bearer some_token"
         assert httpretty.last_request().headers["Content-Type"] == "application/json"
+
+    @httpretty.activate
+    def test_update_client__includes(self):
+        client_id = 56789
+        url = "{}/accounting/account/{}/users/clients/{}".format(API_BASE_URL, self.account_id, client_id)
+        httpretty.register_uri(
+            httpretty.PUT,
+            url,
+            body=json.dumps(get_fixture("create_client_response")),
+            status=200
+        )
+
+        includes = IncludesBuilder()
+        includes.include("late_reminders").include("last_activity")
+
+        payload = {"email": "john.doe@abcorp.com"}
+        client = self.freshBooksClient.clients.update(self.account_id, client_id, payload, includes)
+
+        expected_params = {
+            "include[]": ["late_reminders", "last_activity"]
+        }
+        assert str(client) == "Result(client)"
+        assert httpretty.last_request().querystring == expected_params
 
     @httpretty.activate
     def test_delete__client_via_update(self):

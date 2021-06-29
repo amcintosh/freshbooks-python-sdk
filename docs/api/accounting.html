@@ -134,12 +134,13 @@ class AccountingResource(Resource):
         data = self._request(f&#34;{resource_url}{query_string}&#34;, HttpVerbs.GET)
         return ListResult(self.list_name, self.single_name, data)
 
-    def create(self, account_id: str, data: dict) -&gt; Result:
+    def create(self, account_id: str, data: dict, includes: Optional[IncludesBuilder] = None) -&gt; Result:
         &#34;&#34;&#34;Create a resource.
 
         Args:
             account_id: The alpha-numeric account id
             data: Dictionary of data to populate the resource
+            builders: (Optional) IncludesBuilder object for including additional data, sub-resources, etc.
 
         Returns:
             Result: Result object with the new resource&#39;s response data.
@@ -148,16 +149,23 @@ class AccountingResource(Resource):
             FreshBooksError: If the call is not successful.
         &#34;&#34;&#34;
         self._reject_missing(&#34;create&#34;)
-        response = self._request(self._get_url(account_id), HttpVerbs.POST, data={self.single_name: data})
+        resource_url = self._get_url(account_id)
+        query_string = &#34;&#34;
+        if includes:
+            query_string = self._build_query_string([includes])
+        response = self._request(f&#34;{resource_url}{query_string}&#34;, HttpVerbs.POST, data={self.single_name: data})
         return Result(self.single_name, response)
 
-    def update(self, account_id: str, resource_id: int, data: dict) -&gt; Result:
+    def update(
+        self, account_id: str, resource_id: int, data: dict, includes: Optional[IncludesBuilder] = None
+    ) -&gt; Result:
         &#34;&#34;&#34;Update a resource.
 
         Args:
             account_id: The alpha-numeric account id
             resource_id: Id of the resource to update
             data: Dictionary of data to update the resource to
+            builders: (Optional) IncludesBuilder object for including additional data, sub-resources, etc.
 
         Returns:
             Result: Result object with the updated resource&#39;s response data.
@@ -166,9 +174,11 @@ class AccountingResource(Resource):
             FreshBooksError: If the call is not successful.
         &#34;&#34;&#34;
         self._reject_missing(&#34;update&#34;)
-        response = self._request(
-            self._get_url(account_id, resource_id), HttpVerbs.PUT, data={self.single_name: data}
-        )
+        resource_url = self._get_url(account_id, resource_id)
+        query_string = &#34;&#34;
+        if includes:
+            query_string = self._build_query_string([includes])
+        response = self._request(f&#34;{resource_url}{query_string}&#34;, HttpVerbs.PUT, data={self.single_name: data})
         return Result(self.single_name, response)
 
     def delete(self, account_id: str, resource_id: int) -&gt; Result:
@@ -315,12 +325,13 @@ class AccountingResource(Resource):
         data = self._request(f&#34;{resource_url}{query_string}&#34;, HttpVerbs.GET)
         return ListResult(self.list_name, self.single_name, data)
 
-    def create(self, account_id: str, data: dict) -&gt; Result:
+    def create(self, account_id: str, data: dict, includes: Optional[IncludesBuilder] = None) -&gt; Result:
         &#34;&#34;&#34;Create a resource.
 
         Args:
             account_id: The alpha-numeric account id
             data: Dictionary of data to populate the resource
+            builders: (Optional) IncludesBuilder object for including additional data, sub-resources, etc.
 
         Returns:
             Result: Result object with the new resource&#39;s response data.
@@ -329,16 +340,23 @@ class AccountingResource(Resource):
             FreshBooksError: If the call is not successful.
         &#34;&#34;&#34;
         self._reject_missing(&#34;create&#34;)
-        response = self._request(self._get_url(account_id), HttpVerbs.POST, data={self.single_name: data})
+        resource_url = self._get_url(account_id)
+        query_string = &#34;&#34;
+        if includes:
+            query_string = self._build_query_string([includes])
+        response = self._request(f&#34;{resource_url}{query_string}&#34;, HttpVerbs.POST, data={self.single_name: data})
         return Result(self.single_name, response)
 
-    def update(self, account_id: str, resource_id: int, data: dict) -&gt; Result:
+    def update(
+        self, account_id: str, resource_id: int, data: dict, includes: Optional[IncludesBuilder] = None
+    ) -&gt; Result:
         &#34;&#34;&#34;Update a resource.
 
         Args:
             account_id: The alpha-numeric account id
             resource_id: Id of the resource to update
             data: Dictionary of data to update the resource to
+            builders: (Optional) IncludesBuilder object for including additional data, sub-resources, etc.
 
         Returns:
             Result: Result object with the updated resource&#39;s response data.
@@ -347,9 +365,11 @@ class AccountingResource(Resource):
             FreshBooksError: If the call is not successful.
         &#34;&#34;&#34;
         self._reject_missing(&#34;update&#34;)
-        response = self._request(
-            self._get_url(account_id, resource_id), HttpVerbs.PUT, data={self.single_name: data}
-        )
+        resource_url = self._get_url(account_id, resource_id)
+        query_string = &#34;&#34;
+        if includes:
+            query_string = self._build_query_string([includes])
+        response = self._request(f&#34;{resource_url}{query_string}&#34;, HttpVerbs.PUT, data={self.single_name: data})
         return Result(self.single_name, response)
 
     def delete(self, account_id: str, resource_id: int) -&gt; Result:
@@ -390,7 +410,7 @@ class AccountingResource(Resource):
 <h3>Methods</h3>
 <dl>
 <dt id="freshbooks.api.accounting.AccountingResource.create"><code class="name flex">
-<span>def <span class="ident">create</span></span>(<span>self, account_id: str, data: dict) ‑> <a title="freshbooks.models.Result" href="../models.html#freshbooks.models.Result">Result</a></span>
+<span>def <span class="ident">create</span></span>(<span>self, account_id: str, data: dict, includes: Optional[<a title="freshbooks.builders.includes.IncludesBuilder" href="../builders/includes.html#freshbooks.builders.includes.IncludesBuilder">IncludesBuilder</a>] = None) ‑> <a title="freshbooks.models.Result" href="../models.html#freshbooks.models.Result">Result</a></span>
 </code></dt>
 <dd>
 <div class="desc"><p>Create a resource.</p>
@@ -400,6 +420,8 @@ class AccountingResource(Resource):
 <dd>The alpha-numeric account id</dd>
 <dt><strong><code>data</code></strong></dt>
 <dd>Dictionary of data to populate the resource</dd>
+<dt><strong><code>builders</code></strong></dt>
+<dd>(Optional) IncludesBuilder object for including additional data, sub-resources, etc.</dd>
 </dl>
 <h2 id="returns">Returns</h2>
 <dl>
@@ -415,12 +437,13 @@ class AccountingResource(Resource):
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def create(self, account_id: str, data: dict) -&gt; Result:
+<pre><code class="python">def create(self, account_id: str, data: dict, includes: Optional[IncludesBuilder] = None) -&gt; Result:
     &#34;&#34;&#34;Create a resource.
 
     Args:
         account_id: The alpha-numeric account id
         data: Dictionary of data to populate the resource
+        builders: (Optional) IncludesBuilder object for including additional data, sub-resources, etc.
 
     Returns:
         Result: Result object with the new resource&#39;s response data.
@@ -429,7 +452,11 @@ class AccountingResource(Resource):
         FreshBooksError: If the call is not successful.
     &#34;&#34;&#34;
     self._reject_missing(&#34;create&#34;)
-    response = self._request(self._get_url(account_id), HttpVerbs.POST, data={self.single_name: data})
+    resource_url = self._get_url(account_id)
+    query_string = &#34;&#34;
+    if includes:
+        query_string = self._build_query_string([includes])
+    response = self._request(f&#34;{resource_url}{query_string}&#34;, HttpVerbs.POST, data={self.single_name: data})
     return Result(self.single_name, response)</code></pre>
 </details>
 </dd>
@@ -586,7 +613,7 @@ See <a href="https://www.freshbooks.com/api/active_deleted">FreshBooks API - Act
 </details>
 </dd>
 <dt id="freshbooks.api.accounting.AccountingResource.update"><code class="name flex">
-<span>def <span class="ident">update</span></span>(<span>self, account_id: str, resource_id: int, data: dict) ‑> <a title="freshbooks.models.Result" href="../models.html#freshbooks.models.Result">Result</a></span>
+<span>def <span class="ident">update</span></span>(<span>self, account_id: str, resource_id: int, data: dict, includes: Optional[<a title="freshbooks.builders.includes.IncludesBuilder" href="../builders/includes.html#freshbooks.builders.includes.IncludesBuilder">IncludesBuilder</a>] = None) ‑> <a title="freshbooks.models.Result" href="../models.html#freshbooks.models.Result">Result</a></span>
 </code></dt>
 <dd>
 <div class="desc"><p>Update a resource.</p>
@@ -598,6 +625,8 @@ See <a href="https://www.freshbooks.com/api/active_deleted">FreshBooks API - Act
 <dd>Id of the resource to update</dd>
 <dt><strong><code>data</code></strong></dt>
 <dd>Dictionary of data to update the resource to</dd>
+<dt><strong><code>builders</code></strong></dt>
+<dd>(Optional) IncludesBuilder object for including additional data, sub-resources, etc.</dd>
 </dl>
 <h2 id="returns">Returns</h2>
 <dl>
@@ -613,13 +642,16 @@ See <a href="https://www.freshbooks.com/api/active_deleted">FreshBooks API - Act
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def update(self, account_id: str, resource_id: int, data: dict) -&gt; Result:
+<pre><code class="python">def update(
+    self, account_id: str, resource_id: int, data: dict, includes: Optional[IncludesBuilder] = None
+) -&gt; Result:
     &#34;&#34;&#34;Update a resource.
 
     Args:
         account_id: The alpha-numeric account id
         resource_id: Id of the resource to update
         data: Dictionary of data to update the resource to
+        builders: (Optional) IncludesBuilder object for including additional data, sub-resources, etc.
 
     Returns:
         Result: Result object with the updated resource&#39;s response data.
@@ -628,9 +660,11 @@ See <a href="https://www.freshbooks.com/api/active_deleted">FreshBooks API - Act
         FreshBooksError: If the call is not successful.
     &#34;&#34;&#34;
     self._reject_missing(&#34;update&#34;)
-    response = self._request(
-        self._get_url(account_id, resource_id), HttpVerbs.PUT, data={self.single_name: data}
-    )
+    resource_url = self._get_url(account_id, resource_id)
+    query_string = &#34;&#34;
+    if includes:
+        query_string = self._build_query_string([includes])
+    response = self._request(f&#34;{resource_url}{query_string}&#34;, HttpVerbs.PUT, data={self.single_name: data})
     return Result(self.single_name, response)</code></pre>
 </details>
 </dd>

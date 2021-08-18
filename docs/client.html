@@ -222,6 +222,20 @@ class Client:
     # Accounting Resources
 
     @property
+    def bills(self) -&gt; AccountingResource:
+        &#34;&#34;&#34;FreshBooks bills resource with calls to get, list, create, update, delete&#34;&#34;&#34;
+        return AccountingResource(
+            self._client_resource_config(), &#34;bills/bills&#34;, &#34;bill&#34;, &#34;bills&#34;
+        )
+
+    @property
+    def bill_vendors(self) -&gt; AccountingResource:
+        &#34;&#34;&#34;FreshBooks bill_vendors resource with calls to get, list, create, update, delete&#34;&#34;&#34;
+        return AccountingResource(
+            self._client_resource_config(), &#34;bill_vendors/bill_vendors&#34;, &#34;bill_vendor&#34;, &#34;bill_vendors&#34;
+        )
+
+    @property
     def clients(self) -&gt; AccountingResource:
         &#34;&#34;&#34;FreshBooks clients resource with calls to get, list, create, update, delete&#34;&#34;&#34;
         return AccountingResource(self._client_resource_config(), &#34;users/clients&#34;, &#34;client&#34;, &#34;clients&#34;)
@@ -576,6 +590,20 @@ to specify a <code>client_secret</code> (though the token cannot be refreshed in
     # Accounting Resources
 
     @property
+    def bills(self) -&gt; AccountingResource:
+        &#34;&#34;&#34;FreshBooks bills resource with calls to get, list, create, update, delete&#34;&#34;&#34;
+        return AccountingResource(
+            self._client_resource_config(), &#34;bills/bills&#34;, &#34;bill&#34;, &#34;bills&#34;
+        )
+
+    @property
+    def bill_vendors(self) -&gt; AccountingResource:
+        &#34;&#34;&#34;FreshBooks bill_vendors resource with calls to get, list, create, update, delete&#34;&#34;&#34;
+        return AccountingResource(
+            self._client_resource_config(), &#34;bill_vendors/bill_vendors&#34;, &#34;bill_vendor&#34;, &#34;bill_vendors&#34;
+        )
+
+    @property
     def clients(self) -&gt; AccountingResource:
         &#34;&#34;&#34;FreshBooks clients resource with calls to get, list, create, update, delete&#34;&#34;&#34;
         return AccountingResource(self._client_resource_config(), &#34;users/clients&#34;, &#34;client&#34;, &#34;clients&#34;)
@@ -716,6 +744,36 @@ to specify a <code>client_secret</code> (though the token cannot be refreshed in
 </details>
 <h3>Instance variables</h3>
 <dl>
+<dt id="freshbooks.client.Client.bill_vendors"><code class="name">var <span class="ident">bill_vendors</span> : <a title="freshbooks.api.accounting.AccountingResource" href="api/accounting.html#freshbooks.api.accounting.AccountingResource">AccountingResource</a></code></dt>
+<dd>
+<div class="desc"><p>FreshBooks bill_vendors resource with calls to get, list, create, update, delete</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def bill_vendors(self) -&gt; AccountingResource:
+    &#34;&#34;&#34;FreshBooks bill_vendors resource with calls to get, list, create, update, delete&#34;&#34;&#34;
+    return AccountingResource(
+        self._client_resource_config(), &#34;bill_vendors/bill_vendors&#34;, &#34;bill_vendor&#34;, &#34;bill_vendors&#34;
+    )</code></pre>
+</details>
+</dd>
+<dt id="freshbooks.client.Client.bills"><code class="name">var <span class="ident">bills</span> : <a title="freshbooks.api.accounting.AccountingResource" href="api/accounting.html#freshbooks.api.accounting.AccountingResource">AccountingResource</a></code></dt>
+<dd>
+<div class="desc"><p>FreshBooks bills resource with calls to get, list, create, update, delete</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def bills(self) -&gt; AccountingResource:
+    &#34;&#34;&#34;FreshBooks bills resource with calls to get, list, create, update, delete&#34;&#34;&#34;
+    return AccountingResource(
+        self._client_resource_config(), &#34;bills/bills&#34;, &#34;bill&#34;, &#34;bills&#34;
+    )</code></pre>
+</details>
+</dd>
 <dt id="freshbooks.client.Client.callbacks"><code class="name">var <span class="ident">callbacks</span> : <a title="freshbooks.api.events.EventsResource" href="api/events.html#freshbooks.api.events.EventsResource">EventsResource</a></code></dt>
 <dd>
 <div class="desc"><p>FreshBooks callbacks (webhook callbacks) resource with calls to
@@ -1192,6 +1250,8 @@ in an object.</p>
 <li>
 <h4><code><a title="freshbooks.client.Client" href="#freshbooks.client.Client">Client</a></code></h4>
 <ul class="">
+<li><code><a title="freshbooks.client.Client.bill_vendors" href="#freshbooks.client.Client.bill_vendors">bill_vendors</a></code></li>
+<li><code><a title="freshbooks.client.Client.bills" href="#freshbooks.client.Client.bills">bills</a></code></li>
 <li><code><a title="freshbooks.client.Client.callbacks" href="#freshbooks.client.Client.callbacks">callbacks</a></code></li>
 <li><code><a title="freshbooks.client.Client.clients" href="#freshbooks.client.Client.clients">clients</a></code></li>
 <li><code><a title="freshbooks.client.Client.credit_notes" href="#freshbooks.client.Client.credit_notes">credit_notes</a></code></li>

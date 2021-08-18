@@ -194,6 +194,20 @@ class Client:
     # Accounting Resources
 
     @property
+    def bills(self) -> AccountingResource:
+        """FreshBooks bills resource with calls to get, list, create, update, delete"""
+        return AccountingResource(
+            self._client_resource_config(), "bills/bills", "bill", "bills"
+        )
+
+    @property
+    def bill_vendors(self) -> AccountingResource:
+        """FreshBooks bill_vendors resource with calls to get, list, create, update, delete"""
+        return AccountingResource(
+            self._client_resource_config(), "bill_vendors/bill_vendors", "bill_vendor", "bill_vendors"
+        )
+
+    @property
     def clients(self) -> AccountingResource:
         """FreshBooks clients resource with calls to get, list, create, update, delete"""
         return AccountingResource(self._client_resource_config(), "users/clients", "client", "clients")

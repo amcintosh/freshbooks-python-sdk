@@ -14,6 +14,17 @@ from backports.datetime_fromisoformat import MonkeyPatch  # type: ignore
 # Remove when we drop python 3.6 support
 MonkeyPatch.patch_fromisoformat()
 
+ACCOUNTING_UTC_DATE_FIELDS = {
+    "bill": ["created_at", "updated_at"],
+    "bill_vendor": ["created_at", "updated_at"],
+    "client": ["signup_date"],
+    "tax_defaults": ["created_at", "updated_at"],
+}
+
+
+def _is_accounting_utc_date_field(model_name: Optional[str], field_name: str) -> bool:
+    return model_name in ACCOUNTING_UTC_DATE_FIELDS and field_name in ACCOUNTING_UTC_DATE_FIELDS[model_name]
+
 
 class VisState(IntEnum):
     """Enum of FreshBooks entity vis_status values"""
@@ -74,11 +85,11 @@ class Result:
                 #   designator ("Z") at the end (but are still UTC). Python `fromisoformat`
                 #   doesn't like the "Z", so we strip it.
                 # - Accounting resources return dates in "US/Eastern",
-                #   except the client signup date, which is UTC.
+                #   except the client signup date, and a few new API endpoints, which are UTC.
                 #   These dates are in the format "yyyy-MM-dd HH:mm:ss",
                 #   so we can distinguish them with the absent "T".
                 parsed_date = datetime.fromisoformat(field_data.rstrip("Z"))  # type: ignore
-                if "T" in field_data or (self._name == "client" and field == "signup_date"):
+                if "T" in field_data or _is_accounting_utc_date_field(self._name, field):
                     return parsed_date.replace(tzinfo=timezone.utc)
                 return parsed_date.replace(tzinfo=ZoneInfo("US/Eastern")).astimezone(timezone.utc)
             except ValueError:

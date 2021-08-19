@@ -4,6 +4,7 @@
 
 ## 0.8.0
 
+- Added Bills and Bill Vendors APIs
 - Allow includes for create, updates of accounting resources
 
 ## 0.7.1

@@ -126,6 +126,10 @@ class FilterBuilder(Builder):
 
         The url parameter must be in ISO 8601 format (eg. 2010-10-17T05:45:53Z)
 
+        Example:
+
+        - `filter.date_time("updated_since", "2020-10-17T13:14:07")` will yield `&updated_since=2020-10-17T13:14:07`
+
         Args:
             field: The API response field to filter on
             value: The datetime, or ISO 8601 format string value

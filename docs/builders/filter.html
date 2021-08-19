@@ -154,6 +154,10 @@ class FilterBuilder(Builder):
 
         The url parameter must be in ISO 8601 format (eg. 2010-10-17T05:45:53Z)
 
+        Example:
+
+        - `filter.date_time(&#34;updated_since&#34;, &#34;2020-10-17T13:14:07&#34;)` will yield `&amp;updated_since=2020-10-17T13:14:07`
+
         Args:
             field: The API response field to filter on
             value: The datetime, or ISO 8601 format string value
@@ -405,6 +409,10 @@ FilterBuilder(&amp;search[start_date]=2020-11-21)
 
         The url parameter must be in ISO 8601 format (eg. 2010-10-17T05:45:53Z)
 
+        Example:
+
+        - `filter.date_time(&#34;updated_since&#34;, &#34;2020-10-17T13:14:07&#34;)` will yield `&amp;updated_since=2020-10-17T13:14:07`
+
         Args:
             field: The API response field to filter on
             value: The datetime, or ISO 8601 format string value
@@ -655,6 +663,10 @@ Eg. AccountingResource, ProjectsResource</dd>
 by the field. Eg. "updated_since" on Time Entries will return time entries updated
 after the provided time.</p>
 <p>The url parameter must be in ISO 8601 format (eg. 2010-10-17T05:45:53Z)</p>
+<p>Example:</p>
+<ul>
+<li><code>filter.date_time("updated_since", "2020-10-17T13:14:07")</code> will yield <code>&amp;updated_since=2020-10-17T13:14:07</code></li>
+</ul>
 <h2 id="args">Args</h2>
 <dl>
 <dt><strong><code>field</code></strong></dt>
@@ -674,6 +686,10 @@ after the provided time.</p>
     after the provided time.
 
     The url parameter must be in ISO 8601 format (eg. 2010-10-17T05:45:53Z)
+
+    Example:
+
+    - `filter.date_time(&#34;updated_since&#34;, &#34;2020-10-17T13:14:07&#34;)` will yield `&amp;updated_since=2020-10-17T13:14:07`
 
     Args:
         field: The API response field to filter on

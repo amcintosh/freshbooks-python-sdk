@@ -34,7 +34,7 @@ from typing import Any, Optional, Union
 
 try:
     from zoneinfo import ZoneInfo  # type: ignore
-except ImportError:
+except ImportError:  # pragma: no cover
     from backports.zoneinfo import ZoneInfo  # type: ignore
 
 from backports.datetime_fromisoformat import MonkeyPatch  # type: ignore

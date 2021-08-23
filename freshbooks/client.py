@@ -9,7 +9,7 @@ from requests.models import urlencode  # type: ignore
 
 from freshbooks.api.accounting import AccountingResource
 from freshbooks.api.auth import AuthResource
-from freshbooks.api.comments import CommentsResource
+from freshbooks.api.comments import CommentsResource, CommentsSubResource
 from freshbooks.api.events import EventsResource
 from freshbooks.api.projects import ProjectsResource
 from freshbooks.api.timetracking import TimetrackingResource
@@ -345,3 +345,12 @@ class Client:
     def services(self) -> CommentsResource:
         """FreshBooks services resource with calls to get, list, create, update, delete"""
         return CommentsResource(self._client_resource_config(), "services", "service")
+
+    @property
+    def service_rates(self) -> CommentsSubResource:
+        """FreshBooks service_rates resource with calls to get, list, create, update"""
+        return CommentsSubResource(self._client_resource_config(), "service_rates", "service",
+                                   single_resource_sub_path="rate",
+                                   list_name="service_rates",
+                                   single_name="service_rate",
+                                   missing_endpoints=["delete"])

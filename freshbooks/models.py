@@ -193,6 +193,8 @@ class ListResult:
     def _constructPages(self, data: dict) -> Any:
         if data.get("meta"):  # Project-style endpoint
             data = data["meta"]
+        if not data.get("page"):
+            return None
         page = data["page"]
         pages = data["pages"]
         per_page = data["per_page"]

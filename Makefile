@@ -57,3 +57,5 @@ test:
 		--cov-report=xml:coverage.xml \
 		tests
 	coverage report -m
+
+test-all: test check-style check-types

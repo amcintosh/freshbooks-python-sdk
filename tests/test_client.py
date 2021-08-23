@@ -7,6 +7,7 @@ import pytest
 from freshbooks import Client as FreshBooksClient
 from freshbooks import FreshBooksError
 from freshbooks.api.accounting import AccountingResource
+from freshbooks.api.comments import CommentsResource, CommentsSubResource
 from freshbooks.api.projects import ProjectsResource
 from freshbooks.api.resource import HttpVerbs
 from freshbooks.api.timetracking import TimetrackingResource
@@ -318,7 +319,7 @@ class TestClientResources:
     )
     @patch.object(TimetrackingResource, "_get_url", return_value="some_url")
     def test_timetracking_resource_methods(self, mock_url, resource_name, single_name):
-        """Test general methods on project resources"""
+        """Test general methods on timetracking resources"""
         business_id = 1234
         resource_id = 2345
         resource_ = getattr(self.freshBooksClient, resource_name)
@@ -342,3 +343,69 @@ class TestClientResources:
 
             resource_.delete(business_id, resource_id)
             mock_request.assert_called_with("some_url", HttpVerbs.DELETE)
+
+    @pytest.mark.parametrize(
+        "resource_name, single_name",
+        [
+            ("services", "service"),
+        ]
+    )
+    @patch.object(CommentsResource, "_get_url", return_value="some_url")
+    def test_comment_resource_methods(self, mock_url, resource_name, single_name):
+        """Test general methods on comments resources"""
+        business_id = 1234
+        resource_id = 2345
+        resource_ = getattr(self.freshBooksClient, resource_name)
+
+        list_response = {resource_name: [], "meta": {"page": 1, "pages": 0, "per_page": 15, "total": 0}}
+        single_response = {single_name: {}}
+
+        with patch.object(CommentsResource, "_request", return_value=list_response) as mock_request:
+            resource_.list(business_id)
+            mock_request.assert_called_with("some_url", HttpVerbs.GET)
+
+        with patch.object(CommentsResource, "_request", return_value=single_response) as mock_request:
+            resource_.get(business_id, resource_id)
+            mock_request.assert_called_with("some_url", HttpVerbs.GET)
+
+            resource_.create(business_id, {})
+            mock_request.assert_called_with("some_url", HttpVerbs.POST, data={single_name: {}})
+
+            resource_.update(business_id, resource_id, {})
+            mock_request.assert_called_with("some_url", HttpVerbs.PUT, data={single_name: {}})
+
+            resource_.delete(business_id, resource_id)
+            mock_request.assert_called_with("some_url", HttpVerbs.DELETE)
+
+    @pytest.mark.parametrize(
+        "resource_name, single_name",
+        [
+            ("service_rates", "service_rate")
+        ]
+    )
+    @patch.object(CommentsSubResource, "_get_url", return_value="some_url")
+    def test_comment_subresource_methods(self, mock_url, resource_name, single_name):
+        """Test general methods on comments sub-resources"""
+        business_id = 1234
+        resource_id = 2345
+        resource_ = getattr(self.freshBooksClient, resource_name)
+
+        list_response = {resource_name: [], "meta": {"page": 1, "pages": 0, "per_page": 15, "total": 0}}
+        single_response = {single_name: {}}
+
+        with patch.object(CommentsSubResource, "_request", return_value=list_response) as mock_request:
+            resource_.list(business_id)
+            mock_request.assert_called_with("some_url", HttpVerbs.GET)
+
+        with patch.object(CommentsSubResource, "_request", return_value=single_response) as mock_request:
+            resource_.get(business_id, resource_id)
+            mock_request.assert_called_with("some_url", HttpVerbs.GET)
+
+            resource_.create(business_id, resource_id, {})
+            mock_request.assert_called_with("some_url", HttpVerbs.POST, data={single_name: {}})
+
+            resource_.update(business_id, resource_id, {})
+            mock_request.assert_called_with("some_url", HttpVerbs.PUT, data={single_name: {}})
+
+            with pytest.raises(FreshBooksNotImplementedError):
+                resource_.delete(business_id, resource_id)

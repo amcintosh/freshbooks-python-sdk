@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Added Service Rates resource
+
 ## 0.8.0
 
 - Added Bills and Bill Vendors APIs
@@ -13,7 +15,7 @@
 
 ## 0.7.0
 
-- *BREAKING* `client.current_user` is not a method, not a property for more consistency.
+- (**BREAKING**) `client.current_user` is now a method, not a property for more consistency.
 - Joining of ListResult objects with `__add__` to aid pagination of results, with example in README.
 
 ## 0.6.1

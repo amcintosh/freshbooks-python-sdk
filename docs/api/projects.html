@@ -32,16 +32,17 @@ from typing import Any, List, Optional
 
 from freshbooks.api.resource import HttpVerbs, Resource
 from freshbooks.builders import Builder
-from freshbooks.errors import FreshBooksError
+from freshbooks.errors import FreshBooksError, FreshBooksNotImplementedError
 from freshbooks.models import ListResult, Result
 
 
-class ProjectsResource(Resource):
-    &#34;&#34;&#34;Handles resources under the `/projects` endpoints.&#34;&#34;&#34;
+class ProjectsBaseResource(Resource):
+    &#34;&#34;&#34;Shared project-like response handling&#34;&#34;&#34;
 
     def __init__(self, client_config: SimpleNamespace,
                  list_resource_path: str, single_resource_path: str,
-                 list_name: Optional[str] = None, single_name: Optional[str] = None):
+                 list_name: Optional[str] = None, single_name: Optional[str] = None,
+                 missing_endpoints: Optional[List[str]] = None):
 
         super().__init__(client_config)
         self.list_resource_path = list_resource_path
@@ -54,13 +55,7 @@ class ProjectsResource(Resource):
         if not single_name:  # pragma: no branch
             self.single_name = single_resource_path
 
-    def _get_url(self, business_id: int, resource_id: Optional[int] = None, is_list: Optional[bool] = False) -&gt; str:
-        if resource_id:
-            return &#34;{}/projects/business/{}/{}/{}&#34;.format(
-                self.base_url, business_id, self.single_resource_path, resource_id)
-        if is_list:
-            return &#34;{}/projects/business/{}/{}&#34;.format(self.base_url, business_id, self.list_resource_path)
-        return &#34;{}/projects/business/{}/{}&#34;.format(self.base_url, business_id, self.single_resource_path)
+        self.missing_endpoints = missing_endpoints if missing_endpoints else []
 
     def _request(self, url: str, method: str, data: Optional[dict] = None) -&gt; Any:
         response = self._send_request(url, method, data)
@@ -83,6 +78,22 @@ class ProjectsResource(Resource):
             raise FreshBooksError(status, message, error_code=code, raw_response=content)
         return content
 
+    def _reject_missing(self, name: str) -&gt; None:
+        if name in self.missing_endpoints:
+            raise FreshBooksNotImplementedError(self.list_name or self.list_resource_path, name)
+
+
+class ProjectsResource(ProjectsBaseResource):
+    &#34;&#34;&#34;Handles resources under the `/projects` endpoints.&#34;&#34;&#34;
+
+    def _get_url(self, business_id: int, resource_id: Optional[int] = None, is_list: Optional[bool] = False) -&gt; str:
+        if resource_id:
+            return &#34;{}/projects/business/{}/{}/{}&#34;.format(
+                self.base_url, business_id, self.single_resource_path, resource_id)
+        if is_list:
+            return &#34;{}/projects/business/{}/{}&#34;.format(self.base_url, business_id, self.list_resource_path)
+        return &#34;{}/projects/business/{}/{}&#34;.format(self.base_url, business_id, self.single_resource_path)
+
     def get(self, business_id: int, resource_id: int) -&gt; Result:
         &#34;&#34;&#34;Get a single resource with the corresponding id.
 
@@ -95,6 +106,7 @@ class ProjectsResource(Resource):
         Raises:
             FreshBooksError: If the call is not successful.
         &#34;&#34;&#34;
+        self._reject_missing(&#34;get&#34;)
         data = self._request(self._get_url(business_id, resource_id), HttpVerbs.GET)
         return Result(self.single_name, data)
 
@@ -111,6 +123,7 @@ class ProjectsResource(Resource):
         Raises:
             FreshBooksError: If the call is not successful.
         &#34;&#34;&#34;
+        self._reject_missing(&#34;list&#34;)
         resource_url = self._get_url(business_id, is_list=True)
         query_string = self._build_query_string(builders)
         data = self._request(f&#34;{resource_url}{query_string}&#34;, HttpVerbs.GET)
@@ -129,6 +142,7 @@ class ProjectsResource(Resource):
         Raises:
             FreshBooksError: If the call is not successful.
         &#34;&#34;&#34;
+        self._reject_missing(&#34;create&#34;)
         response = self._request(self._get_url(business_id), HttpVerbs.POST, data={self.single_name: data})
         return Result(self.single_name, response)
 
@@ -146,6 +160,7 @@ class ProjectsResource(Resource):
         Raises:
             FreshBooksError: If the call is not successful.
         &#34;&#34;&#34;
+        self._reject_missing(&#34;update&#34;)
         response = self._request(
             self._get_url(business_id, resource_id), HttpVerbs.PUT, data={self.single_name: data}
         )
@@ -167,6 +182,7 @@ class ProjectsResource(Resource):
         Raises:
             FreshBooksError: If the call is not successful.
         &#34;&#34;&#34;
+        self._reject_missing(&#34;delete&#34;)
         response = self._request(self._get_url(business_id, resource_id), HttpVerbs.DELETE)
         return Result(self.single_name, response)</code></pre>
 </details>
@@ -180,22 +196,23 @@ class ProjectsResource(Resource):
 <section>
 <h2 class="section-title" id="header-classes">Classes</h2>
 <dl>
-<dt id="freshbooks.api.projects.ProjectsResource"><code class="flex name class">
-<span>class <span class="ident">ProjectsResource</span></span>
-<span>(</span><span>client_config: types.SimpleNamespace, list_resource_path: str, single_resource_path: str, list_name: Optional[str] = None, single_name: Optional[str] = None)</span>
+<dt id="freshbooks.api.projects.ProjectsBaseResource"><code class="flex name class">
+<span>class <span class="ident">ProjectsBaseResource</span></span>
+<span>(</span><span>client_config: types.SimpleNamespace, list_resource_path: str, single_resource_path: str, list_name: Optional[str] = None, single_name: Optional[str] = None, missing_endpoints: Optional[List[str]] = None)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Handles resources under the <code>/projects</code> endpoints.</p></div>
+<div class="desc"><p>Shared project-like response handling</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">class ProjectsResource(Resource):
-    &#34;&#34;&#34;Handles resources under the `/projects` endpoints.&#34;&#34;&#34;
+<pre><code class="python">class ProjectsBaseResource(Resource):
+    &#34;&#34;&#34;Shared project-like response handling&#34;&#34;&#34;
 
     def __init__(self, client_config: SimpleNamespace,
                  list_resource_path: str, single_resource_path: str,
-                 list_name: Optional[str] = None, single_name: Optional[str] = None):
+                 list_name: Optional[str] = None, single_name: Optional[str] = None,
+                 missing_endpoints: Optional[List[str]] = None):
 
         super().__init__(client_config)
         self.list_resource_path = list_resource_path
@@ -208,13 +225,7 @@ class ProjectsResource(Resource):
         if not single_name:  # pragma: no branch
             self.single_name = single_resource_path
 
-    def _get_url(self, business_id: int, resource_id: Optional[int] = None, is_list: Optional[bool] = False) -&gt; str:
-        if resource_id:
-            return &#34;{}/projects/business/{}/{}/{}&#34;.format(
-                self.base_url, business_id, self.single_resource_path, resource_id)
-        if is_list:
-            return &#34;{}/projects/business/{}/{}&#34;.format(self.base_url, business_id, self.list_resource_path)
-        return &#34;{}/projects/business/{}/{}&#34;.format(self.base_url, business_id, self.single_resource_path)
+        self.missing_endpoints = missing_endpoints if missing_endpoints else []
 
     def _request(self, url: str, method: str, data: Optional[dict] = None) -&gt; Any:
         response = self._send_request(url, method, data)
@@ -237,6 +248,41 @@ class ProjectsResource(Resource):
             raise FreshBooksError(status, message, error_code=code, raw_response=content)
         return content
 
+    def _reject_missing(self, name: str) -&gt; None:
+        if name in self.missing_endpoints:
+            raise FreshBooksNotImplementedError(self.list_name or self.list_resource_path, name)</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>freshbooks.api.resource.Resource</li>
+</ul>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="freshbooks.api.comments.CommentsSubResource" href="comments.html#freshbooks.api.comments.CommentsSubResource">CommentsSubResource</a></li>
+<li><a title="freshbooks.api.projects.ProjectsResource" href="#freshbooks.api.projects.ProjectsResource">ProjectsResource</a></li>
+</ul>
+</dd>
+<dt id="freshbooks.api.projects.ProjectsResource"><code class="flex name class">
+<span>class <span class="ident">ProjectsResource</span></span>
+<span>(</span><span>client_config: types.SimpleNamespace, list_resource_path: str, single_resource_path: str, list_name: Optional[str] = None, single_name: Optional[str] = None, missing_endpoints: Optional[List[str]] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Handles resources under the <code>/projects</code> endpoints.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ProjectsResource(ProjectsBaseResource):
+    &#34;&#34;&#34;Handles resources under the `/projects` endpoints.&#34;&#34;&#34;
+
+    def _get_url(self, business_id: int, resource_id: Optional[int] = None, is_list: Optional[bool] = False) -&gt; str:
+        if resource_id:
+            return &#34;{}/projects/business/{}/{}/{}&#34;.format(
+                self.base_url, business_id, self.single_resource_path, resource_id)
+        if is_list:
+            return &#34;{}/projects/business/{}/{}&#34;.format(self.base_url, business_id, self.list_resource_path)
+        return &#34;{}/projects/business/{}/{}&#34;.format(self.base_url, business_id, self.single_resource_path)
+
     def get(self, business_id: int, resource_id: int) -&gt; Result:
         &#34;&#34;&#34;Get a single resource with the corresponding id.
 
@@ -249,6 +295,7 @@ class ProjectsResource(Resource):
         Raises:
             FreshBooksError: If the call is not successful.
         &#34;&#34;&#34;
+        self._reject_missing(&#34;get&#34;)
         data = self._request(self._get_url(business_id, resource_id), HttpVerbs.GET)
         return Result(self.single_name, data)
 
@@ -265,6 +312,7 @@ class ProjectsResource(Resource):
         Raises:
             FreshBooksError: If the call is not successful.
         &#34;&#34;&#34;
+        self._reject_missing(&#34;list&#34;)
         resource_url = self._get_url(business_id, is_list=True)
         query_string = self._build_query_string(builders)
         data = self._request(f&#34;{resource_url}{query_string}&#34;, HttpVerbs.GET)
@@ -283,6 +331,7 @@ class ProjectsResource(Resource):
         Raises:
             FreshBooksError: If the call is not successful.
         &#34;&#34;&#34;
+        self._reject_missing(&#34;create&#34;)
         response = self._request(self._get_url(business_id), HttpVerbs.POST, data={self.single_name: data})
         return Result(self.single_name, response)
 
@@ -300,6 +349,7 @@ class ProjectsResource(Resource):
         Raises:
             FreshBooksError: If the call is not successful.
         &#34;&#34;&#34;
+        self._reject_missing(&#34;update&#34;)
         response = self._request(
             self._get_url(business_id, resource_id), HttpVerbs.PUT, data={self.single_name: data}
         )
@@ -321,11 +371,13 @@ class ProjectsResource(Resource):
         Raises:
             FreshBooksError: If the call is not successful.
         &#34;&#34;&#34;
+        self._reject_missing(&#34;delete&#34;)
         response = self._request(self._get_url(business_id, resource_id), HttpVerbs.DELETE)
         return Result(self.single_name, response)</code></pre>
 </details>
 <h3>Ancestors</h3>
 <ul class="hlist">
+<li><a title="freshbooks.api.projects.ProjectsBaseResource" href="#freshbooks.api.projects.ProjectsBaseResource">ProjectsBaseResource</a></li>
 <li>freshbooks.api.resource.Resource</li>
 </ul>
 <h3>Subclasses</h3>
@@ -374,6 +426,7 @@ class ProjectsResource(Resource):
     Raises:
         FreshBooksError: If the call is not successful.
     &#34;&#34;&#34;
+    self._reject_missing(&#34;create&#34;)
     response = self._request(self._get_url(business_id), HttpVerbs.POST, data={self.single_name: data})
     return Result(self.single_name, response)</code></pre>
 </details>
@@ -422,6 +475,7 @@ See <a href="https://www.freshbooks.com/api/active_deleted">FreshBooks API - Act
     Raises:
         FreshBooksError: If the call is not successful.
     &#34;&#34;&#34;
+    self._reject_missing(&#34;delete&#34;)
     response = self._request(self._get_url(business_id, resource_id), HttpVerbs.DELETE)
     return Result(self.single_name, response)</code></pre>
 </details>
@@ -464,6 +518,7 @@ See <a href="https://www.freshbooks.com/api/active_deleted">FreshBooks API - Act
     Raises:
         FreshBooksError: If the call is not successful.
     &#34;&#34;&#34;
+    self._reject_missing(&#34;get&#34;)
     data = self._request(self._get_url(business_id, resource_id), HttpVerbs.GET)
     return Result(self.single_name, data)</code></pre>
 </details>
@@ -507,6 +562,7 @@ See <a href="https://www.freshbooks.com/api/active_deleted">FreshBooks API - Act
     Raises:
         FreshBooksError: If the call is not successful.
     &#34;&#34;&#34;
+    self._reject_missing(&#34;list&#34;)
     resource_url = self._get_url(business_id, is_list=True)
     query_string = self._build_query_string(builders)
     data = self._request(f&#34;{resource_url}{query_string}&#34;, HttpVerbs.GET)
@@ -555,6 +611,7 @@ See <a href="https://www.freshbooks.com/api/active_deleted">FreshBooks API - Act
     Raises:
         FreshBooksError: If the call is not successful.
     &#34;&#34;&#34;
+    self._reject_missing(&#34;update&#34;)
     response = self._request(
         self._get_url(business_id, resource_id), HttpVerbs.PUT, data={self.single_name: data}
     )
@@ -579,6 +636,9 @@ See <a href="https://www.freshbooks.com/api/active_deleted">FreshBooks API - Act
 </li>
 <li><h3><a href="#header-classes">Classes</a></h3>
 <ul>
+<li>
+<h4><code><a title="freshbooks.api.projects.ProjectsBaseResource" href="#freshbooks.api.projects.ProjectsBaseResource">ProjectsBaseResource</a></code></h4>
+</li>
 <li>
 <h4><code><a title="freshbooks.api.projects.ProjectsResource" href="#freshbooks.api.projects.ProjectsResource">ProjectsResource</a></code></h4>
 <ul class="">

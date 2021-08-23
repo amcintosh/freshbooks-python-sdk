@@ -221,6 +221,8 @@ class ListResult:
     def _constructPages(self, data: dict) -&gt; Any:
         if data.get(&#34;meta&#34;):  # Project-style endpoint
             data = data[&#34;meta&#34;]
+        if not data.get(&#34;page&#34;):
+            return None
         page = data[&#34;page&#34;]
         pages = data[&#34;pages&#34;]
         per_page = data[&#34;per_page&#34;]
@@ -504,6 +506,8 @@ PageResult(page=1, pages=1, per_page=30, total=6)
     def _constructPages(self, data: dict) -&gt; Any:
         if data.get(&#34;meta&#34;):  # Project-style endpoint
             data = data[&#34;meta&#34;]
+        if not data.get(&#34;page&#34;):
+            return None
         page = data[&#34;page&#34;]
         pages = data[&#34;pages&#34;]
         per_page = data[&#34;per_page&#34;]

@@ -57,7 +57,7 @@ class TimetrackingResource(ProjectsResource):
 <dl>
 <dt id="freshbooks.api.timetracking.TimetrackingResource"><code class="flex name class">
 <span>class <span class="ident">TimetrackingResource</span></span>
-<span>(</span><span>client_config: types.SimpleNamespace, list_resource_path: str, single_resource_path: str, list_name: Optional[str] = None, single_name: Optional[str] = None)</span>
+<span>(</span><span>client_config: types.SimpleNamespace, list_resource_path: str, single_resource_path: str, list_name: Optional[str] = None, single_name: Optional[str] = None, missing_endpoints: Optional[List[str]] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Handles resources under the <code>/timetracking</code> endpoints.</p>
@@ -85,6 +85,7 @@ Refer to <code><a title="freshbooks.api.projects.ProjectsResource" href="project
 <h3>Ancestors</h3>
 <ul class="hlist">
 <li><a title="freshbooks.api.projects.ProjectsResource" href="projects.html#freshbooks.api.projects.ProjectsResource">ProjectsResource</a></li>
+<li><a title="freshbooks.api.projects.ProjectsBaseResource" href="projects.html#freshbooks.api.projects.ProjectsBaseResource">ProjectsBaseResource</a></li>
 <li>freshbooks.api.resource.Resource</li>
 </ul>
 <h3>Inherited members</h3>

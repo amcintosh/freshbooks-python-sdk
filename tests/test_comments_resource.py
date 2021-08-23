@@ -158,7 +158,6 @@ class TestCommentsSubResources:
         assert httpretty.last_request().headers["Authorization"] == "Bearer some_token"
         assert httpretty.last_request().headers["Content-Type"] is None
 
-
     @httpretty.activate
     def test_create_service_rate(self):
         service_id = 12345

@@ -133,6 +133,7 @@ class TestClientResources:
         "resource_name, single_name, delete_via_update",
         [
             ("bills", "bill", True),
+            ("bill_payments", "bill_payment", True),
             ("bill_vendors", "bill_vendor", True),
             ("clients", "client", True),
             ("credit_notes", "credit_note", True),

@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Added Bill Payments resource
 - Added Service Rates resource
 
 ## 0.8.0

@@ -18,7 +18,11 @@ from tests import get_fixture
 
 class TestClientAuth:
     def setup_method(self, method):
-        self.freshBooksClient = FreshBooksClient(client_id="some_client", redirect_uri="https://example.com")
+        self.freshBooksClient = FreshBooksClient(
+            client_id="some_client",
+            client_secret="some_secret",
+            redirect_uri="https://example.com"
+        )
 
     def test_get_auth_request_url(self):
         auth_url = self.freshBooksClient.get_auth_request_url()
@@ -37,6 +41,12 @@ class TestClientAuth:
         )
 
     @httpretty.activate
+    def test_get_auth_request_url__redirect_not_provided(self):
+        freshBooksClient = FreshBooksClient(client_id="some_client", client_secret="some_secret")
+        with pytest.raises(FreshBooksClientConfigError):
+            freshBooksClient.get_auth_request_url()
+
+    @httpretty.activate
     def test_get_access_token(self):
         url = "{}/auth/oauth/token".format(API_BASE_URL)
         httpretty.register_uri(
@@ -49,7 +59,7 @@ class TestClientAuth:
         result = self.freshBooksClient.get_access_token("some_grant")
 
         assert httpretty.last_request().body == (
-            "client_id=some_client&grant_type=authorization_code"
+            "client_id=some_client&client_secret=some_secret&grant_type=authorization_code"
             "&redirect_uri=https%3A%2F%2Fexample.com&code=some_grant").encode("utf-8")
         assert self.freshBooksClient.access_token == "my_access_token"
         assert result.access_token == "my_access_token"
@@ -70,9 +80,22 @@ class TestClientAuth:
             assert e.status_code == 500
 
     @httpretty.activate
+    def test_get_access_token__secret_not_provided(self):
+        freshBooksClient = FreshBooksClient(client_id="some_client", redirect_uri="https://example.com")
+        with pytest.raises(FreshBooksClientConfigError):
+            freshBooksClient.get_access_token("some_grant")
+
+    @httpretty.activate
+    def test_get_access_token__redirect_not_provided(self):
+        freshBooksClient = FreshBooksClient(client_id="some_client", client_secret="some_secret")
+        with pytest.raises(FreshBooksClientConfigError):
+            freshBooksClient.get_access_token("some_grant")
+
+    @httpretty.activate
     def test_get_refresh_token(self):
         self.freshBooksClient = FreshBooksClient(
             client_id="some_client",
+            client_secret="some_secret",
             redirect_uri="https://example.com",
             access_token="an_old_token",
             refresh_token="an_old_refresh_token"
@@ -88,7 +111,7 @@ class TestClientAuth:
         result = self.freshBooksClient.refresh_access_token()
 
         assert httpretty.last_request().body == (
-            "client_id=some_client&grant_type=refresh_token"
+            "client_id=some_client&client_secret=some_secret&grant_type=refresh_token"
             "&redirect_uri=https%3A%2F%2Fexample.com&refresh_token=an_old_refresh_token").encode("utf-8")
         assert self.freshBooksClient.access_token == "my_access_token"
         assert result.access_token == "my_access_token"
@@ -110,7 +133,7 @@ class TestClientAuth:
         result = self.freshBooksClient.refresh_access_token("an_old_refresh_token")
 
         assert httpretty.last_request().body == (
-            "client_id=some_client&grant_type=refresh_token"
+            "client_id=some_client&client_secret=some_secret&grant_type=refresh_token"
             "&redirect_uri=https%3A%2F%2Fexample.com&refresh_token=an_old_refresh_token").encode("utf-8")
         assert self.freshBooksClient.access_token == "my_access_token"
         assert result.access_token == "my_access_token"

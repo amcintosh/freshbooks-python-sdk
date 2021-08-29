@@ -105,7 +105,12 @@ class Client:
 
         Returns:
             The URL for the authorization request
+
+        Raises:
+            FreshBooksClientConfigError: If redirect_uri is not set on the client instance.
         """
+        if not self.redirect_uri:
+            raise FreshBooksClientConfigError("redirect_uri must be configured")
         params = {
             "client_id": self.client_id,
             "response_type": "code",
@@ -117,7 +122,23 @@ class Client:
         return f"{self.authorization_url}?{formatted_params}"
 
     def _authorize_call(self, grant_type: str, code_type: str, code: str) -> SimpleNamespace:
-        """Shared logic for making access_token and refresh_token calls"""
+        """Shared logic for making access_token and refresh_token calls
+
+        Args:
+            grant_type: The grant type to use
+            code_type: The type of code to use
+            code: The code to use
+
+        Returns:
+            A SimpleNamespace containing the access toekn, refresh token, and expiry datetime
+
+        Raises:
+            FreshBooksClientConfigError: If client_secret and redirect_uri are not set on the client instance.
+        """
+        if not self.redirect_uri:
+            raise FreshBooksClientConfigError("redirect_uri must be configured")
+        if not self.client_secret:
+            raise FreshBooksClientConfigError("client_secret must be configured")
         payload = {
             "client_id": self.client_id,
             "client_secret": self.client_secret,
@@ -155,6 +176,11 @@ class Client:
 
         Returns:
             Simple namespace containing `access_token`, `refresh_token`, and `access_token_expires_at`
+
+        Raises:
+            FreshBooksError: If the call fails to return a access token.
+            FreshBooksClientConfigError: If client_secret and redirect_uri are not set on the client instance.
+
         """
         return self._authorize_call("authorization_code", "code", code)
 
@@ -175,11 +201,11 @@ class Client:
             Simple namespace containing `access_token`, `refresh_token`, and `access_token_expires_at`
 
         Raises:
-            FreshBooksClientConfigError: If a refresh token is not set on the client instance and is not provided.
+            FreshBooksClientConfigError: If refresh_token is not set on the client instance and is not provided.
         """
         refresh_token = refresh_token or self.refresh_token
         if not refresh_token:
-            raise FreshBooksClientConfigError("refresh_token required")
+            raise FreshBooksClientConfigError("refresh_token must be configured or provided")
         return self._authorize_call("refresh_token", "refresh_token", refresh_token)
 
     # Auth Resources

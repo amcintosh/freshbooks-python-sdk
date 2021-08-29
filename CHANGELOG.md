@@ -4,6 +4,7 @@
 
 - Added Bill Payments resource
 - Added Service Rates resource
+- Additional configuration validation
 
 ## 0.8.0
 

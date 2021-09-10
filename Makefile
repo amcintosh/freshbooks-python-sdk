@@ -55,6 +55,7 @@ test:
 		--cov=freshbooks \
 		--cov-branch \
 		--cov-report=xml:coverage.xml \
+		--cov-config=setup.cfg \
 		tests
 	coverage report -m
 

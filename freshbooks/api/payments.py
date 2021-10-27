@@ -21,7 +21,7 @@ class PaymentsResource(Resource):
         self.sub_path = sub_path
         self.defaults_path = defaults_path
         self.static_params = static_params
-        self.missing_endpoints = missing_endpoints if missing_endpoints else []
+        self.missing_endpoints = missing_endpoints or []
 
     def _get_url(self, account_id: str, resource_id: Optional[int] = None) -> str:
         if resource_id and self.sub_path:

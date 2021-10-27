@@ -20,7 +20,7 @@ class AccountingResource(Resource):
         self.single_name = single_name
         self.list_name = list_name
         self.delete_via_update = delete_via_update
-        self.missing_endpoints = missing_endpoints if missing_endpoints else []
+        self.missing_endpoints = missing_endpoints or []
 
     def _get_url(self, account_id: str, resource_id: Optional[int] = None) -> str:
         if resource_id:

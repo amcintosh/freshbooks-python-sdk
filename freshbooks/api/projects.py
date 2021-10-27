@@ -27,7 +27,7 @@ class ProjectsBaseResource(Resource):
         if not single_name:  # pragma: no branch
             self.single_name = single_resource_path
 
-        self.missing_endpoints = missing_endpoints if missing_endpoints else []
+        self.missing_endpoints = missing_endpoints or []
 
     def _request(self, url: str, method: str, data: Optional[dict] = None) -> Any:
         response = self._send_request(url, method, data)

@@ -39,6 +39,7 @@ from freshbooks.api.accounting import AccountingResource
 from freshbooks.api.auth import AuthResource
 from freshbooks.api.comments import CommentsResource, CommentsSubResource
 from freshbooks.api.events import EventsResource
+from freshbooks.api.payments import PaymentsResource
 from freshbooks.api.projects import ProjectsResource
 from freshbooks.api.timetracking import TimetrackingResource
 from freshbooks.errors import FreshBooksError, FreshBooksClientConfigError
@@ -414,7 +415,18 @@ class Client:
                                    single_resource_sub_path=&#34;rate&#34;,
                                    list_name=&#34;service_rates&#34;,
                                    single_name=&#34;service_rate&#34;,
-                                   missing_endpoints=[&#34;delete&#34;])</code></pre>
+                                   missing_endpoints=[&#34;delete&#34;])
+
+    # Payments Resources
+
+    @property
+    def invoice_payment_options(self) -&gt; PaymentsResource:
+        &#34;&#34;&#34;FreshBooks default payment options resource with calls to defaults, get, create&#34;&#34;&#34;
+        return PaymentsResource(self._client_resource_config(), &#34;invoice&#34;, &#34;payment_options&#34;,
+                                sub_path=&#34;payment_options&#34;,
+                                defaults_path=&#34;payment_options&#34;,
+                                static_params=&#34;entity_type=invoice&#34;,
+                                missing_endpoints=[&#34;list&#34;, &#34;update&#34;, &#34;delete&#34;])</code></pre>
 </details>
 </section>
 <section>
@@ -824,7 +836,18 @@ to specify a <code>client_secret</code> (though the token cannot be refreshed in
                                    single_resource_sub_path=&#34;rate&#34;,
                                    list_name=&#34;service_rates&#34;,
                                    single_name=&#34;service_rate&#34;,
-                                   missing_endpoints=[&#34;delete&#34;])</code></pre>
+                                   missing_endpoints=[&#34;delete&#34;])
+
+    # Payments Resources
+
+    @property
+    def invoice_payment_options(self) -&gt; PaymentsResource:
+        &#34;&#34;&#34;FreshBooks default payment options resource with calls to defaults, get, create&#34;&#34;&#34;
+        return PaymentsResource(self._client_resource_config(), &#34;invoice&#34;, &#34;payment_options&#34;,
+                                sub_path=&#34;payment_options&#34;,
+                                defaults_path=&#34;payment_options&#34;,
+                                static_params=&#34;entity_type=invoice&#34;,
+                                missing_endpoints=[&#34;list&#34;, &#34;update&#34;, &#34;delete&#34;])</code></pre>
 </details>
 <h3>Instance variables</h3>
 <dl>
@@ -977,6 +1000,23 @@ def gateways(self) -&gt; AccountingResource:
         self._client_resource_config(), &#34;systems/gateways&#34;, &#34;gateway&#34;, &#34;gateways&#34;, delete_via_update=False,
         missing_endpoints=[&#34;create&#34;, &#34;update&#34;, &#34;get&#34;]
     )</code></pre>
+</details>
+</dd>
+<dt id="freshbooks.client.Client.invoice_payment_options"><code class="name">var <span class="ident">invoice_payment_options</span> : <a title="freshbooks.api.payments.PaymentsResource" href="api/payments.html#freshbooks.api.payments.PaymentsResource">PaymentsResource</a></code></dt>
+<dd>
+<div class="desc"><p>FreshBooks default payment options resource with calls to defaults, get, create</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def invoice_payment_options(self) -&gt; PaymentsResource:
+    &#34;&#34;&#34;FreshBooks default payment options resource with calls to defaults, get, create&#34;&#34;&#34;
+    return PaymentsResource(self._client_resource_config(), &#34;invoice&#34;, &#34;payment_options&#34;,
+                            sub_path=&#34;payment_options&#34;,
+                            defaults_path=&#34;payment_options&#34;,
+                            static_params=&#34;entity_type=invoice&#34;,
+                            missing_endpoints=[&#34;list&#34;, &#34;update&#34;, &#34;delete&#34;])</code></pre>
 </details>
 </dd>
 <dt id="freshbooks.client.Client.invoice_profiles"><code class="name">var <span class="ident">invoice_profiles</span> : <a title="freshbooks.api.accounting.AccountingResource" href="api/accounting.html#freshbooks.api.accounting.AccountingResource">AccountingResource</a></code></dt>
@@ -1401,6 +1441,7 @@ in an object.</p>
 <li><code><a title="freshbooks.client.Client.gateways" href="#freshbooks.client.Client.gateways">gateways</a></code></li>
 <li><code><a title="freshbooks.client.Client.get_access_token" href="#freshbooks.client.Client.get_access_token">get_access_token</a></code></li>
 <li><code><a title="freshbooks.client.Client.get_auth_request_url" href="#freshbooks.client.Client.get_auth_request_url">get_auth_request_url</a></code></li>
+<li><code><a title="freshbooks.client.Client.invoice_payment_options" href="#freshbooks.client.Client.invoice_payment_options">invoice_payment_options</a></code></li>
 <li><code><a title="freshbooks.client.Client.invoice_profiles" href="#freshbooks.client.Client.invoice_profiles">invoice_profiles</a></code></li>
 <li><code><a title="freshbooks.client.Client.invoices" href="#freshbooks.client.Client.invoices">invoices</a></code></li>
 <li><code><a title="freshbooks.client.Client.items" href="#freshbooks.client.Client.items">items</a></code></li>

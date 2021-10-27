@@ -11,6 +11,7 @@ from freshbooks.api.accounting import AccountingResource
 from freshbooks.api.auth import AuthResource
 from freshbooks.api.comments import CommentsResource, CommentsSubResource
 from freshbooks.api.events import EventsResource
+from freshbooks.api.payments import PaymentsResource
 from freshbooks.api.projects import ProjectsResource
 from freshbooks.api.timetracking import TimetrackingResource
 from freshbooks.errors import FreshBooksError, FreshBooksClientConfigError
@@ -387,3 +388,14 @@ class Client:
                                    list_name="service_rates",
                                    single_name="service_rate",
                                    missing_endpoints=["delete"])
+
+    # Payments Resources
+
+    @property
+    def invoice_payment_options(self) -> PaymentsResource:
+        """FreshBooks default payment options resource with calls to defaults, get, create"""
+        return PaymentsResource(self._client_resource_config(), "invoice", "payment_options",
+                                sub_path="payment_options",
+                                defaults_path="payment_options",
+                                static_params="entity_type=invoice",
+                                missing_endpoints=["list", "update", "delete"])

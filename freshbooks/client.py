@@ -20,7 +20,7 @@ from freshbooks.models import Identity
 API_BASE_URL = "https://api.freshbooks.com"
 API_TOKEN_URL = "auth/oauth/token"
 AUTH_BASE_URL = "https://auth.freshbooks.com"
-AUTH_URL = "/service/auth/oauth/authorize"
+AUTH_URL = "oauth/authorize"
 DEFAULT_TIMEOUT = 30
 """Default request timeout to FreshBooks"""
 
@@ -65,8 +65,8 @@ class Client:
         self.auto_retry = auto_retry
 
         self.base_url = os.getenv("FRESHBOOKS_API_URL", API_BASE_URL)
-        self.authorization_url = "{}{}".format(os.getenv("FRESHBOOKS_AUTH_URL", AUTH_BASE_URL), AUTH_URL)
-        self.token_url = "{}{}".format(os.getenv("FRESHBOOKS_AUTH_URL", AUTH_BASE_URL), AUTH_URL)
+        self.authorization_url = "{}/{}".format(os.getenv("FRESHBOOKS_AUTH_URL", AUTH_BASE_URL), AUTH_URL)
+        self.token_url = "{}/{}".format(os.getenv("FRESHBOOKS_API_URL", API_BASE_URL), API_TOKEN_URL)
 
         if user_agent:
             self.user_agent = user_agent
@@ -147,7 +147,7 @@ class Client:
             "redirect_uri": self.redirect_uri,
             code_type: code
         }
-        response = requests.post(f"{self.base_url}/{API_TOKEN_URL}", payload, timeout=self.timeout)
+        response = requests.post(self.token_url, payload, timeout=self.timeout)
         content = response.json()
         try:
             self.access_token = content["access_token"]

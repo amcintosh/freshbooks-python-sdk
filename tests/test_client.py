@@ -27,7 +27,7 @@ class TestClientAuth:
     def test_get_auth_request_url(self):
         auth_url = self.freshBooksClient.get_auth_request_url()
         assert (
-            auth_url == "https://auth.freshbooks.com/service/auth/oauth/authorize?"
+            auth_url == "https://auth.freshbooks.com/oauth/authorize?"
             "client_id=some_client&response_type=code&redirect_uri=https%3A%2F%2Fexample.com"
         )
 
@@ -35,7 +35,7 @@ class TestClientAuth:
         scopes = ["some:scope", "another:scope"]
         auth_url = self.freshBooksClient.get_auth_request_url(scopes)
         assert (
-            auth_url == "https://auth.freshbooks.com/service/auth/oauth/authorize?"
+            auth_url == "https://auth.freshbooks.com/oauth/authorize?"
             "client_id=some_client&response_type=code&redirect_uri=https%3A%2F%2Fexample.com"
             "&scope=some%3Ascope+another%3Ascope"
         )

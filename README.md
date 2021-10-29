@@ -53,9 +53,15 @@ around them. See the [FreshBooks API - Authentication](https://www.freshbooks.co
 
 First, instantiate your Client with `client_id`, `client_secret`, and `redirect_uri` as above.
 
-To get an access token, the user must first authorize your application. This can be done by sending
-the user to the FreshBooks authorization page. Once the user has clicked accept there, they will be
-redirected to your `redirect_uri` with an access grant code. The authorization URL can be obtained by calling `freshBooksClient.get_auth_request_url()`.
+To get an access token, the user must first authorize your application. This can be done by sending the user to
+the FreshBooks authorization page. Once the user has clicked accept there, they will be redirected to your
+`redirect_uri` with an access grant code. The authorization URL can be obtained by calling
+`freshBooksClient.get_auth_request_url()`. This method also accepts a list of scopes that you wish the user to
+authorize your application for.
+
+```python
+auth_url = freshBooksClient.get_auth_request_url(['user:profile:read', 'user:clients:read'])
+```
 
 Once the user has been redirected to your `redirect_uri` and you have obtained the access grant code, you can exchange that code for a valid access token.
 

@@ -48,7 +48,7 @@ from freshbooks.models import Identity
 API_BASE_URL = &#34;https://api.freshbooks.com&#34;
 API_TOKEN_URL = &#34;auth/oauth/token&#34;
 AUTH_BASE_URL = &#34;https://auth.freshbooks.com&#34;
-AUTH_URL = &#34;/service/auth/oauth/authorize&#34;
+AUTH_URL = &#34;oauth/authorize&#34;
 DEFAULT_TIMEOUT = 30
 &#34;&#34;&#34;Default request timeout to FreshBooks&#34;&#34;&#34;
 
@@ -93,8 +93,8 @@ class Client:
         self.auto_retry = auto_retry
 
         self.base_url = os.getenv(&#34;FRESHBOOKS_API_URL&#34;, API_BASE_URL)
-        self.authorization_url = &#34;{}{}&#34;.format(os.getenv(&#34;FRESHBOOKS_AUTH_URL&#34;, AUTH_BASE_URL), AUTH_URL)
-        self.token_url = &#34;{}{}&#34;.format(os.getenv(&#34;FRESHBOOKS_AUTH_URL&#34;, AUTH_BASE_URL), AUTH_URL)
+        self.authorization_url = &#34;{}/{}&#34;.format(os.getenv(&#34;FRESHBOOKS_AUTH_URL&#34;, AUTH_BASE_URL), AUTH_URL)
+        self.token_url = &#34;{}/{}&#34;.format(os.getenv(&#34;FRESHBOOKS_API_URL&#34;, API_BASE_URL), API_TOKEN_URL)
 
         if user_agent:
             self.user_agent = user_agent
@@ -175,7 +175,7 @@ class Client:
             &#34;redirect_uri&#34;: self.redirect_uri,
             code_type: code
         }
-        response = requests.post(f&#34;{self.base_url}/{API_TOKEN_URL}&#34;, payload, timeout=self.timeout)
+        response = requests.post(self.token_url, payload, timeout=self.timeout)
         content = response.json()
         try:
             self.access_token = content[&#34;access_token&#34;]
@@ -514,8 +514,8 @@ to specify a <code>client_secret</code> (though the token cannot be refreshed in
         self.auto_retry = auto_retry
 
         self.base_url = os.getenv(&#34;FRESHBOOKS_API_URL&#34;, API_BASE_URL)
-        self.authorization_url = &#34;{}{}&#34;.format(os.getenv(&#34;FRESHBOOKS_AUTH_URL&#34;, AUTH_BASE_URL), AUTH_URL)
-        self.token_url = &#34;{}{}&#34;.format(os.getenv(&#34;FRESHBOOKS_AUTH_URL&#34;, AUTH_BASE_URL), AUTH_URL)
+        self.authorization_url = &#34;{}/{}&#34;.format(os.getenv(&#34;FRESHBOOKS_AUTH_URL&#34;, AUTH_BASE_URL), AUTH_URL)
+        self.token_url = &#34;{}/{}&#34;.format(os.getenv(&#34;FRESHBOOKS_API_URL&#34;, API_BASE_URL), API_TOKEN_URL)
 
         if user_agent:
             self.user_agent = user_agent
@@ -596,7 +596,7 @@ to specify a <code>client_secret</code> (though the token cannot be refreshed in
             &#34;redirect_uri&#34;: self.redirect_uri,
             code_type: code
         }
-        response = requests.post(f&#34;{self.base_url}/{API_TOKEN_URL}&#34;, payload, timeout=self.timeout)
+        response = requests.post(self.token_url, payload, timeout=self.timeout)
         content = response.json()
         try:
             self.access_token = content[&#34;access_token&#34;]

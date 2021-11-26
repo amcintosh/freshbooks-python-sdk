@@ -22,8 +22,8 @@ generate-docs:
 	rm -rf docs/freshbooks/
 
 tag:
-	@if [ "$(BRANCH_NAME)" != "master" ]; then \
-		echo "You must be on master to update the version"; \
+	@if [ "$(BRANCH_NAME)" != "main" ]; then \
+		echo "You must be on main to update the version"; \
 		exit 1; \
 	fi;
 	@if [ "$(VERSION_PART)" = '' ]; then \
@@ -34,13 +34,13 @@ tag:
 	./scripts/update_changelog.sh $(VERSION_PART)
 	git add CHANGELOG.md && \
 	git commit -m "🔖 Update CHANGELOG for release" && \
-	git push origin master
+	git push origin main
 	git stash && \
 	git fetch --all && \
-	git reset --hard origin/master && \
+	git reset --hard origin/main && \
 	bumpversion $(VERSION_PART) && \
 	git push origin --tags && \
-	git push origin master && \
+	git push origin main && \
 	git stash pop
 
 check-style:

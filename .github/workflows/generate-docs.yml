@@ -1,11 +1,11 @@
-# This workflows will re-generate the python docs when there are changes on master
+# This workflows will re-generate the python docs when there are changes on main
 
 name: Generate Documentation
 
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   build:
@@ -32,8 +32,8 @@ jobs:
         git config --local user.name "GitHub Action"
         git commit -m "📝 CI: automated Generate Documentation" -a | exit 0
     - name: Push changes
-      if: github.ref == 'refs/heads/master'
+      if: github.ref == 'refs/heads/main'
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: master
+        branch: main

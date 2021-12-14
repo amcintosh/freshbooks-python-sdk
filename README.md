@@ -14,14 +14,17 @@ pip install freshbooks-sdk
 
 ## Usage
 
-See [https://freshbooks.github.io/freshbooks-python-sdk/](https://freshbooks.github.io/freshbooks-python-sdk/) for module documentation.
+See [https://freshbooks.github.io/freshbooks-python-sdk/](https://freshbooks.github.io/freshbooks-python-sdk/) for module
+documentation.
 
 ### Configuring the API client
 
 You can create an instance of the API client in one of two ways:
 
-- By providing your application's OAuth2 `client_id` and `client_secret` and following through the auth flow, which when complete will return an access token
-- Or if you already have a valid access token, you can instantiate the client directly using that token, however token refresh flows will not function without the application id and secret.
+- By providing your application's OAuth2 `client_id` and `client_secret` and following through the auth flow, which when
+complete will return an access token
+- Or if you already have a valid access token, you can instantiate the client directly using that token, however token
+refresh flows will not function without the application id and secret.
 
 ```python
 from freshbooks import Client
@@ -63,13 +66,15 @@ authorize your application for.
 auth_url = freshBooksClient.get_auth_request_url(['user:profile:read', 'user:clients:read'])
 ```
 
-Once the user has been redirected to your `redirect_uri` and you have obtained the access grant code, you can exchange that code for a valid access token.
+Once the user has been redirected to your `redirect_uri` and you have obtained the access grant code, you can exchange
+that code for a valid access token.
 
 ```python
 auth_results = freshBooksClient.get_access_token(access_grant_code)
 ```
 
-This call both sets the `access_token`, `refresh_token`, and `access_token_expires_at` fields on you Client instance, and returns those values.
+This call both sets the `access_token`, `refresh_token`, and `access_token_expires_at` fields on you Client instance,
+and returns those values.
 
 ```python
 >>> auth_results.access_token
@@ -100,7 +105,9 @@ or you can pass the refresh token yourself:
 
 ### Current User
 
-FreshBooks users are uniquely identified by their email across our entire product. One user may act on several Businesses in different ways, and our Identity model is how we keep track of it. Each unique user has an Identity, and each Identity has Business Memberships which define the permissions they have.
+FreshBooks users are uniquely identified by their email across our entire product. One user may act on several
+Businesses in different ways, and our Identity model is how we keep track of it. Each unique user has an Identity, and
+each Identity has Business Memberships which define the permissions they have.
 
 See [FreshBooks API - Business, Roles, and Identity](https://www.freshbooks.com/api/me_endpoint) and
 [FreshBooks API - The Identity Model](https://www.freshbooks.com/api/identity_model).
@@ -118,7 +125,9 @@ The current user can be accessed by:
 
 ### Making API Calls
 
-Each resource in the client has provides calls for `get`, `list`, `create`, `update` and `delete` calls. Please note that some API resources are scoped to a FreshBooks `account_id` while others are scoped to a `business_id`. In general these fall along the lines of accounting resources vs projects/time tracking resources, but that is not precise.
+Each resource in the client has provides calls for `get`, `list`, `create`, `update` and `delete` calls. Please note that
+some API resources are scoped to a FreshBooks `account_id` while others are scoped to a `business_id`. In general these
+fall along the lines of accounting resources vs projects/time tracking resources, but that is not precise.
 
 ```python
 client = freshBooksClient.clients.get(account_id, client_user_id)
@@ -363,7 +372,9 @@ TODO:
 
 #### Dates and Times
 
-For historical reasons, some resources in the FreshBooks API (mostly accounting-releated) return date/times in "US/Eastern" timezone. Some effort is taken to return `datetime` objects as zone-aware and normalized to UTC. In these cases, the raw response string will differ from the attribute. For example:
+For historical reasons, some resources in the FreshBooks API (mostly accounting-releated) return date/times in
+"US/Eastern" timezone. Some effort is taken to return `datetime` objects as zone-aware and normalized to UTC. In these
+cases, the raw response string will differ from the attribute. For example:
 
 ```python
 from datetime import datetime, timezone

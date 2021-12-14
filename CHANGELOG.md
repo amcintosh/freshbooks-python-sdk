@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Drop support for python 3.6 as it is end of life
 - Added Bill Payments resource
 - Added Service Rates resource
 - Added Online Payments resource

@@ -9,11 +9,6 @@ try:
 except ImportError:  # pragma: no cover
     from backports.zoneinfo import ZoneInfo  # type: ignore
 
-from backports.datetime_fromisoformat import MonkeyPatch  # type: ignore
-
-# Remove when we drop python 3.6 support
-MonkeyPatch.patch_fromisoformat()
-
 ACCOUNTING_UTC_DATE_FIELDS = {
     "bill": ["created_at", "updated_at"],
     "bill_vendor": ["created_at", "updated_at"],

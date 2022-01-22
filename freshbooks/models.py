@@ -235,4 +235,4 @@ class Identity(Result):
     @property
     def business_memberships(self) -> Any:
         """The authenticated user's businesses and their role in that business."""
-        return self.data.get("business_memberships")
+        return self.__getattr__("business_memberships")

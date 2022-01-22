@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Fixed Identity "business_memberships" attribute to return Result objects
+
 ## 1.0.0
 
 - Drop support for python 3.6 as it is end of life

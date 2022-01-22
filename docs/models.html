@@ -263,7 +263,7 @@ class Identity(Result):
     @property
     def business_memberships(self) -&gt; Any:
         &#34;&#34;&#34;The authenticated user&#39;s businesses and their role in that business.&#34;&#34;&#34;
-        return self.data.get(&#34;business_memberships&#34;)</code></pre>
+        return self.__getattr__(&#34;business_memberships&#34;)</code></pre>
 </details>
 </section>
 <section>
@@ -331,7 +331,7 @@ to make accessing the current user's identity easier.</p>
     @property
     def business_memberships(self) -&gt; Any:
         &#34;&#34;&#34;The authenticated user&#39;s businesses and their role in that business.&#34;&#34;&#34;
-        return self.data.get(&#34;business_memberships&#34;)</code></pre>
+        return self.__getattr__(&#34;business_memberships&#34;)</code></pre>
 </details>
 <h3>Ancestors</h3>
 <ul class="hlist">
@@ -349,7 +349,7 @@ to make accessing the current user's identity easier.</p>
 <pre><code class="python">@property
 def business_memberships(self) -&gt; Any:
     &#34;&#34;&#34;The authenticated user&#39;s businesses and their role in that business.&#34;&#34;&#34;
-    return self.data.get(&#34;business_memberships&#34;)</code></pre>
+    return self.__getattr__(&#34;business_memberships&#34;)</code></pre>
 </details>
 </dd>
 <dt id="freshbooks.models.Identity.full_name"><code class="name">var <span class="ident">full_name</span> : str</code></dt>

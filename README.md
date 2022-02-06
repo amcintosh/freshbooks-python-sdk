@@ -307,7 +307,7 @@ in the list of builders to the `list` method.
 >>> clients = freshBooksClient.clients.list(account_id, builders=[filter])
 ```
 
-Filters can be builts with the methods: `equals`, `in_list`, `like`, `between`, and `boolean`,
+Filters can be built with the methods: `equals`, `in_list`, `like`, `between`, and `boolean`,
 which can be chained together.
 
 ```python

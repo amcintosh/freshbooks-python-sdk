@@ -8,7 +8,7 @@ class FilterBuilder(Builder):
     """Builder for making filtered list queries.
 
     Filters can be builts with the methods:
-    `equals`, `in_list`, `like`, `between`, and `boolean`,
+    `equals`, `in_list`, `like`, `between`, and `boolean`, `date_time`
     which can be chained together.
 
     ```python

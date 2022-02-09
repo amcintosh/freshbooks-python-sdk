@@ -56,3 +56,10 @@ except FreshBooksError as e:
 
 print(f"Created invoice {invoice.id}")
 print(f"Invoice total is {invoice.amount.amount} {invoice.amount.code}")
+
+# Invoices are created in draft status, so we need to mark it as sent
+print("Marking invoice as sent...")
+invoice_data = {
+    "action_mark_as_sent": True
+}
+freshBooksClient.invoices.update(account_id, invoice.id, invoice_data)

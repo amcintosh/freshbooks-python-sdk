@@ -4,7 +4,7 @@ from typing import Any, Dict, Optional
 
 import requests
 from requests.adapters import HTTPAdapter
-from requests.packages.urllib3.util.retry import Retry
+from urllib3.util.retry import Retry
 
 
 class HttpVerbs(object):

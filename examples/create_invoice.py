@@ -62,4 +62,4 @@ print("Marking invoice as sent...")
 invoice_data = {
     "action_mark_as_sent": True
 }
-freshBooksClient.invoices.update(account_id, invoice.id, invoice_data)
+invoice = freshBooksClient.invoices.update(account_id, invoice.id, invoice_data)

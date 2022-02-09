@@ -19,8 +19,12 @@ authorization_url = freshBooksClient.get_auth_request_url(
 )
 print(f"Go to this URL to authorize: {authorization_url}")
 
-# The authorization code will be in the URL after the redirect
+# Going to that URL will prompt the user to log into FreshBooks and authorize the application.
+# Once authorized, FreshBooks will redirect the user to your `redirect_uri` with the authorization 
+# code will be a parameter in the URL.
 auth_code = input("Enter the code you get after authorization: ")
+
+# This will exchange the authorization code for an access token
 token_response = freshBooksClient.get_access_token(auth_code)
 print(f"This is the access token the client is now configurated with: {token_response.access_token}")
 print(f"It is good until {token_response.access_token_expires_at}")

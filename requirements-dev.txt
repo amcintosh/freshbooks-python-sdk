@@ -5,4 +5,9 @@ pytest-cov
 httpretty
 flake8
 mypy
-pdoc3
+sphinx
+sphinx-autodoc-typehints
+sphinx-rtd-theme
+enum-tools[sphinx]
+myst-parser
+commonmark

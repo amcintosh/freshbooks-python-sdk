@@ -105,6 +105,7 @@ class ListResult:
     Data in the API can be accessed via attributes.
 
     Example:
+
     ```python
     clients = freshBooksClient.clients.list(account_id)
     assert clients[0].organization == "FreshBooks"
@@ -113,6 +114,7 @@ class ListResult:
     The json-parsed dictionary can also be directly accessed via the `data` attribute.
 
     Example:
+
     ```python
     assert clients.data["clients"][0]["organization"] == "FreshBooks"
     ```
@@ -120,6 +122,7 @@ class ListResult:
     The list can also be iterated over to access the individual resources as `Result` obejcts.
 
     Example:
+
     ```python
     for client in clients:
         assert client.organization == "FreshBooks"
@@ -127,6 +130,7 @@ class ListResult:
     ```
 
     Pagination results are included in the `pages` attribute:
+
     ```python
     >>> clients.pages
     PageResult(page=1, pages=1, per_page=30, total=6)

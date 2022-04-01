@@ -80,6 +80,7 @@ todo_include_todos = True
 
 # Allow markdown in docstrings
 
+
 def docstring(app, what, name, obj, options, lines):
     md = '\n'.join(lines)
     ast = commonmark.Parser().parse(md)

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Making API Calls &mdash; freshbooks-sdk 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Examples and Sample Code" href="../examples.html" />
+    <link rel="prev" title="Authorization Flow" href="authorization.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> freshbooks-sdk
+          </a>
+              <div class="version">
+                1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuring The API Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authorization.html">Authorization Flow</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Making API Calls</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#get-and-list">Get and List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#create-update-and-delete">Create, Update, and Delete</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#error-handling">Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pagination-filters-and-includes">Pagination, Filters, and Includes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pagination">Pagination</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#filters">Filters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#includes">Includes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#dates-and-times">Dates and Times</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples and Sample Code</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules/client.html">Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/resources.html">Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/models.html">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/builders.html">Builders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/errors.html">Errors</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">freshbooks-sdk</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Making API Calls</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/user_guide/making_calls.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="making-api-calls">
+<h1>Making API Calls<a class="headerlink" href="#making-api-calls" title="Permalink to this headline"></a></h1>
+<p>Each resource in the client provides calls for <code class="docutils literal notranslate"><span class="pre">get</span></code>, <code class="docutils literal notranslate"><span class="pre">list</span></code>, <code class="docutils literal notranslate"><span class="pre">create</span></code>, <code class="docutils literal notranslate"><span class="pre">update</span></code> and <code class="docutils literal notranslate"><span class="pre">delete</span></code> calls. Please note that
+some API resources are scoped to a FreshBooks <code class="docutils literal notranslate"><span class="pre">account_id</span></code> while others are scoped to a <code class="docutils literal notranslate"><span class="pre">business_id</span></code>. In general these
+fall along the lines of accounting resources vs projects/time tracking resources, but that is not precise.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">client</span> <span class="o">=</span> <span class="n">freshBooksClient</span><span class="o">.</span><span class="n">clients</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">account_id</span><span class="p">,</span> <span class="n">client_user_id</span><span class="p">)</span>
+<span class="n">project</span> <span class="o">=</span> <span class="n">freshBooksClient</span><span class="o">.</span><span class="n">projects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">business_id</span><span class="p">,</span> <span class="n">project_id</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="get-and-list">
+<h2>Get and List<a class="headerlink" href="#get-and-list" title="Permalink to this headline"></a></h2>
+<p>API calls which return a single resource return a <code class="docutils literal notranslate"><span class="pre">Result</span></code> object with the returned data accessible via attributes.
+The raw json-parsed dictionary can also be accessed via the <code class="docutils literal notranslate"><span class="pre">data</span></code> attribute.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">client</span> <span class="o">=</span> <span class="n">freshBooksClient</span><span class="o">.</span><span class="n">clients</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">account_id</span><span class="p">,</span> <span class="n">client_user_id</span><span class="p">)</span>
+
+<span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">organization</span> <span class="o">==</span> <span class="s2">&quot;FreshBooks&quot;</span>
+<span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">userid</span> <span class="o">==</span> <span class="n">client_user_id</span>
+
+<span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;organization&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;FreshBooks&quot;</span>
+<span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;userid&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">client_user_id</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">vis_state</span></code> returns an Enum. See <a class="reference external" href="https://www.freshbooks.com/api/active_deleted">FreshBooks API - Active and Deleted Objects</a>
+for details.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">freshbooks</span> <span class="kn">import</span> <span class="n">VisState</span>
+
+<span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">vis_state</span> <span class="o">==</span> <span class="n">VisState</span><span class="o">.</span><span class="n">ACTIVE</span>
+<span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">vis_state</span> <span class="o">==</span> <span class="mi">0</span>
+<span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;vis_state&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">VisState</span><span class="o">.</span><span class="n">ACTIVE</span>
+<span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;vis_state&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p>API calls which return a list of resources return a <code class="docutils literal notranslate"><span class="pre">ListResult</span></code> object. The resources in the list can be accessed by
+index and iterated over. Similarly, the raw dictionary can be accessed via the <code class="docutils literal notranslate"><span class="pre">data</span></code> attribute.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">clients</span> <span class="o">=</span> <span class="n">freshBooksClient</span><span class="o">.</span><span class="n">clients</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="n">account_id</span><span class="p">)</span>
+
+<span class="k">assert</span> <span class="n">clients</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">organization</span> <span class="o">==</span> <span class="s2">&quot;FreshBooks&quot;</span>
+
+<span class="k">assert</span> <span class="n">clients</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;clients&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;organization&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;FreshBooks&quot;</span>
+
+<span class="k">for</span> <span class="n">client</span> <span class="ow">in</span> <span class="n">clients</span><span class="p">:</span>
+    <span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">organization</span> <span class="o">==</span> <span class="s2">&quot;FreshBooks&quot;</span>
+    <span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;organization&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;FreshBooks&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="create-update-and-delete">
+<h2>Create, Update, and Delete<a class="headerlink" href="#create-update-and-delete" title="Permalink to this headline"></a></h2>
+<p>API calls to create and update take a dictionary of the resource data. A successful call will return a <code class="docutils literal notranslate"><span class="pre">Result</span></code> object
+as if a <code class="docutils literal notranslate"><span class="pre">get</span></code> call.</p>
+<p>Create:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;john.doe@abcorp.com&quot;</span><span class="p">}</span>
+<span class="n">new_client</span> <span class="o">=</span> <span class="n">FreshBooksClient</span><span class="o">.</span><span class="n">clients</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">account_id</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
+
+<span class="n">client_id</span> <span class="o">=</span> <span class="n">new_client</span><span class="o">.</span><span class="n">userid</span>
+</pre></div>
+</div>
+<p>Update:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;john.doe@abcorp.ca&quot;</span><span class="p">}</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">freshBooksClient</span><span class="o">.</span><span class="n">clients</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">account_id</span><span class="p">,</span> <span class="n">client_id</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
+
+<span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">email</span> <span class="o">==</span> <span class="s2">&quot;john.doe@abcorp.ca&quot;</span>
+</pre></div>
+</div>
+<p>Delete:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">client</span> <span class="o">=</span> <span class="n">freshBooksClient</span><span class="o">.</span><span class="n">clients</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">account_id</span><span class="p">,</span> <span class="n">client_id</span><span class="p">)</span>
+
+<span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">vis_state</span> <span class="o">==</span> <span class="n">VisState</span><span class="o">.</span><span class="n">DELETED</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="error-handling">
+<h2>Error Handling<a class="headerlink" href="#error-handling" title="Permalink to this headline"></a></h2>
+<p>Calls made to the FreshBooks API with a non-2xx response are wrapped in a <code class="docutils literal notranslate"><span class="pre">FreshBooksError</span></code> exception.
+This exception class contains the error message, HTTP response code, FreshBooks-specific error number if one exists,
+and the HTTP response body.</p>
+<p>Example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">freshbooks</span> <span class="kn">import</span> <span class="n">FreshBooksError</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">freshBooksClient</span><span class="o">.</span><span class="n">clients</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">account_id</span><span class="p">,</span> <span class="n">client_id</span><span class="p">)</span>
+<span class="k">except</span> <span class="n">FreshBooksError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="k">assert</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;Client not found.&quot;</span>
+    <span class="k">assert</span> <span class="n">e</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">404</span>
+    <span class="k">assert</span> <span class="n">e</span><span class="o">.</span><span class="n">error_code</span> <span class="o">==</span> <span class="mi">1012</span>
+    <span class="k">assert</span> <span class="n">e</span><span class="o">.</span><span class="n">raw_response</span> <span class="o">==</span>  <span class="p">(</span><span class="s2">&quot;{&#39;response&#39;: {&#39;errors&#39;: [{&#39;errno&#39;: 1012, &quot;</span>
+                               <span class="s2">&quot;&#39;field&#39;: &#39;userid&#39;, &#39;message&#39;: &#39;Client not found.&#39;, &quot;</span>
+                               <span class="s2">&quot;&#39;object&#39;: &#39;client&#39;, &#39;value&#39;: &#39;134&#39;}]}}&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Not all resources have full CRUD methods available. For example expense categories have <code class="docutils literal notranslate"><span class="pre">list</span></code> and <code class="docutils literal notranslate"><span class="pre">get</span></code>
+calls, but are not deletable. If you attempt to call a method that does not exist, the SDK will raise a
+<code class="docutils literal notranslate"><span class="pre">FreshBooksNotImplementedError</span></code> exception, but this is not something you will likely have to account
+for outside of development.</p>
+</div>
+<div class="section" id="pagination-filters-and-includes">
+<h2>Pagination, Filters, and Includes<a class="headerlink" href="#pagination-filters-and-includes" title="Permalink to this headline"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">list</span></code> calls take a list of builder objects that can be used to paginate, filter, and include
+optional data in the response. See <a class="reference external" href="https://www.freshbooks.com/api/parameters">FreshBooks API - Parameters</a> documentation.</p>
+<div class="section" id="pagination">
+<h3>Pagination<a class="headerlink" href="#pagination" title="Permalink to this headline"></a></h3>
+<p>Pagination results are included in <code class="docutils literal notranslate"><span class="pre">list</span></code> responses in the <code class="docutils literal notranslate"><span class="pre">pages</span></code> attribute:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">clients</span> <span class="o">=</span> <span class="n">freshBooksClient</span><span class="o">.</span><span class="n">clients</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="n">account_id</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clients</span><span class="o">.</span><span class="n">pages</span>
+<span class="go">PageResult(page=1, pages=1, per_page=30, total=6)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clients</span><span class="o">.</span><span class="n">pages</span><span class="o">.</span><span class="n">total</span>
+<span class="go">6</span>
+</pre></div>
+</div>
+<p>To make a paginated call, first create a <code class="docutils literal notranslate"><span class="pre">PaginateBuilder</span></code> object that can be passed into the <code class="docutils literal notranslate"><span class="pre">list</span></code> method.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">freshbooks</span> <span class="kn">import</span> <span class="n">PaginateBuilder</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">paginator</span> <span class="o">=</span> <span class="n">PaginateBuilder</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">paginator</span>
+<span class="go">PaginateBuilder(page=2, per_page=4)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clients</span> <span class="o">=</span> <span class="n">freshBooksClient</span><span class="o">.</span><span class="n">clients</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="n">account_id</span><span class="p">,</span> <span class="n">builders</span><span class="o">=</span><span class="p">[</span><span class="n">paginator</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clients</span><span class="o">.</span><span class="n">pages</span>
+<span class="go">PageResult(page=2, pages=3, per_page=4, total=9)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">PaginateBuilder</span></code> has methods <code class="docutils literal notranslate"><span class="pre">page</span></code> and <code class="docutils literal notranslate"><span class="pre">per_page</span></code> to return or set the values. When setting the values the calls
+can be chained.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">paginator</span> <span class="o">=</span> <span class="n">PaginateBuilder</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">paginator</span>
+<span class="go">PaginateBuilder(page=1, per_page=3)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">paginator</span><span class="o">.</span><span class="n">page</span><span class="p">()</span>
+<span class="go">1</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">paginator</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">per_page</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">paginator</span>
+<span class="go">PaginateBuilder(page=2, per_page=4)</span>
+</pre></div>
+</div>
+<p>ListResults can be combined, allowing your to use pagination to get all the results of a resource.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">paginator</span> <span class="o">=</span> <span class="n">PaginateBuilder</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">clients</span> <span class="o">=</span> <span class="n">freshBooksClient</span><span class="o">.</span><span class="n">clients</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">account_id</span><span class="p">,</span> <span class="n">builders</span><span class="o">=</span><span class="p">[</span><span class="n">paginator</span><span class="p">])</span>
+<span class="k">while</span> <span class="n">clients</span><span class="o">.</span><span class="n">pages</span><span class="o">.</span><span class="n">page</span> <span class="o">&lt;</span> <span class="n">clients</span><span class="o">.</span><span class="n">pages</span><span class="o">.</span><span class="n">pages</span><span class="p">:</span>
+    <span class="n">paginator</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="n">clients</span><span class="o">.</span><span class="n">pages</span><span class="o">.</span><span class="n">page</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">new_clients</span> <span class="o">=</span> <span class="n">freshBooksClient</span><span class="o">.</span><span class="n">clients</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">account_id</span><span class="p">,</span> <span class="n">builders</span><span class="o">=</span><span class="p">[</span><span class="n">paginator</span><span class="p">])</span>
+    <span class="n">clients</span> <span class="o">=</span> <span class="n">clients</span> <span class="o">+</span> <span class="n">new_clients</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="filters">
+<h3>Filters<a class="headerlink" href="#filters" title="Permalink to this headline"></a></h3>
+<p>To filter which results are return by <code class="docutils literal notranslate"><span class="pre">list</span></code> method calls, construct a <code class="docutils literal notranslate"><span class="pre">FilterBuilder</span></code> and pass that
+in the list of builders to the <code class="docutils literal notranslate"><span class="pre">list</span></code> method.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">freshbooks</span> <span class="kn">import</span> <span class="n">FilterBuilder</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">filter</span> <span class="o">=</span> <span class="n">FilterBuilder</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">filter</span><span class="o">.</span><span class="n">equals</span><span class="p">(</span><span class="s2">&quot;userid&quot;</span><span class="p">,</span> <span class="mi">123</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clients</span> <span class="o">=</span> <span class="n">freshBooksClient</span><span class="o">.</span><span class="n">clients</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="n">account_id</span><span class="p">,</span> <span class="n">builders</span><span class="o">=</span><span class="p">[</span><span class="nb">filter</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Filters can be built with the methods: <code class="docutils literal notranslate"><span class="pre">equals</span></code>, <code class="docutils literal notranslate"><span class="pre">in_list</span></code>, <code class="docutils literal notranslate"><span class="pre">like</span></code>, <code class="docutils literal notranslate"><span class="pre">between</span></code>, and <code class="docutils literal notranslate"><span class="pre">boolean</span></code>,
+which can be chained together.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">FilterBuilder</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">like</span><span class="p">(</span><span class="s2">&quot;email_like&quot;</span><span class="p">,</span> <span class="s2">&quot;@freshbooks.com&quot;</span><span class="p">)</span>
+<span class="go">FilterBuilder(&amp;search[email_like]=@freshbooks.com)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">FilterBuilder</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">in_list</span><span class="p">(</span><span class="s2">&quot;clientids&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">123</span><span class="p">,</span> <span class="mi">456</span><span class="p">])</span><span class="o">.</span><span class="n">boolean</span><span class="p">(</span><span class="s2">&quot;active&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+<span class="go">FilterBuilder(&amp;search[clientids][]=123&amp;search[clientids][]=456&amp;active=False)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">FilterBuilder</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">boolean</span><span class="p">(</span><span class="s2">&quot;active&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">in_list</span><span class="p">(</span><span class="s2">&quot;clientids&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">123</span><span class="p">,</span> <span class="mi">456</span><span class="p">])</span>
+<span class="go">FilterBuilder(&amp;active=False&amp;search[clientids][]=123&amp;search[clientids][]=456)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">FilterBuilder</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="s2">&quot;amount&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="go">FilterBuilder(&amp;search[amount_min]=1&amp;search[amount_max]=10)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">FilterBuilder</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="s2">&quot;start_date&quot;</span><span class="p">,</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">())</span>
+<span class="go">FilterBuilder(&amp;search[start_date]=2020-11-21)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="includes">
+<h3>Includes<a class="headerlink" href="#includes" title="Permalink to this headline"></a></h3>
+<p>To include additional relationships, sub-resources, or data in a response an <code class="docutils literal notranslate"><span class="pre">IncludesBuilder</span></code>
+can be constructed.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">freshbooks</span> <span class="kn">import</span> <span class="n">IncludesBuilder</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">includes</span> <span class="o">=</span> <span class="n">IncludesBuilder</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">includes</span><span class="o">.</span><span class="n">include</span><span class="p">(</span><span class="s2">&quot;outstanding_balance&quot;</span><span class="p">)</span>
+<span class="go">IncludesBuilder(&amp;include[]=outstanding_balance)</span>
+</pre></div>
+</div>
+<p>Which can then be passed into <code class="docutils literal notranslate"><span class="pre">list</span></code> or <code class="docutils literal notranslate"><span class="pre">get</span></code> calls:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">clients</span> <span class="o">=</span> <span class="n">freshBooksClient</span><span class="o">.</span><span class="n">clients</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="n">account_id</span><span class="p">,</span> <span class="n">builders</span><span class="o">=</span><span class="p">[</span><span class="n">includes</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clients</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">outstanding_balance</span>
+<span class="go">[{&#39;amount&#39;: {&#39;amount&#39;: &#39;100.00&#39;, &#39;code&#39;: &#39;USD&#39;}}]</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client</span> <span class="o">=</span> <span class="n">freshBooksClient</span><span class="o">.</span><span class="n">clients</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">account_id</span><span class="p">,</span> <span class="n">client_id</span><span class="p">,</span> <span class="n">includes</span><span class="o">=</span><span class="n">includes</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client</span><span class="o">.</span><span class="n">outstanding_balance</span>
+<span class="go">[{&#39;amount&#39;: {&#39;amount&#39;: &#39;100.00&#39;, &#39;code&#39;: &#39;USD&#39;}}]</span>
+</pre></div>
+</div>
+<p>Includes can also be passed into <code class="docutils literal notranslate"><span class="pre">create</span></code> and <code class="docutils literal notranslate"><span class="pre">update</span></code> calls to include the data in the response of the updated resource:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;john.doe@abcorp.com&quot;</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">new_client</span> <span class="o">=</span> <span class="n">FreshBooksClient</span><span class="o">.</span><span class="n">clients</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">account_id</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">includes</span><span class="o">=</span><span class="n">includes</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">new_client</span><span class="o">.</span><span class="n">outstanding_balance</span>
+<span class="go">[]  # New client has no balance</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="dates-and-times">
+<h2>Dates and Times<a class="headerlink" href="#dates-and-times" title="Permalink to this headline"></a></h2>
+<p>For historical reasons, some resources in the FreshBooks API (mostly accounting-releated) return date/times in
+“US/Eastern” timezone. Some effort is taken to return <code class="docutils literal notranslate"><span class="pre">datetime</span></code> objects as zone-aware and normalized to UTC. In these
+cases, the raw response string will differ from the attribute. For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timezone</span>
+
+<span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;updated&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;2021-04-16 10:31:59&quot;</span>  <span class="c1"># Zone-naive string in &quot;US/Eastern&quot;</span>
+<span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">updated</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;2021-04-16T14:31:59+00:00&#39;</span>  <span class="c1"># Zone-aware datetime in UTC</span>
+<span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">updated</span> <span class="o">==</span> <span class="n">datetime</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2021</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">hour</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">minute</span><span class="o">=</span><span class="mi">31</span><span class="p">,</span> <span class="n">second</span><span class="o">=</span><span class="mi">59</span><span class="p">,</span> <span class="n">tzinfo</span><span class="o">=</span><span class="n">timezone</span><span class="o">.</span><span class="n">utc</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="authorization.html" class="btn btn-neutral float-left" title="Authorization Flow" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../examples.html" class="btn btn-neutral float-right" title="Examples and Sample Code" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Andrew McIntosh.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

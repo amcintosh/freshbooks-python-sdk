@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Builders &mdash; freshbooks-sdk 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Errors" href="errors.html" />
+    <link rel="prev" title="Models" href="models.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> freshbooks-sdk
+          </a>
+              <div class="version">
+                1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/configuration.html">Configuring The API Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/authorization.html">Authorization Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/making_calls.html">Making API Calls</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples and Sample Code</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="client.html">Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">Models</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Builders</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-freshbooks.builders.paginator">Paginator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-freshbooks.builders.filter">Filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-freshbooks.builders.includes">Includes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="errors.html">Errors</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">freshbooks-sdk</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Builders</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/modules/builders.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="builders">
+<h1>Builders<a class="headerlink" href="#builders" title="Permalink to this headline"></a></h1>
+<div class="section" id="module-freshbooks.builders.paginator">
+<span id="paginator"></span><h2>Paginator<a class="headerlink" href="#module-freshbooks.builders.paginator" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="freshbooks.builders.paginator.PaginateBuilder">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">freshbooks.builders.paginator.</span></span><span class="sig-name descname"><span class="pre">PaginateBuilder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">page</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">per_page</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.builders.paginator.PaginateBuilder" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">freshbooks.builders.Builder</span></code></p>
+<p>Builder for making paginated list queries.</p>
+<p>Has two attributes, <code class="docutils literal notranslate"><span class="pre">page</span></code> and <code class="docutils literal notranslate"><span class="pre">per_page</span></code>. When a <code class="docutils literal notranslate"><span class="pre">PaginateBuilder</span></code> object is passed
+to a <code class="docutils literal notranslate"><span class="pre">.list()</span></code> call, the call will fetch only the <code class="docutils literal notranslate"><span class="pre">per_page</span></code> number of results and will
+fetch the results offset by <code class="docutils literal notranslate"><span class="pre">page</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">freshbooks</span> <span class="kn">import</span> <span class="n">PaginateBuilder</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">paginator</span> <span class="o">=</span> <span class="n">PaginateBuilder</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">paginator</span>
+<span class="go">PaginateBuilder(page=2, per_page=4)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clients</span> <span class="o">=</span> <span class="n">freshBooksClient</span><span class="o">.</span><span class="n">clients</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="n">account_id</span><span class="p">,</span> <span class="n">builders</span><span class="o">=</span><span class="p">[</span><span class="n">paginator</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clients</span><span class="o">.</span><span class="n">pages</span>
+<span class="go">PageResult(page=2, pages=3, per_page=4, total=9)</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="freshbooks.builders.paginator.PaginateBuilder.build">
+<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resource_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.builders.paginator.PaginateBuilder.build" title="Permalink to this definition"></a></dt>
+<dd><p>Builds the query string parameters from the PaginateBuilder.</p>
+<p>Args:
+resource_name: The type of resource to generate the query string for.
+Eg. AccountingResource, ProjectsResource</p>
+<p>Returns:
+The built query string</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="freshbooks.builders.paginator.PaginateBuilder.page">
+<span class="sig-name descname"><span class="pre">page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">page</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.builders.paginator.PaginateBuilder.page" title="Permalink to this definition"></a></dt>
+<dd><p>Set the page you wish to fetch in a list call, or get the currently set the page.
+When setting, can be chained.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">paginator</span> <span class="o">=</span> <span class="n">PaginateBuilder</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">paginator</span>
+<span class="go">PaginateBuilder(page=1, per_page=3)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">paginator</span><span class="o">.</span><span class="n">page</span><span class="p">()</span>
+<span class="go">1</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">paginator</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">per_page</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">paginator</span>
+<span class="go">PaginateBuilder(page=2, per_page=4)</span>
+</pre></div>
+</div>
+<p>Args:
+page: (Optional) The page of results to return in the API call</p>
+<p>Returns:
+The PaginateBuilder instance if a <code class="docutils literal notranslate"><span class="pre">page</span></code> value is provided, otherwise
+returns the currently set <code class="docutils literal notranslate"><span class="pre">page</span></code> value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>:py:data:<code class="docutils literal notranslate"><span class="pre">~typing.Union``[:py:class:``int</span></code>, :py:obj:<code class="docutils literal notranslate"><span class="pre">None</span></code>, :py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.builders.Builder</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="freshbooks.builders.paginator.PaginateBuilder.per_page">
+<span class="sig-name descname"><span class="pre">per_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">per_page</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.builders.paginator.PaginateBuilder.per_page" title="Permalink to this definition"></a></dt>
+<dd><p>Set the number of results you wish to fetch in a page of a list call,
+or get the currently set per_page. When setting, can be chained.</p>
+<p>The page size is capped at 100.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">paginator</span> <span class="o">=</span> <span class="n">PaginateBuilder</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">paginator</span>
+<span class="go">PaginateBuilder(page=1, per_page=3)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">paginator</span><span class="o">.</span><span class="n">per_page</span><span class="p">()</span>
+<span class="go">3</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">paginator</span><span class="o">.</span><span class="n">per_page</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">paginator</span>
+<span class="go">PaginateBuilder(page=2, per_page=4)</span>
+</pre></div>
+</div>
+<p>Args:
+per_page: (Optional) The number of results to return in each API call</p>
+<p>Returns:
+The PaginateBuilder instance if a <code class="docutils literal notranslate"><span class="pre">per_page</span></code> value is provided, otherwise
+returns the currently set <code class="docutils literal notranslate"><span class="pre">per_page</span></code> value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>:py:data:<code class="docutils literal notranslate"><span class="pre">~typing.Union``[:py:class:``int</span></code>, :py:obj:<code class="docutils literal notranslate"><span class="pre">None</span></code>, :py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.builders.Builder</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-freshbooks.builders.filter">
+<span id="filters"></span><h2>Filters<a class="headerlink" href="#module-freshbooks.builders.filter" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="freshbooks.builders.filter.FilterBuilder">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">freshbooks.builders.filter.</span></span><span class="sig-name descname"><span class="pre">FilterBuilder</span></span><a class="headerlink" href="#freshbooks.builders.filter.FilterBuilder" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">freshbooks.builders.Builder</span></code></p>
+<p>Builder for making filtered list queries.</p>
+<p>Filters can be builts with the methods:
+<code class="docutils literal notranslate"><span class="pre">equals</span></code>, <code class="docutils literal notranslate"><span class="pre">in_list</span></code>, <code class="docutils literal notranslate"><span class="pre">like</span></code>, <code class="docutils literal notranslate"><span class="pre">between</span></code>, and <code class="docutils literal notranslate"><span class="pre">boolean</span></code>, <code class="docutils literal notranslate"><span class="pre">date_time</span></code>
+which can be chained together.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">freshbooks</span> <span class="kn">import</span> <span class="n">FilterBuilder</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">FilterBuilder</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">like</span><span class="p">(</span><span class="s2">&quot;email_like&quot;</span><span class="p">,</span> <span class="s2">&quot;@freshbooks.com&quot;</span><span class="p">)</span>
+<span class="go">FilterBuilder(&amp;search[email_like]=@freshbooks.com)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">FilterBuilder</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">in_list</span><span class="p">(</span><span class="s2">&quot;clientids&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">123</span><span class="p">,</span> <span class="mi">456</span><span class="p">])</span><span class="o">.</span><span class="n">boolean</span><span class="p">(</span><span class="s2">&quot;active&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+<span class="go">FilterBuilder(&amp;search[clientids][]=123&amp;search[clientids][]=456&amp;active=False)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">FilterBuilder</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">boolean</span><span class="p">(</span><span class="s2">&quot;active&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">in_list</span><span class="p">(</span><span class="s2">&quot;clientids&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">123</span><span class="p">,</span> <span class="mi">456</span><span class="p">])</span>
+<span class="go">FilterBuilder(&amp;active=False&amp;search[clientids][]=123&amp;search[clientids][]=456)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">FilterBuilder</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="s2">&quot;amount&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="go">FilterBuilder(&amp;search[amount_min]=1&amp;search[amount_max]=10)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">FilterBuilder</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="s2">&quot;start_date&quot;</span><span class="p">,</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">())</span>
+<span class="go">FilterBuilder(&amp;search[start_date]=2020-11-21)</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="freshbooks.builders.filter.FilterBuilder.between">
+<span class="sig-name descname"><span class="pre">between</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.builders.filter.FilterBuilder.between" title="Permalink to this definition"></a></dt>
+<dd><p>Filters results where the provided field is between two values.</p>
+<p>In general ‘between’ filters end in a <code class="docutils literal notranslate"><span class="pre">_min</span></code> or <code class="docutils literal notranslate"><span class="pre">_max</span></code> (as in <code class="docutils literal notranslate"><span class="pre">amount_min</span></code> or <code class="docutils literal notranslate"><span class="pre">amount_max</span></code>)
+or <code class="docutils literal notranslate"><span class="pre">_date</span></code> (as in <code class="docutils literal notranslate"><span class="pre">start_date</span></code>, <code class="docutils literal notranslate"><span class="pre">end_date</span></code>). If the provided field does not end in
+<code class="docutils literal notranslate"><span class="pre">_min</span></code>/<code class="docutils literal notranslate"><span class="pre">_max</span></code> or <code class="docutils literal notranslate"><span class="pre">_date</span></code>, then the appropriate <code class="docutils literal notranslate"><span class="pre">_min</span></code>/<code class="docutils literal notranslate"><span class="pre">_max</span></code> will be appended.</p>
+<p>For date fields, you can pass the iso format <code class="docutils literal notranslate"><span class="pre">2020-10-17</span></code> or a <code class="docutils literal notranslate"><span class="pre">datetime</span></code> or <code class="docutils literal notranslate"><span class="pre">date</span></code> object, which
+will be converted to the proper string format.</p>
+<p>Examples:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">filter.between(&quot;amount&quot;,</span> <span class="pre">1,</span> <span class="pre">10)</span></code> will yield filters <code class="docutils literal notranslate"><span class="pre">&amp;search[amount_min]=1&amp;search[amount_max]=10</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">filter.between(&quot;amount_min&quot;,</span> <span class="pre">min=1)</span></code> will yield filter <code class="docutils literal notranslate"><span class="pre">&amp;search[amount_min]=1</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">filter.between(&quot;amount_max&quot;,</span> <span class="pre">max=10)</span></code> will yield filter <code class="docutils literal notranslate"><span class="pre">&amp;search[amount_max]=10</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">filter.between(&quot;start_date&quot;,</span> <span class="pre">&quot;2020-10-17&quot;)</span></code> will yield filter <code class="docutils literal notranslate"><span class="pre">&amp;search[start_date]=2020-10-17</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">filter.between(&quot;start_date&quot;,</span> <span class="pre">datetime.date(year=2020,</span> <span class="pre">month=10,</span> <span class="pre">day=17))</span></code> will yield filter</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">&amp;search[start_date]=2020-10-17</span></code></p>
+<p>Args:
+field: The API response field to filter on
+min: (Optional) The value the field should be greater than (or equal to)
+max: (Optional) The value the field should be less than (or equal to)</p>
+<p>Returns:
+The FilterBuilder instance</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.builders.Builder</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="freshbooks.builders.filter.FilterBuilder.boolean">
+<span class="sig-name descname"><span class="pre">boolean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.builders.filter.FilterBuilder.boolean" title="Permalink to this definition"></a></dt>
+<dd><p>Filters results where the field is equal to true or false.</p>
+<p>Example:
+<code class="docutils literal notranslate"><span class="pre">filter.boolean(&quot;active&quot;,</span> <span class="pre">False)</span></code> will yield the filter <code class="docutils literal notranslate"><span class="pre">&amp;active=false</span></code></p>
+<p>Args:
+field: The API response field to filter on
+value: True or False</p>
+<p>Returns:
+The FilterBuilder instance</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.builders.Builder</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="freshbooks.builders.filter.FilterBuilder.build">
+<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resource_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.builders.filter.FilterBuilder.build" title="Permalink to this definition"></a></dt>
+<dd><p>Builds the query string parameters from the FilterBuilder.</p>
+<p>Args:
+resource_name: The type of resource to generate the query string for.
+Eg. AccountingResource, ProjectsResource</p>
+<p>Returns:
+The built query string</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="freshbooks.builders.filter.FilterBuilder.date_time">
+<span class="sig-name descname"><span class="pre">date_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.builders.filter.FilterBuilder.date_time" title="Permalink to this definition"></a></dt>
+<dd><p>Filters for entries that come before or after a particular time, as specified
+by the field. Eg. “updated_since” on Time Entries will return time entries updated
+after the provided time.</p>
+<p>The url parameter must be in ISO 8601 format (eg. 2010-10-17T05:45:53Z)</p>
+<p>Example:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">filter.date_time(&quot;updated_since&quot;,</span> <span class="pre">&quot;2020-10-17T13:14:07&quot;)</span></code> will yield <code class="docutils literal notranslate"><span class="pre">&amp;updated_since=2020-10-17T13:14:07</span></code></p></li>
+</ul>
+<p>Args:
+field: The API response field to filter on
+value: The datetime, or ISO 8601 format string value</p>
+<p>Returns:
+The FilterBuilder instance</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.builders.Builder</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="freshbooks.builders.filter.FilterBuilder.equals">
+<span class="sig-name descname"><span class="pre">equals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.builders.filter.FilterBuilder.equals" title="Permalink to this definition"></a></dt>
+<dd><p>Filters results where the field is equal to the provided value.</p>
+<p>Example:
+<code class="docutils literal notranslate"><span class="pre">filter.equals(&quot;username&quot;,</span> <span class="pre">&quot;Bob&quot;)</span></code> will yield the filter <code class="docutils literal notranslate"><span class="pre">&amp;search[username]=Bob</span></code></p>
+<p>Args:
+field: The API response field to filter on
+value: The value the field should equal</p>
+<p>Returns:
+The FilterBuilder instance</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.builders.Builder</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="freshbooks.builders.filter.FilterBuilder.in_list">
+<span class="sig-name descname"><span class="pre">in_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.builders.filter.FilterBuilder.in_list" title="Permalink to this definition"></a></dt>
+<dd><p>Filters if the provided field matches a value in a list.</p>
+<p>In general, an ‘in’ filter will be bound to the plural form of the field.
+Eg. <code class="docutils literal notranslate"><span class="pre">userid</span></code> for an equal filter, <code class="docutils literal notranslate"><span class="pre">userids</span></code> for a list filter.</p>
+<p>Here we only append an ‘s’ to the field name if it doesn’t have one yet.
+This way we can be as forgiving as possible for developers by accepting:
+<code class="docutils literal notranslate"><span class="pre">filter.in_list(&quot;userid&quot;,</span> <span class="pre">[1,</span> <span class="pre">2])</span></code> or <code class="docutils literal notranslate"><span class="pre">filter.in_list(&quot;userids&quot;,</span> <span class="pre">[1,</span> <span class="pre">2])</span></code>.</p>
+<p>Of course the FreshBooks API is not 100% consistent, so there are a couple
+of unique cases that may not be handled.</p>
+<p>Args:
+field: The API response field to filter on
+values: List of values the field should one of</p>
+<p>Returns:
+The FilterBuilder instance</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.builders.Builder</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="freshbooks.builders.filter.FilterBuilder.like">
+<span class="sig-name descname"><span class="pre">like</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.builders.filter.FilterBuilder.like" title="Permalink to this definition"></a></dt>
+<dd><p>Filters for a match contained within the field being searched. For example,
+“leaf” will Like-match “aleaf” and “leafy”, but not “leav”, and “leafs” would
+not Like-match “leaf”.</p>
+<p>Args:
+field: The API response field to filter on
+value: The value the field should contain</p>
+<p>Returns:
+The FilterBuilder instance</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.builders.Builder</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-freshbooks.builders.includes">
+<span id="includes"></span><h2>Includes<a class="headerlink" href="#module-freshbooks.builders.includes" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="freshbooks.builders.includes.IncludesBuilder">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">freshbooks.builders.includes.</span></span><span class="sig-name descname"><span class="pre">IncludesBuilder</span></span><a class="headerlink" href="#freshbooks.builders.includes.IncludesBuilder" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">freshbooks.builders.Builder</span></code></p>
+<p>Builder for including relationships, sub-resources, or additional data in the response.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">freshbooks</span> <span class="kn">import</span> <span class="n">IncludesBuilder</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">includes</span> <span class="o">=</span> <span class="n">IncludesBuilder</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">includes</span><span class="o">.</span><span class="n">include</span><span class="p">(</span><span class="s2">&quot;late_reminders&quot;</span><span class="p">)</span>
+<span class="go">IncludesBuilder(&amp;include[]=late_reminders)</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="freshbooks.builders.includes.IncludesBuilder.build">
+<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resource_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.builders.includes.IncludesBuilder.build" title="Permalink to this definition"></a></dt>
+<dd><p>Builds the query string parameters from the IncludesBuilder.</p>
+<p>Args:
+resource_name: The type of resource to generate the query string for.
+Eg. AccountingResource, ProjectsResource</p>
+<p>Returns:
+The built query string</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="freshbooks.builders.includes.IncludesBuilder.include">
+<span class="sig-name descname"><span class="pre">include</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.builders.includes.IncludesBuilder.include" title="Permalink to this definition"></a></dt>
+<dd><p>Add an include key to the builder.</p>
+<p>Example:
+<code class="docutils literal notranslate"><span class="pre">includes.include(&quot;late_reminders&quot;)</span></code> will yield the filter <code class="docutils literal notranslate"><span class="pre">&amp;include[]=late_reminders</span></code></p>
+<p>Args:
+key: The key for the resource or data to include</p>
+<p>Returns:
+The IncludesBuilder instance</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.builders.Builder</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="models.html" class="btn btn-neutral float-left" title="Models" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="errors.html" class="btn btn-neutral float-right" title="Errors" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Andrew McIntosh.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

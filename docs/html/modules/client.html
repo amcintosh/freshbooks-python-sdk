@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Client &mdash; freshbooks-sdk 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Resources" href="resources.html" />
+    <link rel="prev" title="Create Invoice" href="../examples/create_invoice.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> freshbooks-sdk
+          </a>
+              <div class="version">
+                1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/configuration.html">Configuring The API Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/authorization.html">Authorization Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/making_calls.html">Making API Calls</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples and Sample Code</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="builders.html">Builders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="errors.html">Errors</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">freshbooks-sdk</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Client</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/modules/client.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="client">
+<h1>Client<a class="headerlink" href="#client" title="Permalink to this headline"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="freshbooks.client.Client">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">freshbooks.client.</span></span><span class="sig-name descname"><span class="pre">Client</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">client_secret</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">redirect_uri</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">access_token</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">refresh_token</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_agent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auto_retry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.client.Client" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py property">
+<dt class="sig sig-object py" id="freshbooks.client.Client.bill_payments">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">bill_payments</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="resources.html#freshbooks.api.accounting.AccountingResource" title="freshbooks.api.accounting.AccountingResource"><span class="pre">freshbooks.api.accounting.AccountingResource</span></a></em><a class="headerlink" href="#freshbooks.client.Client.bill_payments" title="Permalink to this definition"></a></dt>
+<dd><p>FreshBooks bill_payments resource with calls to get, list, create, update, delete</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.api.accounting.AccountingResource</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="freshbooks.client.Client.bill_vendors">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">bill_vendors</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="resources.html#freshbooks.api.accounting.AccountingResource" title="freshbooks.api.accounting.AccountingResource"><span class="pre">freshbooks.api.accounting.AccountingResource</span></a></em><a class="headerlink" href="#freshbooks.client.Client.bill_vendors" title="Permalink to this definition"></a></dt>
+<dd><p>FreshBooks bill_vendors resource with calls to get, list, create, update, delete</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.api.accounting.AccountingResource</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="freshbooks.client.Client.bills">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">bills</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="resources.html#freshbooks.api.accounting.AccountingResource" title="freshbooks.api.accounting.AccountingResource"><span class="pre">freshbooks.api.accounting.AccountingResource</span></a></em><a class="headerlink" href="#freshbooks.client.Client.bills" title="Permalink to this definition"></a></dt>
+<dd><p>FreshBooks bills resource with calls to get, list, create, update, delete</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.api.accounting.AccountingResource</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="freshbooks.client.Client.callbacks">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">callbacks</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="resources.html#freshbooks.api.events.EventsResource" title="freshbooks.api.events.EventsResource"><span class="pre">freshbooks.api.events.EventsResource</span></a></em><a class="headerlink" href="#freshbooks.client.Client.callbacks" title="Permalink to this definition"></a></dt>
+<dd><p>FreshBooks callbacks (webhook callbacks) resource with calls to
+get, list, create, update, delete, resend_verification, verify</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.api.events.EventsResource</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="freshbooks.client.Client.clients">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">clients</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="resources.html#freshbooks.api.accounting.AccountingResource" title="freshbooks.api.accounting.AccountingResource"><span class="pre">freshbooks.api.accounting.AccountingResource</span></a></em><a class="headerlink" href="#freshbooks.client.Client.clients" title="Permalink to this definition"></a></dt>
+<dd><p>FreshBooks clients resource with calls to get, list, create, update, delete</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.api.accounting.AccountingResource</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="freshbooks.client.Client.credit_notes">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">credit_notes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="resources.html#freshbooks.api.accounting.AccountingResource" title="freshbooks.api.accounting.AccountingResource"><span class="pre">freshbooks.api.accounting.AccountingResource</span></a></em><a class="headerlink" href="#freshbooks.client.Client.credit_notes" title="Permalink to this definition"></a></dt>
+<dd><p>FreshBooks credit_notes resource with calls to get, list, create, update, delete</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.api.accounting.AccountingResource</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="freshbooks.client.Client.current_user">
+<span class="sig-name descname"><span class="pre">current_user</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.client.Client.current_user" title="Permalink to this definition"></a></dt>
+<dd><p>The identity details of the currently authenticated user.</p>
+<p>See <a class="reference external" href="https://www.freshbooks.com/api/me_endpoint">FreshBooks API - Business, Roles, and Identity</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Identity</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="freshbooks.client.Client.estimates">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">estimates</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="resources.html#freshbooks.api.accounting.AccountingResource" title="freshbooks.api.accounting.AccountingResource"><span class="pre">freshbooks.api.accounting.AccountingResource</span></a></em><a class="headerlink" href="#freshbooks.client.Client.estimates" title="Permalink to this definition"></a></dt>
+<dd><p>FreshBooks estimates resource with calls to get, list, create, update, delete</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.api.accounting.AccountingResource</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="freshbooks.client.Client.expenses">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">expenses</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="resources.html#freshbooks.api.accounting.AccountingResource" title="freshbooks.api.accounting.AccountingResource"><span class="pre">freshbooks.api.accounting.AccountingResource</span></a></em><a class="headerlink" href="#freshbooks.client.Client.expenses" title="Permalink to this definition"></a></dt>
+<dd><p>FreshBooks expenses resource with calls to get, list, create, update, delete</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.api.accounting.AccountingResource</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="freshbooks.client.Client.expenses_categories">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">expenses_categories</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="resources.html#freshbooks.api.accounting.AccountingResource" title="freshbooks.api.accounting.AccountingResource"><span class="pre">freshbooks.api.accounting.AccountingResource</span></a></em><a class="headerlink" href="#freshbooks.client.Client.expenses_categories" title="Permalink to this definition"></a></dt>
+<dd><p>FreshBooks expenses categories resource with calls to get and list</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.api.accounting.AccountingResource</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="freshbooks.client.Client.gateways">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">gateways</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="resources.html#freshbooks.api.accounting.AccountingResource" title="freshbooks.api.accounting.AccountingResource"><span class="pre">freshbooks.api.accounting.AccountingResource</span></a></em><a class="headerlink" href="#freshbooks.client.Client.gateways" title="Permalink to this definition"></a></dt>
+<dd><p>FreshBooks gateways resource with calls to list, delete</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.api.accounting.AccountingResource</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="freshbooks.client.Client.get_access_token">
+<span class="sig-name descname"><span class="pre">get_access_token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.client.Client.get_access_token" title="Permalink to this definition"></a></dt>
+<dd><p>Makes a call to the FreshBooks token URL to get an access_token.</p>
+<p>This requires the access_grant code obtained after the user is redirected by the authorization
+step. See <code class="docutils literal notranslate"><span class="pre">freshbooks.client.Client.get_auth_request_url</span></code>.</p>
+<p>This call sets the <code class="docutils literal notranslate"><span class="pre">access_token</span></code>, <code class="docutils literal notranslate"><span class="pre">refresh_token</span></code>, and <code class="docutils literal notranslate"><span class="pre">access_token_expires_at</span></code> attributes
+on the Client instance and also returns those values in an object.</p>
+<p>Args:
+code: access_grant code from the authorization redirect</p>
+<p>Returns:
+Simple namespace containing <code class="docutils literal notranslate"><span class="pre">access_token</span></code>, <code class="docutils literal notranslate"><span class="pre">refresh_token</span></code>, and <code class="docutils literal notranslate"><span class="pre">access_token_expires_at</span></code></p>
+<p>Raises:
+FreshBooksError: If the call fails to return a access token.
+FreshBooksClientConfigError: If client_secret and redirect_uri are not set on the client instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~types.SimpleNamespace</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="freshbooks.client.Client.get_auth_request_url">
+<span class="sig-name descname"><span class="pre">get_auth_request_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scopes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.client.Client.get_auth_request_url" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the url that a client needs to request an oauth grant from the server.</p>
+<p>To get an oauth access token, send your user to this URL. The user will be prompted to
+log in to FreshBooks, after which they will be redirected to the <code class="docutils literal notranslate"><span class="pre">redirect_uri</span></code> set on
+the client with the access grant as a parameter. That grant can then be used to fetch an
+access token by calling <code class="docutils literal notranslate"><span class="pre">get_access_token</span></code>.</p>
+<p>Note: The <code class="docutils literal notranslate"><span class="pre">redirect_uri</span></code> must be one of the URLs your application is registered for.</p>
+<p>If scopes are not specified, then the access token will be given the default scopes your
+application is registered for.</p>
+<p>Args:
+scopes: List of scopes if your want an access token with only a subset of your registered scopes</p>
+<p>Returns:
+The URL for the authorization request</p>
+<p>Raises:
+FreshBooksClientConfigError: If redirect_uri is not set on the client instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="freshbooks.client.Client.invoice_payment_options">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">invoice_payment_options</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="resources.html#freshbooks.api.payments.PaymentsResource" title="freshbooks.api.payments.PaymentsResource"><span class="pre">freshbooks.api.payments.PaymentsResource</span></a></em><a class="headerlink" href="#freshbooks.client.Client.invoice_payment_options" title="Permalink to this definition"></a></dt>
+<dd><p>FreshBooks default payment options resource with calls to defaults, get, create</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.api.payments.PaymentsResource</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="freshbooks.client.Client.invoice_profiles">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">invoice_profiles</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="resources.html#freshbooks.api.accounting.AccountingResource" title="freshbooks.api.accounting.AccountingResource"><span class="pre">freshbooks.api.accounting.AccountingResource</span></a></em><a class="headerlink" href="#freshbooks.client.Client.invoice_profiles" title="Permalink to this definition"></a></dt>
+<dd><p>FreshBooks invoice_profiles resource with calls to get, list, create, update, delete</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.api.accounting.AccountingResource</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="freshbooks.client.Client.invoices">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">invoices</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="resources.html#freshbooks.api.accounting.AccountingResource" title="freshbooks.api.accounting.AccountingResource"><span class="pre">freshbooks.api.accounting.AccountingResource</span></a></em><a class="headerlink" href="#freshbooks.client.Client.invoices" title="Permalink to this definition"></a></dt>
+<dd><p>FreshBooks invoices resource with calls to get, list, create, update, delete</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.api.accounting.AccountingResource</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="freshbooks.client.Client.items">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">items</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="resources.html#freshbooks.api.accounting.AccountingResource" title="freshbooks.api.accounting.AccountingResource"><span class="pre">freshbooks.api.accounting.AccountingResource</span></a></em><a class="headerlink" href="#freshbooks.client.Client.items" title="Permalink to this definition"></a></dt>
+<dd><p>FreshBooks items resource with calls to get, list, create, update, delete</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.api.accounting.AccountingResource</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="freshbooks.client.Client.other_income">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">other_income</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="resources.html#freshbooks.api.accounting.AccountingResource" title="freshbooks.api.accounting.AccountingResource"><span class="pre">freshbooks.api.accounting.AccountingResource</span></a></em><a class="headerlink" href="#freshbooks.client.Client.other_income" title="Permalink to this definition"></a></dt>
+<dd><p>FreshBooks other_incomes resource with calls to get, list, create, update, delete</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.api.accounting.AccountingResource</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="freshbooks.client.Client.payments">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">payments</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="resources.html#freshbooks.api.accounting.AccountingResource" title="freshbooks.api.accounting.AccountingResource"><span class="pre">freshbooks.api.accounting.AccountingResource</span></a></em><a class="headerlink" href="#freshbooks.client.Client.payments" title="Permalink to this definition"></a></dt>
+<dd><p>FreshBooks payments resource with calls to get, list, create, update, delete</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.api.accounting.AccountingResource</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="freshbooks.client.Client.projects">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">projects</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="resources.html#freshbooks.api.projects.ProjectsResource" title="freshbooks.api.projects.ProjectsResource"><span class="pre">freshbooks.api.projects.ProjectsResource</span></a></em><a class="headerlink" href="#freshbooks.client.Client.projects" title="Permalink to this definition"></a></dt>
+<dd><p>FreshBooks projects resource with calls to get, list, create, update, delete</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.api.projects.ProjectsResource</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="freshbooks.client.Client.refresh_access_token">
+<span class="sig-name descname"><span class="pre">refresh_access_token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">refresh_token</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.client.Client.refresh_access_token" title="Permalink to this definition"></a></dt>
+<dd><p>Makes a call to the FreshBooks token URL to refresh an access_token.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">refresh_token</span></code> is provided, it will call to refresh it, otherwise it will use the
+<code class="docutils literal notranslate"><span class="pre">refresh_token</span></code> on the Client instance.</p>
+<p>This call sets the <code class="docutils literal notranslate"><span class="pre">access_token</span></code>, <code class="docutils literal notranslate"><span class="pre">refresh_token</span></code>, and <code class="docutils literal notranslate"><span class="pre">access_token_expires_at</span></code> attributes
+on the Client instance to the new values from the refresh call, and also returns those values
+in an object.</p>
+<p>Args:
+refresh_token: (Optional) refresh_token from initial <code class="docutils literal notranslate"><span class="pre">get_access_token</span></code> call</p>
+<p>Returns:
+Simple namespace containing <code class="docutils literal notranslate"><span class="pre">access_token</span></code>, <code class="docutils literal notranslate"><span class="pre">refresh_token</span></code>, and <code class="docutils literal notranslate"><span class="pre">access_token_expires_at</span></code></p>
+<p>Raises:
+FreshBooksClientConfigError: If refresh_token is not set on the client instance and is not provided.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~types.SimpleNamespace</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="freshbooks.client.Client.service_rates">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">service_rates</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="resources.html#freshbooks.api.comments.CommentsSubResource" title="freshbooks.api.comments.CommentsSubResource"><span class="pre">freshbooks.api.comments.CommentsSubResource</span></a></em><a class="headerlink" href="#freshbooks.client.Client.service_rates" title="Permalink to this definition"></a></dt>
+<dd><p>FreshBooks service_rates resource with calls to get, list, create, update</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.api.comments.CommentsSubResource</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="freshbooks.client.Client.services">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">services</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="resources.html#freshbooks.api.comments.CommentsResource" title="freshbooks.api.comments.CommentsResource"><span class="pre">freshbooks.api.comments.CommentsResource</span></a></em><a class="headerlink" href="#freshbooks.client.Client.services" title="Permalink to this definition"></a></dt>
+<dd><p>FreshBooks services resource with calls to get, list, create, update, delete</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.api.comments.CommentsResource</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="freshbooks.client.Client.staff">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">staff</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="resources.html#freshbooks.api.accounting.AccountingResource" title="freshbooks.api.accounting.AccountingResource"><span class="pre">freshbooks.api.accounting.AccountingResource</span></a></em><a class="headerlink" href="#freshbooks.client.Client.staff" title="Permalink to this definition"></a></dt>
+<dd><p>FreshBooks staff resource with calls to get, list, update, delete</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.api.accounting.AccountingResource</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="freshbooks.client.Client.systems">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">systems</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="resources.html#freshbooks.api.accounting.AccountingResource" title="freshbooks.api.accounting.AccountingResource"><span class="pre">freshbooks.api.accounting.AccountingResource</span></a></em><a class="headerlink" href="#freshbooks.client.Client.systems" title="Permalink to this definition"></a></dt>
+<dd><p>FreshBooks systems resource with calls to get only</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.api.accounting.AccountingResource</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="freshbooks.client.Client.tasks">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tasks</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="resources.html#freshbooks.api.accounting.AccountingResource" title="freshbooks.api.accounting.AccountingResource"><span class="pre">freshbooks.api.accounting.AccountingResource</span></a></em><a class="headerlink" href="#freshbooks.client.Client.tasks" title="Permalink to this definition"></a></dt>
+<dd><p>FreshBooks tasks resource with calls to get, list, create, update, delete</p>
+<p>Note: There is a lot of overlap between Services and Tasks. In general services are used
+to add categories of work to projects, and tasks are used to add billable work to invoices.</p>
+<p>Creating a task should create the corresponding service and vice versa.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.api.accounting.AccountingResource</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="freshbooks.client.Client.taxes">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">taxes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="resources.html#freshbooks.api.accounting.AccountingResource" title="freshbooks.api.accounting.AccountingResource"><span class="pre">freshbooks.api.accounting.AccountingResource</span></a></em><a class="headerlink" href="#freshbooks.client.Client.taxes" title="Permalink to this definition"></a></dt>
+<dd><p>FreshBooks taxes resource with calls to get, list, create, update, delete</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.api.accounting.AccountingResource</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="freshbooks.client.Client.time_entries">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">time_entries</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="resources.html#freshbooks.api.timetracking.TimetrackingResource" title="freshbooks.api.timetracking.TimetrackingResource"><span class="pre">freshbooks.api.timetracking.TimetrackingResource</span></a></em><a class="headerlink" href="#freshbooks.client.Client.time_entries" title="Permalink to this definition"></a></dt>
+<dd><p>FreshBooks time_entries resource with calls to get, list, create, update, delete</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.api.timetracking.TimetrackingResource</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-freshbooks.client"></span><dl class="py data">
+<dt class="sig sig-object py" id="freshbooks.client.DEFAULT_TIMEOUT">
+<span class="sig-prename descclassname"><span class="pre">freshbooks.client.</span></span><span class="sig-name descname"><span class="pre">DEFAULT_TIMEOUT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">30</span></em><a class="headerlink" href="#freshbooks.client.DEFAULT_TIMEOUT" title="Permalink to this definition"></a></dt>
+<dd><p>Default request timeout to FreshBooks</p>
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../examples/create_invoice.html" class="btn btn-neutral float-left" title="Create Invoice" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="resources.html" class="btn btn-neutral float-right" title="Resources" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Andrew McIntosh.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

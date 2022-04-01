@@ -124,7 +124,7 @@ The current user can be accessed by:
 
 ### Making API Calls
 
-Each resource in the client has provides calls for `get`, `list`, `create`, `update` and `delete` calls. Please note that
+Each resource in the client provides calls for `get`, `list`, `create`, `update` and `delete` calls. Please note that
 some API resources are scoped to a FreshBooks `account_id` while others are scoped to a `business_id`. In general these
 fall along the lines of accounting resources vs projects/time tracking resources, but that is not precise.
 

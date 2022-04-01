@@ -1,5 +1,5 @@
 
-# Authoization Flow
+# Authorization Flow
 
 _This is a brief summary of the OAuth2 authorization flow and the methods in the FreshBooks API Client
 around them. See the [FreshBooks API - Authentication](https://www.freshbooks.com/api/authentication) documentation._

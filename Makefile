@@ -16,10 +16,10 @@ install-dev: env
 	pip install -r requirements-dev.txt
 
 generate-docs:
-	rm -rf docs
-	pdoc --html -o docs --force freshbooks
-	mv docs/freshbooks/* docs/
-	rm -rf docs/freshbooks/
+	rm -rf docs/build
+	rm -rf docs/html
+	sphinx-build -d "docs/build" -b "html" "docs/source" "docs/html"
+	rm -rf docs/build
 
 tag:
 	@if [ "$(BRANCH_NAME)" != "main" ]; then \

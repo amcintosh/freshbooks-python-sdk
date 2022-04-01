@@ -7,6 +7,7 @@ from freshbooks.models import Identity
 
 
 class AuthResource(Resource):
+    """Handles resources under the `/auth` endpoints."""
 
     def _get_url(self, endpoint: str) -> str:
         return "{}/auth/api/v1/{}".format(self.base_url, endpoint)

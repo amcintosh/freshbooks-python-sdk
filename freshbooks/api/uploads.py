@@ -1,4 +1,4 @@
-import io
+from io import BufferedReader
 from types import SimpleNamespace
 from typing import Optional
 
@@ -49,12 +49,12 @@ class UploadsResource(Resource):
         return response
 
     def upload(
-        self, account_id: str, file_stream: Optional[io.FileIO] = None, file_path: Optional[str] = None
+        self, account_id: str, file_stream: Optional[BufferedReader] = None, file_path: Optional[str] = None
     ) -> Result:
         """Upload a file to FreshBooks' file storage. This returns a Result object with the JWT required to access the file,
         and in the case of an image, a link to the image itself.
 
-        The file to upload can be either a `io.FileIO` byte stream, or a path to the file itself.
+        The file to upload can be either a byte stream, or a path to the file itself.
 
         Eg.
 

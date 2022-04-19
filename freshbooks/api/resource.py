@@ -54,7 +54,9 @@ class Resource:
             headers["Content-Type"] = "application/json"
         return headers
 
-    def _send_request(self, uri: str, method: str, data: Optional[dict] = None, files: Optional[dict] = None) -> Any:
+    def _send_request(
+        self, uri: str, method: str, data: Optional[dict] = None, files: Optional[dict] = None
+    ) -> requests.Response:
         payload = None
         has_data = data is not None
         if method is HttpVerbs.GET:

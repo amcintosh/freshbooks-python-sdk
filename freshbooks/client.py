@@ -14,6 +14,7 @@ from freshbooks.api.events import EventsResource
 from freshbooks.api.payments import PaymentsResource
 from freshbooks.api.projects import ProjectsResource
 from freshbooks.api.timetracking import TimetrackingResource
+from freshbooks.api.uploads import UploadsResource
 from freshbooks.errors import FreshBooksError, FreshBooksClientConfigError
 from freshbooks.models import Identity
 
@@ -399,3 +400,15 @@ class Client:
                                 defaults_path="payment_options",
                                 static_params="entity_type=invoice",
                                 missing_endpoints=["list", "update", "delete"])
+
+    # Upload Resources
+
+    @property
+    def attachments(self) -> UploadsResource:
+        """FreshBooks attachment upload resource with call to upload, get"""
+        return UploadsResource(self._client_resource_config(), "attachments", "attachment")
+
+    @property
+    def images(self) -> UploadsResource:
+        """FreshBooks image upload resource with call to upload, get"""
+        return UploadsResource(self._client_resource_config(), "images", "image")

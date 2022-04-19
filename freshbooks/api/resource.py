@@ -43,42 +43,44 @@ class Resource:
 
         return session
 
-    def headers(self, method: str) -> Dict[str, str]:
+    def headers(self, method: str, has_data: bool) -> Dict[str, str]:
         """Get headers required for API calls"""
 
         headers = {
             "Authorization": f"Bearer {self.access_token}",
             "user-agent": self.user_agent
         }
-        if method in [HttpVerbs.POST, HttpVerbs.PUT, HttpVerbs.PATCH]:
+        if has_data and method in [HttpVerbs.POST, HttpVerbs.PUT, HttpVerbs.PATCH]:
             headers["Content-Type"] = "application/json"
         return headers
 
-    def _send_request(self, uri: str, method: str, data: Optional[dict] = None) -> Any:
+    def _send_request(
+        self, uri: str, method: str, data: Optional[dict] = None, files: Optional[dict] = None
+    ) -> requests.Response:
         payload = None
+        has_data = data is not None
         if method is HttpVerbs.GET:
             session = self.session.get
         elif method is HttpVerbs.POST:
             session = self.session.post  # type: ignore
-            payload = json.dumps(data)
         elif method is HttpVerbs.PUT:
             session = self.session.put  # type: ignore
-            payload = json.dumps(data)
         elif method is HttpVerbs.PATCH:  # pragma: no cover
             session = self.session.patch  # type: ignore
-            payload = json.dumps(data)
         elif method is HttpVerbs.DELETE:
             session = self.session.delete
         elif method is HttpVerbs.HEAD:  # pragma: no cover
             session = self.session.head
+        if has_data and method in [HttpVerbs.POST, HttpVerbs.PUT, HttpVerbs.PATCH]:
+            payload = json.dumps(data)
 
         try:
-            res = session(uri, data=payload, headers=self.headers(method), timeout=self.timeout)
+            res = session(uri, data=payload, files=files, headers=self.headers(method, has_data), timeout=self.timeout)
         except requests.exceptions.RetryError:
             adapter = HTTPAdapter()
             self.session.mount('http://', adapter)
             self.session.mount('https://', adapter)
-            res = session(uri, data=payload, headers=self.headers(method), timeout=self.timeout)
+            res = session(uri, data=payload, files=files, headers=self.headers(method, has_data), timeout=self.timeout)
 
         return res
 

@@ -60,6 +60,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#module-freshbooks.api.timetracking">Time-Tracking</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-freshbooks.api.payments">Payments</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-freshbooks.api.events">Events</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-freshbooks.api.uploads">Uploads</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="models.html">Models</a></li>
@@ -914,6 +915,78 @@ verifier: The string verifier received by the webhook callback URI</p>
 <p>Returns:
 Result: Result object with the resource’s response data.</p>
 <p>Raises:
+FreshBooksError: If the call is not successful.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-freshbooks.api.uploads">
+<span id="uploads"></span><h2>Uploads<a class="headerlink" href="#module-freshbooks.api.uploads" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="freshbooks.api.uploads.UploadsResource">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">freshbooks.api.uploads.</span></span><span class="sig-name descname"><span class="pre">UploadsResource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client_config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upload_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">single_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.uploads.UploadsResource" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">freshbooks.api.resource.Resource</span></code></p>
+<p>Handles resources under the <code class="docutils literal notranslate"><span class="pre">/uploads</span></code> endpoints.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="freshbooks.api.uploads.UploadsResource.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">jwt</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.uploads.UploadsResource.get" title="Permalink to this definition"></a></dt>
+<dd><p>Get an uploaded file. This returns a requests.Response object to provide flexibility
+in handling the data.</p>
+<p><a class="reference external" href="https://docs.python-requests.org/en/master/user/quickstart/#binary-response-content">Requests Binary Response</a></p>
+<p>Args:
+jwt: JWT provided by FreshBooks when the file was uploaded.
+Returns:
+requests.Response: The requests Response object.
+Raises:
+FreshBooksError: If the call is not successful.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~requests.Response</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="freshbooks.api.uploads.UploadsResource.headers">
+<span class="sig-name descname"><span class="pre">headers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">has_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.uploads.UploadsResource.headers" title="Permalink to this definition"></a></dt>
+<dd><p>Get headers required for API calls</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~typing.Dict``[:py:class:``str</span></code>, :py:class:<code class="docutils literal notranslate"><span class="pre">str</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="freshbooks.api.uploads.UploadsResource.upload">
+<span class="sig-name descname"><span class="pre">upload</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">account_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_stream</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.uploads.UploadsResource.upload" title="Permalink to this definition"></a></dt>
+<dd><p>Upload a file to FreshBooks’ file storage. This returns a Result object with the JWT required to access the file,
+and in the case of an image, a link to the image itself.</p>
+<p>The file to upload can be either a byte stream, or a path to the file itself.</p>
+<p>Eg.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">uploaded</span> <span class="o">=</span> <span class="n">freshBooksClient</span><span class="o">.</span><span class="n">images</span><span class="o">.</span><span class="n">upload</span><span class="p">(</span><span class="n">account_id</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="s2">&quot;/path/to/image.png&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">uploaded</span> <span class="o">=</span> <span class="n">freshBooksClient</span><span class="o">.</span><span class="n">images</span><span class="o">.</span><span class="n">upload</span><span class="p">(</span><span class="n">account_id</span><span class="p">,</span> <span class="n">file_stream</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;/path/to/image.png&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">uploaded</span><span class="o">.</span><span class="n">jwt</span><span class="p">)</span>
+<span class="go">&lt;some jwt&gt;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">uploaded</span><span class="o">.</span><span class="n">link</span><span class="p">)</span>
+<span class="go">https://my.freshbooks.com/service/uploads/images/&lt;some jwt&gt;</span>
+</pre></div>
+</div>
+<p>Args:
+account_id: The alpha-numeric account id
+file_stream: (Optional) Byte stream of the file
+file_path: (Optional) Path to the file
+Returns:
+Result: Result object with the new resource’s response data.
+Raises:
 FreshBooksError: If the call is not successful.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>

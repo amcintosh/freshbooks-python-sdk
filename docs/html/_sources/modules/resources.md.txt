@@ -59,3 +59,12 @@
   :show-inheritance:
   :inherited-members:
 ```
+
+## Uploads
+
+```{eval-rst}
+.. automodule:: freshbooks.api.uploads
+  :members:
+  :show-inheritance:
+  :inherited-members:
+```

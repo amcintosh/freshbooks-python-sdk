@@ -95,7 +95,6 @@ class PaymentsResource(Resource):
         """
         self._reject_missing("get")
         resource_url = self._get_url(account_id, resource_id)
-        print(resource_url)
         data = self._request(resource_url, HttpVerbs.GET)
         return Result(self.single_name, data)
 
@@ -115,6 +114,5 @@ class PaymentsResource(Resource):
         """
         self._reject_missing("create")
         resource_url = self._get_url(account_id, resource_id)
-        print(resource_url)
-        response = self._request(resource_url, HttpVerbs.POST, data={self.single_name: data})
+        response = self._request(resource_url, HttpVerbs.POST, data=data)
         return Result(self.single_name, response)

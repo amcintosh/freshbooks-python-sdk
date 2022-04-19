@@ -44,6 +44,7 @@ line2 = {
 invoice_data = {
     "customerid": client.id,
     "create_date": date.today().isoformat(),
+    "due_offset_days": 5,  # due 5 days after create_date
     "lines": [line1, line2],
 }
 print("Creating invoice...")
@@ -54,7 +55,7 @@ except FreshBooksError as e:
     print(e.status_code)
     exit(1)
 
-print(f"Created invoice {invoice.id}")
+print(f"Created invoice {invoice.invoice_number} (Id: {invoice.id})")
 print(f"Invoice total is {invoice.amount.amount} {invoice.amount.code}")
 
 # Invoices are created in draft status, so we need to mark it as sent
@@ -62,4 +63,9 @@ print("Marking invoice as sent...")
 invoice_data = {
     "action_mark_as_sent": True
 }
-invoice = freshBooksClient.invoices.update(account_id, invoice.id, invoice_data)
+try:
+    invoice = freshBooksClient.invoices.update(account_id, invoice.id, invoice_data)
+except FreshBooksError as e:
+    print(e)
+    print(e.status_code)
+    exit(1)

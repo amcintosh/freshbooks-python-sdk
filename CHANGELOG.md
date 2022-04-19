@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Added upload attachment and image resources
 - Fixed `invoice_payment_options` create call (was not creating)
 
 ## 1.0.1

@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Fixed `invoice_payment_options` create call (was not creating)
+
 ## 1.0.1
 
 - Fixed Identity "business_memberships" attribute to return Result objects

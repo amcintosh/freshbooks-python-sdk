@@ -17,7 +17,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Client" href="../modules/client.html" />
+    <link rel="next" title="Create Invoice - Extended" href="create_invoice_extended.html" />
     <link rel="prev" title="Authorization Flow" href="authorization_flow.html" /> 
 </head>
 
@@ -50,6 +50,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../examples.html">Examples and Sample Code</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="authorization_flow.html">Authorization Flow</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Create Invoice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create_invoice_extended.html">Create Invoice - Extended</a></li>
 </ul>
 </li>
 </ul>
@@ -135,25 +136,31 @@
 <span class="linenos">44</span><span class="n">invoice_data</span> <span class="o">=</span> <span class="p">{</span>
 <span class="linenos">45</span>    <span class="s2">&quot;customerid&quot;</span><span class="p">:</span> <span class="n">client</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
 <span class="linenos">46</span>    <span class="s2">&quot;create_date&quot;</span><span class="p">:</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">(),</span>
-<span class="linenos">47</span>    <span class="s2">&quot;lines&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">line1</span><span class="p">,</span> <span class="n">line2</span><span class="p">],</span>
-<span class="linenos">48</span><span class="p">}</span>
-<span class="linenos">49</span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Creating invoice...&quot;</span><span class="p">)</span>
-<span class="linenos">50</span><span class="k">try</span><span class="p">:</span>
-<span class="linenos">51</span>    <span class="n">invoice</span> <span class="o">=</span> <span class="n">freshBooksClient</span><span class="o">.</span><span class="n">invoices</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">account_id</span><span class="p">,</span> <span class="n">invoice_data</span><span class="p">)</span>
-<span class="linenos">52</span><span class="k">except</span> <span class="n">FreshBooksError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<span class="linenos">53</span>    <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
-<span class="linenos">54</span>    <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">status_code</span><span class="p">)</span>
-<span class="linenos">55</span>    <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="linenos">56</span>
-<span class="linenos">57</span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Created invoice </span><span class="si">{</span><span class="n">invoice</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="linenos">58</span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invoice total is </span><span class="si">{</span><span class="n">invoice</span><span class="o">.</span><span class="n">amount</span><span class="o">.</span><span class="n">amount</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">invoice</span><span class="o">.</span><span class="n">amount</span><span class="o">.</span><span class="n">code</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="linenos">59</span>
-<span class="linenos">60</span><span class="c1"># Invoices are created in draft status, so we need to mark it as sent</span>
-<span class="linenos">61</span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Marking invoice as sent...&quot;</span><span class="p">)</span>
-<span class="linenos">62</span><span class="n">invoice_data</span> <span class="o">=</span> <span class="p">{</span>
-<span class="linenos">63</span>    <span class="s2">&quot;action_mark_as_sent&quot;</span><span class="p">:</span> <span class="kc">True</span>
-<span class="linenos">64</span><span class="p">}</span>
-<span class="linenos">65</span><span class="n">invoice</span> <span class="o">=</span> <span class="n">freshBooksClient</span><span class="o">.</span><span class="n">invoices</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">account_id</span><span class="p">,</span> <span class="n">invoice</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">invoice_data</span><span class="p">)</span>
+<span class="linenos">47</span>    <span class="s2">&quot;due_offset_days&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>  <span class="c1"># due 5 days after create_date</span>
+<span class="linenos">48</span>    <span class="s2">&quot;lines&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">line1</span><span class="p">,</span> <span class="n">line2</span><span class="p">],</span>
+<span class="linenos">49</span><span class="p">}</span>
+<span class="linenos">50</span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Creating invoice...&quot;</span><span class="p">)</span>
+<span class="linenos">51</span><span class="k">try</span><span class="p">:</span>
+<span class="linenos">52</span>    <span class="n">invoice</span> <span class="o">=</span> <span class="n">freshBooksClient</span><span class="o">.</span><span class="n">invoices</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">account_id</span><span class="p">,</span> <span class="n">invoice_data</span><span class="p">)</span>
+<span class="linenos">53</span><span class="k">except</span> <span class="n">FreshBooksError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="linenos">54</span>    <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+<span class="linenos">55</span>    <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">status_code</span><span class="p">)</span>
+<span class="linenos">56</span>    <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">57</span>
+<span class="linenos">58</span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Created invoice </span><span class="si">{</span><span class="n">invoice</span><span class="o">.</span><span class="n">invoice_number</span><span class="si">}</span><span class="s2"> (Id: </span><span class="si">{</span><span class="n">invoice</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+<span class="linenos">59</span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invoice total is </span><span class="si">{</span><span class="n">invoice</span><span class="o">.</span><span class="n">amount</span><span class="o">.</span><span class="n">amount</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">invoice</span><span class="o">.</span><span class="n">amount</span><span class="o">.</span><span class="n">code</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos">60</span>
+<span class="linenos">61</span><span class="c1"># Invoices are created in draft status, so we need to mark it as sent</span>
+<span class="linenos">62</span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Marking invoice as sent...&quot;</span><span class="p">)</span>
+<span class="linenos">63</span><span class="n">invoice_data</span> <span class="o">=</span> <span class="p">{</span>
+<span class="linenos">64</span>    <span class="s2">&quot;action_mark_as_sent&quot;</span><span class="p">:</span> <span class="kc">True</span>
+<span class="linenos">65</span><span class="p">}</span>
+<span class="linenos">66</span><span class="k">try</span><span class="p">:</span>
+<span class="linenos">67</span>    <span class="n">invoice</span> <span class="o">=</span> <span class="n">freshBooksClient</span><span class="o">.</span><span class="n">invoices</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">account_id</span><span class="p">,</span> <span class="n">invoice</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">invoice_data</span><span class="p">)</span>
+<span class="linenos">68</span><span class="k">except</span> <span class="n">FreshBooksError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="linenos">69</span>    <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+<span class="linenos">70</span>    <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">status_code</span><span class="p">)</span>
+<span class="linenos">71</span>    <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -163,7 +170,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="authorization_flow.html" class="btn btn-neutral float-left" title="Authorization Flow" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../modules/client.html" class="btn btn-neutral float-right" title="Client" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="create_invoice_extended.html" class="btn btn-neutral float-right" title="Create Invoice - Extended" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

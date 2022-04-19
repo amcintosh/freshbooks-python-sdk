@@ -6,5 +6,5 @@ what problem(s) it solves.
 
 # Related Material
 
-See Issue https://github.com/freshbooks/freshbooks-python-sdk/issues/<number>
+Closes #<number>
 <!-- Please do not reference internal bug trackers as this is a public project -->

@@ -14,7 +14,7 @@ pip install freshbooks-sdk
 
 ## Usage
 
-See the [full documentation](https://freshbooks.github.io/freshbooks-python-sdk/) or check out some of our [examples](https://github.com/freshbooks/freshbooks-python-sdk/tree/main/examples).
+See the [full documentation](https://freshbooks-python-sdk.readthedocs.io/) or check out some of our [examples](https://github.com/freshbooks/freshbooks-python-sdk/tree/main/examples).
 
 ### Configuring the API client
 

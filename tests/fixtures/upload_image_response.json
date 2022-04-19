@@ -1,0 +1,10 @@
+{
+    "image": {
+        "filename": "upload-12345",
+        "public_id": "some_jwt",
+        "jwt": "some_jwt",
+        "media_type": "image/jpeg",
+        "uuid": "abc-123-aaa"
+    },
+    "link": "https://my.freshbooks.com/service/uploads/images/some_jwt"
+}

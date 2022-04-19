@@ -81,7 +81,7 @@ class UploadsResource(Resource):
         url = self._get_url(account_id=account_id)
 
         file_content = file_stream
-        if file_path and not file_stream:
+        if file_path and not file_stream:  # pragma: no cover
             file_content = open(file_path, "rb")
         files = {'content': file_content}
 
@@ -96,7 +96,7 @@ class UploadsResource(Resource):
         if status >= 400:
             raise FreshBooksError(status, content["error"], raw_response=response.text)
 
-        if self.single_name not in content:
+        if self.single_name not in content:  # pragma: no cover
             raise FreshBooksError(status, "Returned an unexpected response", raw_response=response.text)
 
         if content.get("link"):

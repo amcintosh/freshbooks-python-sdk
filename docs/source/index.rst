@@ -11,6 +11,7 @@ Welcome to freshbooks-sdk's documentation!
 
   user_guide/configuration
   user_guide/authorization
+  user_guide/current_user
   user_guide/making_calls
 
 .. toctree::

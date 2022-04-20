@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Configuring The API Client &mdash; freshbooks-sdk 1.0.1 documentation</title>
+  <title>Current User &mdash; freshbooks-sdk 1.0.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -17,8 +17,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Authorization Flow" href="authorization.html" />
-    <link rel="prev" title="Welcome to freshbooks-sdk’s documentation!" href="../index.html" /> 
+    <link rel="next" title="Making API Calls" href="making_calls.html" />
+    <link rel="prev" title="Authorization Flow" href="authorization.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -41,9 +41,9 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Configuring The API Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuring The API Client</a></li>
 <li class="toctree-l1"><a class="reference internal" href="authorization.html">Authorization Flow</a></li>
-<li class="toctree-l1"><a class="reference internal" href="current_user.html">Current User</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Current User</a></li>
 <li class="toctree-l1"><a class="reference internal" href="making_calls.html">Making API Calls</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Examples</span></p>
@@ -73,9 +73,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Configuring The API Client</li>
+      <li>Current User</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/user_guide/configuration.md.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/user_guide/current_user.md.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -83,32 +83,20 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="configuring-the-api-client">
-<h1>Configuring The API Client<a class="headerlink" href="#configuring-the-api-client" title="Permalink to this headline"></a></h1>
-<p>You can create an instance of the API client in one of two ways:</p>
-<ul class="simple">
-<li><p>By providing your application’s OAuth2 <code class="docutils literal notranslate"><span class="pre">client_id</span></code> and <code class="docutils literal notranslate"><span class="pre">client_secret</span></code> and following through the auth flow, which when
-complete will return an access token</p></li>
-<li><p>Or if you already have a valid access token, you can instantiate the client directly using that token, however token
-refresh flows will not function without the application id and secret.</p></li>
-</ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">freshbooks</span> <span class="kn">import</span> <span class="n">Client</span>
+  <div class="section" id="current-user">
+<h1>Current User<a class="headerlink" href="#current-user" title="Permalink to this headline"></a></h1>
+<p>FreshBooks users are uniquely identified by their email across our entire product. One user may act on several
+Businesses in different ways, and our Identity model is how we keep track of it. Each unique user has an Identity, and
+each Identity has Business Memberships which define the permissions they have.</p>
+<p>See <a class="reference external" href="https://www.freshbooks.com/api/me_endpoint">FreshBooks API - Business, Roles, and Identity</a> and
+<a class="reference external" href="https://www.freshbooks.com/api/identity_model">FreshBooks API - The Identity Model</a>.</p>
+<p>The current user can be accessed by:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">current_user</span> <span class="o">=</span> <span class="n">freshBooksClient</span><span class="o">.</span><span class="n">current_user</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">current_user</span><span class="o">.</span><span class="n">email</span>
+<span class="go">&lt;some email&gt;</span>
 
-<span class="n">freshBooksClient</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span>
-    <span class="n">client_id</span><span class="o">=&lt;</span><span class="n">your</span> <span class="n">application</span> <span class="nb">id</span><span class="o">&gt;</span><span class="p">,</span>
-    <span class="n">client_secret</span><span class="o">=&lt;</span><span class="n">your</span> <span class="n">application</span> <span class="n">secret</span><span class="o">&gt;</span><span class="p">,</span>
-    <span class="n">redirect_uri</span><span class="o">=&lt;</span><span class="n">your</span> <span class="n">redirect</span> <span class="n">uri</span><span class="o">&gt;</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-<p>and then proceed with the auth flow (see below).</p>
-<p>Or</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">freshbooks</span> <span class="kn">import</span> <span class="n">Client</span>
-
-<span class="n">freshBooksClient</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span>
-    <span class="n">client_id</span><span class="o">=&lt;</span><span class="n">your</span> <span class="n">application</span> <span class="nb">id</span><span class="o">&gt;</span><span class="p">,</span>
-    <span class="n">access_token</span><span class="o">=&lt;</span><span class="n">a</span> <span class="n">valid</span> <span class="n">token</span><span class="o">&gt;</span>
-<span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">current_user</span><span class="o">.</span><span class="n">business_memberships</span>
+<span class="go">&lt;list of businesses&gt;</span>
 </pre></div>
 </div>
 </div>
@@ -117,8 +105,8 @@ refresh flows will not function without the application id and secret.</p></li>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../index.html" class="btn btn-neutral float-left" title="Welcome to freshbooks-sdk’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="authorization.html" class="btn btn-neutral float-right" title="Authorization Flow" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="authorization.html" class="btn btn-neutral float-left" title="Authorization Flow" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="making_calls.html" class="btn btn-neutral float-right" title="Making API Calls" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

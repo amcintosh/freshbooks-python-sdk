@@ -17,7 +17,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Making API Calls" href="making_calls.html" />
+    <link rel="next" title="Current User" href="current_user.html" />
     <link rel="prev" title="Configuring The API Client" href="configuration.html" /> 
 </head>
 
@@ -42,10 +42,8 @@
               <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuring The API Client</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Authorization Flow</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#current-user">Current User</a></li>
-</ul>
-</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Authorization Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="current_user.html">Current User</a></li>
 <li class="toctree-l1"><a class="reference internal" href="making_calls.html">Making API Calls</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Examples</span></p>
@@ -127,23 +125,6 @@ and returns those values.</p>
 <span class="go">&lt;a new token&gt;</span>
 </pre></div>
 </div>
-<div class="section" id="current-user">
-<h2>Current User<a class="headerlink" href="#current-user" title="Permalink to this headline"></a></h2>
-<p>FreshBooks users are uniquely identified by their email across our entire product. One user may act on several
-Businesses in different ways, and our Identity model is how we keep track of it. Each unique user has an Identity, and
-each Identity has Business Memberships which define the permissions they have.</p>
-<p>See <a class="reference external" href="https://www.freshbooks.com/api/me_endpoint">FreshBooks API - Business, Roles, and Identity</a> and
-<a class="reference external" href="https://www.freshbooks.com/api/identity_model">FreshBooks API - The Identity Model</a>.</p>
-<p>The current user can be accessed by:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">current_user</span> <span class="o">=</span> <span class="n">freshBooksClient</span><span class="o">.</span><span class="n">current_user</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">current_user</span><span class="o">.</span><span class="n">email</span>
-<span class="go">&lt;some email&gt;</span>
-
-<span class="gp">&gt;&gt;&gt; </span><span class="n">current_user</span><span class="o">.</span><span class="n">business_memberships</span>
-<span class="go">&lt;list of businesses&gt;</span>
-</pre></div>
-</div>
-</div>
 </div>
 
 
@@ -151,7 +132,7 @@ each Identity has Business Memberships which define the permissions they have.</
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="configuration.html" class="btn btn-neutral float-left" title="Configuring The API Client" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="making_calls.html" class="btn btn-neutral float-right" title="Making API Calls" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="current_user.html" class="btn btn-neutral float-right" title="Current User" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

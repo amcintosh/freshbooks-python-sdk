@@ -158,8 +158,7 @@ class FilterBuilder(Builder):
         - `filter.between("amount_min", min=1)` will yield filter `&search[amount_min]=1`
         - `filter.between("amount_max", max=10)` will yield filter `&search[amount_max]=10`
         - `filter.between("start_date", "2020-10-17")` will yield filter `&search[start_date]=2020-10-17`
-        - `filter.between("start_date", datetime.date(year=2020, month=10, day=17))` will yield filter
-          `&search[start_date]=2020-10-17`
+        - `filter.between("start_date", date(year=2020, month=10, day=17))` yields `&search[start_date]=2020-10-17`
 
         Args:
             field: The API response field to filter on

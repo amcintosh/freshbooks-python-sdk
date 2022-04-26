@@ -45,6 +45,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../user_guide/authorization.html">Authorization Flow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../user_guide/current_user.html">Current User</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../user_guide/making_calls.html">Making API Calls</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Examples</span></p>
 <ul>
@@ -237,9 +238,8 @@ will be converted to the proper string format.</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">filter.between(&quot;amount_min&quot;,</span> <span class="pre">min=1)</span></code> will yield filter <code class="docutils literal notranslate"><span class="pre">&amp;search[amount_min]=1</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">filter.between(&quot;amount_max&quot;,</span> <span class="pre">max=10)</span></code> will yield filter <code class="docutils literal notranslate"><span class="pre">&amp;search[amount_max]=10</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">filter.between(&quot;start_date&quot;,</span> <span class="pre">&quot;2020-10-17&quot;)</span></code> will yield filter <code class="docutils literal notranslate"><span class="pre">&amp;search[start_date]=2020-10-17</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">filter.between(&quot;start_date&quot;,</span> <span class="pre">datetime.date(year=2020,</span> <span class="pre">month=10,</span> <span class="pre">day=17))</span></code> will yield filter</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">filter.between(&quot;start_date&quot;,</span> <span class="pre">date(year=2020,</span> <span class="pre">month=10,</span> <span class="pre">day=17))</span></code> yields <code class="docutils literal notranslate"><span class="pre">&amp;search[start_date]=2020-10-17</span></code></p></li>
 </ul>
-<p><code class="docutils literal notranslate"><span class="pre">&amp;search[start_date]=2020-10-17</span></code></p>
 <p>Args:
 field: The API response field to filter on
 min: (Optional) The value the field should be greater than (or equal to)

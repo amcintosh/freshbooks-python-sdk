@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Making API Calls &mdash; freshbooks-sdk 1.0.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -96,7 +97,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="making-api-calls">
+  <section id="making-api-calls">
 <h1>Making API Calls<a class="headerlink" href="#making-api-calls" title="Permalink to this headline"></a></h1>
 <p>Each resource in the client provides calls for <code class="docutils literal notranslate"><span class="pre">get</span></code>, <code class="docutils literal notranslate"><span class="pre">list</span></code>, <code class="docutils literal notranslate"><span class="pre">create</span></code>, <code class="docutils literal notranslate"><span class="pre">update</span></code> and <code class="docutils literal notranslate"><span class="pre">delete</span></code> calls. Please note that
 some API resources are scoped to a FreshBooks <code class="docutils literal notranslate"><span class="pre">account_id</span></code> while others are scoped to a <code class="docutils literal notranslate"><span class="pre">business_id</span></code>. In general these
@@ -105,7 +106,7 @@ fall along the lines of accounting resources vs projects/time tracking resources
 <span class="n">project</span> <span class="o">=</span> <span class="n">freshBooksClient</span><span class="o">.</span><span class="n">projects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">business_id</span><span class="p">,</span> <span class="n">project_id</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="section" id="get-and-list">
+<section id="get-and-list">
 <h2>Get and List<a class="headerlink" href="#get-and-list" title="Permalink to this headline"></a></h2>
 <p>API calls which return a single resource return a <code class="docutils literal notranslate"><span class="pre">Result</span></code> object with the returned data accessible via attributes.
 The raw json-parsed dictionary can also be accessed via the <code class="docutils literal notranslate"><span class="pre">data</span></code> attribute.</p>
@@ -141,8 +142,8 @@ index and iterated over. Similarly, the raw dictionary can be accessed via the <
     <span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;organization&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;FreshBooks&quot;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="create-update-and-delete">
+</section>
+<section id="create-update-and-delete">
 <h2>Create, Update, and Delete<a class="headerlink" href="#create-update-and-delete" title="Permalink to this headline"></a></h2>
 <p>API calls to create and update take a dictionary of the resource data. A successful call will return a <code class="docutils literal notranslate"><span class="pre">Result</span></code> object
 as if a <code class="docutils literal notranslate"><span class="pre">get</span></code> call.</p>
@@ -166,8 +167,8 @@ as if a <code class="docutils literal notranslate"><span class="pre">get</span><
 <span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">vis_state</span> <span class="o">==</span> <span class="n">VisState</span><span class="o">.</span><span class="n">DELETED</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="error-handling">
+</section>
+<section id="error-handling">
 <h2>Error Handling<a class="headerlink" href="#error-handling" title="Permalink to this headline"></a></h2>
 <p>Calls made to the FreshBooks API with a non-2xx response are wrapped in a <code class="docutils literal notranslate"><span class="pre">FreshBooksError</span></code> exception.
 This exception class contains the error message, HTTP response code, FreshBooks-specific error number if one exists,
@@ -190,12 +191,12 @@ and the HTTP response body.</p>
 calls, but are not deletable. If you attempt to call a method that does not exist, the SDK will raise a
 <code class="docutils literal notranslate"><span class="pre">FreshBooksNotImplementedError</span></code> exception, but this is not something you will likely have to account
 for outside of development.</p>
-</div>
-<div class="section" id="pagination-filters-and-includes">
+</section>
+<section id="pagination-filters-and-includes">
 <h2>Pagination, Filters, and Includes<a class="headerlink" href="#pagination-filters-and-includes" title="Permalink to this headline"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">list</span></code> calls take a list of builder objects that can be used to paginate, filter, and include
 optional data in the response. See <a class="reference external" href="https://www.freshbooks.com/api/parameters">FreshBooks API - Parameters</a> documentation.</p>
-<div class="section" id="pagination">
+<section id="pagination">
 <h3>Pagination<a class="headerlink" href="#pagination" title="Permalink to this headline"></a></h3>
 <p>Pagination results are included in <code class="docutils literal notranslate"><span class="pre">list</span></code> responses in the <code class="docutils literal notranslate"><span class="pre">pages</span></code> attribute:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">clients</span> <span class="o">=</span> <span class="n">freshBooksClient</span><span class="o">.</span><span class="n">clients</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="n">account_id</span><span class="p">)</span>
@@ -241,8 +242,8 @@ can be chained.</p>
     <span class="n">clients</span> <span class="o">=</span> <span class="n">clients</span> <span class="o">+</span> <span class="n">new_clients</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="filters">
+</section>
+<section id="filters">
 <h3>Filters<a class="headerlink" href="#filters" title="Permalink to this headline"></a></h3>
 <p>To filter which results are return by <code class="docutils literal notranslate"><span class="pre">list</span></code> method calls, construct a <code class="docutils literal notranslate"><span class="pre">FilterBuilder</span></code> and pass that
 in the list of builders to the <code class="docutils literal notranslate"><span class="pre">list</span></code> method.</p>
@@ -277,8 +278,8 @@ which can be chained together.</p>
 <span class="go">FilterBuilder(&amp;search[start_date]=2020-11-21)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="includes">
+</section>
+<section id="includes">
 <h3>Includes<a class="headerlink" href="#includes" title="Permalink to this headline"></a></h3>
 <p>To include additional relationships, sub-resources, or data in a response an <code class="docutils literal notranslate"><span class="pre">IncludesBuilder</span></code>
 can be constructed.</p>
@@ -306,9 +307,9 @@ can be constructed.</p>
 <span class="go">[]  # New client has no balance</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="dates-and-times">
+</section>
+</section>
+<section id="dates-and-times">
 <h2>Dates and Times<a class="headerlink" href="#dates-and-times" title="Permalink to this headline"></a></h2>
 <p>For historical reasons, some resources in the FreshBooks API (mostly accounting-releated) return date/times in
 “US/Eastern” timezone. Some effort is taken to return <code class="docutils literal notranslate"><span class="pre">datetime</span></code> objects as zone-aware and normalized to UTC. In these
@@ -320,8 +321,8 @@ cases, the raw response string will differ from the attribute. For example:</p>
 <span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">updated</span> <span class="o">==</span> <span class="n">datetime</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2021</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">hour</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">minute</span><span class="o">=</span><span class="mi">31</span><span class="p">,</span> <span class="n">second</span><span class="o">=</span><span class="mi">59</span><span class="p">,</span> <span class="n">tzinfo</span><span class="o">=</span><span class="n">timezone</span><span class="o">.</span><span class="n">utc</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

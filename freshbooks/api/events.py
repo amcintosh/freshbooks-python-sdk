@@ -1,4 +1,4 @@
-from collections import namedtuple
+from typing import Tuple
 from decimal import Decimal
 from typing import Any, Optional
 
@@ -21,18 +21,16 @@ class EventsResource(AccountingResource):
                 self.base_url, account_id, self.accounting_path, resource_id)
         return "{}/events/account/{}/{}".format(self.base_url, account_id, self.accounting_path)
 
-    def _extract_error(self, errors: dict) -> namedtuple:
-        Error = namedtuple("Error", "message details code")
-
+    def _extract_error_details(self, errors: dict) -> Tuple[str, Optional[int], Optional[dict]]:
         if not errors:  # pragma: no cover
-            return Error("Unknown error", None, None)
+            return "Unknown error", None, None
 
         details = None
         for detail in errors.get("details", []):
             if detail.get("@type") == "type.googleapis.com/google.rpc.BadRequest":
                 details = detail
 
-        return Error(errors["message"], details, int(errors["code"]))
+        return errors["message"], int(errors["code"]), details
 
     def _request(self, url: str, method: str, data: Optional[dict] = None) -> Any:
         response = self._send_request(url, method, data)
@@ -50,9 +48,9 @@ class EventsResource(AccountingResource):
             raise FreshBooksError(status, "Failed to parse response", raw_response=response.text)
 
         if status >= 400:
-            error = self._extract_error(content)
+            error_message, error_code, error_details = self._extract_error_details(content)
             raise FreshBooksError(
-                status, error.message, error_code=error.code, error_details=error.details, raw_response=content
+                status, error_message, error_code=error_code, error_details=error_details, raw_response=content
             )
 
         if "response" not in content:

@@ -109,7 +109,7 @@ calls, but are not deletable. If you attempt to call a method that does not exis
 `FreshBooksNotImplementedError` exception, but this is not something you will likely have to account
 for outside of development.
 
-## Pagination, Filters, and Includes
+## Pagination, Filters, and Includes, Sorting
 
 `list` calls take a list of builder objects that can be used to paginate, filter, and include
 optional data in the response. See [FreshBooks API - Parameters](https://www.freshbooks.com/api/parameters) documentation.
@@ -208,6 +208,40 @@ FilterBuilder(&search[start_date]=2020-11-21)
 ```
 
 ### Includes
+
+To include additional relationships, sub-resources, or data in a response an `IncludesBuilder`
+can be constructed.
+
+```python
+>>> from freshbooks import IncludesBuilder
+
+>>> includes = IncludesBuilder()
+>>> includes.include("outstanding_balance")
+IncludesBuilder(&include[]=outstanding_balance)
+```
+
+Which can then be passed into `list` or `get` calls:
+
+```python
+>>> clients = freshBooksClient.clients.list(account_id, builders=[includes])
+>>> clients[0].outstanding_balance
+[{'amount': {'amount': '100.00', 'code': 'USD'}}]
+
+>>> client = freshBooksClient.clients.get(account_id, client_id, includes=includes)
+>>> client.outstanding_balance
+[{'amount': {'amount': '100.00', 'code': 'USD'}}]
+```
+
+Includes can also be passed into `create` and `update` calls to include the data in the response of the updated resource:
+
+```python
+>>> payload = {"email": "john.doe@abcorp.com"}
+>>> new_client = FreshBooksClient.clients.create(account_id, payload, includes=includes)
+>>> new_client.outstanding_balance
+[]  # New client has no balance
+```
+
+### Sorting
 
 To include additional relationships, sub-resources, or data in a response an `IncludesBuilder`
 can be constructed.

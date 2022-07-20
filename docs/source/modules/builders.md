@@ -27,3 +27,12 @@
   :show-inheritance:
   :inherited-members:
 ```
+
+## Sort
+
+```{eval-rst}
+.. automodule:: freshbooks.builders.sort
+  :members:
+  :show-inheritance:
+  :inherited-members:
+```

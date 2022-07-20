@@ -241,38 +241,33 @@ Includes can also be passed into `create` and `update` calls to include the data
 []  # New client has no balance
 ```
 
-Which can then be passed into `list` or `get` calls:
-
-```python
->>> clients = freshBooksClient.clients.list(account_id, builders=[includes])
->>> clients[0].outstanding_balance
-[{'amount': {'amount': '100.00', 'code': 'USD'}}]
-
->>> client = freshBooksClient.clients.get(account_id, client_id, includes=includes)
->>> client.outstanding_balance
-[{'amount': {'amount': '100.00', 'code': 'USD'}}]
-```
-
-Includes can also be passed into `create` and `update` calls to include the data in the response of the updated resource:
-
-```python
->>> payload = {"email": "john.doe@abcorp.com"}
->>> new_client = FreshBooksClient.clients.create(account_id, payload, includes=includes)
->>> new_client.outstanding_balance
-[]  # New client has no balance
-```
-
 ### Sorting
 
-To include additional relationships, sub-resources, or data in a response an `IncludesBuilder`
-can be constructed.
+To sort the results of a list call by supported fields (see the documentation for that resource) a
+`SortBuilder` can be used.
 
 ```python
->>> from freshbooks import IncludesBuilder
+>>> from freshbooks import SortBuilder
 
->>> includes = IncludesBuilder()
->>> includes.include("outstanding_balance")
-IncludesBuilder(&include[]=outstanding_balance)
+>>> sort = SortBuilder()
+>>> sort.ascending("invoice_date")
+SortBuilder(&sort=invoice_date_asc)
+```
+
+to sort by the invoice date in ascending order, or:
+
+```python
+>>> from freshbooks import SortBuilder
+
+>>> sort = SortBuilder()
+>>> sort.descending("invoice_date")
+SortBuilder(&sort=invoice_date_desc)
+```
+
+for descending order.
+
+```python
+invoices = freshBooksClient.invoices.list(account_id, builders=[sort])
 ```
 
 ## Dates and Times

@@ -18,16 +18,19 @@ class FreshBooksError(Exception):
     Attributes:
         message: Error message
         status_code: HTTP status code from the server.
-        error_code: (Optional) FreshBooks specific error code, if available
         raw_response: Content response from the server.
+        error_code: (Optional) FreshBooks specific error code, if available
+        error_details: (Optional) Details of the error, if available
     """
 
     def __init__(self, status_code: int, message: str,
                  raw_response: Optional[str] = None,
-                 error_code: Optional[int] = None):
+                 error_code: Optional[int] = None,
+                 error_details: Optional[dict] = None):
         super().__init__(message)
         self.status_code = status_code
         self.error_code = error_code
+        self.error_details = error_details
         self.raw_response = raw_response
 
 

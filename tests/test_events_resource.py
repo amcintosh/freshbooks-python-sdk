@@ -55,8 +55,28 @@ class TestEventsResources:
         except FreshBooksError as e:
             assert str(e) == "Requested resource could not be found."
             assert e.status_code == 404
-            assert e.error_code == 404
-            assert e.raw_response == {"errno": 404, "message": "Requested resource could not be found."}
+            assert e.error_code == 5
+            assert e.raw_response == {"code": 5, "message": "Requested resource could not be found.", "details": []}
+
+    @httpretty.activate
+    def test_get_callback__no_auth(self):
+        callback_id = 123
+        url = "{}/events/account/{}/events/callbacks/{}".format(API_BASE_URL, self.account_id, callback_id)
+        httpretty.register_uri(
+            httpretty.GET,
+            url,
+            body=json.dumps(get_fixture("get_callback_response__no_auth")),
+            status=404
+        )
+        try:
+            self.freshBooksClient.callbacks.get(self.account_id, callback_id)
+        except FreshBooksError as e:
+            assert str(e) == "The request token failed to authenticate or validate."
+            assert e.status_code == 404
+            assert e.error_code == 16
+            assert e.raw_response == {
+                "code": 16, "message": "The request token failed to authenticate or validate.", "details": []
+            }
 
     @httpretty.activate
     def test_get_callback__bad_response(self):
@@ -166,6 +186,27 @@ class TestEventsResources:
         assert callback.event == "invoice.create"
         assert httpretty.last_request().headers["Authorization"] == "Bearer some_token"
         assert httpretty.last_request().headers["Content-Type"] == "application/json"
+
+    @httpretty.activate
+    def test_create_callback__validation_error(self):
+        response = get_fixture("create_callback_response__validation_error")
+        url = "{}/events/account/{}/events/callbacks".format(API_BASE_URL, self.account_id)
+        httpretty.register_uri(
+            httpretty.POST,
+            url,
+            body=json.dumps(response),
+            status=400
+        )
+
+        payload = {"event": "bad.event", "uri": "not_a_uri"}
+        try:
+            self.freshBooksClient.callbacks.create(self.account_id, payload)
+        except FreshBooksError as e:
+            assert str(e) == "Invalid data in this request."
+            assert e.status_code == 400
+            assert e.error_code == 3
+            assert e.error_details == response["details"][0]
+            assert e.raw_response == response
 
     @httpretty.activate
     def test_update_callback(self):

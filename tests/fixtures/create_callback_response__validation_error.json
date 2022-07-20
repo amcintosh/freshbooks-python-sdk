@@ -1,0 +1,28 @@
+{
+    "code": 3,
+    "message": "Invalid data in this request.",
+    "details": [
+        {
+            "@type": "type.googleapis.com/google.rpc.BadRequest",
+            "fieldViolations": [
+                {
+                    "field": "event",
+                    "description": "Unrecognized event."
+                },
+                {
+                    "field": "uri",
+                    "description": "Not a well-formed URL."
+                }
+            ]
+        },
+        {
+            "@type": "type.googleapis.com/google.rpc.Help",
+            "links": [
+                {
+                    "description": "API Documentation",
+                    "url": "https://www.freshbooks.com/api/webhooks"
+                }
+            ]
+        }
+    ]
+}

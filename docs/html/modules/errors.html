@@ -102,7 +102,7 @@ set self.**traceback** to tb and return self.</p>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="freshbooks.errors.FreshBooksError">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">freshbooks.errors.</span></span><span class="sig-name descname"><span class="pre">FreshBooksError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">status_code</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">raw_response</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error_code</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.errors.FreshBooksError" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">freshbooks.errors.</span></span><span class="sig-name descname"><span class="pre">FreshBooksError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">status_code</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">raw_response</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error_code</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error_details</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.errors.FreshBooksError" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
 <p>Exception thrown when FreshBooks returns a non-2xx response or when the response
 is missing expected content.</p>
@@ -118,8 +118,9 @@ is missing expected content.</p>
 <p>Attributes:
 message: Error message
 status_code: HTTP status code from the server.
+raw_response: Content response from the server.
 error_code: (Optional) FreshBooks specific error code, if available
-raw_response: Content response from the server.</p>
+error_details: (Optional) Details of the error, if available</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="freshbooks.errors.FreshBooksError.with_traceback">
 <span class="sig-name descname"><span class="pre">with_traceback</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.errors.FreshBooksError.with_traceback" title="Permalink to this definition"></a></dt>

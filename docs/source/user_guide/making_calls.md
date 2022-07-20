@@ -241,19 +241,6 @@ Includes can also be passed into `create` and `update` calls to include the data
 []  # New client has no balance
 ```
 
-### Sorting
-
-To include additional relationships, sub-resources, or data in a response an `IncludesBuilder`
-can be constructed.
-
-```python
->>> from freshbooks import IncludesBuilder
-
->>> includes = IncludesBuilder()
->>> includes.include("outstanding_balance")
-IncludesBuilder(&include[]=outstanding_balance)
-```
-
 Which can then be passed into `list` or `get` calls:
 
 ```python
@@ -273,6 +260,19 @@ Includes can also be passed into `create` and `update` calls to include the data
 >>> new_client = FreshBooksClient.clients.create(account_id, payload, includes=includes)
 >>> new_client.outstanding_balance
 []  # New client has no balance
+```
+
+### Sorting
+
+To include additional relationships, sub-resources, or data in a response an `IncludesBuilder`
+can be constructed.
+
+```python
+>>> from freshbooks import IncludesBuilder
+
+>>> includes = IncludesBuilder()
+>>> includes.include("outstanding_balance")
+IncludesBuilder(&include[]=outstanding_balance)
 ```
 
 ## Dates and Times

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Making API Calls &mdash; freshbooks-sdk 1.0.1 documentation</title>
+  <title>Making API Calls &mdash; freshbooks-sdk 1.1.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -30,7 +30,7 @@
             <a href="../index.html" class="icon icon-home"> freshbooks-sdk
           </a>
               <div class="version">
-                1.0.1
+                1.1.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -308,18 +308,6 @@ can be constructed.</p>
 <span class="go">[]  # New client has no balance</span>
 </pre></div>
 </div>
-</section>
-<section id="sorting">
-<h3>Sorting<a class="headerlink" href="#sorting" title="Permalink to this headline"></a></h3>
-<p>To include additional relationships, sub-resources, or data in a response an <code class="docutils literal notranslate"><span class="pre">IncludesBuilder</span></code>
-can be constructed.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">freshbooks</span> <span class="kn">import</span> <span class="n">IncludesBuilder</span>
-
-<span class="gp">&gt;&gt;&gt; </span><span class="n">includes</span> <span class="o">=</span> <span class="n">IncludesBuilder</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">includes</span><span class="o">.</span><span class="n">include</span><span class="p">(</span><span class="s2">&quot;outstanding_balance&quot;</span><span class="p">)</span>
-<span class="go">IncludesBuilder(&amp;include[]=outstanding_balance)</span>
-</pre></div>
-</div>
 <p>Which can then be passed into <code class="docutils literal notranslate"><span class="pre">list</span></code> or <code class="docutils literal notranslate"><span class="pre">get</span></code> calls:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">clients</span> <span class="o">=</span> <span class="n">freshBooksClient</span><span class="o">.</span><span class="n">clients</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="n">account_id</span><span class="p">,</span> <span class="n">builders</span><span class="o">=</span><span class="p">[</span><span class="n">includes</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">clients</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">outstanding_balance</span>
@@ -335,6 +323,18 @@ can be constructed.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">new_client</span> <span class="o">=</span> <span class="n">FreshBooksClient</span><span class="o">.</span><span class="n">clients</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">account_id</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">includes</span><span class="o">=</span><span class="n">includes</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">new_client</span><span class="o">.</span><span class="n">outstanding_balance</span>
 <span class="go">[]  # New client has no balance</span>
+</pre></div>
+</div>
+</section>
+<section id="sorting">
+<h3>Sorting<a class="headerlink" href="#sorting" title="Permalink to this headline"></a></h3>
+<p>To include additional relationships, sub-resources, or data in a response an <code class="docutils literal notranslate"><span class="pre">IncludesBuilder</span></code>
+can be constructed.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">freshbooks</span> <span class="kn">import</span> <span class="n">IncludesBuilder</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">includes</span> <span class="o">=</span> <span class="n">IncludesBuilder</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">includes</span><span class="o">.</span><span class="n">include</span><span class="p">(</span><span class="s2">&quot;outstanding_balance&quot;</span><span class="p">)</span>
+<span class="go">IncludesBuilder(&amp;include[]=outstanding_balance)</span>
 </pre></div>
 </div>
 </section>

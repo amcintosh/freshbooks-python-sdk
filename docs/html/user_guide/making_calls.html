@@ -308,33 +308,28 @@ can be constructed.</p>
 <span class="go">[]  # New client has no balance</span>
 </pre></div>
 </div>
-<p>Which can then be passed into <code class="docutils literal notranslate"><span class="pre">list</span></code> or <code class="docutils literal notranslate"><span class="pre">get</span></code> calls:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">clients</span> <span class="o">=</span> <span class="n">freshBooksClient</span><span class="o">.</span><span class="n">clients</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="n">account_id</span><span class="p">,</span> <span class="n">builders</span><span class="o">=</span><span class="p">[</span><span class="n">includes</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">clients</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">outstanding_balance</span>
-<span class="go">[{&#39;amount&#39;: {&#39;amount&#39;: &#39;100.00&#39;, &#39;code&#39;: &#39;USD&#39;}}]</span>
-
-<span class="gp">&gt;&gt;&gt; </span><span class="n">client</span> <span class="o">=</span> <span class="n">freshBooksClient</span><span class="o">.</span><span class="n">clients</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">account_id</span><span class="p">,</span> <span class="n">client_id</span><span class="p">,</span> <span class="n">includes</span><span class="o">=</span><span class="n">includes</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">client</span><span class="o">.</span><span class="n">outstanding_balance</span>
-<span class="go">[{&#39;amount&#39;: {&#39;amount&#39;: &#39;100.00&#39;, &#39;code&#39;: &#39;USD&#39;}}]</span>
-</pre></div>
-</div>
-<p>Includes can also be passed into <code class="docutils literal notranslate"><span class="pre">create</span></code> and <code class="docutils literal notranslate"><span class="pre">update</span></code> calls to include the data in the response of the updated resource:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;john.doe@abcorp.com&quot;</span><span class="p">}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">new_client</span> <span class="o">=</span> <span class="n">FreshBooksClient</span><span class="o">.</span><span class="n">clients</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">account_id</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">includes</span><span class="o">=</span><span class="n">includes</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">new_client</span><span class="o">.</span><span class="n">outstanding_balance</span>
-<span class="go">[]  # New client has no balance</span>
-</pre></div>
-</div>
 </section>
 <section id="sorting">
 <h3>Sorting<a class="headerlink" href="#sorting" title="Permalink to this headline"></a></h3>
-<p>To include additional relationships, sub-resources, or data in a response an <code class="docutils literal notranslate"><span class="pre">IncludesBuilder</span></code>
-can be constructed.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">freshbooks</span> <span class="kn">import</span> <span class="n">IncludesBuilder</span>
+<p>To sort the results of a list call by supported fields (see the documentation for that resource) a
+<code class="docutils literal notranslate"><span class="pre">SortBuilder</span></code> can be used.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">freshbooks</span> <span class="kn">import</span> <span class="n">SortBuilder</span>
 
-<span class="gp">&gt;&gt;&gt; </span><span class="n">includes</span> <span class="o">=</span> <span class="n">IncludesBuilder</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">includes</span><span class="o">.</span><span class="n">include</span><span class="p">(</span><span class="s2">&quot;outstanding_balance&quot;</span><span class="p">)</span>
-<span class="go">IncludesBuilder(&amp;include[]=outstanding_balance)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sort</span> <span class="o">=</span> <span class="n">SortBuilder</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sort</span><span class="o">.</span><span class="n">ascending</span><span class="p">(</span><span class="s2">&quot;invoice_date&quot;</span><span class="p">)</span>
+<span class="go">SortBuilder(&amp;sort=invoice_date_asc)</span>
+</pre></div>
+</div>
+<p>to sort by the invoice date in ascending order, or:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">freshbooks</span> <span class="kn">import</span> <span class="n">SortBuilder</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sort</span> <span class="o">=</span> <span class="n">SortBuilder</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sort</span><span class="o">.</span><span class="n">descending</span><span class="p">(</span><span class="s2">&quot;invoice_date&quot;</span><span class="p">)</span>
+<span class="go">SortBuilder(&amp;sort=invoice_date_desc)</span>
+</pre></div>
+</div>
+<p>for descending order.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">invoices</span> <span class="o">=</span> <span class="n">freshBooksClient</span><span class="o">.</span><span class="n">invoices</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="n">account_id</span><span class="p">,</span> <span class="n">builders</span><span class="o">=</span><span class="p">[</span><span class="n">sort</span><span class="p">])</span>
 </pre></div>
 </div>
 </section>

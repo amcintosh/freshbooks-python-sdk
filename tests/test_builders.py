@@ -1,5 +1,5 @@
 from datetime import date, datetime
-from freshbooks import PaginateBuilder, FilterBuilder, IncludesBuilder
+from freshbooks import PaginateBuilder, FilterBuilder, IncludesBuilder, SortBuilder
 
 
 class TestPaginateBuilder:
@@ -157,3 +157,63 @@ class TestInclude:
         includes.include("include_overdue_fees")
 
         assert includes.build("ProjectResource") == "&include_overdue_fees=true"
+
+
+class TestSort:
+
+    def test_sort__accounting_ascending(self):
+        sort = SortBuilder()
+        sort.ascending("invoice_date")
+
+        assert sort.build("AccountingResource") == "&sort=invoice_date_asc"
+        assert str(sort) == "SortBuilder(&sort=invoice_date_asc)"
+
+    def test_sort__accounting_asc(self):
+        sort = SortBuilder()
+        sort.asc("invoice_date")
+
+        assert sort.build("AccountingResource") == "&sort=invoice_date_asc"
+        assert str(sort) == "SortBuilder(&sort=invoice_date_asc)"
+
+    def test_sort__accounting_descending(self):
+        sort = SortBuilder()
+        sort.descending("invoice_date")
+
+        assert sort.build("AccountingResource") == "&sort=invoice_date_desc"
+        assert str(sort) == "SortBuilder(&sort=invoice_date_desc)"
+
+    def test_sort__accounting_desc(self):
+        sort = SortBuilder()
+        sort.desc("invoice_date")
+
+        assert sort.build("AccountingResource") == "&sort=invoice_date_desc"
+        assert str(sort) == "SortBuilder(&sort=invoice_date_desc)"
+
+    def test_sort__project_ascending(self):
+        sort = SortBuilder()
+        sort.ascending("due_date")
+
+        assert sort.build("ProjectResource") == "&sort=due_date"
+
+    def test_sort__project_asc(self):
+        sort = SortBuilder()
+        sort.asc("due_date")
+
+        assert sort.build("ProjectResource") == "&sort=due_date"
+
+    def test_sort__project_descending(self):
+        sort = SortBuilder()
+        sort.descending("due_date")
+
+        assert sort.build("ProjectResource") == "&sort=-due_date"
+
+    def test_sort__project_desc(self):
+        sort = SortBuilder()
+        sort.desc("due_date")
+
+        assert sort.build("ProjectResource") == "&sort=-due_date"
+
+    def test_sort__no_key(self):
+        sort = SortBuilder()
+
+        assert sort.build() == ""

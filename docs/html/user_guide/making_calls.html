@@ -49,10 +49,11 @@
 <li class="toctree-l2"><a class="reference internal" href="#get-and-list">Get and List</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#create-update-and-delete">Create, Update, and Delete</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#error-handling">Error Handling</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#pagination-filters-and-includes">Pagination, Filters, and Includes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#pagination-filters-and-includes-sorting">Pagination, Filters, and Includes, Sorting</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#pagination">Pagination</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#filters">Filters</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#includes">Includes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sorting">Sorting</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#dates-and-times">Dates and Times</a></li>
@@ -192,8 +193,8 @@ calls, but are not deletable. If you attempt to call a method that does not exis
 <code class="docutils literal notranslate"><span class="pre">FreshBooksNotImplementedError</span></code> exception, but this is not something you will likely have to account
 for outside of development.</p>
 </section>
-<section id="pagination-filters-and-includes">
-<h2>Pagination, Filters, and Includes<a class="headerlink" href="#pagination-filters-and-includes" title="Permalink to this headline"></a></h2>
+<section id="pagination-filters-and-includes-sorting">
+<h2>Pagination, Filters, and Includes, Sorting<a class="headerlink" href="#pagination-filters-and-includes-sorting" title="Permalink to this headline"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">list</span></code> calls take a list of builder objects that can be used to paginate, filter, and include
 optional data in the response. See <a class="reference external" href="https://www.freshbooks.com/api/parameters">FreshBooks API - Parameters</a> documentation.</p>
 <section id="pagination">
@@ -281,6 +282,35 @@ which can be chained together.</p>
 </section>
 <section id="includes">
 <h3>Includes<a class="headerlink" href="#includes" title="Permalink to this headline"></a></h3>
+<p>To include additional relationships, sub-resources, or data in a response an <code class="docutils literal notranslate"><span class="pre">IncludesBuilder</span></code>
+can be constructed.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">freshbooks</span> <span class="kn">import</span> <span class="n">IncludesBuilder</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">includes</span> <span class="o">=</span> <span class="n">IncludesBuilder</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">includes</span><span class="o">.</span><span class="n">include</span><span class="p">(</span><span class="s2">&quot;outstanding_balance&quot;</span><span class="p">)</span>
+<span class="go">IncludesBuilder(&amp;include[]=outstanding_balance)</span>
+</pre></div>
+</div>
+<p>Which can then be passed into <code class="docutils literal notranslate"><span class="pre">list</span></code> or <code class="docutils literal notranslate"><span class="pre">get</span></code> calls:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">clients</span> <span class="o">=</span> <span class="n">freshBooksClient</span><span class="o">.</span><span class="n">clients</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="n">account_id</span><span class="p">,</span> <span class="n">builders</span><span class="o">=</span><span class="p">[</span><span class="n">includes</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clients</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">outstanding_balance</span>
+<span class="go">[{&#39;amount&#39;: {&#39;amount&#39;: &#39;100.00&#39;, &#39;code&#39;: &#39;USD&#39;}}]</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client</span> <span class="o">=</span> <span class="n">freshBooksClient</span><span class="o">.</span><span class="n">clients</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">account_id</span><span class="p">,</span> <span class="n">client_id</span><span class="p">,</span> <span class="n">includes</span><span class="o">=</span><span class="n">includes</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client</span><span class="o">.</span><span class="n">outstanding_balance</span>
+<span class="go">[{&#39;amount&#39;: {&#39;amount&#39;: &#39;100.00&#39;, &#39;code&#39;: &#39;USD&#39;}}]</span>
+</pre></div>
+</div>
+<p>Includes can also be passed into <code class="docutils literal notranslate"><span class="pre">create</span></code> and <code class="docutils literal notranslate"><span class="pre">update</span></code> calls to include the data in the response of the updated resource:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;john.doe@abcorp.com&quot;</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">new_client</span> <span class="o">=</span> <span class="n">FreshBooksClient</span><span class="o">.</span><span class="n">clients</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">account_id</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">includes</span><span class="o">=</span><span class="n">includes</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">new_client</span><span class="o">.</span><span class="n">outstanding_balance</span>
+<span class="go">[]  # New client has no balance</span>
+</pre></div>
+</div>
+</section>
+<section id="sorting">
+<h3>Sorting<a class="headerlink" href="#sorting" title="Permalink to this headline"></a></h3>
 <p>To include additional relationships, sub-resources, or data in a response an <code class="docutils literal notranslate"><span class="pre">IncludesBuilder</span></code>
 can be constructed.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">freshbooks</span> <span class="kn">import</span> <span class="n">IncludesBuilder</span>

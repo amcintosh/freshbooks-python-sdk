@@ -61,6 +61,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#module-freshbooks.builders.paginator">Paginator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-freshbooks.builders.filter">Filters</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-freshbooks.builders.includes">Includes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-freshbooks.builders.sort">Sort</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="errors.html">Errors</a></li>
@@ -416,6 +417,87 @@ The IncludesBuilder instance</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.builders.Builder</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-freshbooks.builders.sort">
+<span id="sort"></span><h2>Sort<a class="headerlink" href="#module-freshbooks.builders.sort" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="freshbooks.builders.sort.SortBuilder">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">freshbooks.builders.sort.</span></span><span class="sig-name descname"><span class="pre">SortBuilder</span></span><a class="headerlink" href="#freshbooks.builders.sort.SortBuilder" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">freshbooks.builders.Builder</span></code></p>
+<p>Builder for including sort by field data in a list request.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">freshbooks</span> <span class="kn">import</span> <span class="n">SortBuilder</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sort</span> <span class="o">=</span> <span class="n">SortBuilder</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sort</span><span class="o">.</span><span class="n">ascending</span><span class="p">(</span><span class="s2">&quot;invoice_date&quot;</span><span class="p">)</span>
+<span class="go">SortBuilder(&amp;sort=invoice_date_asc)</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="freshbooks.builders.sort.SortBuilder.asc">
+<span class="sig-name descname"><span class="pre">asc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.builders.sort.SortBuilder.asc" title="Permalink to this definition"></a></dt>
+<dd><p>Alias for .ascending()</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>:py:obj:<code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="freshbooks.builders.sort.SortBuilder.ascending">
+<span class="sig-name descname"><span class="pre">ascending</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.builders.sort.SortBuilder.ascending" title="Permalink to this definition"></a></dt>
+<dd><p>Add a sort by the field in ascending order.</p>
+<p>Args:
+key: The field for the resource list to be sorted by</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>:py:obj:<code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="freshbooks.builders.sort.SortBuilder.build">
+<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resource_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.builders.sort.SortBuilder.build" title="Permalink to this definition"></a></dt>
+<dd><p>Builds the query string parameter from the SortBuilder.</p>
+<p>Args:
+resource_name: The type of resource to generate the query string for.
+Eg. AccountingResource, ProjectsResource</p>
+<p>Returns:
+The built query string</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="freshbooks.builders.sort.SortBuilder.desc">
+<span class="sig-name descname"><span class="pre">desc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.builders.sort.SortBuilder.desc" title="Permalink to this definition"></a></dt>
+<dd><p>Alias for .descending()</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>:py:obj:<code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="freshbooks.builders.sort.SortBuilder.descending">
+<span class="sig-name descname"><span class="pre">descending</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.builders.sort.SortBuilder.descending" title="Permalink to this definition"></a></dt>
+<dd><p>Add a sort by the field in descending order.</p>
+<p>Args:
+key: The field for the resource list to be sorted by</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>:py:obj:<code class="docutils literal notranslate"><span class="pre">None</span></code></p>
 </dd>
 </dl>
 </dd></dl>

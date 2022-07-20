@@ -35,7 +35,7 @@ class AccountingResource(Resource):
         if isinstance(errors, list):
             return errors[0]["message"], int(errors[0]["errno"])
 
-        return errors["message"], int(errors["errno"])
+        return errors["message"], int(errors["errno"])  # pragma: no cover
 
     def _request(self, url: str, method: str, data: Optional[dict] = None) -> Any:
         response = self._send_request(url, method, data)

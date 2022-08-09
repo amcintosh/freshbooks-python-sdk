@@ -3,7 +3,7 @@ from datetime import date, datetime, timezone
 
 import httpretty
 from freshbooks import Client as FreshBooksClient
-from freshbooks import FilterBuilder, FreshBooksError, PaginateBuilder
+from freshbooks import FilterBuilder, FreshBooksError, IncludesBuilder, PaginateBuilder
 from freshbooks.client import API_BASE_URL
 
 from tests import get_fixture
@@ -42,6 +42,30 @@ class TestProjectsResources:
         for service in project.services:
             assert service.billable is True
         assert httpretty.last_request().headers["Authorization"] == "Bearer some_token"
+
+    @httpretty.activate
+    def test_get_project__includes(self):
+        project_id = 654321
+        url = "{}/projects/business/{}/project/{}".format(API_BASE_URL, self.business_id, project_id)
+        httpretty.register_uri(
+            httpretty.GET,
+            url,
+            body=json.dumps(get_fixture("get_project_response")),
+            status=200
+        )
+
+        includes = IncludesBuilder()
+        includes.include("include_logged_duration")
+
+        project = self.freshBooksClient.projects.get(self.business_id, project_id, includes=includes)
+
+        expected_params = {
+            "include_logged_duration": ['true']
+        }
+
+        assert str(project) == "Result(project)"
+        assert project.title == "Awesome Project"
+        assert httpretty.last_request().querystring == expected_params
 
     @httpretty.activate
     def test_get_project__not_found(self):

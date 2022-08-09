@@ -72,7 +72,7 @@ class AccountingResource(Resource):
         Args:
             account_id: The alpha-numeric account id
             resource_id: Id of the resource to return
-            builders: (Optional) IncludesBuilder object for including additional data, sub-resources, etc.
+            includes: (Optional) IncludesBuilder object for including additional data, sub-resources, etc.
         Returns:
             Result: Result object with the resource's response data.
 

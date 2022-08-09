@@ -14,6 +14,7 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -96,13 +97,19 @@
            <div itemprop="articleBody">
              
   <section id="resources">
-<h1>Resources<a class="headerlink" href="#resources" title="Permalink to this headline"></a></h1>
+<h1>Resources<a class="headerlink" href="#resources" title="Permalink to this heading"></a></h1>
 <section id="module-freshbooks.api.accounting">
-<span id="accounting"></span><h2>Accounting<a class="headerlink" href="#module-freshbooks.api.accounting" title="Permalink to this headline"></a></h2>
+<span id="accounting"></span><h2>Accounting<a class="headerlink" href="#module-freshbooks.api.accounting" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="freshbooks.api.accounting.AccountingResource">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">freshbooks.api.accounting.</span></span><span class="sig-name descname"><span class="pre">AccountingResource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client_config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">accounting_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">single_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delete_via_update</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">missing_endpoints</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.accounting.AccountingResource" title="Permalink to this definition"></a></dt>
 <dd><p>Handles resources under the <code class="docutils literal notranslate"><span class="pre">/accounting</span></code> endpoints.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freshbooks.api.accounting.AccountingResource.API_RETRIES">
+<span class="sig-name descname"><span class="pre">API_RETRIES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#freshbooks.api.accounting.AccountingResource.API_RETRIES" title="Permalink to this definition"></a></dt>
+<dd><p>Default number of retries</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="freshbooks.api.accounting.AccountingResource.create">
 <span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">account_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">includes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.accounting.AccountingResource.create" title="Permalink to this definition"></a></dt>
@@ -149,7 +156,7 @@ FreshBooksError: If the call is not successful.</p>
 <p>Args:
 account_id: The alpha-numeric account id
 resource_id: Id of the resource to return
-builders: (Optional) IncludesBuilder object for including additional data, sub-resources, etc.
+includes: (Optional) IncludesBuilder object for including additional data, sub-resources, etc.
 Returns:
 Result: Result object with the resource’s response data.</p>
 <p>Raises:
@@ -214,11 +221,17 @@ FreshBooksError: If the call is not successful.</p>
 
 </section>
 <section id="module-freshbooks.api.auth">
-<span id="auth"></span><h2>Auth<a class="headerlink" href="#module-freshbooks.api.auth" title="Permalink to this headline"></a></h2>
+<span id="auth"></span><h2>Auth<a class="headerlink" href="#module-freshbooks.api.auth" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="freshbooks.api.auth.AuthResource">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">freshbooks.api.auth.</span></span><span class="sig-name descname"><span class="pre">AuthResource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client_config</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.auth.AuthResource" title="Permalink to this definition"></a></dt>
 <dd><p>Handles resources under the <code class="docutils literal notranslate"><span class="pre">/auth</span></code> endpoints.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freshbooks.api.auth.AuthResource.API_RETRIES">
+<span class="sig-name descname"><span class="pre">API_RETRIES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#freshbooks.api.auth.AuthResource.API_RETRIES" title="Permalink to this definition"></a></dt>
+<dd><p>Default number of retries</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="freshbooks.api.auth.AuthResource.headers">
 <span class="sig-name descname"><span class="pre">headers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">has_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.auth.AuthResource.headers" title="Permalink to this definition"></a></dt>
@@ -250,11 +263,11 @@ FreshBooksError: If the call is not successful.</p>
 
 </section>
 <section id="module-freshbooks.api.projects">
-<span id="projects"></span><h2>Projects<a class="headerlink" href="#module-freshbooks.api.projects" title="Permalink to this headline"></a></h2>
+<span id="projects"></span><h2>Projects<a class="headerlink" href="#module-freshbooks.api.projects" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="freshbooks.api.projects.ProjectsResource">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">freshbooks.api.projects.</span></span><span class="sig-name descname"><span class="pre">ProjectsResource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client_config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list_resource_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">single_resource_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">single_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">missing_endpoints</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.projects.ProjectsResource" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">freshbooks.api.projects.ProjectsBaseResource</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ProjectsBaseResource</span></code></p>
 <p>Handles resources under the <code class="docutils literal notranslate"><span class="pre">/projects</span></code> endpoints.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="freshbooks.api.projects.ProjectsResource.create">
@@ -296,11 +309,12 @@ FreshBooksError: If the call is not successful.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="freshbooks.api.projects.ProjectsResource.get">
-<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">business_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.projects.ProjectsResource.get" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">business_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">includes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.projects.ProjectsResource.get" title="Permalink to this definition"></a></dt>
 <dd><p>Get a single resource with the corresponding id.</p>
 <p>Args:
 business_id: The business id
 resource_id: Id of the resource to return
+includes: (Optional) IncludesBuilder object for including additional data, sub-resources, etc.
 Returns:
 Result: Result object with the resource’s response data.</p>
 <p>Raises:
@@ -353,14 +367,20 @@ FreshBooksError: If the call is not successful.</p>
 
 </section>
 <section id="module-freshbooks.api.comments">
-<span id="comments"></span><h2>Comments<a class="headerlink" href="#module-freshbooks.api.comments" title="Permalink to this headline"></a></h2>
+<span id="comments"></span><h2>Comments<a class="headerlink" href="#module-freshbooks.api.comments" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="freshbooks.api.comments.CommentsResource">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">freshbooks.api.comments.</span></span><span class="sig-name descname"><span class="pre">CommentsResource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client_config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list_resource_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">single_resource_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">single_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">missing_endpoints</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.comments.CommentsResource" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#freshbooks.api.projects.ProjectsResource" title="freshbooks.api.projects.ProjectsResource"><code class="xref py py-class docutils literal notranslate"><span class="pre">freshbooks.api.projects.ProjectsResource</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#freshbooks.api.projects.ProjectsResource" title="freshbooks.api.projects.ProjectsResource"><code class="xref py py-class docutils literal notranslate"><span class="pre">ProjectsResource</span></code></a></p>
 <p>Handles resources under the <code class="docutils literal notranslate"><span class="pre">/comments</span></code> endpoints.</p>
 <p>These are handled identically to <code class="docutils literal notranslate"><span class="pre">/projects</span></code> endpoints.
 Refer to <code class="docutils literal notranslate"><span class="pre">freshbooks.api.projects.ProjectsResource</span></code>.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freshbooks.api.comments.CommentsResource.API_RETRIES">
+<span class="sig-name descname"><span class="pre">API_RETRIES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#freshbooks.api.comments.CommentsResource.API_RETRIES" title="Permalink to this definition"></a></dt>
+<dd><p>Default number of retries</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="freshbooks.api.comments.CommentsResource.create">
 <span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">business_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.comments.CommentsResource.create" title="Permalink to this definition"></a></dt>
@@ -401,11 +421,12 @@ FreshBooksError: If the call is not successful.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="freshbooks.api.comments.CommentsResource.get">
-<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">business_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.comments.CommentsResource.get" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">business_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">includes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.comments.CommentsResource.get" title="Permalink to this definition"></a></dt>
 <dd><p>Get a single resource with the corresponding id.</p>
 <p>Args:
 business_id: The business id
 resource_id: Id of the resource to return
+includes: (Optional) IncludesBuilder object for including additional data, sub-resources, etc.
 Returns:
 Result: Result object with the resource’s response data.</p>
 <p>Raises:
@@ -470,11 +491,17 @@ FreshBooksError: If the call is not successful.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="freshbooks.api.comments.CommentsSubResource">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">freshbooks.api.comments.</span></span><span class="sig-name descname"><span class="pre">CommentsSubResource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client_config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list_resource_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">single_resource_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">single_resource_sub_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">single_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">missing_endpoints</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.comments.CommentsSubResource" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">freshbooks.api.projects.ProjectsBaseResource</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ProjectsBaseResource</span></code></p>
 <p>Handles sub-resources under the <code class="docutils literal notranslate"><span class="pre">/comments</span></code> endpoints.</p>
 <p>Eg. <code class="docutils literal notranslate"><span class="pre">/comments/business/{business_id}/services/{service_id}/rate</span></code></p>
 <p>These are handled similarly to <code class="docutils literal notranslate"><span class="pre">/projects</span></code> endpoints.
 Refer to <code class="docutils literal notranslate"><span class="pre">freshbooks.api.projects.ProjectsResource</span></code>.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freshbooks.api.comments.CommentsSubResource.API_RETRIES">
+<span class="sig-name descname"><span class="pre">API_RETRIES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#freshbooks.api.comments.CommentsSubResource.API_RETRIES" title="Permalink to this definition"></a></dt>
+<dd><p>Default number of retries</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="freshbooks.api.comments.CommentsSubResource.create">
 <span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">business_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.comments.CommentsSubResource.create" title="Permalink to this definition"></a></dt>
@@ -584,14 +611,20 @@ FreshBooksError: If the call is not successful.</p>
 
 </section>
 <section id="module-freshbooks.api.timetracking">
-<span id="time-tracking"></span><h2>Time-Tracking<a class="headerlink" href="#module-freshbooks.api.timetracking" title="Permalink to this headline"></a></h2>
+<span id="time-tracking"></span><h2>Time-Tracking<a class="headerlink" href="#module-freshbooks.api.timetracking" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="freshbooks.api.timetracking.TimetrackingResource">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">freshbooks.api.timetracking.</span></span><span class="sig-name descname"><span class="pre">TimetrackingResource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client_config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list_resource_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">single_resource_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">single_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">missing_endpoints</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.timetracking.TimetrackingResource" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#freshbooks.api.projects.ProjectsResource" title="freshbooks.api.projects.ProjectsResource"><code class="xref py py-class docutils literal notranslate"><span class="pre">freshbooks.api.projects.ProjectsResource</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#freshbooks.api.projects.ProjectsResource" title="freshbooks.api.projects.ProjectsResource"><code class="xref py py-class docutils literal notranslate"><span class="pre">ProjectsResource</span></code></a></p>
 <p>Handles resources under the <code class="docutils literal notranslate"><span class="pre">/timetracking</span></code> endpoints.</p>
 <p>These are handled identically to <code class="docutils literal notranslate"><span class="pre">/projects</span></code> endpoints.
 Refer to <code class="docutils literal notranslate"><span class="pre">freshbooks.api.projects.ProjectsResource</span></code>.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freshbooks.api.timetracking.TimetrackingResource.API_RETRIES">
+<span class="sig-name descname"><span class="pre">API_RETRIES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#freshbooks.api.timetracking.TimetrackingResource.API_RETRIES" title="Permalink to this definition"></a></dt>
+<dd><p>Default number of retries</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="freshbooks.api.timetracking.TimetrackingResource.create">
 <span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">business_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.timetracking.TimetrackingResource.create" title="Permalink to this definition"></a></dt>
@@ -632,11 +665,12 @@ FreshBooksError: If the call is not successful.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="freshbooks.api.timetracking.TimetrackingResource.get">
-<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">business_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.timetracking.TimetrackingResource.get" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">business_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">includes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.timetracking.TimetrackingResource.get" title="Permalink to this definition"></a></dt>
 <dd><p>Get a single resource with the corresponding id.</p>
 <p>Args:
 business_id: The business id
 resource_id: Id of the resource to return
+includes: (Optional) IncludesBuilder object for including additional data, sub-resources, etc.
 Returns:
 Result: Result object with the resource’s response data.</p>
 <p>Raises:
@@ -700,11 +734,17 @@ FreshBooksError: If the call is not successful.</p>
 
 </section>
 <section id="module-freshbooks.api.payments">
-<span id="payments"></span><h2>Payments<a class="headerlink" href="#module-freshbooks.api.payments" title="Permalink to this headline"></a></h2>
+<span id="payments"></span><h2>Payments<a class="headerlink" href="#module-freshbooks.api.payments" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="freshbooks.api.payments.PaymentsResource">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">freshbooks.api.payments.</span></span><span class="sig-name descname"><span class="pre">PaymentsResource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client_config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">single_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sub_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">defaults_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">static_params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">missing_endpoints</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.payments.PaymentsResource" title="Permalink to this definition"></a></dt>
 <dd><p>Handles resources under the <code class="docutils literal notranslate"><span class="pre">/payments</span></code> endpoints.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freshbooks.api.payments.PaymentsResource.API_RETRIES">
+<span class="sig-name descname"><span class="pre">API_RETRIES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#freshbooks.api.payments.PaymentsResource.API_RETRIES" title="Permalink to this definition"></a></dt>
+<dd><p>Default number of retries</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="freshbooks.api.payments.PaymentsResource.create">
 <span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">account_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.payments.PaymentsResource.create" title="Permalink to this definition"></a></dt>
@@ -774,14 +814,20 @@ FreshBooksError: If the call is not successful.</p>
 
 </section>
 <section id="module-freshbooks.api.events">
-<span id="events"></span><h2>Events<a class="headerlink" href="#module-freshbooks.api.events" title="Permalink to this headline"></a></h2>
+<span id="events"></span><h2>Events<a class="headerlink" href="#module-freshbooks.api.events" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="freshbooks.api.events.EventsResource">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">freshbooks.api.events.</span></span><span class="sig-name descname"><span class="pre">EventsResource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client_config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">accounting_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">single_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delete_via_update</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">missing_endpoints</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.events.EventsResource" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#freshbooks.api.accounting.AccountingResource" title="freshbooks.api.accounting.AccountingResource"><code class="xref py py-class docutils literal notranslate"><span class="pre">freshbooks.api.accounting.AccountingResource</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#freshbooks.api.accounting.AccountingResource" title="freshbooks.api.accounting.AccountingResource"><code class="xref py py-class docutils literal notranslate"><span class="pre">AccountingResource</span></code></a></p>
 <p>Handles resources under the <code class="docutils literal notranslate"><span class="pre">/events</span></code> endpoints.</p>
 <p>These are handled almost similarly to <code class="docutils literal notranslate"><span class="pre">/accounting</span></code> endpoints.
 Refer to <code class="docutils literal notranslate"><span class="pre">freshbooks.api.accounting.AccountingResource</span></code>.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freshbooks.api.events.EventsResource.API_RETRIES">
+<span class="sig-name descname"><span class="pre">API_RETRIES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#freshbooks.api.events.EventsResource.API_RETRIES" title="Permalink to this definition"></a></dt>
+<dd><p>Default number of retries</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="freshbooks.api.events.EventsResource.create">
 <span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">account_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">includes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.events.EventsResource.create" title="Permalink to this definition"></a></dt>
@@ -828,7 +874,7 @@ FreshBooksError: If the call is not successful.</p>
 <p>Args:
 account_id: The alpha-numeric account id
 resource_id: Id of the resource to return
-builders: (Optional) IncludesBuilder object for including additional data, sub-resources, etc.
+includes: (Optional) IncludesBuilder object for including additional data, sub-resources, etc.
 Returns:
 Result: Result object with the resource’s response data.</p>
 <p>Raises:
@@ -930,12 +976,18 @@ FreshBooksError: If the call is not successful.</p>
 
 </section>
 <section id="module-freshbooks.api.uploads">
-<span id="uploads"></span><h2>Uploads<a class="headerlink" href="#module-freshbooks.api.uploads" title="Permalink to this headline"></a></h2>
+<span id="uploads"></span><h2>Uploads<a class="headerlink" href="#module-freshbooks.api.uploads" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="freshbooks.api.uploads.UploadsResource">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">freshbooks.api.uploads.</span></span><span class="sig-name descname"><span class="pre">UploadsResource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client_config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upload_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">single_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.uploads.UploadsResource" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">freshbooks.api.resource.Resource</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Resource</span></code></p>
 <p>Handles resources under the <code class="docutils literal notranslate"><span class="pre">/uploads</span></code> endpoints.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freshbooks.api.uploads.UploadsResource.API_RETRIES">
+<span class="sig-name descname"><span class="pre">API_RETRIES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#freshbooks.api.uploads.UploadsResource.API_RETRIES" title="Permalink to this definition"></a></dt>
+<dd><p>Default number of retries</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="freshbooks.api.uploads.UploadsResource.get">
 <span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">jwt</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.uploads.UploadsResource.get" title="Permalink to this definition"></a></dt>
@@ -969,8 +1021,8 @@ FreshBooksError: If the call is not successful.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="freshbooks.api.uploads.UploadsResource.upload">
 <span class="sig-name descname"><span class="pre">upload</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">account_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_stream</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.uploads.UploadsResource.upload" title="Permalink to this definition"></a></dt>
-<dd><p>Upload a file to FreshBooks’ file storage. This returns a Result object with the JWT required to access the file,
-and in the case of an image, a link to the image itself.</p>
+<dd><p>Upload a file to FreshBooks’ file storage. This returns a Result object with the JWT required
+to access the file, and in the case of an image, a link to the image itself.</p>
 <p>The file to upload can be either a byte stream, or a path to the file itself.</p>
 <p>Eg.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">uploaded</span> <span class="o">=</span> <span class="n">freshBooksClient</span><span class="o">.</span><span class="n">images</span><span class="o">.</span><span class="n">upload</span><span class="p">(</span><span class="n">account_id</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="s2">&quot;/path/to/image.png&quot;</span><span class="p">)</span>

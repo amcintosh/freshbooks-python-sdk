@@ -4,6 +4,7 @@ from typing import Any, List, Optional
 
 from freshbooks.api.resource import HttpVerbs, Resource
 from freshbooks.builders import Builder
+from freshbooks.builders.includes import IncludesBuilder
 from freshbooks.errors import FreshBooksError, FreshBooksNotImplementedError
 from freshbooks.models import ListResult, Result
 
@@ -66,12 +67,13 @@ class ProjectsResource(ProjectsBaseResource):
             return "{}/projects/business/{}/{}".format(self.base_url, business_id, self.list_resource_path)
         return "{}/projects/business/{}/{}".format(self.base_url, business_id, self.single_resource_path)
 
-    def get(self, business_id: int, resource_id: int) -> Result:
+    def get(self, business_id: int, resource_id: int, includes: Optional[IncludesBuilder] = None) -> Result:
         """Get a single resource with the corresponding id.
 
         Args:
             business_id: The business id
             resource_id: Id of the resource to return
+            includes: (Optional) IncludesBuilder object for including additional data, sub-resources, etc.
         Returns:
             Result: Result object with the resource's response data.
 
@@ -79,7 +81,11 @@ class ProjectsResource(ProjectsBaseResource):
             FreshBooksError: If the call is not successful.
         """
         self._reject_missing("get")
-        data = self._request(self._get_url(business_id, resource_id), HttpVerbs.GET)
+        resource_url = self._get_url(business_id, resource_id)
+        query_string = ""
+        if includes:
+            query_string = self._build_query_string([includes])
+        data = self._request(f"{resource_url}{query_string}", HttpVerbs.GET)
         return Result(self.single_name, data)
 
     def list(self, business_id: int, builders: Optional[List[Builder]] = None) -> ListResult:

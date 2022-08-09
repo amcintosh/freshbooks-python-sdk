@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Add includes parameter to project-like `get` calls
+
 ## 1.1.0
 
 - Added upload attachment and image resources

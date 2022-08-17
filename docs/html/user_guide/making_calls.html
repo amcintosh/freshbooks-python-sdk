@@ -259,25 +259,40 @@ in the list of builders to the <code class="docutils literal notranslate"><span 
 </div>
 <p>Filters can be built with the methods: <code class="docutils literal notranslate"><span class="pre">equals</span></code>, <code class="docutils literal notranslate"><span class="pre">in_list</span></code>, <code class="docutils literal notranslate"><span class="pre">like</span></code>, <code class="docutils literal notranslate"><span class="pre">between</span></code>, and <code class="docutils literal notranslate"><span class="pre">boolean</span></code>,
 which can be chained together.</p>
+<p>Please see <a class="reference external" href="https://www.freshbooks.com/api/active_deleted">FreshBooks API - Active and Deleted Objects</a>
+for details on filtering active, archived, and deleted resources.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">FilterBuilder</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">in_list</span><span class="p">(</span><span class="s2">&quot;clientids&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">123</span><span class="p">,</span> <span class="mi">456</span><span class="p">])</span>
+<span class="go">FilterBuilder(&amp;search[clientids][]=123&amp;search[clientids][]=456)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">FilterBuilder</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">like</span><span class="p">(</span><span class="s2">&quot;email_like&quot;</span><span class="p">,</span> <span class="s2">&quot;@freshbooks.com&quot;</span><span class="p">)</span>
 <span class="go">FilterBuilder(&amp;search[email_like]=@freshbooks.com)</span>
-
-<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">FilterBuilder</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">in_list</span><span class="p">(</span><span class="s2">&quot;clientids&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">123</span><span class="p">,</span> <span class="mi">456</span><span class="p">])</span><span class="o">.</span><span class="n">boolean</span><span class="p">(</span><span class="s2">&quot;active&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
-<span class="go">FilterBuilder(&amp;search[clientids][]=123&amp;search[clientids][]=456&amp;active=False)</span>
-
-<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">FilterBuilder</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">boolean</span><span class="p">(</span><span class="s2">&quot;active&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">in_list</span><span class="p">(</span><span class="s2">&quot;clientids&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">123</span><span class="p">,</span> <span class="mi">456</span><span class="p">])</span>
-<span class="go">FilterBuilder(&amp;active=False&amp;search[clientids][]=123&amp;search[clientids][]=456)</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">FilterBuilder</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="s2">&quot;amount&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 <span class="go">FilterBuilder(&amp;search[amount_min]=1&amp;search[amount_max]=10)</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">FilterBuilder</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="s2">&quot;amount&quot;</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>  <span class="c1"># For just minimum</span>
+<span class="go">FilterBuilder(&amp;search[amount_min]=15)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">FilterBuilder</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="s2">&quot;amount_min&quot;</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>  <span class="c1"># Alternatively</span>
+<span class="go">FilterBuilder(&amp;search[amount_min]=15)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">FilterBuilder</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="s2">&quot;start_date&quot;</span><span class="p">,</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">())</span>
 <span class="go">FilterBuilder(&amp;search[start_date]=2020-11-21)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">FilterBuilder</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">boolean</span><span class="p">(</span><span class="s2">&quot;complete&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span> <span class="c1"># Boolean filters are mostly used on Project-like resources</span>
+<span class="go">FilterBuilder(&amp;complete=False)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">last_week</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">FilterBuilder</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">equals</span><span class="p">(</span><span class="s2">&quot;vis_state&quot;</span><span class="p">,</span> <span class="n">VisState</span><span class="o">.</span><span class="n">ACTIVE</span><span class="p">)</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="s2">&quot;updated&quot;</span><span class="p">,</span> <span class="n">last_week</span><span class="p">,</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">())</span> <span class="c1"># Chaining filters</span>
+<span class="go">FilterBuilder(&amp;search[vis_state]=0&amp;search[updated_min]=2020-11-14&amp;search[updated_max]=2020-11-21)</span>
 </pre></div>
 </div>
 </section>

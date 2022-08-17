@@ -185,26 +185,42 @@ in the list of builders to the `list` method.
 Filters can be built with the methods: `equals`, `in_list`, `like`, `between`, and `boolean`,
 which can be chained together.
 
+Please see [FreshBooks API - Active and Deleted Objects](https://www.freshbooks.com/api/active_deleted)
+for details on filtering active, archived, and deleted resources.
+
 ```python
+>>> f = FilterBuilder()
+>>> f.in_list("clientids", [123, 456])
+FilterBuilder(&search[clientids][]=123&search[clientids][]=456)
+
 >>> f = FilterBuilder()
 >>> f.like("email_like", "@freshbooks.com")
 FilterBuilder(&search[email_like]=@freshbooks.com)
-
->>> f = FilterBuilder()
->>> f.in_list("clientids", [123, 456]).boolean("active", False)
-FilterBuilder(&search[clientids][]=123&search[clientids][]=456&active=False)
-
->>> f = FilterBuilder()
->>> f.boolean("active", False).in_list("clientids", [123, 456])
-FilterBuilder(&active=False&search[clientids][]=123&search[clientids][]=456)
 
 >>> f = FilterBuilder()
 >>> f.between("amount", 1, 10)
 FilterBuilder(&search[amount_min]=1&search[amount_max]=10)
 
 >>> f = FilterBuilder()
+>>> f.between("amount", min=15)  # For just minimum
+FilterBuilder(&search[amount_min]=15)
+
+>>> f = FilterBuilder()
+>>> f.between("amount_min", 15)  # Alternatively
+FilterBuilder(&search[amount_min]=15)
+
+>>> f = FilterBuilder()
 >>> f.between("start_date", date.today())
 FilterBuilder(&search[start_date]=2020-11-21)
+
+>>> f = FilterBuilder()
+>>> f.boolean("complete", False) # Boolean filters are mostly used on Project-like resources
+FilterBuilder(&complete=False)
+
+>>> last_week = date.today() - timedelta(days=7)
+>>> f = FilterBuilder()
+>>> f.equals("vis_state", VisState.ACTIVE).between("updated", last_week, date.today()) # Chaining filters
+FilterBuilder(&search[vis_state]=0&search[updated_min]=2020-11-14&search[updated_max]=2020-11-21)
 ```
 
 ### Includes

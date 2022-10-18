@@ -194,8 +194,8 @@ class FilterBuilder(Builder):
         """Builds the query string parameters from the FilterBuilder.
 
         Args:
-            resource_name: The type of resource to generate the query string for.
-                           Eg. AccountingResource, ProjectsResource
+            resource_name:
+                The type of resource to generate the query string for. Eg. AccountingResource, ProjectsResource
 
         Returns:
             The built query string

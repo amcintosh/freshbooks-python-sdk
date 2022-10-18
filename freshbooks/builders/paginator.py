@@ -69,8 +69,7 @@ class PaginateBuilder(Builder):
             page: (Optional) The page of results to return in the API call
 
         Returns:
-            The PaginateBuilder instance if a `page` value is provided, otherwise
-            returns the currently set `page` value.
+            The PaginateBuilder instance if a `page` value is provided, otherwise returns the current `page` value.
         """
         if page:
             self._page = max(page, self.MIN_PAGE)
@@ -100,8 +99,7 @@ class PaginateBuilder(Builder):
             per_page: (Optional) The number of results to return in each API call
 
         Returns:
-            The PaginateBuilder instance if a `per_page` value is provided, otherwise
-            returns the currently set `per_page` value.
+            The PaginateBuilder instance if a `per_page` value is provided, otherwise the current `per_page` value.
         """
         if per_page:
             self._per_page = min(per_page, self.MAX_PER_PAGE)
@@ -112,8 +110,8 @@ class PaginateBuilder(Builder):
         """Builds the query string parameters from the PaginateBuilder.
 
         Args:
-            resource_name: The type of resource to generate the query string for.
-                           Eg. AccountingResource, ProjectsResource
+            resource_name:
+                The type of resource to generate the query string for. Eg. AccountingResource, ProjectsResource
 
         Returns:
             The built query string

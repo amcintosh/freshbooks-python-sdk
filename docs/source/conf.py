@@ -48,6 +48,7 @@ extensions = [
     "sphinx.ext.mathjax",
     "sphinx.ext.ifconfig",
     "sphinx.ext.githubpages",
+    'sphinx.ext.napoleon',
     "enum_tools.autoenum",
 ]
 

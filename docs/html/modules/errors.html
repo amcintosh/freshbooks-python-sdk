@@ -16,6 +16,7 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -58,7 +59,26 @@
 <li class="toctree-l1"><a class="reference internal" href="resources.html">Resources</a></li>
 <li class="toctree-l1"><a class="reference internal" href="models.html">Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="builders.html">Builders</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Errors</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Errors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#freshbooks.errors.FreshBooksClientConfigError"><code class="docutils literal notranslate"><span class="pre">FreshBooksClientConfigError</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#freshbooks.errors.FreshBooksClientConfigError.with_traceback"><code class="docutils literal notranslate"><span class="pre">FreshBooksClientConfigError.with_traceback()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#freshbooks.errors.FreshBooksError"><code class="docutils literal notranslate"><span class="pre">FreshBooksError</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#freshbooks.errors.FreshBooksError.message"><code class="docutils literal notranslate"><span class="pre">FreshBooksError.message</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#freshbooks.errors.FreshBooksError.status_code"><code class="docutils literal notranslate"><span class="pre">FreshBooksError.status_code</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#freshbooks.errors.FreshBooksError.raw_response"><code class="docutils literal notranslate"><span class="pre">FreshBooksError.raw_response</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#freshbooks.errors.FreshBooksError.error_code"><code class="docutils literal notranslate"><span class="pre">FreshBooksError.error_code</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#freshbooks.errors.FreshBooksError.error_details"><code class="docutils literal notranslate"><span class="pre">FreshBooksError.error_details</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#freshbooks.errors.FreshBooksError.with_traceback"><code class="docutils literal notranslate"><span class="pre">FreshBooksError.with_traceback()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#freshbooks.errors.FreshBooksNotImplementedError"><code class="docutils literal notranslate"><span class="pre">FreshBooksNotImplementedError</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#freshbooks.errors.FreshBooksNotImplementedError.with_traceback"><code class="docutils literal notranslate"><span class="pre">FreshBooksNotImplementedError.with_traceback()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
         </div>
@@ -116,12 +136,36 @@ is missing expected content.</p>
     <span class="k">assert</span> <span class="n">e</span><span class="o">.</span><span class="n">error_code</span> <span class="o">==</span> <span class="mi">1012</span>
 </pre></div>
 </div>
-<p>Attributes:
-message: Error message
-status_code: HTTP status code from the server.
-raw_response: Content response from the server.
-error_code: (Optional) FreshBooks specific error code, if available
-error_details: (Optional) Details of the error, if available</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freshbooks.errors.FreshBooksError.message">
+<span class="sig-name descname"><span class="pre">message</span></span><a class="headerlink" href="#freshbooks.errors.FreshBooksError.message" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<p>Error message</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freshbooks.errors.FreshBooksError.status_code">
+<span class="sig-name descname"><span class="pre">status_code</span></span><a class="headerlink" href="#freshbooks.errors.FreshBooksError.status_code" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<p>HTTP status code from the server.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freshbooks.errors.FreshBooksError.raw_response">
+<span class="sig-name descname"><span class="pre">raw_response</span></span><a class="headerlink" href="#freshbooks.errors.FreshBooksError.raw_response" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<p>Content response from the server.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freshbooks.errors.FreshBooksError.error_code">
+<span class="sig-name descname"><span class="pre">error_code</span></span><a class="headerlink" href="#freshbooks.errors.FreshBooksError.error_code" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<p>(Optional) FreshBooks specific error code, if available</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freshbooks.errors.FreshBooksError.error_details">
+<span class="sig-name descname"><span class="pre">error_details</span></span><a class="headerlink" href="#freshbooks.errors.FreshBooksError.error_details" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<p>(Optional) Details of the error, if available</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="freshbooks.errors.FreshBooksError.with_traceback">
 <span class="sig-name descname"><span class="pre">with_traceback</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.errors.FreshBooksError.with_traceback" title="Permalink to this definition"></a></dt>

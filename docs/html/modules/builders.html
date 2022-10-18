@@ -16,6 +16,7 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -59,10 +60,47 @@
 <li class="toctree-l1"><a class="reference internal" href="resources.html">Resources</a></li>
 <li class="toctree-l1"><a class="reference internal" href="models.html">Models</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Builders</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#module-freshbooks.builders.paginator">Paginator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-freshbooks.builders.filter">Filters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-freshbooks.builders.includes">Includes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-freshbooks.builders.sort">Sort</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-freshbooks.builders.paginator">Paginator</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#freshbooks.builders.paginator.PaginateBuilder"><code class="docutils literal notranslate"><span class="pre">PaginateBuilder</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#freshbooks.builders.paginator.PaginateBuilder.build"><code class="docutils literal notranslate"><span class="pre">PaginateBuilder.build()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#freshbooks.builders.paginator.PaginateBuilder.page"><code class="docutils literal notranslate"><span class="pre">PaginateBuilder.page()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#freshbooks.builders.paginator.PaginateBuilder.per_page"><code class="docutils literal notranslate"><span class="pre">PaginateBuilder.per_page()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-freshbooks.builders.filter">Filters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#freshbooks.builders.filter.FilterBuilder"><code class="docutils literal notranslate"><span class="pre">FilterBuilder</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#freshbooks.builders.filter.FilterBuilder.between"><code class="docutils literal notranslate"><span class="pre">FilterBuilder.between()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#freshbooks.builders.filter.FilterBuilder.boolean"><code class="docutils literal notranslate"><span class="pre">FilterBuilder.boolean()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#freshbooks.builders.filter.FilterBuilder.build"><code class="docutils literal notranslate"><span class="pre">FilterBuilder.build()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#freshbooks.builders.filter.FilterBuilder.date_time"><code class="docutils literal notranslate"><span class="pre">FilterBuilder.date_time()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#freshbooks.builders.filter.FilterBuilder.equals"><code class="docutils literal notranslate"><span class="pre">FilterBuilder.equals()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#freshbooks.builders.filter.FilterBuilder.in_list"><code class="docutils literal notranslate"><span class="pre">FilterBuilder.in_list()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#freshbooks.builders.filter.FilterBuilder.like"><code class="docutils literal notranslate"><span class="pre">FilterBuilder.like()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-freshbooks.builders.includes">Includes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#freshbooks.builders.includes.IncludesBuilder"><code class="docutils literal notranslate"><span class="pre">IncludesBuilder</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#freshbooks.builders.includes.IncludesBuilder.build"><code class="docutils literal notranslate"><span class="pre">IncludesBuilder.build()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#freshbooks.builders.includes.IncludesBuilder.include"><code class="docutils literal notranslate"><span class="pre">IncludesBuilder.include()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-freshbooks.builders.sort">Sort</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#freshbooks.builders.sort.SortBuilder"><code class="docutils literal notranslate"><span class="pre">SortBuilder</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#freshbooks.builders.sort.SortBuilder.asc"><code class="docutils literal notranslate"><span class="pre">SortBuilder.asc()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#freshbooks.builders.sort.SortBuilder.ascending"><code class="docutils literal notranslate"><span class="pre">SortBuilder.ascending()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#freshbooks.builders.sort.SortBuilder.build"><code class="docutils literal notranslate"><span class="pre">SortBuilder.build()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#freshbooks.builders.sort.SortBuilder.desc"><code class="docutils literal notranslate"><span class="pre">SortBuilder.desc()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#freshbooks.builders.sort.SortBuilder.descending"><code class="docutils literal notranslate"><span class="pre">SortBuilder.descending()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="errors.html">Errors</a></li>
@@ -119,12 +157,13 @@ fetch the results offset by <code class="docutils literal notranslate"><span cla
 <dt class="sig sig-object py" id="freshbooks.builders.paginator.PaginateBuilder.build">
 <span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resource_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.builders.paginator.PaginateBuilder.build" title="Permalink to this definition"></a></dt>
 <dd><p>Builds the query string parameters from the PaginateBuilder.</p>
-<p>Args:
-resource_name: The type of resource to generate the query string for.
-Eg. AccountingResource, ProjectsResource</p>
-<p>Returns:
-The built query string</p>
 <dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>resource_name</strong> – The type of resource to generate the query string for. Eg. AccountingResource, ProjectsResource</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The built query string</p>
+</dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">str</span></code></p>
 </dd>
@@ -148,12 +187,13 @@ When setting, can be chained.</p>
 <span class="go">PaginateBuilder(page=2, per_page=4)</span>
 </pre></div>
 </div>
-<p>Args:
-page: (Optional) The page of results to return in the API call</p>
-<p>Returns:
-The PaginateBuilder instance if a <code class="docutils literal notranslate"><span class="pre">page</span></code> value is provided, otherwise
-returns the currently set <code class="docutils literal notranslate"><span class="pre">page</span></code> value.</p>
 <dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>page</strong> – (Optional) The page of results to return in the API call</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The PaginateBuilder instance if a <code class="docutils literal notranslate"><span class="pre">page</span></code> value is provided, otherwise returns the current <code class="docutils literal notranslate"><span class="pre">page</span></code> value.</p>
+</dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>:py:data:<code class="docutils literal notranslate"><span class="pre">~typing.Union``[:py:class:``int</span></code>, :py:obj:<code class="docutils literal notranslate"><span class="pre">None</span></code>, :py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.builders.Builder</span></code>]</p>
 </dd>
@@ -178,12 +218,13 @@ or get the currently set per_page. When setting, can be chained.</p>
 <span class="go">PaginateBuilder(page=2, per_page=4)</span>
 </pre></div>
 </div>
-<p>Args:
-per_page: (Optional) The number of results to return in each API call</p>
-<p>Returns:
-The PaginateBuilder instance if a <code class="docutils literal notranslate"><span class="pre">per_page</span></code> value is provided, otherwise
-returns the currently set <code class="docutils literal notranslate"><span class="pre">per_page</span></code> value.</p>
 <dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>per_page</strong> – (Optional) The number of results to return in each API call</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The PaginateBuilder instance if a <code class="docutils literal notranslate"><span class="pre">per_page</span></code> value is provided, otherwise the current <code class="docutils literal notranslate"><span class="pre">per_page</span></code> value.</p>
+</dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>:py:data:<code class="docutils literal notranslate"><span class="pre">~typing.Union``[:py:class:``int</span></code>, :py:obj:<code class="docutils literal notranslate"><span class="pre">None</span></code>, :py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.builders.Builder</span></code>]</p>
 </dd>
@@ -243,13 +284,17 @@ will be converted to the proper string format.</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">filter.between(&quot;start_date&quot;,</span> <span class="pre">&quot;2020-10-17&quot;)</span></code> will yield filter <code class="docutils literal notranslate"><span class="pre">&amp;search[start_date]=2020-10-17</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">filter.between(&quot;start_date&quot;,</span> <span class="pre">date(year=2020,</span> <span class="pre">month=10,</span> <span class="pre">day=17))</span></code> yields <code class="docutils literal notranslate"><span class="pre">&amp;search[start_date]=2020-10-17</span></code></p></li>
 </ul>
-<p>Args:
-field: The API response field to filter on
-min: (Optional) The value the field should be greater than (or equal to)
-max: (Optional) The value the field should be less than (or equal to)</p>
-<p>Returns:
-The FilterBuilder instance</p>
 <dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>field</strong> – The API response field to filter on</p></li>
+<li><p><strong>min</strong> – (Optional) The value the field should be greater than (or equal to)</p></li>
+<li><p><strong>max</strong> – (Optional) The value the field should be less than (or equal to)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The FilterBuilder instance</p>
+</dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.builders.Builder</span></code></p>
 </dd>
@@ -262,12 +307,16 @@ The FilterBuilder instance</p>
 <dd><p>Filters results where the field is equal to true or false.</p>
 <p>Example:
 <code class="docutils literal notranslate"><span class="pre">filter.boolean(&quot;active&quot;,</span> <span class="pre">False)</span></code> will yield the filter <code class="docutils literal notranslate"><span class="pre">&amp;active=false</span></code></p>
-<p>Args:
-field: The API response field to filter on
-value: True or False</p>
-<p>Returns:
-The FilterBuilder instance</p>
 <dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>field</strong> – The API response field to filter on</p></li>
+<li><p><strong>value</strong> – True or False</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The FilterBuilder instance</p>
+</dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.builders.Builder</span></code></p>
 </dd>
@@ -278,12 +327,13 @@ The FilterBuilder instance</p>
 <dt class="sig sig-object py" id="freshbooks.builders.filter.FilterBuilder.build">
 <span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resource_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.builders.filter.FilterBuilder.build" title="Permalink to this definition"></a></dt>
 <dd><p>Builds the query string parameters from the FilterBuilder.</p>
-<p>Args:
-resource_name: The type of resource to generate the query string for.
-Eg. AccountingResource, ProjectsResource</p>
-<p>Returns:
-The built query string</p>
 <dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>resource_name</strong> – The type of resource to generate the query string for. Eg. AccountingResource, ProjectsResource</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The built query string</p>
+</dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">str</span></code></p>
 </dd>
@@ -301,12 +351,16 @@ after the provided time.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">filter.date_time(&quot;updated_since&quot;,</span> <span class="pre">&quot;2020-10-17T13:14:07&quot;)</span></code> will yield <code class="docutils literal notranslate"><span class="pre">&amp;updated_since=2020-10-17T13:14:07</span></code></p></li>
 </ul>
-<p>Args:
-field: The API response field to filter on
-value: The datetime, or ISO 8601 format string value</p>
-<p>Returns:
-The FilterBuilder instance</p>
 <dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>field</strong> – The API response field to filter on</p></li>
+<li><p><strong>value</strong> – The datetime, or ISO 8601 format string value</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The FilterBuilder instance</p>
+</dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.builders.Builder</span></code></p>
 </dd>
@@ -319,12 +373,16 @@ The FilterBuilder instance</p>
 <dd><p>Filters results where the field is equal to the provided value.</p>
 <p>Example:
 <code class="docutils literal notranslate"><span class="pre">filter.equals(&quot;username&quot;,</span> <span class="pre">&quot;Bob&quot;)</span></code> will yield the filter <code class="docutils literal notranslate"><span class="pre">&amp;search[username]=Bob</span></code></p>
-<p>Args:
-field: The API response field to filter on
-value: The value the field should equal</p>
-<p>Returns:
-The FilterBuilder instance</p>
 <dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>field</strong> – The API response field to filter on</p></li>
+<li><p><strong>value</strong> – The value the field should equal</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The FilterBuilder instance</p>
+</dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.builders.Builder</span></code></p>
 </dd>
@@ -342,12 +400,16 @@ This way we can be as forgiving as possible for developers by accepting:
 <code class="docutils literal notranslate"><span class="pre">filter.in_list(&quot;userid&quot;,</span> <span class="pre">[1,</span> <span class="pre">2])</span></code> or <code class="docutils literal notranslate"><span class="pre">filter.in_list(&quot;userids&quot;,</span> <span class="pre">[1,</span> <span class="pre">2])</span></code>.</p>
 <p>Of course the FreshBooks API is not 100% consistent, so there are a couple
 of unique cases that may not be handled.</p>
-<p>Args:
-field: The API response field to filter on
-values: List of values the field should one of</p>
-<p>Returns:
-The FilterBuilder instance</p>
 <dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>field</strong> – The API response field to filter on</p></li>
+<li><p><strong>values</strong> – List of values the field should one of</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The FilterBuilder instance</p>
+</dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.builders.Builder</span></code></p>
 </dd>
@@ -360,12 +422,16 @@ The FilterBuilder instance</p>
 <dd><p>Filters for a match contained within the field being searched. For example,
 “leaf” will Like-match “aleaf” and “leafy”, but not “leav”, and “leafs” would
 not Like-match “leaf”.</p>
-<p>Args:
-field: The API response field to filter on
-value: The value the field should contain</p>
-<p>Returns:
-The FilterBuilder instance</p>
 <dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>field</strong> – The API response field to filter on</p></li>
+<li><p><strong>value</strong> – The value the field should contain</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The FilterBuilder instance</p>
+</dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.builders.Builder</span></code></p>
 </dd>
@@ -393,12 +459,13 @@ The FilterBuilder instance</p>
 <dt class="sig sig-object py" id="freshbooks.builders.includes.IncludesBuilder.build">
 <span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resource_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.builders.includes.IncludesBuilder.build" title="Permalink to this definition"></a></dt>
 <dd><p>Builds the query string parameters from the IncludesBuilder.</p>
-<p>Args:
-resource_name: The type of resource to generate the query string for.
-Eg. AccountingResource, ProjectsResource</p>
-<p>Returns:
-The built query string</p>
 <dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>resource_name</strong> – The type of resource to generate the query string for. Eg. AccountingResource, ProjectsResource</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The built query string</p>
+</dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">str</span></code></p>
 </dd>
@@ -411,11 +478,13 @@ The built query string</p>
 <dd><p>Add an include key to the builder.</p>
 <p>Example:
 <code class="docutils literal notranslate"><span class="pre">includes.include(&quot;late_reminders&quot;)</span></code> will yield the filter <code class="docutils literal notranslate"><span class="pre">&amp;include[]=late_reminders</span></code></p>
-<p>Args:
-key: The key for the resource or data to include</p>
-<p>Returns:
-The IncludesBuilder instance</p>
 <dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>key</strong> – The key for the resource or data to include</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The IncludesBuilder instance</p>
+</dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.builders.Builder</span></code></p>
 </dd>
@@ -454,11 +523,12 @@ The IncludesBuilder instance</p>
 <dt class="sig sig-object py" id="freshbooks.builders.sort.SortBuilder.ascending">
 <span class="sig-name descname"><span class="pre">ascending</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.builders.sort.SortBuilder.ascending" title="Permalink to this definition"></a></dt>
 <dd><p>Add a sort by the field in ascending order.</p>
-<p>Args:
-key: The field for the resource list to be sorted by</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>:py:obj:<code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>key</strong> – The field for the resource list to be sorted by</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>:py:obj:<code class="docutils literal notranslate"><span class="pre">None</span></code></p>
 </dd>
 </dl>
 </dd></dl>
@@ -467,12 +537,13 @@ key: The field for the resource list to be sorted by</p>
 <dt class="sig sig-object py" id="freshbooks.builders.sort.SortBuilder.build">
 <span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resource_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.builders.sort.SortBuilder.build" title="Permalink to this definition"></a></dt>
 <dd><p>Builds the query string parameter from the SortBuilder.</p>
-<p>Args:
-resource_name: The type of resource to generate the query string for.
-Eg. AccountingResource, ProjectsResource</p>
-<p>Returns:
-The built query string</p>
 <dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>resource_name</strong> – The type of resource to generate the query string for. Eg. AccountingResource, ProjectsResource</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The built query string</p>
+</dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">str</span></code></p>
 </dd>
@@ -494,11 +565,12 @@ The built query string</p>
 <dt class="sig sig-object py" id="freshbooks.builders.sort.SortBuilder.descending">
 <span class="sig-name descname"><span class="pre">descending</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.builders.sort.SortBuilder.descending" title="Permalink to this definition"></a></dt>
 <dd><p>Add a sort by the field in descending order.</p>
-<p>Args:
-key: The field for the resource list to be sorted by</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>:py:obj:<code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>key</strong> – The field for the resource list to be sorted by</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>:py:obj:<code class="docutils literal notranslate"><span class="pre">None</span></code></p>
 </dd>
 </dl>
 </dd></dl>

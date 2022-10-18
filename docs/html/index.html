@@ -16,6 +16,7 @@
         <script src="_static/underscore.js"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -124,27 +125,232 @@
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="modules/client.html">Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/client.html">Client</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modules/client.html#freshbooks.client.Client"><code class="docutils literal notranslate"><span class="pre">Client</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="modules/client.html#freshbooks.client.Client.attachments"><code class="docutils literal notranslate"><span class="pre">Client.attachments</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/client.html#freshbooks.client.Client.bill_payments"><code class="docutils literal notranslate"><span class="pre">Client.bill_payments</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/client.html#freshbooks.client.Client.bill_vendors"><code class="docutils literal notranslate"><span class="pre">Client.bill_vendors</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/client.html#freshbooks.client.Client.bills"><code class="docutils literal notranslate"><span class="pre">Client.bills</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/client.html#freshbooks.client.Client.callbacks"><code class="docutils literal notranslate"><span class="pre">Client.callbacks</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/client.html#freshbooks.client.Client.clients"><code class="docutils literal notranslate"><span class="pre">Client.clients</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/client.html#freshbooks.client.Client.credit_notes"><code class="docutils literal notranslate"><span class="pre">Client.credit_notes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/client.html#freshbooks.client.Client.current_user"><code class="docutils literal notranslate"><span class="pre">Client.current_user()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/client.html#freshbooks.client.Client.estimates"><code class="docutils literal notranslate"><span class="pre">Client.estimates</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/client.html#freshbooks.client.Client.expenses"><code class="docutils literal notranslate"><span class="pre">Client.expenses</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/client.html#freshbooks.client.Client.expenses_categories"><code class="docutils literal notranslate"><span class="pre">Client.expenses_categories</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/client.html#freshbooks.client.Client.gateways"><code class="docutils literal notranslate"><span class="pre">Client.gateways</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/client.html#freshbooks.client.Client.get_access_token"><code class="docutils literal notranslate"><span class="pre">Client.get_access_token()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/client.html#freshbooks.client.Client.get_auth_request_url"><code class="docutils literal notranslate"><span class="pre">Client.get_auth_request_url()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/client.html#freshbooks.client.Client.images"><code class="docutils literal notranslate"><span class="pre">Client.images</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/client.html#freshbooks.client.Client.invoice_payment_options"><code class="docutils literal notranslate"><span class="pre">Client.invoice_payment_options</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/client.html#freshbooks.client.Client.invoice_profiles"><code class="docutils literal notranslate"><span class="pre">Client.invoice_profiles</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/client.html#freshbooks.client.Client.invoices"><code class="docutils literal notranslate"><span class="pre">Client.invoices</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/client.html#freshbooks.client.Client.items"><code class="docutils literal notranslate"><span class="pre">Client.items</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/client.html#freshbooks.client.Client.other_income"><code class="docutils literal notranslate"><span class="pre">Client.other_income</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/client.html#freshbooks.client.Client.payments"><code class="docutils literal notranslate"><span class="pre">Client.payments</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/client.html#freshbooks.client.Client.projects"><code class="docutils literal notranslate"><span class="pre">Client.projects</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/client.html#freshbooks.client.Client.refresh_access_token"><code class="docutils literal notranslate"><span class="pre">Client.refresh_access_token()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/client.html#freshbooks.client.Client.service_rates"><code class="docutils literal notranslate"><span class="pre">Client.service_rates</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/client.html#freshbooks.client.Client.services"><code class="docutils literal notranslate"><span class="pre">Client.services</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/client.html#freshbooks.client.Client.staff"><code class="docutils literal notranslate"><span class="pre">Client.staff</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/client.html#freshbooks.client.Client.systems"><code class="docutils literal notranslate"><span class="pre">Client.systems</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/client.html#freshbooks.client.Client.tasks"><code class="docutils literal notranslate"><span class="pre">Client.tasks</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/client.html#freshbooks.client.Client.taxes"><code class="docutils literal notranslate"><span class="pre">Client.taxes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/client.html#freshbooks.client.Client.time_entries"><code class="docutils literal notranslate"><span class="pre">Client.time_entries</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="modules/client.html#freshbooks.client.DEFAULT_TIMEOUT"><code class="docutils literal notranslate"><span class="pre">DEFAULT_TIMEOUT</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="modules/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="modules/resources.html#module-freshbooks.api.accounting">Accounting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules/resources.html#module-freshbooks.api.auth">Auth</a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules/resources.html#module-freshbooks.api.projects">Projects</a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules/resources.html#module-freshbooks.api.comments">Comments</a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules/resources.html#module-freshbooks.api.timetracking">Time-Tracking</a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules/resources.html#module-freshbooks.api.payments">Payments</a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules/resources.html#module-freshbooks.api.events">Events</a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules/resources.html#module-freshbooks.api.uploads">Uploads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/resources.html#module-freshbooks.api.accounting">Accounting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="modules/resources.html#freshbooks.api.accounting.AccountingResource"><code class="docutils literal notranslate"><span class="pre">AccountingResource</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="modules/resources.html#freshbooks.api.accounting.AccountingResource.API_RETRIES"><code class="docutils literal notranslate"><span class="pre">AccountingResource.API_RETRIES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/resources.html#freshbooks.api.accounting.AccountingResource.create"><code class="docutils literal notranslate"><span class="pre">AccountingResource.create()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/resources.html#freshbooks.api.accounting.AccountingResource.delete"><code class="docutils literal notranslate"><span class="pre">AccountingResource.delete()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/resources.html#freshbooks.api.accounting.AccountingResource.get"><code class="docutils literal notranslate"><span class="pre">AccountingResource.get()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/resources.html#freshbooks.api.accounting.AccountingResource.headers"><code class="docutils literal notranslate"><span class="pre">AccountingResource.headers()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/resources.html#freshbooks.api.accounting.AccountingResource.list"><code class="docutils literal notranslate"><span class="pre">AccountingResource.list()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/resources.html#freshbooks.api.accounting.AccountingResource.update"><code class="docutils literal notranslate"><span class="pre">AccountingResource.update()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="modules/models.html">Models</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="modules/resources.html#module-freshbooks.api.auth">Auth</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="modules/resources.html#freshbooks.api.auth.AuthResource"><code class="docutils literal notranslate"><span class="pre">AuthResource</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="modules/resources.html#freshbooks.api.auth.AuthResource.API_RETRIES"><code class="docutils literal notranslate"><span class="pre">AuthResource.API_RETRIES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/resources.html#freshbooks.api.auth.AuthResource.headers"><code class="docutils literal notranslate"><span class="pre">AuthResource.headers()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/resources.html#freshbooks.api.auth.AuthResource.me_endpoint"><code class="docutils literal notranslate"><span class="pre">AuthResource.me_endpoint()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="modules/resources.html#module-freshbooks.api.projects">Projects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="modules/resources.html#freshbooks.api.projects.ProjectsResource"><code class="docutils literal notranslate"><span class="pre">ProjectsResource</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="modules/resources.html#freshbooks.api.projects.ProjectsResource.create"><code class="docutils literal notranslate"><span class="pre">ProjectsResource.create()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/resources.html#freshbooks.api.projects.ProjectsResource.delete"><code class="docutils literal notranslate"><span class="pre">ProjectsResource.delete()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/resources.html#freshbooks.api.projects.ProjectsResource.get"><code class="docutils literal notranslate"><span class="pre">ProjectsResource.get()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/resources.html#freshbooks.api.projects.ProjectsResource.list"><code class="docutils literal notranslate"><span class="pre">ProjectsResource.list()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/resources.html#freshbooks.api.projects.ProjectsResource.update"><code class="docutils literal notranslate"><span class="pre">ProjectsResource.update()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="modules/resources.html#module-freshbooks.api.comments">Comments</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="modules/resources.html#freshbooks.api.comments.CommentsResource"><code class="docutils literal notranslate"><span class="pre">CommentsResource</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="modules/resources.html#freshbooks.api.comments.CommentsResource.API_RETRIES"><code class="docutils literal notranslate"><span class="pre">CommentsResource.API_RETRIES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/resources.html#freshbooks.api.comments.CommentsResource.create"><code class="docutils literal notranslate"><span class="pre">CommentsResource.create()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/resources.html#freshbooks.api.comments.CommentsResource.delete"><code class="docutils literal notranslate"><span class="pre">CommentsResource.delete()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/resources.html#freshbooks.api.comments.CommentsResource.get"><code class="docutils literal notranslate"><span class="pre">CommentsResource.get()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/resources.html#freshbooks.api.comments.CommentsResource.headers"><code class="docutils literal notranslate"><span class="pre">CommentsResource.headers()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/resources.html#freshbooks.api.comments.CommentsResource.list"><code class="docutils literal notranslate"><span class="pre">CommentsResource.list()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/resources.html#freshbooks.api.comments.CommentsResource.update"><code class="docutils literal notranslate"><span class="pre">CommentsResource.update()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="modules/resources.html#freshbooks.api.comments.CommentsSubResource"><code class="docutils literal notranslate"><span class="pre">CommentsSubResource</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="modules/resources.html#freshbooks.api.comments.CommentsSubResource.API_RETRIES"><code class="docutils literal notranslate"><span class="pre">CommentsSubResource.API_RETRIES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/resources.html#freshbooks.api.comments.CommentsSubResource.create"><code class="docutils literal notranslate"><span class="pre">CommentsSubResource.create()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/resources.html#freshbooks.api.comments.CommentsSubResource.delete"><code class="docutils literal notranslate"><span class="pre">CommentsSubResource.delete()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/resources.html#freshbooks.api.comments.CommentsSubResource.get"><code class="docutils literal notranslate"><span class="pre">CommentsSubResource.get()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/resources.html#freshbooks.api.comments.CommentsSubResource.headers"><code class="docutils literal notranslate"><span class="pre">CommentsSubResource.headers()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/resources.html#freshbooks.api.comments.CommentsSubResource.list"><code class="docutils literal notranslate"><span class="pre">CommentsSubResource.list()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/resources.html#freshbooks.api.comments.CommentsSubResource.update"><code class="docutils literal notranslate"><span class="pre">CommentsSubResource.update()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="modules/resources.html#module-freshbooks.api.timetracking">Time-Tracking</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="modules/resources.html#freshbooks.api.timetracking.TimetrackingResource"><code class="docutils literal notranslate"><span class="pre">TimetrackingResource</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="modules/resources.html#freshbooks.api.timetracking.TimetrackingResource.API_RETRIES"><code class="docutils literal notranslate"><span class="pre">TimetrackingResource.API_RETRIES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/resources.html#freshbooks.api.timetracking.TimetrackingResource.create"><code class="docutils literal notranslate"><span class="pre">TimetrackingResource.create()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/resources.html#freshbooks.api.timetracking.TimetrackingResource.delete"><code class="docutils literal notranslate"><span class="pre">TimetrackingResource.delete()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/resources.html#freshbooks.api.timetracking.TimetrackingResource.get"><code class="docutils literal notranslate"><span class="pre">TimetrackingResource.get()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/resources.html#freshbooks.api.timetracking.TimetrackingResource.headers"><code class="docutils literal notranslate"><span class="pre">TimetrackingResource.headers()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/resources.html#freshbooks.api.timetracking.TimetrackingResource.list"><code class="docutils literal notranslate"><span class="pre">TimetrackingResource.list()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/resources.html#freshbooks.api.timetracking.TimetrackingResource.update"><code class="docutils literal notranslate"><span class="pre">TimetrackingResource.update()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="modules/resources.html#module-freshbooks.api.payments">Payments</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="modules/resources.html#freshbooks.api.payments.PaymentsResource"><code class="docutils literal notranslate"><span class="pre">PaymentsResource</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="modules/resources.html#freshbooks.api.payments.PaymentsResource.API_RETRIES"><code class="docutils literal notranslate"><span class="pre">PaymentsResource.API_RETRIES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/resources.html#freshbooks.api.payments.PaymentsResource.create"><code class="docutils literal notranslate"><span class="pre">PaymentsResource.create()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/resources.html#freshbooks.api.payments.PaymentsResource.defaults"><code class="docutils literal notranslate"><span class="pre">PaymentsResource.defaults()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/resources.html#freshbooks.api.payments.PaymentsResource.get"><code class="docutils literal notranslate"><span class="pre">PaymentsResource.get()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/resources.html#freshbooks.api.payments.PaymentsResource.headers"><code class="docutils literal notranslate"><span class="pre">PaymentsResource.headers()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="modules/resources.html#module-freshbooks.api.events">Events</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="modules/resources.html#freshbooks.api.events.EventsResource"><code class="docutils literal notranslate"><span class="pre">EventsResource</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="modules/resources.html#freshbooks.api.events.EventsResource.API_RETRIES"><code class="docutils literal notranslate"><span class="pre">EventsResource.API_RETRIES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/resources.html#freshbooks.api.events.EventsResource.create"><code class="docutils literal notranslate"><span class="pre">EventsResource.create()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/resources.html#freshbooks.api.events.EventsResource.delete"><code class="docutils literal notranslate"><span class="pre">EventsResource.delete()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/resources.html#freshbooks.api.events.EventsResource.get"><code class="docutils literal notranslate"><span class="pre">EventsResource.get()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/resources.html#freshbooks.api.events.EventsResource.headers"><code class="docutils literal notranslate"><span class="pre">EventsResource.headers()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/resources.html#freshbooks.api.events.EventsResource.list"><code class="docutils literal notranslate"><span class="pre">EventsResource.list()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/resources.html#freshbooks.api.events.EventsResource.resend_verification"><code class="docutils literal notranslate"><span class="pre">EventsResource.resend_verification()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/resources.html#freshbooks.api.events.EventsResource.update"><code class="docutils literal notranslate"><span class="pre">EventsResource.update()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/resources.html#freshbooks.api.events.EventsResource.verify"><code class="docutils literal notranslate"><span class="pre">EventsResource.verify()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="modules/resources.html#module-freshbooks.api.uploads">Uploads</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="modules/resources.html#freshbooks.api.uploads.UploadsResource"><code class="docutils literal notranslate"><span class="pre">UploadsResource</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="modules/resources.html#freshbooks.api.uploads.UploadsResource.API_RETRIES"><code class="docutils literal notranslate"><span class="pre">UploadsResource.API_RETRIES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/resources.html#freshbooks.api.uploads.UploadsResource.get"><code class="docutils literal notranslate"><span class="pre">UploadsResource.get()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/resources.html#freshbooks.api.uploads.UploadsResource.headers"><code class="docutils literal notranslate"><span class="pre">UploadsResource.headers()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/resources.html#freshbooks.api.uploads.UploadsResource.upload"><code class="docutils literal notranslate"><span class="pre">UploadsResource.upload()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules/models.html">Models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modules/models.html#freshbooks.models.Identity"><code class="docutils literal notranslate"><span class="pre">Identity</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="modules/models.html#freshbooks.models.Identity.business_memberships"><code class="docutils literal notranslate"><span class="pre">Identity.business_memberships</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/models.html#freshbooks.models.Identity.full_name"><code class="docutils literal notranslate"><span class="pre">Identity.full_name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/models.html#freshbooks.models.Identity.identity_id"><code class="docutils literal notranslate"><span class="pre">Identity.identity_id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="modules/models.html#freshbooks.models.ListResult"><code class="docutils literal notranslate"><span class="pre">ListResult</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/models.html#freshbooks.models.Result"><code class="docutils literal notranslate"><span class="pre">Result</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/models.html#freshbooks.models.VisState"><code class="docutils literal notranslate"><span class="pre">VisState</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="modules/models.html#freshbooks.models.VisState.ACTIVE"><code class="docutils literal notranslate"><span class="pre">VisState.ACTIVE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/models.html#freshbooks.models.VisState.DELETED"><code class="docutils literal notranslate"><span class="pre">VisState.DELETED</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/models.html#freshbooks.models.VisState.ARCHIVED"><code class="docutils literal notranslate"><span class="pre">VisState.ARCHIVED</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="modules/builders.html">Builders</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="modules/builders.html#module-freshbooks.builders.paginator">Paginator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules/builders.html#module-freshbooks.builders.filter">Filters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules/builders.html#module-freshbooks.builders.includes">Includes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules/builders.html#module-freshbooks.builders.sort">Sort</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/builders.html#module-freshbooks.builders.paginator">Paginator</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="modules/builders.html#freshbooks.builders.paginator.PaginateBuilder"><code class="docutils literal notranslate"><span class="pre">PaginateBuilder</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="modules/builders.html#freshbooks.builders.paginator.PaginateBuilder.build"><code class="docutils literal notranslate"><span class="pre">PaginateBuilder.build()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/builders.html#freshbooks.builders.paginator.PaginateBuilder.page"><code class="docutils literal notranslate"><span class="pre">PaginateBuilder.page()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/builders.html#freshbooks.builders.paginator.PaginateBuilder.per_page"><code class="docutils literal notranslate"><span class="pre">PaginateBuilder.per_page()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="modules/errors.html">Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="modules/builders.html#module-freshbooks.builders.filter">Filters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="modules/builders.html#freshbooks.builders.filter.FilterBuilder"><code class="docutils literal notranslate"><span class="pre">FilterBuilder</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="modules/builders.html#freshbooks.builders.filter.FilterBuilder.between"><code class="docutils literal notranslate"><span class="pre">FilterBuilder.between()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/builders.html#freshbooks.builders.filter.FilterBuilder.boolean"><code class="docutils literal notranslate"><span class="pre">FilterBuilder.boolean()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/builders.html#freshbooks.builders.filter.FilterBuilder.build"><code class="docutils literal notranslate"><span class="pre">FilterBuilder.build()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/builders.html#freshbooks.builders.filter.FilterBuilder.date_time"><code class="docutils literal notranslate"><span class="pre">FilterBuilder.date_time()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/builders.html#freshbooks.builders.filter.FilterBuilder.equals"><code class="docutils literal notranslate"><span class="pre">FilterBuilder.equals()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/builders.html#freshbooks.builders.filter.FilterBuilder.in_list"><code class="docutils literal notranslate"><span class="pre">FilterBuilder.in_list()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/builders.html#freshbooks.builders.filter.FilterBuilder.like"><code class="docutils literal notranslate"><span class="pre">FilterBuilder.like()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="modules/builders.html#module-freshbooks.builders.includes">Includes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="modules/builders.html#freshbooks.builders.includes.IncludesBuilder"><code class="docutils literal notranslate"><span class="pre">IncludesBuilder</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="modules/builders.html#freshbooks.builders.includes.IncludesBuilder.build"><code class="docutils literal notranslate"><span class="pre">IncludesBuilder.build()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/builders.html#freshbooks.builders.includes.IncludesBuilder.include"><code class="docutils literal notranslate"><span class="pre">IncludesBuilder.include()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="modules/builders.html#module-freshbooks.builders.sort">Sort</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="modules/builders.html#freshbooks.builders.sort.SortBuilder"><code class="docutils literal notranslate"><span class="pre">SortBuilder</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="modules/builders.html#freshbooks.builders.sort.SortBuilder.asc"><code class="docutils literal notranslate"><span class="pre">SortBuilder.asc()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/builders.html#freshbooks.builders.sort.SortBuilder.ascending"><code class="docutils literal notranslate"><span class="pre">SortBuilder.ascending()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/builders.html#freshbooks.builders.sort.SortBuilder.build"><code class="docutils literal notranslate"><span class="pre">SortBuilder.build()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/builders.html#freshbooks.builders.sort.SortBuilder.desc"><code class="docutils literal notranslate"><span class="pre">SortBuilder.desc()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/builders.html#freshbooks.builders.sort.SortBuilder.descending"><code class="docutils literal notranslate"><span class="pre">SortBuilder.descending()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules/errors.html">Errors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modules/errors.html#freshbooks.errors.FreshBooksClientConfigError"><code class="docutils literal notranslate"><span class="pre">FreshBooksClientConfigError</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="modules/errors.html#freshbooks.errors.FreshBooksClientConfigError.with_traceback"><code class="docutils literal notranslate"><span class="pre">FreshBooksClientConfigError.with_traceback()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="modules/errors.html#freshbooks.errors.FreshBooksError"><code class="docutils literal notranslate"><span class="pre">FreshBooksError</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="modules/errors.html#freshbooks.errors.FreshBooksError.message"><code class="docutils literal notranslate"><span class="pre">FreshBooksError.message</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/errors.html#freshbooks.errors.FreshBooksError.status_code"><code class="docutils literal notranslate"><span class="pre">FreshBooksError.status_code</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/errors.html#freshbooks.errors.FreshBooksError.raw_response"><code class="docutils literal notranslate"><span class="pre">FreshBooksError.raw_response</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/errors.html#freshbooks.errors.FreshBooksError.error_code"><code class="docutils literal notranslate"><span class="pre">FreshBooksError.error_code</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/errors.html#freshbooks.errors.FreshBooksError.error_details"><code class="docutils literal notranslate"><span class="pre">FreshBooksError.error_details</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/errors.html#freshbooks.errors.FreshBooksError.with_traceback"><code class="docutils literal notranslate"><span class="pre">FreshBooksError.with_traceback()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="modules/errors.html#freshbooks.errors.FreshBooksNotImplementedError"><code class="docutils literal notranslate"><span class="pre">FreshBooksNotImplementedError</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="modules/errors.html#freshbooks.errors.FreshBooksNotImplementedError.with_traceback"><code class="docutils literal notranslate"><span class="pre">FreshBooksNotImplementedError.with_traceback()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </div>
 </section>

@@ -16,6 +16,7 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -55,7 +56,43 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Client</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Client</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#freshbooks.client.Client"><code class="docutils literal notranslate"><span class="pre">Client</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#freshbooks.client.Client.attachments"><code class="docutils literal notranslate"><span class="pre">Client.attachments</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#freshbooks.client.Client.bill_payments"><code class="docutils literal notranslate"><span class="pre">Client.bill_payments</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#freshbooks.client.Client.bill_vendors"><code class="docutils literal notranslate"><span class="pre">Client.bill_vendors</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#freshbooks.client.Client.bills"><code class="docutils literal notranslate"><span class="pre">Client.bills</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#freshbooks.client.Client.callbacks"><code class="docutils literal notranslate"><span class="pre">Client.callbacks</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#freshbooks.client.Client.clients"><code class="docutils literal notranslate"><span class="pre">Client.clients</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#freshbooks.client.Client.credit_notes"><code class="docutils literal notranslate"><span class="pre">Client.credit_notes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#freshbooks.client.Client.current_user"><code class="docutils literal notranslate"><span class="pre">Client.current_user()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#freshbooks.client.Client.estimates"><code class="docutils literal notranslate"><span class="pre">Client.estimates</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#freshbooks.client.Client.expenses"><code class="docutils literal notranslate"><span class="pre">Client.expenses</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#freshbooks.client.Client.expenses_categories"><code class="docutils literal notranslate"><span class="pre">Client.expenses_categories</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#freshbooks.client.Client.gateways"><code class="docutils literal notranslate"><span class="pre">Client.gateways</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#freshbooks.client.Client.get_access_token"><code class="docutils literal notranslate"><span class="pre">Client.get_access_token()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#freshbooks.client.Client.get_auth_request_url"><code class="docutils literal notranslate"><span class="pre">Client.get_auth_request_url()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#freshbooks.client.Client.images"><code class="docutils literal notranslate"><span class="pre">Client.images</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#freshbooks.client.Client.invoice_payment_options"><code class="docutils literal notranslate"><span class="pre">Client.invoice_payment_options</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#freshbooks.client.Client.invoice_profiles"><code class="docutils literal notranslate"><span class="pre">Client.invoice_profiles</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#freshbooks.client.Client.invoices"><code class="docutils literal notranslate"><span class="pre">Client.invoices</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#freshbooks.client.Client.items"><code class="docutils literal notranslate"><span class="pre">Client.items</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#freshbooks.client.Client.other_income"><code class="docutils literal notranslate"><span class="pre">Client.other_income</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#freshbooks.client.Client.payments"><code class="docutils literal notranslate"><span class="pre">Client.payments</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#freshbooks.client.Client.projects"><code class="docutils literal notranslate"><span class="pre">Client.projects</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#freshbooks.client.Client.refresh_access_token"><code class="docutils literal notranslate"><span class="pre">Client.refresh_access_token()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#freshbooks.client.Client.service_rates"><code class="docutils literal notranslate"><span class="pre">Client.service_rates</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#freshbooks.client.Client.services"><code class="docutils literal notranslate"><span class="pre">Client.services</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#freshbooks.client.Client.staff"><code class="docutils literal notranslate"><span class="pre">Client.staff</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#freshbooks.client.Client.systems"><code class="docutils literal notranslate"><span class="pre">Client.systems</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#freshbooks.client.Client.tasks"><code class="docutils literal notranslate"><span class="pre">Client.tasks</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#freshbooks.client.Client.taxes"><code class="docutils literal notranslate"><span class="pre">Client.taxes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#freshbooks.client.Client.time_entries"><code class="docutils literal notranslate"><span class="pre">Client.time_entries</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#freshbooks.client.DEFAULT_TIMEOUT"><code class="docutils literal notranslate"><span class="pre">DEFAULT_TIMEOUT</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="resources.html">Resources</a></li>
 <li class="toctree-l1"><a class="reference internal" href="models.html">Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="builders.html">Builders</a></li>
@@ -234,16 +271,21 @@ get, list, create, update, delete, resend_verification, verify</p>
 step. See <code class="docutils literal notranslate"><span class="pre">freshbooks.client.Client.get_auth_request_url</span></code>.</p>
 <p>This call sets the <code class="docutils literal notranslate"><span class="pre">access_token</span></code>, <code class="docutils literal notranslate"><span class="pre">refresh_token</span></code>, and <code class="docutils literal notranslate"><span class="pre">access_token_expires_at</span></code> attributes
 on the Client instance and also returns those values in an object.</p>
-<p>Args:
-code: access_grant code from the authorization redirect</p>
-<p>Returns:
-Simple namespace containing <code class="docutils literal notranslate"><span class="pre">access_token</span></code>, <code class="docutils literal notranslate"><span class="pre">refresh_token</span></code>, and <code class="docutils literal notranslate"><span class="pre">access_token_expires_at</span></code></p>
-<p>Raises:
-FreshBooksError: If the call fails to return a access token.
-FreshBooksClientConfigError: If client_secret and redirect_uri are not set on the client instance.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~types.SimpleNamespace</span></code></p>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>code</strong> – access_grant code from the authorization redirect</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Simple namespace containing <code class="docutils literal notranslate"><span class="pre">access_token</span></code>, <code class="docutils literal notranslate"><span class="pre">refresh_token</span></code>, and <code class="docutils literal notranslate"><span class="pre">access_token_expires_at</span></code></p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call fails to return a access token.</p></li>
+<li><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksClientConfigError" title="freshbooks.errors.FreshBooksClientConfigError"><strong>FreshBooksClientConfigError</strong></a> – If client_secret and redirect_uri are not set on the client instance.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~types.SimpleNamespace</span></code></p>
 </dd>
 </dl>
 </dd></dl>
@@ -259,15 +301,18 @@ access token by calling <code class="docutils literal notranslate"><span class="
 <p>Note: The <code class="docutils literal notranslate"><span class="pre">redirect_uri</span></code> must be one of the URLs your application is registered for.</p>
 <p>If scopes are not specified, then the access token will be given the default scopes your
 application is registered for.</p>
-<p>Args:
-scopes: List of scopes if your want an access token with only a subset of your registered scopes</p>
-<p>Returns:
-The URL for the authorization request</p>
-<p>Raises:
-FreshBooksClientConfigError: If redirect_uri is not set on the client instance.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">str</span></code></p>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>scopes</strong> – List of scopes if your want an access token with only a subset of your registered scopes</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The URL for the authorization request</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksClientConfigError" title="freshbooks.errors.FreshBooksClientConfigError"><strong>FreshBooksClientConfigError</strong></a> – If redirect_uri is not set on the client instance.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">str</span></code></p>
 </dd>
 </dl>
 </dd></dl>
@@ -369,15 +414,18 @@ FreshBooksClientConfigError: If redirect_uri is not set on the client instance.<
 <p>This call sets the <code class="docutils literal notranslate"><span class="pre">access_token</span></code>, <code class="docutils literal notranslate"><span class="pre">refresh_token</span></code>, and <code class="docutils literal notranslate"><span class="pre">access_token_expires_at</span></code> attributes
 on the Client instance to the new values from the refresh call, and also returns those values
 in an object.</p>
-<p>Args:
-refresh_token: (Optional) refresh_token from initial <code class="docutils literal notranslate"><span class="pre">get_access_token</span></code> call</p>
-<p>Returns:
-Simple namespace containing <code class="docutils literal notranslate"><span class="pre">access_token</span></code>, <code class="docutils literal notranslate"><span class="pre">refresh_token</span></code>, and <code class="docutils literal notranslate"><span class="pre">access_token_expires_at</span></code></p>
-<p>Raises:
-FreshBooksClientConfigError: If refresh_token is not set on the client instance and is not provided.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~types.SimpleNamespace</span></code></p>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>refresh_token</strong> – (Optional) refresh_token from initial <code class="docutils literal notranslate"><span class="pre">get_access_token</span></code> call</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Simple namespace containing <code class="docutils literal notranslate"><span class="pre">access_token</span></code>, <code class="docutils literal notranslate"><span class="pre">refresh_token</span></code>, and <code class="docutils literal notranslate"><span class="pre">access_token_expires_at</span></code></p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksClientConfigError" title="freshbooks.errors.FreshBooksClientConfigError"><strong>FreshBooksClientConfigError</strong></a> – If refresh_token is not set on the client instance and is not provided.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~types.SimpleNamespace</span></code></p>
 </dd>
 </dl>
 </dd></dl>

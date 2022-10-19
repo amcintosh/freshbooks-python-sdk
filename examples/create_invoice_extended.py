@@ -10,11 +10,6 @@ access_token = "<your access token>"
 account_id = "<your account id>"
 destination_email = "<your email>"  # Don't use the same email as the account owner.
 
-fb_client_id = "b5fe534b939e6f8daf62ca38ccf5a054dcfa844b2281403fbcaad62a58d2f525"
-account_id = "6VApk"
-access_token = '1cdad1478d0eca3087aa3abdfab6ee21986a9c548db093a65f008e582bd0b6c9'
-destination_email = "amcintosh@freshenv.com"
-
 freshBooksClient = FreshBooksClient(client_id=fb_client_id, access_token=access_token)
 
 # Create the client

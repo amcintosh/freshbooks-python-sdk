@@ -21,6 +21,7 @@ setup(
     keywords=["FreshBooks"],
     license="MIT",
     packages=find_packages(exclude=["examples", "tests"]),
+    package_data={"freshbooks": ["py.typed"]},
     include_package_data=True,
     install_requires=open("requirements.txt").readlines(),
     classifiers=[
@@ -35,5 +36,6 @@ setup(
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11"
     ]
 )

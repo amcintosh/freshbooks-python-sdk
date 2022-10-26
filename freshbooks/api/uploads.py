@@ -83,7 +83,7 @@ class UploadsResource(Resource):
         file_content = file_stream
         if file_path and not file_stream:  # pragma: no cover
             file_content = open(file_path, "rb")
-        files = {'content': file_content}
+        files = {"content": file_content}
 
         response = self._send_request(url, HttpVerbs.POST, files=files)
 

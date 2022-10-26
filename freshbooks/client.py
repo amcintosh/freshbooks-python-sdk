@@ -25,7 +25,7 @@ AUTH_URL = "oauth/authorize"
 DEFAULT_TIMEOUT = 30
 """Default request timeout to FreshBooks"""
 
-logging.getLogger('freshbooks').addHandler(logging.NullHandler())
+logging.getLogger("freshbooks").addHandler(logging.NullHandler())
 
 with open(os.path.join(os.path.dirname(__file__), "VERSION")) as f:
     VERSION = f.readlines()[0].strip()

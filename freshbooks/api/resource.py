@@ -38,8 +38,8 @@ class Resource:
                 status_forcelist=[400, 408, 429, 500, 502, 503, 504],
             )
             adapter = HTTPAdapter(max_retries=retry)
-            session.mount('http://', adapter)
-            session.mount('https://', adapter)
+            session.mount("http://", adapter)
+            session.mount("https://", adapter)
 
         return session
 
@@ -78,8 +78,8 @@ class Resource:
             res = session(uri, data=payload, files=files, headers=self.headers(method, has_data), timeout=self.timeout)
         except requests.exceptions.RetryError:
             adapter = HTTPAdapter()
-            self.session.mount('http://', adapter)
-            self.session.mount('https://', adapter)
+            self.session.mount("http://", adapter)
+            self.session.mount("https://", adapter)
             res = session(uri, data=payload, files=files, headers=self.headers(method, has_data), timeout=self.timeout)
 
         return res

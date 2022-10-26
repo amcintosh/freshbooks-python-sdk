@@ -200,8 +200,6 @@ class TestAccountingResources:
 
         assert clients.data["total"] == 0
         assert clients.data["clients"] == []
-        for client in clients:
-            assert False, "With no results, this should not be called"
 
     @httpretty.activate
     def test_list_clients__paged(self):

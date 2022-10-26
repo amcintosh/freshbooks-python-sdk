@@ -2,7 +2,7 @@ from collections import namedtuple
 from copy import deepcopy
 from datetime import date, datetime, timezone
 from enum import IntEnum
-from typing import Any, Optional, Union
+from typing import Any, cast, Optional, Union
 
 try:
     from zoneinfo import ZoneInfo  # type: ignore
@@ -94,8 +94,8 @@ class Result:
 
     @property
     def vis_state(self) -> Union[VisState, None]:
-        if self.data.get('vis_state') in list(VisState):
-            return VisState(self.data['vis_state'])
+        if self.data.get("vis_state") in list(VisState):
+            return VisState(self.data["vis_state"])
         return None
 
 
@@ -237,6 +237,6 @@ class Identity(Result):
         return "{} {}".format(self.data.get("first_name"), self.data.get("last_name"))
 
     @property
-    def business_memberships(self) -> Any:
+    def business_memberships(self) -> dict:
         """The authenticated user's businesses and their role in that business."""
-        return self.__getattr__("business_memberships")
+        return cast(dict, self.__getattr__("business_memberships"))

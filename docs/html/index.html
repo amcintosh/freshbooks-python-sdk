@@ -75,8 +75,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
-      <li>Welcome to freshbooks-sdk’s documentation!</li>
+      <li><a href="#" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Welcome to freshbooks-sdk’s documentation!</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -283,6 +283,16 @@
 <li class="toctree-l3"><a class="reference internal" href="modules/models.html#freshbooks.models.VisState.ACTIVE"><code class="docutils literal notranslate"><span class="pre">VisState.ACTIVE</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="modules/models.html#freshbooks.models.VisState.DELETED"><code class="docutils literal notranslate"><span class="pre">VisState.DELETED</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="modules/models.html#freshbooks.models.VisState.ARCHIVED"><code class="docutils literal notranslate"><span class="pre">VisState.ARCHIVED</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/models.html#freshbooks.models.VisState.as_integer_ratio"><code class="docutils literal notranslate"><span class="pre">VisState.as_integer_ratio()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/models.html#freshbooks.models.VisState.bit_count"><code class="docutils literal notranslate"><span class="pre">VisState.bit_count()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/models.html#freshbooks.models.VisState.bit_length"><code class="docutils literal notranslate"><span class="pre">VisState.bit_length()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/models.html#freshbooks.models.VisState.conjugate"><code class="docutils literal notranslate"><span class="pre">VisState.conjugate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/models.html#freshbooks.models.VisState.denominator"><code class="docutils literal notranslate"><span class="pre">VisState.denominator</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/models.html#freshbooks.models.VisState.from_bytes"><code class="docutils literal notranslate"><span class="pre">VisState.from_bytes()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/models.html#freshbooks.models.VisState.imag"><code class="docutils literal notranslate"><span class="pre">VisState.imag</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/models.html#freshbooks.models.VisState.numerator"><code class="docutils literal notranslate"><span class="pre">VisState.numerator</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/models.html#freshbooks.models.VisState.real"><code class="docutils literal notranslate"><span class="pre">VisState.real</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/models.html#freshbooks.models.VisState.to_bytes"><code class="docutils literal notranslate"><span class="pre">VisState.to_bytes()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -333,6 +343,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="modules/errors.html">Errors</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="modules/errors.html#freshbooks.errors.FreshBooksClientConfigError"><code class="docutils literal notranslate"><span class="pre">FreshBooksClientConfigError</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="modules/errors.html#freshbooks.errors.FreshBooksClientConfigError.add_note"><code class="docutils literal notranslate"><span class="pre">FreshBooksClientConfigError.add_note()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="modules/errors.html#freshbooks.errors.FreshBooksClientConfigError.with_traceback"><code class="docutils literal notranslate"><span class="pre">FreshBooksClientConfigError.with_traceback()</span></code></a></li>
 </ul>
 </li>
@@ -342,10 +353,12 @@
 <li class="toctree-l3"><a class="reference internal" href="modules/errors.html#freshbooks.errors.FreshBooksError.raw_response"><code class="docutils literal notranslate"><span class="pre">FreshBooksError.raw_response</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="modules/errors.html#freshbooks.errors.FreshBooksError.error_code"><code class="docutils literal notranslate"><span class="pre">FreshBooksError.error_code</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="modules/errors.html#freshbooks.errors.FreshBooksError.error_details"><code class="docutils literal notranslate"><span class="pre">FreshBooksError.error_details</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/errors.html#freshbooks.errors.FreshBooksError.add_note"><code class="docutils literal notranslate"><span class="pre">FreshBooksError.add_note()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="modules/errors.html#freshbooks.errors.FreshBooksError.with_traceback"><code class="docutils literal notranslate"><span class="pre">FreshBooksError.with_traceback()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="modules/errors.html#freshbooks.errors.FreshBooksNotImplementedError"><code class="docutils literal notranslate"><span class="pre">FreshBooksNotImplementedError</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="modules/errors.html#freshbooks.errors.FreshBooksNotImplementedError.add_note"><code class="docutils literal notranslate"><span class="pre">FreshBooksNotImplementedError.add_note()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="modules/errors.html#freshbooks.errors.FreshBooksNotImplementedError.with_traceback"><code class="docutils literal notranslate"><span class="pre">FreshBooksNotImplementedError.with_traceback()</span></code></a></li>
 </ul>
 </li>

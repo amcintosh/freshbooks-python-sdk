@@ -61,6 +61,7 @@
 <li class="toctree-l1"><a class="reference internal" href="builders.html">Builders</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Errors</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#freshbooks.errors.FreshBooksClientConfigError"><code class="docutils literal notranslate"><span class="pre">FreshBooksClientConfigError</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#freshbooks.errors.FreshBooksClientConfigError.add_note"><code class="docutils literal notranslate"><span class="pre">FreshBooksClientConfigError.add_note()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#freshbooks.errors.FreshBooksClientConfigError.with_traceback"><code class="docutils literal notranslate"><span class="pre">FreshBooksClientConfigError.with_traceback()</span></code></a></li>
 </ul>
 </li>
@@ -70,10 +71,12 @@
 <li class="toctree-l3"><a class="reference internal" href="#freshbooks.errors.FreshBooksError.raw_response"><code class="docutils literal notranslate"><span class="pre">FreshBooksError.raw_response</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#freshbooks.errors.FreshBooksError.error_code"><code class="docutils literal notranslate"><span class="pre">FreshBooksError.error_code</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#freshbooks.errors.FreshBooksError.error_details"><code class="docutils literal notranslate"><span class="pre">FreshBooksError.error_details</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#freshbooks.errors.FreshBooksError.add_note"><code class="docutils literal notranslate"><span class="pre">FreshBooksError.add_note()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#freshbooks.errors.FreshBooksError.with_traceback"><code class="docutils literal notranslate"><span class="pre">FreshBooksError.with_traceback()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#freshbooks.errors.FreshBooksNotImplementedError"><code class="docutils literal notranslate"><span class="pre">FreshBooksNotImplementedError</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#freshbooks.errors.FreshBooksNotImplementedError.add_note"><code class="docutils literal notranslate"><span class="pre">FreshBooksNotImplementedError.add_note()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#freshbooks.errors.FreshBooksNotImplementedError.with_traceback"><code class="docutils literal notranslate"><span class="pre">FreshBooksNotImplementedError.with_traceback()</span></code></a></li>
 </ul>
 </li>
@@ -94,8 +97,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Errors</li>
+      <li><a href="../index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Errors</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/modules/errors.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -112,6 +115,13 @@
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">freshbooks.errors.</span></span><span class="sig-name descname"><span class="pre">FreshBooksClientConfigError</span></span><a class="headerlink" href="#freshbooks.errors.FreshBooksClientConfigError" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
 <p>Exception thrown when optional client parameters are not set, but and required.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="freshbooks.errors.FreshBooksClientConfigError.add_note">
+<span class="sig-name descname"><span class="pre">add_note</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.errors.FreshBooksClientConfigError.add_note" title="Permalink to this definition"></a></dt>
+<dd><p>Exception.add_note(note) –
+add a note to the exception</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="freshbooks.errors.FreshBooksClientConfigError.with_traceback">
 <span class="sig-name descname"><span class="pre">with_traceback</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.errors.FreshBooksClientConfigError.with_traceback" title="Permalink to this definition"></a></dt>
@@ -167,6 +177,13 @@ is missing expected content.</p>
 
 <p>(Optional) Details of the error, if available</p>
 <dl class="py method">
+<dt class="sig sig-object py" id="freshbooks.errors.FreshBooksError.add_note">
+<span class="sig-name descname"><span class="pre">add_note</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.errors.FreshBooksError.add_note" title="Permalink to this definition"></a></dt>
+<dd><p>Exception.add_note(note) –
+add a note to the exception</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="freshbooks.errors.FreshBooksError.with_traceback">
 <span class="sig-name descname"><span class="pre">with_traceback</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.errors.FreshBooksError.with_traceback" title="Permalink to this definition"></a></dt>
 <dd><p>Exception.with_traceback(tb) –
@@ -184,6 +201,13 @@ Eg.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">freshBooksClient</span><span class="o">.</span><span class="n">staff</span><span class="o">.</span><span class="n">create</span><span class="p">()</span>
 </pre></div>
 </div>
+<dl class="py method">
+<dt class="sig sig-object py" id="freshbooks.errors.FreshBooksNotImplementedError.add_note">
+<span class="sig-name descname"><span class="pre">add_note</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.errors.FreshBooksNotImplementedError.add_note" title="Permalink to this definition"></a></dt>
+<dd><p>Exception.add_note(note) –
+add a note to the exception</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="freshbooks.errors.FreshBooksNotImplementedError.with_traceback">
 <span class="sig-name descname"><span class="pre">with_traceback</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.errors.FreshBooksNotImplementedError.with_traceback" title="Permalink to this definition"></a></dt>

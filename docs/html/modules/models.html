@@ -71,6 +71,16 @@
 <li class="toctree-l3"><a class="reference internal" href="#freshbooks.models.VisState.ACTIVE"><code class="docutils literal notranslate"><span class="pre">VisState.ACTIVE</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#freshbooks.models.VisState.DELETED"><code class="docutils literal notranslate"><span class="pre">VisState.DELETED</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#freshbooks.models.VisState.ARCHIVED"><code class="docutils literal notranslate"><span class="pre">VisState.ARCHIVED</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#freshbooks.models.VisState.as_integer_ratio"><code class="docutils literal notranslate"><span class="pre">VisState.as_integer_ratio()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#freshbooks.models.VisState.bit_count"><code class="docutils literal notranslate"><span class="pre">VisState.bit_count()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#freshbooks.models.VisState.bit_length"><code class="docutils literal notranslate"><span class="pre">VisState.bit_length()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#freshbooks.models.VisState.conjugate"><code class="docutils literal notranslate"><span class="pre">VisState.conjugate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#freshbooks.models.VisState.denominator"><code class="docutils literal notranslate"><span class="pre">VisState.denominator</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#freshbooks.models.VisState.from_bytes"><code class="docutils literal notranslate"><span class="pre">VisState.from_bytes()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#freshbooks.models.VisState.imag"><code class="docutils literal notranslate"><span class="pre">VisState.imag</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#freshbooks.models.VisState.numerator"><code class="docutils literal notranslate"><span class="pre">VisState.numerator</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#freshbooks.models.VisState.real"><code class="docutils literal notranslate"><span class="pre">VisState.real</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#freshbooks.models.VisState.to_bytes"><code class="docutils literal notranslate"><span class="pre">VisState.to_bytes()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -92,8 +102,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Models</li>
+      <li><a href="../index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Models</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/modules/models.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -233,6 +243,117 @@ to make accessing the current user’s identity easier.</p>
 <dt class="sig sig-object py" id="freshbooks.models.VisState.ARCHIVED">
 <span class="sig-name descname"><span class="pre">ARCHIVED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;VisState.ARCHIVED:</span> <span class="pre">2&gt;</span></em><a class="headerlink" href="#freshbooks.models.VisState.ARCHIVED" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
+
+<p>The <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code> and its members also have the following methods:</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="freshbooks.models.VisState.as_integer_ratio">
+<span class="sig-name descname"><span class="pre">as_integer_ratio</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.models.VisState.as_integer_ratio" title="Permalink to this definition"></a></dt>
+<dd><p>Return integer ratio.</p>
+<p>Return a pair of integers, whose ratio is exactly equal to the original int
+and with a positive denominator.</p>
+<blockquote>
+<div><p>(10).as_integer_ratio()
+(10, 1)
+(-10).as_integer_ratio()
+(-10, 1)
+(0).as_integer_ratio()
+(0, 1)</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="freshbooks.models.VisState.bit_count">
+<span class="sig-name descname"><span class="pre">bit_count</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.models.VisState.bit_count" title="Permalink to this definition"></a></dt>
+<dd><p>Number of ones in the binary representation of the absolute value of self.</p>
+<p>Also known as the population count.</p>
+<blockquote>
+<div><p>bin(13)
+‘0b1101’
+(13).bit_count()
+3</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="freshbooks.models.VisState.bit_length">
+<span class="sig-name descname"><span class="pre">bit_length</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.models.VisState.bit_length" title="Permalink to this definition"></a></dt>
+<dd><p>Number of bits necessary to represent self in binary.</p>
+<blockquote>
+<div><p>bin(37)
+‘0b100101’
+(37).bit_length()
+6</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="freshbooks.models.VisState.conjugate">
+<span class="sig-name descname"><span class="pre">conjugate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.models.VisState.conjugate" title="Permalink to this definition"></a></dt>
+<dd><p>Returns self, the complex conjugate of any int.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freshbooks.models.VisState.denominator">
+<span class="sig-name descname"><span class="pre">denominator</span></span><a class="headerlink" href="#freshbooks.models.VisState.denominator" title="Permalink to this definition"></a></dt>
+<dd><p>the denominator of a rational number in lowest terms</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="freshbooks.models.VisState.from_bytes">
+<span class="sig-name descname"><span class="pre">from_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">byteorder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'big'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">signed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.models.VisState.from_bytes" title="Permalink to this definition"></a></dt>
+<dd><p>Return the integer represented by the given array of bytes.</p>
+<p>bytes
+Holds the array of bytes to convert.  The argument must either
+support the buffer protocol or be an iterable object producing bytes.
+Bytes and bytearray are examples of built-in objects that support the
+buffer protocol.
+byteorder
+The byte order used to represent the integer.  If byteorder is ‘big’,
+the most significant byte is at the beginning of the byte array.  If
+byteorder is ‘little’, the most significant byte is at the end of the
+byte array.  To request the native byte order of the host system, use
+<a href="#id1"><span class="problematic" id="id2">`</span></a>sys.byteorder’ as the byte order value.  Default is to use ‘big’.
+signed
+Indicates whether two’s complement is used to represent the integer.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freshbooks.models.VisState.imag">
+<span class="sig-name descname"><span class="pre">imag</span></span><a class="headerlink" href="#freshbooks.models.VisState.imag" title="Permalink to this definition"></a></dt>
+<dd><p>the imaginary part of a complex number</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freshbooks.models.VisState.numerator">
+<span class="sig-name descname"><span class="pre">numerator</span></span><a class="headerlink" href="#freshbooks.models.VisState.numerator" title="Permalink to this definition"></a></dt>
+<dd><p>the numerator of a rational number in lowest terms</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freshbooks.models.VisState.real">
+<span class="sig-name descname"><span class="pre">real</span></span><a class="headerlink" href="#freshbooks.models.VisState.real" title="Permalink to this definition"></a></dt>
+<dd><p>the real part of a complex number</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="freshbooks.models.VisState.to_bytes">
+<span class="sig-name descname"><span class="pre">to_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">byteorder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'big'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">signed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.models.VisState.to_bytes" title="Permalink to this definition"></a></dt>
+<dd><p>Return an array of bytes representing an integer.</p>
+<p>length
+Length of bytes object to use.  An OverflowError is raised if the
+integer is not representable with the given number of bytes.  Default
+is length 1.
+byteorder
+The byte order used to represent the integer.  If byteorder is ‘big’,
+the most significant byte is at the beginning of the byte array.  If
+byteorder is ‘little’, the most significant byte is at the end of the
+byte array.  To request the native byte order of the host system, use
+<a href="#id3"><span class="problematic" id="id4">`</span></a>sys.byteorder’ as the byte order value.  Default is to use ‘big’.
+signed
+Determines whether two’s complement is used to represent the integer.
+If signed is False and a negative integer is given, an OverflowError
+is raised.</p>
+</dd></dl>
 
 </dd></dl>
 

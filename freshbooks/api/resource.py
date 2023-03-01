@@ -24,6 +24,7 @@ class Resource:
         self.base_url = client_config.base_url
         self.access_token = client_config.access_token
         self.user_agent = client_config.user_agent
+        self.api_version = client_config.api_version
         self.timeout = client_config.timeout
         self.session = self._config_session(client_config.auto_retry)
 
@@ -50,6 +51,8 @@ class Resource:
             "Authorization": f"Bearer {self.access_token}",
             "user-agent": self.user_agent
         }
+        if self.api_version:
+            headers["X-API-VERSION"] = self.api_version
         if has_data and method in [HttpVerbs.POST, HttpVerbs.PUT, HttpVerbs.PATCH]:
             headers["Content-Type"] = "application/json"
         return headers

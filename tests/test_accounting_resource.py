@@ -42,6 +42,29 @@ class TestAccountingResources:
                 == f"FreshBooks python sdk/{VERSION} client_id some_client")
 
     @httpretty.activate
+    def test_get_client__with_version(self):
+        client_id = 12345
+        url = "{}/accounting/account/{}/users/clients/{}".format(API_BASE_URL, self.account_id, client_id)
+        httpretty.register_uri(
+            httpretty.GET,
+            url,
+            body=json.dumps(get_fixture("get_client_response")),
+            status=200
+        )
+        API_VERSION = "2023-02-20"
+
+        freshBooksClient = FreshBooksClient(
+            client_id="some_client", access_token="some_token", api_version=API_VERSION
+        )
+        client = freshBooksClient.clients.get(self.account_id, client_id)
+
+        assert str(client) == "Result(client)"
+        assert client.userid == client_id
+        assert httpretty.last_request().headers["Authorization"] == "Bearer some_token"
+        assert httpretty.last_request().headers["Content-Type"] is None
+        assert httpretty.last_request().headers["X-API-VERSION"] == API_VERSION
+
+    @httpretty.activate
     def test_get_client__includes(self):
         client_id = 12345
         url = "{}/accounting/account/{}/users/clients/{}?include[]=late_reminders&include[]=last_activity".format(

@@ -34,8 +34,8 @@ with open(os.path.join(os.path.dirname(__file__), "VERSION")) as f:
 class Client:
     def __init__(self, client_id: str, client_secret: Optional[str] = None, redirect_uri: Optional[str] = None,
                  access_token: Optional[str] = None, refresh_token: Optional[str] = None,
-                 user_agent: Optional[str] = None, timeout: Optional[int] = DEFAULT_TIMEOUT,
-                 auto_retry: bool = True):
+                 user_agent: Optional[str] = None, api_version: Optional[str] = None,
+                 timeout: Optional[int] = DEFAULT_TIMEOUT, auto_retry: bool = True):
         """
         Create a new API client instance for the given `client_id` and `client_secret`.
         This will allow you to follow the authentication flow to get an `access_token`.
@@ -50,6 +50,7 @@ class Client:
             access_token: (Optional) An already authenticated access token to use
             refresh_token: (Optional) An already authenticated refresh token to use
             user_agent: (Optional) A user-agent string to override the default
+            api_version: (Optional) Version of the API to use eg.'2023-02-20'
             timeout: (Optional) Set the timeout for API calls. Defaults to 30
             auto_retry: If the SDK should retry failed call up to 3 times. Defaults to True.
 
@@ -62,6 +63,7 @@ class Client:
         self.access_token = access_token
         self.refresh_token = refresh_token
         self.access_token_expires_at: Optional[datetime] = None
+        self.api_version = api_version
         self.timeout = timeout
         self.auto_retry = auto_retry
 
@@ -86,7 +88,8 @@ class Client:
             base_url=self.base_url,
             user_agent=self.user_agent,
             auto_retry=self.auto_retry,
-            timeout=self.timeout
+            timeout=self.timeout,
+            api_version=self.api_version
         )
 
     def get_auth_request_url(self, scopes: Optional[List[str]] = None) -> str:

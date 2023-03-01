@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Resources &mdash; freshbooks-sdk 1.1.0 documentation</title>
@@ -29,14 +29,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> freshbooks-sdk
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            freshbooks-sdk
           </a>
               <div class="version">
                 1.1.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -183,7 +187,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a></li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Resources</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/modules/resources.md.txt" rel="nofollow"> View page source</a>
@@ -213,24 +217,24 @@
 <span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">account_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">includes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.accounting.AccountingResource.create" title="Permalink to this definition"></a></dt>
 <dd><p>Create a resource.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
 <li><p><strong>account_id</strong> – The alpha-numeric account id</p></li>
 <li><p><strong>data</strong> – Dictionary of data to populate the resource</p></li>
 <li><p><strong>builders</strong> – (Optional) IncludesBuilder object for including additional data, sub-resources, etc.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Result object with the new resource’s response data.</p>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Result object with the new resource’s response data.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
 </dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -242,23 +246,23 @@
 <p>Note: Most FreshBooks resources are soft-deleted,
 See <a class="reference external" href="https://www.freshbooks.com/api/active_deleted">FreshBooks API - Active and Deleted Objects</a></p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
 <li><p><strong>account_id</strong> – The alpha-numeric account id</p></li>
 <li><p><strong>resource_id</strong> – Id of the resource to delete</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>An empty Result object.</p>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An empty Result object.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
 </dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -268,24 +272,24 @@ See <a class="reference external" href="https://www.freshbooks.com/api/active_de
 <span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">account_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">includes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.accounting.AccountingResource.get" title="Permalink to this definition"></a></dt>
 <dd><p>Get a single resource with the corresponding id.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
 <li><p><strong>account_id</strong> – The alpha-numeric account id</p></li>
 <li><p><strong>resource_id</strong> – Id of the resource to return</p></li>
 <li><p><strong>includes</strong> – (Optional) IncludesBuilder object for including additional data, sub-resources, etc.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Result object with the resource’s response data.</p>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Result object with the resource’s response data.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
 </dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -295,7 +299,7 @@ See <a class="reference external" href="https://www.freshbooks.com/api/active_de
 <span class="sig-name descname"><span class="pre">headers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">has_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.accounting.AccountingResource.headers" title="Permalink to this definition"></a></dt>
 <dd><p>Get headers required for API calls</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~typing.Dict``[:py:class:``str</span></code>, :py:class:<code class="docutils literal notranslate"><span class="pre">str</span></code>]</p>
 </dd>
 </dl>
@@ -306,23 +310,23 @@ See <a class="reference external" href="https://www.freshbooks.com/api/active_de
 <span class="sig-name descname"><span class="pre">list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">account_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">builders</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.accounting.AccountingResource.list" title="Permalink to this definition"></a></dt>
 <dd><p>Get a list of resources.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.ListResult</span></code></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
 <li><p><strong>account_id</strong> – The alpha-numeric account id</p></li>
 <li><p><strong>builders</strong> – (Optional) List of builder objects for filters, pagination, etc.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>ListResult object with the resources response data.</p>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ListResult object with the resources response data.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="models.html#freshbooks.models.ListResult" title="freshbooks.models.ListResult">ListResult</a></p>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="models.html#freshbooks.models.ListResult" title="freshbooks.models.ListResult">ListResult</a></p>
 </dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.ListResult</span></code></p>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -332,25 +336,25 @@ See <a class="reference external" href="https://www.freshbooks.com/api/active_de
 <span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">account_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">includes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.accounting.AccountingResource.update" title="Permalink to this definition"></a></dt>
 <dd><p>Update a resource.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
 <li><p><strong>account_id</strong> – The alpha-numeric account id</p></li>
 <li><p><strong>resource_id</strong> – Id of the resource to update</p></li>
 <li><p><strong>data</strong> – Dictionary of data to update the resource to</p></li>
 <li><p><strong>builders</strong> – (Optional) IncludesBuilder object for including additional data, sub-resources, etc.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Result object with the updated resource’s response data.</p>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Result object with the updated resource’s response data.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
 </dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -375,7 +379,7 @@ See <a class="reference external" href="https://www.freshbooks.com/api/active_de
 <span class="sig-name descname"><span class="pre">headers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">has_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.auth.AuthResource.headers" title="Permalink to this definition"></a></dt>
 <dd><p>Get headers required for API calls</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~typing.Dict``[:py:class:``str</span></code>, :py:class:<code class="docutils literal notranslate"><span class="pre">str</span></code>]</p>
 </dd>
 </dl>
@@ -387,17 +391,17 @@ See <a class="reference external" href="https://www.freshbooks.com/api/active_de
 <dd><p>Get the identity details of the currently authenticated user.</p>
 <p>See <a class="reference external" href="https://www.freshbooks.com/api/me_endpoint">FreshBooks API - Business, Roles, and Identity</a></p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>Result object with the authenticated user’s identity and business details.</p>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Identity</span></code></p>
 </dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Result object with the authenticated user’s identity and business details.</p>
 </dd>
-<dt class="field-odd">Raises</dt>
-<dd class="field-odd"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
 </dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Identity</span></code></p>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -417,23 +421,23 @@ See <a class="reference external" href="https://www.freshbooks.com/api/active_de
 <span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">business_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.projects.ProjectsResource.create" title="Permalink to this definition"></a></dt>
 <dd><p>Create a resource.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
 <li><p><strong>business_id</strong> – The business id</p></li>
 <li><p><strong>data</strong> – Dictionary of data to populate the resource</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Result object with the new resource’s response data.</p>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Result object with the new resource’s response data.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
 </dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -445,23 +449,23 @@ See <a class="reference external" href="https://www.freshbooks.com/api/active_de
 <p>Note: Most FreshBooks resources are soft-deleted,
 See <a class="reference external" href="https://www.freshbooks.com/api/active_deleted">FreshBooks API - Active and Deleted Objects</a></p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
 <li><p><strong>business_id</strong> – The business id</p></li>
 <li><p><strong>resource_id</strong> – Id of the resource to delete</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>An empty Result object.</p>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An empty Result object.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
 </dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -471,24 +475,24 @@ See <a class="reference external" href="https://www.freshbooks.com/api/active_de
 <span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">business_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">includes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.projects.ProjectsResource.get" title="Permalink to this definition"></a></dt>
 <dd><p>Get a single resource with the corresponding id.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
 <li><p><strong>business_id</strong> – The business id</p></li>
 <li><p><strong>resource_id</strong> – Id of the resource to return</p></li>
 <li><p><strong>includes</strong> – (Optional) IncludesBuilder object for including additional data, sub-resources, etc.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Result object with the resource’s response data.</p>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Result object with the resource’s response data.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
 </dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -498,23 +502,23 @@ See <a class="reference external" href="https://www.freshbooks.com/api/active_de
 <span class="sig-name descname"><span class="pre">list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">business_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">builders</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.projects.ProjectsResource.list" title="Permalink to this definition"></a></dt>
 <dd><p>Get a list of resources.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.ListResult</span></code></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
 <li><p><strong>business_id</strong> – The business id</p></li>
 <li><p><strong>builders</strong> – (Optional) List of builder objects for filters, pagination, etc.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>ListResult object with the resources response data.</p>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ListResult object with the resources response data.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="models.html#freshbooks.models.ListResult" title="freshbooks.models.ListResult">ListResult</a></p>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="models.html#freshbooks.models.ListResult" title="freshbooks.models.ListResult">ListResult</a></p>
 </dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.ListResult</span></code></p>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -524,24 +528,24 @@ See <a class="reference external" href="https://www.freshbooks.com/api/active_de
 <span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">business_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.projects.ProjectsResource.update" title="Permalink to this definition"></a></dt>
 <dd><p>Update a resource.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
 <li><p><strong>business_id</strong> – The business id</p></li>
 <li><p><strong>resource_id</strong> – Id of the resource to update</p></li>
 <li><p><strong>data</strong> – Dictionary of data to update the resource to</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Result object with the updated resource’s response data.</p>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Result object with the updated resource’s response data.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
 </dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -569,23 +573,23 @@ Refer to <code class="docutils literal notranslate"><span class="pre">freshbooks
 <span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">business_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.comments.CommentsResource.create" title="Permalink to this definition"></a></dt>
 <dd><p>Create a resource.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
 <li><p><strong>business_id</strong> – The business id</p></li>
 <li><p><strong>data</strong> – Dictionary of data to populate the resource</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Result object with the new resource’s response data.</p>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Result object with the new resource’s response data.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
 </dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -597,23 +601,23 @@ Refer to <code class="docutils literal notranslate"><span class="pre">freshbooks
 <p>Note: Most FreshBooks resources are soft-deleted,
 See <a class="reference external" href="https://www.freshbooks.com/api/active_deleted">FreshBooks API - Active and Deleted Objects</a></p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
 <li><p><strong>business_id</strong> – The business id</p></li>
 <li><p><strong>resource_id</strong> – Id of the resource to delete</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>An empty Result object.</p>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An empty Result object.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
 </dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -623,24 +627,24 @@ See <a class="reference external" href="https://www.freshbooks.com/api/active_de
 <span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">business_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">includes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.comments.CommentsResource.get" title="Permalink to this definition"></a></dt>
 <dd><p>Get a single resource with the corresponding id.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
 <li><p><strong>business_id</strong> – The business id</p></li>
 <li><p><strong>resource_id</strong> – Id of the resource to return</p></li>
 <li><p><strong>includes</strong> – (Optional) IncludesBuilder object for including additional data, sub-resources, etc.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Result object with the resource’s response data.</p>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Result object with the resource’s response data.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
 </dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -650,7 +654,7 @@ See <a class="reference external" href="https://www.freshbooks.com/api/active_de
 <span class="sig-name descname"><span class="pre">headers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">has_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.comments.CommentsResource.headers" title="Permalink to this definition"></a></dt>
 <dd><p>Get headers required for API calls</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~typing.Dict``[:py:class:``str</span></code>, :py:class:<code class="docutils literal notranslate"><span class="pre">str</span></code>]</p>
 </dd>
 </dl>
@@ -661,23 +665,23 @@ See <a class="reference external" href="https://www.freshbooks.com/api/active_de
 <span class="sig-name descname"><span class="pre">list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">business_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">builders</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.comments.CommentsResource.list" title="Permalink to this definition"></a></dt>
 <dd><p>Get a list of resources.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.ListResult</span></code></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
 <li><p><strong>business_id</strong> – The business id</p></li>
 <li><p><strong>builders</strong> – (Optional) List of builder objects for filters, pagination, etc.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>ListResult object with the resources response data.</p>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ListResult object with the resources response data.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="models.html#freshbooks.models.ListResult" title="freshbooks.models.ListResult">ListResult</a></p>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="models.html#freshbooks.models.ListResult" title="freshbooks.models.ListResult">ListResult</a></p>
 </dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.ListResult</span></code></p>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -687,24 +691,24 @@ See <a class="reference external" href="https://www.freshbooks.com/api/active_de
 <span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">business_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.comments.CommentsResource.update" title="Permalink to this definition"></a></dt>
 <dd><p>Update a resource.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
 <li><p><strong>business_id</strong> – The business id</p></li>
 <li><p><strong>resource_id</strong> – Id of the resource to update</p></li>
 <li><p><strong>data</strong> – Dictionary of data to update the resource to</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Result object with the updated resource’s response data.</p>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Result object with the updated resource’s response data.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
 </dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -730,24 +734,24 @@ Refer to <code class="docutils literal notranslate"><span class="pre">freshbooks
 <span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">business_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.comments.CommentsSubResource.create" title="Permalink to this definition"></a></dt>
 <dd><p>Create a resource.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
 <li><p><strong>business_id</strong> – The business id</p></li>
 <li><p><strong>resource_id</strong> – Id of the parent resource to create this resource under</p></li>
 <li><p><strong>data</strong> – Dictionary of data to populate the resource</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Result object with the new resource’s response data.</p>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Result object with the new resource’s response data.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
 </dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -759,23 +763,23 @@ Refer to <code class="docutils literal notranslate"><span class="pre">freshbooks
 <p>Note: Most FreshBooks resources are soft-deleted,
 See <a class="reference external" href="https://www.freshbooks.com/api/active_deleted">FreshBooks API - Active and Deleted Objects</a></p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
 <li><p><strong>business_id</strong> – The business id</p></li>
 <li><p><strong>resource_id</strong> – Id of the resource to delete</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>An empty Result object.</p>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An empty Result object.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
 </dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -785,23 +789,23 @@ See <a class="reference external" href="https://www.freshbooks.com/api/active_de
 <span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">business_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.comments.CommentsSubResource.get" title="Permalink to this definition"></a></dt>
 <dd><p>Get a single resource with the corresponding id.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
 <li><p><strong>business_id</strong> – The business id</p></li>
 <li><p><strong>resource_id</strong> – Id of the resource to return</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Result object with the resource’s response data.</p>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Result object with the resource’s response data.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
 </dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -811,7 +815,7 @@ See <a class="reference external" href="https://www.freshbooks.com/api/active_de
 <span class="sig-name descname"><span class="pre">headers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">has_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.comments.CommentsSubResource.headers" title="Permalink to this definition"></a></dt>
 <dd><p>Get headers required for API calls</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~typing.Dict``[:py:class:``str</span></code>, :py:class:<code class="docutils literal notranslate"><span class="pre">str</span></code>]</p>
 </dd>
 </dl>
@@ -822,23 +826,23 @@ See <a class="reference external" href="https://www.freshbooks.com/api/active_de
 <span class="sig-name descname"><span class="pre">list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">business_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">builders</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.comments.CommentsSubResource.list" title="Permalink to this definition"></a></dt>
 <dd><p>Get a list of resources.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.ListResult</span></code></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
 <li><p><strong>business_id</strong> – The business id</p></li>
 <li><p><strong>builders</strong> – (Optional) List of builder objects for filters, pagination, etc.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>ListResult object with the resources response data.</p>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ListResult object with the resources response data.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="models.html#freshbooks.models.ListResult" title="freshbooks.models.ListResult">ListResult</a></p>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="models.html#freshbooks.models.ListResult" title="freshbooks.models.ListResult">ListResult</a></p>
 </dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.ListResult</span></code></p>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -848,24 +852,24 @@ See <a class="reference external" href="https://www.freshbooks.com/api/active_de
 <span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">business_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.comments.CommentsSubResource.update" title="Permalink to this definition"></a></dt>
 <dd><p>Update a resource.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
 <li><p><strong>business_id</strong> – The business id</p></li>
 <li><p><strong>resource_id</strong> – Id of the resource to update</p></li>
 <li><p><strong>data</strong> – Dictionary of data to update the resource to</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Result object with the updated resource’s response data.</p>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Result object with the updated resource’s response data.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
 </dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -893,23 +897,23 @@ Refer to <code class="docutils literal notranslate"><span class="pre">freshbooks
 <span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">business_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.timetracking.TimetrackingResource.create" title="Permalink to this definition"></a></dt>
 <dd><p>Create a resource.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
 <li><p><strong>business_id</strong> – The business id</p></li>
 <li><p><strong>data</strong> – Dictionary of data to populate the resource</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Result object with the new resource’s response data.</p>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Result object with the new resource’s response data.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
 </dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -921,23 +925,23 @@ Refer to <code class="docutils literal notranslate"><span class="pre">freshbooks
 <p>Note: Most FreshBooks resources are soft-deleted,
 See <a class="reference external" href="https://www.freshbooks.com/api/active_deleted">FreshBooks API - Active and Deleted Objects</a></p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
 <li><p><strong>business_id</strong> – The business id</p></li>
 <li><p><strong>resource_id</strong> – Id of the resource to delete</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>An empty Result object.</p>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An empty Result object.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
 </dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -947,24 +951,24 @@ See <a class="reference external" href="https://www.freshbooks.com/api/active_de
 <span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">business_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">includes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.timetracking.TimetrackingResource.get" title="Permalink to this definition"></a></dt>
 <dd><p>Get a single resource with the corresponding id.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
 <li><p><strong>business_id</strong> – The business id</p></li>
 <li><p><strong>resource_id</strong> – Id of the resource to return</p></li>
 <li><p><strong>includes</strong> – (Optional) IncludesBuilder object for including additional data, sub-resources, etc.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Result object with the resource’s response data.</p>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Result object with the resource’s response data.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
 </dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -974,7 +978,7 @@ See <a class="reference external" href="https://www.freshbooks.com/api/active_de
 <span class="sig-name descname"><span class="pre">headers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">has_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.timetracking.TimetrackingResource.headers" title="Permalink to this definition"></a></dt>
 <dd><p>Get headers required for API calls</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~typing.Dict``[:py:class:``str</span></code>, :py:class:<code class="docutils literal notranslate"><span class="pre">str</span></code>]</p>
 </dd>
 </dl>
@@ -985,23 +989,23 @@ See <a class="reference external" href="https://www.freshbooks.com/api/active_de
 <span class="sig-name descname"><span class="pre">list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">business_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">builders</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.timetracking.TimetrackingResource.list" title="Permalink to this definition"></a></dt>
 <dd><p>Get a list of resources.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.ListResult</span></code></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
 <li><p><strong>business_id</strong> – The business id</p></li>
 <li><p><strong>builders</strong> – (Optional) List of builder objects for filters, pagination, etc.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>ListResult object with the resources response data.</p>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ListResult object with the resources response data.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="models.html#freshbooks.models.ListResult" title="freshbooks.models.ListResult">ListResult</a></p>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="models.html#freshbooks.models.ListResult" title="freshbooks.models.ListResult">ListResult</a></p>
 </dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.ListResult</span></code></p>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1011,24 +1015,24 @@ See <a class="reference external" href="https://www.freshbooks.com/api/active_de
 <span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">business_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.timetracking.TimetrackingResource.update" title="Permalink to this definition"></a></dt>
 <dd><p>Update a resource.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
 <li><p><strong>business_id</strong> – The business id</p></li>
 <li><p><strong>resource_id</strong> – Id of the resource to update</p></li>
 <li><p><strong>data</strong> – Dictionary of data to update the resource to</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Result object with the updated resource’s response data.</p>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Result object with the updated resource’s response data.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
 </dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1053,24 +1057,24 @@ See <a class="reference external" href="https://www.freshbooks.com/api/active_de
 <span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">account_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.payments.PaymentsResource.create" title="Permalink to this definition"></a></dt>
 <dd><p>Create a resource.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
 <li><p><strong>account_id</strong> – The alpha-numeric account id</p></li>
 <li><p><strong>resource_id</strong> – Id of the resource to create payment details for</p></li>
 <li><p><strong>data</strong> – Dictionary of data to populate the resource</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Result object with the new resource’s response data.</p>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Result object with the new resource’s response data.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
 </dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1080,20 +1084,20 @@ See <a class="reference external" href="https://www.freshbooks.com/api/active_de
 <span class="sig-name descname"><span class="pre">defaults</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">account_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.payments.PaymentsResource.defaults" title="Permalink to this definition"></a></dt>
 <dd><p>Get the default settings for an account resource.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>account_id</strong> – The alpha-numeric account id</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Result object with the default data.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
-</dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>account_id</strong> – The alpha-numeric account id</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Result object with the default data.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1103,23 +1107,23 @@ See <a class="reference external" href="https://www.freshbooks.com/api/active_de
 <span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">account_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.payments.PaymentsResource.get" title="Permalink to this definition"></a></dt>
 <dd><p>Get a single resource with the corresponding id.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
 <li><p><strong>account_id</strong> – The alpha-numeric account id</p></li>
 <li><p><strong>resource_id</strong> – Id of the resource to return payment details for</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Result object with the resource’s response data.</p>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Result object with the resource’s response data.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
 </dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1129,7 +1133,7 @@ See <a class="reference external" href="https://www.freshbooks.com/api/active_de
 <span class="sig-name descname"><span class="pre">headers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">has_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.payments.PaymentsResource.headers" title="Permalink to this definition"></a></dt>
 <dd><p>Get headers required for API calls</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~typing.Dict``[:py:class:``str</span></code>, :py:class:<code class="docutils literal notranslate"><span class="pre">str</span></code>]</p>
 </dd>
 </dl>
@@ -1158,24 +1162,24 @@ Refer to <code class="docutils literal notranslate"><span class="pre">freshbooks
 <span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">account_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">includes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.events.EventsResource.create" title="Permalink to this definition"></a></dt>
 <dd><p>Create a resource.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
 <li><p><strong>account_id</strong> – The alpha-numeric account id</p></li>
 <li><p><strong>data</strong> – Dictionary of data to populate the resource</p></li>
 <li><p><strong>builders</strong> – (Optional) IncludesBuilder object for including additional data, sub-resources, etc.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Result object with the new resource’s response data.</p>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Result object with the new resource’s response data.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
 </dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1187,23 +1191,23 @@ Refer to <code class="docutils literal notranslate"><span class="pre">freshbooks
 <p>Note: Most FreshBooks resources are soft-deleted,
 See <a class="reference external" href="https://www.freshbooks.com/api/active_deleted">FreshBooks API - Active and Deleted Objects</a></p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
 <li><p><strong>account_id</strong> – The alpha-numeric account id</p></li>
 <li><p><strong>resource_id</strong> – Id of the resource to delete</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>An empty Result object.</p>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An empty Result object.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
 </dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1213,24 +1217,24 @@ See <a class="reference external" href="https://www.freshbooks.com/api/active_de
 <span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">account_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">includes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.events.EventsResource.get" title="Permalink to this definition"></a></dt>
 <dd><p>Get a single resource with the corresponding id.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
 <li><p><strong>account_id</strong> – The alpha-numeric account id</p></li>
 <li><p><strong>resource_id</strong> – Id of the resource to return</p></li>
 <li><p><strong>includes</strong> – (Optional) IncludesBuilder object for including additional data, sub-resources, etc.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Result object with the resource’s response data.</p>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Result object with the resource’s response data.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
 </dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1240,7 +1244,7 @@ See <a class="reference external" href="https://www.freshbooks.com/api/active_de
 <span class="sig-name descname"><span class="pre">headers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">has_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.events.EventsResource.headers" title="Permalink to this definition"></a></dt>
 <dd><p>Get headers required for API calls</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~typing.Dict``[:py:class:``str</span></code>, :py:class:<code class="docutils literal notranslate"><span class="pre">str</span></code>]</p>
 </dd>
 </dl>
@@ -1251,23 +1255,23 @@ See <a class="reference external" href="https://www.freshbooks.com/api/active_de
 <span class="sig-name descname"><span class="pre">list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">account_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">builders</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.events.EventsResource.list" title="Permalink to this definition"></a></dt>
 <dd><p>Get a list of resources.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.ListResult</span></code></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
 <li><p><strong>account_id</strong> – The alpha-numeric account id</p></li>
 <li><p><strong>builders</strong> – (Optional) List of builder objects for filters, pagination, etc.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>ListResult object with the resources response data.</p>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ListResult object with the resources response data.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="models.html#freshbooks.models.ListResult" title="freshbooks.models.ListResult">ListResult</a></p>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="models.html#freshbooks.models.ListResult" title="freshbooks.models.ListResult">ListResult</a></p>
 </dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.ListResult</span></code></p>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1277,23 +1281,23 @@ See <a class="reference external" href="https://www.freshbooks.com/api/active_de
 <span class="sig-name descname"><span class="pre">resend_verification</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">account_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.events.EventsResource.resend_verification" title="Permalink to this definition"></a></dt>
 <dd><p>Tell FreshBooks to resend the verification webhook for the callback</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
 <li><p><strong>account_id</strong> – The alpha-numeric account id</p></li>
 <li><p><strong>resource_id</strong> – Id of the resource to update</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Result object with the resource’s response data.</p>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Result object with the resource’s response data.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
 </dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1303,25 +1307,25 @@ See <a class="reference external" href="https://www.freshbooks.com/api/active_de
 <span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">account_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">includes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.events.EventsResource.update" title="Permalink to this definition"></a></dt>
 <dd><p>Update a resource.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
 <li><p><strong>account_id</strong> – The alpha-numeric account id</p></li>
 <li><p><strong>resource_id</strong> – Id of the resource to update</p></li>
 <li><p><strong>data</strong> – Dictionary of data to update the resource to</p></li>
 <li><p><strong>builders</strong> – (Optional) IncludesBuilder object for including additional data, sub-resources, etc.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Result object with the updated resource’s response data.</p>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Result object with the updated resource’s response data.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
 </dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1331,24 +1335,24 @@ See <a class="reference external" href="https://www.freshbooks.com/api/active_de
 <span class="sig-name descname"><span class="pre">verify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">account_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verifier</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.events.EventsResource.verify" title="Permalink to this definition"></a></dt>
 <dd><p>Verify webhook callback by making a put request</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
 <li><p><strong>account_id</strong> – The alpha-numeric account id</p></li>
 <li><p><strong>resource_id</strong> – Id of the resource to update</p></li>
 <li><p><strong>verifier</strong> – The string verifier received by the webhook callback URI</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Result object with the resource’s response data.</p>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Result object with the resource’s response data.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
 </dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1376,20 +1380,20 @@ See <a class="reference external" href="https://www.freshbooks.com/api/active_de
 in handling the data.</p>
 <p><a class="reference external" href="https://docs.python-requests.org/en/master/user/quickstart/#binary-response-content">Requests Binary Response</a></p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>jwt</strong> – JWT provided by FreshBooks when the file was uploaded.</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>The requests Response object.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>requests.Response</p>
-</dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~requests.Response</span></code></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>jwt</strong> – JWT provided by FreshBooks when the file was uploaded.</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The requests Response object.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>requests.Response</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1399,7 +1403,7 @@ in handling the data.</p>
 <span class="sig-name descname"><span class="pre">headers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">has_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.uploads.UploadsResource.headers" title="Permalink to this definition"></a></dt>
 <dd><p>Get headers required for API calls</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~typing.Dict``[:py:class:``str</span></code>, :py:class:<code class="docutils literal notranslate"><span class="pre">str</span></code>]</p>
 </dd>
 </dl>
@@ -1412,35 +1416,34 @@ in handling the data.</p>
 to access the file, and in the case of an image, a link to the image itself.</p>
 <p>The file to upload can be either a byte stream, or a path to the file itself.</p>
 <p>Eg.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">uploaded</span> <span class="o">=</span> <span class="n">freshBooksClient</span><span class="o">.</span><span class="n">images</span><span class="o">.</span><span class="n">upload</span><span class="p">(</span><span class="n">account_id</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="s2">&quot;/path/to/image.png&quot;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">uploaded</span> <span class="o">=</span> <span class="n">freshBooksClient</span><span class="o">.</span><span class="n">images</span><span class="o">.</span><span class="n">upload</span><span class="p">(</span><span class="n">account_id</span><span class="p">,</span> <span class="n">file_stream</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;/path/to/image.png&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>:rtype: :py:class:`~freshbooks.models.Result`
 
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">uploaded</span><span class="o">.</span><span class="n">jwt</span><span class="p">)</span>
-<span class="go">&lt;some jwt&gt;</span>
+&gt;&gt;&gt; uploaded = freshBooksClient.images.upload(account_id, file_path=&quot;/path/to/image.png&quot;)
+&gt;&gt;&gt; uploaded = freshBooksClient.images.upload(account_id, file_stream=open(&quot;/path/to/image.png&quot;, &quot;rb&quot;)
 
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">uploaded</span><span class="o">.</span><span class="n">link</span><span class="p">)</span>
-<span class="go">https://my.freshbooks.com/service/uploads/images/&lt;some jwt&gt;</span>
+&gt;&gt;&gt; print(uploaded.jwt)
+&lt;some jwt&gt;
+
+&gt;&gt;&gt; print(uploaded.link)
+https://my.freshbooks.com/service/uploads/images/&lt;some jwt&gt;
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>account_id</strong> – The alpha-numeric account id</p></li>
 <li><p><strong>file_stream</strong> – (Optional) Byte stream of the file</p></li>
 <li><p><strong>file_path</strong> – (Optional) Path to the file</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Result object with the new resource’s response data.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
 </dd>
 </dl>
 </dd></dl>

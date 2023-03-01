@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Add includes parameter to project-like `get` calls
+- Allow API version header configuration
 
 ## 1.1.0
 

@@ -1,6 +1,6 @@
 from decimal import Decimal
 from types import SimpleNamespace
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Tuple
 
 from freshbooks.api.resource import HttpVerbs, Resource
 from freshbooks.builders import Builder
@@ -30,12 +30,12 @@ class ProjectsBaseResource(Resource):
 
         self.missing_endpoints = missing_endpoints or []
 
-    def _extract_error(self, error_response: Dict):
+    def _extract_error(self, error_response: Dict) -> Tuple[str, Optional[int], Optional[List[dict]]]:
         code = error_response.get("errno")
-        message = error_response.get("message")
+        message = error_response.get("message", "Unknown error")
         details = []
         if isinstance(error_response.get("error"), dict):
-            errors = error_response.get("error")
+            errors = error_response["error"]
             for error_key in reversed(errors):
                 details.append({error_key: errors[error_key]})
                 message = f"Error: {error_key} {errors[error_key]}"

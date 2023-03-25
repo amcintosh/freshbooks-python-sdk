@@ -184,6 +184,29 @@ class TestProjectsResources:
         assert httpretty.last_request().headers["Content-Type"] == "application/json"
 
     @httpretty.activate
+    def test_create_project__validation_errors(self):
+        response = get_fixture("create_project__validation_errors")
+        url = "{}/projects/business/{}/project".format(API_BASE_URL, self.business_id)
+        httpretty.register_uri(
+            httpretty.POST,
+            url,
+            body=json.dumps(response),
+            status=422
+        )
+
+        try:
+            self.freshBooksClient.projects.create(self.business_id, {})
+        except FreshBooksError as e:
+            assert str(e) == "Error: title field required"
+            assert e.status_code == 422
+            assert e.error_code == 2001
+            assert e.error_details == [
+                {"description": "field required"},
+                {"title": "field required"}
+            ]
+            assert e.raw_response == response
+
+    @httpretty.activate
     def test_update_project(self):
         project_id = 12345
         url = "{}/projects/business/{}/project/{}".format(API_BASE_URL, self.business_id, project_id)

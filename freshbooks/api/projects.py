@@ -1,6 +1,6 @@
 from decimal import Decimal
 from types import SimpleNamespace
-from typing import Any, List, Optional
+from typing import Any, Dict, List, Optional
 
 from freshbooks.api.resource import HttpVerbs, Resource
 from freshbooks.builders import Builder
@@ -30,6 +30,19 @@ class ProjectsBaseResource(Resource):
 
         self.missing_endpoints = missing_endpoints or []
 
+    def _extract_error(self, error_response: Dict):
+        code = error_response.get("errno")
+        message = error_response.get("message")
+        details = []
+        if isinstance(error_response.get("error"), dict):
+            errors = error_response.get("error")
+            for error_key in reversed(errors):
+                details.append({error_key: errors[error_key]})
+                message = f"Error: {error_key} {errors[error_key]}"
+        else:
+            message = error_response.get("error", "Unknown error")
+        return message, code, details
+
     def _request(self, url: str, method: str, data: Optional[dict] = None) -> Any:
         response = self._send_request(url, method, data)
 
@@ -46,9 +59,8 @@ class ProjectsBaseResource(Resource):
             raise FreshBooksError(status, "Failed to parse response", raw_response=response.text)
 
         if status >= 400:
-            code = content.get("errno")
-            message = content.get("message") or content.get("error", "Unknown error")
-            raise FreshBooksError(status, message, error_code=code, raw_response=content)
+            message, code, details = self._extract_error(content)
+            raise FreshBooksError(status, message, error_code=code, error_details=details, raw_response=content)
         return content
 
     def _reject_missing(self, name: str) -> None:

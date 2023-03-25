@@ -205,7 +205,10 @@ class TestEventsResources:
             assert str(e) == "Invalid data in this request."
             assert e.status_code == 400
             assert e.error_code == 3
-            assert e.error_details == response["details"][0]
+            assert e.error_details == [
+                {"field": "event", "description": "Unrecognized event."},
+                {"field": "uri", "description": "Not a well-formed URL."}
+            ]
             assert e.raw_response == response
 
     @httpretty.activate

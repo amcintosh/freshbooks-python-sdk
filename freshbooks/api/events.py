@@ -1,6 +1,6 @@
 from typing import Tuple
 from decimal import Decimal
-from typing import Any, Optional
+from typing import Any, List, Optional
 
 from freshbooks.api.accounting import AccountingResource
 from freshbooks.api.resource import HttpVerbs
@@ -21,14 +21,15 @@ class EventsResource(AccountingResource):
                 self.base_url, account_id, self.accounting_path, resource_id)
         return "{}/events/account/{}/{}".format(self.base_url, account_id, self.accounting_path)
 
-    def _extract_error_details(self, errors: dict) -> Tuple[str, Optional[int], Optional[dict]]:
+    def _extract_error_details(self, errors: dict) -> Tuple[str, Optional[int], Optional[List[dict]]]:
         if not errors:  # pragma: no cover
             return "Unknown error", None, None
 
-        details = None
+        details = []
         for detail in errors.get("details", []):
-            if detail.get("@type") == "type.googleapis.com/google.rpc.BadRequest":
-                details = detail
+            if detail.get("@type") == "type.googleapis.com/google.rpc.BadRequest" and detail.get('fieldViolations'):
+                for field in detail.get('fieldViolations'):
+                    details.append(field)
 
         return errors["message"], int(errors["code"]), details
 

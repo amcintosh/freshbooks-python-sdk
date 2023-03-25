@@ -28,12 +28,12 @@ class AccountingResource(Resource):
                 self.base_url, account_id, self.accounting_path, resource_id)
         return "{}/accounting/account/{}/{}".format(self.base_url, account_id, self.accounting_path)
 
-    def _extract_error(self, errors: Union[list, dict]) -> Tuple[str, int, None]:
+    def _extract_error(self, errors: Union[list, dict]) -> Tuple[str, int, Optional[List[dict]]]:
         if isinstance(errors, list):
             return errors[0]["message"], int(errors[0]["errno"]), errors
         return errors["message"], int(errors["errno"]), None  # pragma: no cover
 
-    def _extract_new_error(self, response_data: dict) -> Tuple[str, int, Optional[List[dict]]]:
+    def _extract_new_error(self, response_data: dict) -> Tuple[str, Optional[int], Optional[List[dict]]]:
         message = response_data["message"]
         code = None
         details = []
@@ -46,7 +46,7 @@ class AccountingResource(Resource):
                     message = detail["metadata"]["message"]
         return message, code, details
 
-    def _handle_error(self, response_data: dict) -> Tuple[str, Optional[int]]:
+    def _handle_error(self, response_data: dict) -> Tuple[str, Optional[int], Optional[List[dict]]]:
         if response_data.get("response", {}).get("errors"):
             return self._extract_error(response_data["response"]["errors"])
         elif response_data.get("message") and response_data.get("code"):

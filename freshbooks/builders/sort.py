@@ -27,11 +27,11 @@ class SortBuilder(Builder):
         query_string = self.build()
         return f"SortBuilder({query_string})"
 
-    def asc(self, key: str) -> None:
+    def asc(self, key: str) -> Builder:
         """Alias for .ascending()"""
-        self.ascending(key)
+        return self.ascending(key)
 
-    def ascending(self, key: str) -> None:
+    def ascending(self, key: str) -> Builder:
         """Add a sort by the field in ascending order.
 
         Args:
@@ -39,12 +39,13 @@ class SortBuilder(Builder):
         """
         self._sort = key
         self._ascending = True
+        return self
 
-    def desc(self, key: str) -> None:
+    def desc(self, key: str) -> Builder:
         """Alias for .descending()"""
-        self.descending(key)
+        return self.descending(key)
 
-    def descending(self, key: str) -> None:
+    def descending(self, key: str) -> Builder:
         """Add a sort by the field in descending order.
 
         Args:
@@ -52,6 +53,7 @@ class SortBuilder(Builder):
         """
         self._sort = key
         self._ascending = False
+        return self
 
     def build(self, resource_name: Optional[str] = None) -> str:
         """Builds the query string parameter from the SortBuilder.

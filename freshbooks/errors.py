@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import List, Optional
 
 
 class FreshBooksError(Exception):
@@ -26,7 +26,7 @@ class FreshBooksError(Exception):
     def __init__(self, status_code: int, message: str,
                  raw_response: Optional[str] = None,
                  error_code: Optional[int] = None,
-                 error_details: Optional[dict] = None):
+                 error_details: Optional[List[dict]] = None):
         super().__init__(message)
         self.status_code = status_code
         self.error_code = error_code

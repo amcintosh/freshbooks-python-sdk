@@ -36,7 +36,7 @@ class ProjectsBaseResource(Resource):
         details = []
         if isinstance(error_response.get("error"), dict):
             errors = error_response["error"]
-            for error_key in reversed(errors):
+            for error_key in errors:  # could be reversed(errors) after dropping 3.7
                 details.append({error_key: errors[error_key]})
                 message = f"Error: {error_key} {errors[error_key]}"
         else:

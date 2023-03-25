@@ -197,12 +197,12 @@ class TestProjectsResources:
         try:
             self.freshBooksClient.projects.create(self.business_id, {})
         except FreshBooksError as e:
-            assert str(e) == "Error: title field required"
+            assert str(e) == "Error: description field required"
             assert e.status_code == 422
             assert e.error_code == 2001
             assert e.error_details == [
-                {"description": "field required"},
-                {"title": "field required"}
+                {"title": "field required"},
+                {"description": "field required"}
             ]
             assert e.raw_response == response
 

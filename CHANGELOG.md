@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.2.0
+
 - Add includes parameter to project-like `get` calls
 - Allow API version header configuration
 - Handle new API version accounting errors

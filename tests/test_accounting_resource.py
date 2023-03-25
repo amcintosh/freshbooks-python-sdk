@@ -120,7 +120,7 @@ class TestAccountingResources:
             assert client.grand_total_balance[0].code is None
 
     @httpretty.activate
-    def test_get_client__not_found(self):
+    def test_get_client__not_found_old_error(self):
         client_id = 12345
         url = "{}/accounting/account/{}/users/clients/{}".format(API_BASE_URL, self.account_id, client_id)
         httpretty.register_uri(
@@ -135,6 +135,33 @@ class TestAccountingResources:
             assert str(e) == "Client not found."
             assert e.status_code == 404
             assert e.error_code == 1012
+            assert e.error_details == [{
+                "errno": 1012,
+                "field": "userid",
+                "message": "Client not found.",
+                "object": "client",
+                "value": "12345"
+            }]
+
+    @httpretty.activate
+    def test_get_client__not_found_new_error(self):
+        client_id = 12345
+        url = "{}/accounting/account/{}/users/clients/{}".format(API_BASE_URL, self.account_id, client_id)
+        httpretty.register_uri(
+            httpretty.GET,
+            url,
+            body=json.dumps(get_fixture("get_client_response__not_found_new")),
+            status=404
+        )
+        try:
+            self.freshBooksClient.clients.get(self.account_id, client_id)
+        except FreshBooksError as e:
+            assert str(e) == "Client not found."
+            assert e.status_code == 404
+            assert e.error_code == 1012
+            assert e.error_details == [
+                {"field": "userid", "message": "Client not found.", "object": "client", "value": "12345"}
+            ]
 
     @httpretty.activate
     def test_get_client__bad_response(self):
@@ -387,7 +414,7 @@ class TestAccountingResources:
         assert str(client) == "Result(client)"
         assert client.vis_state == VisState.DELETED
         assert client.vis_state == 1
-        assert client.data['vis_state'] == VisState.DELETED
+        assert client.data["vis_state"] == VisState.DELETED
         assert httpretty.last_request().headers["Authorization"] == "Bearer some_token"
         assert httpretty.last_request().headers["Content-Type"] == "application/json"
         assert httpretty.last_request().body == "{\"client\": {\"vis_state\": 1}}".encode("utf-8")

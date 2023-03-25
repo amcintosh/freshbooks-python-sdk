@@ -28,14 +28,30 @@ class AccountingResource(Resource):
                 self.base_url, account_id, self.accounting_path, resource_id)
         return "{}/accounting/account/{}/{}".format(self.base_url, account_id, self.accounting_path)
 
-    def _extract_error(self, errors: Union[list, dict]) -> Tuple[str, Optional[int]]:
-        if not errors:  # pragma: no cover
-            return "Unknown error", None
-
+    def _extract_error(self, errors: Union[list, dict]) -> Tuple[str, int, None]:
         if isinstance(errors, list):
-            return errors[0]["message"], int(errors[0]["errno"])
+            return errors[0]["message"], int(errors[0]["errno"]), errors
+        return errors["message"], int(errors["errno"]), None  # pragma: no cover
 
-        return errors["message"], int(errors["errno"])  # pragma: no cover
+    def _extract_new_error(self, response_data: dict) -> Tuple[str, int, Optional[List[dict]]]:
+        message = response_data["message"]
+        code = None
+        details = []
+        for detail in response_data.get("details", []):
+            if detail.get("@type") == "type.googleapis.com/google.rpc.ErrorInfo":  # pragma: no branch
+                code = int(detail.get("reason"))
+                if detail.get("metadata"):  # pragma: no branch
+                    details.append(detail["metadata"])
+                if detail.get("metadata", {}).get("message"):  # pragma: no branch
+                    message = detail["metadata"]["message"]
+        return message, code, details
+
+    def _handle_error(self, response_data: dict) -> Tuple[str, Optional[int]]:
+        if response_data.get("response", {}).get("errors"):
+            return self._extract_error(response_data["response"]["errors"])
+        elif response_data.get("message") and response_data.get("code"):
+            return self._extract_new_error(response_data)
+        return "Unknown error", None, None  # pragma: no cover
 
     def _request(self, url: str, method: str, data: Optional[dict] = None) -> Any:
         response = self._send_request(url, method, data)
@@ -46,19 +62,18 @@ class AccountingResource(Resource):
             return
 
         try:
-            content = response.json(parse_float=Decimal)
+            response_data = response.json(parse_float=Decimal)
         except ValueError:
             raise FreshBooksError(status, "Failed to parse response", raw_response=response.text)
 
-        if "response" not in content:
-            raise FreshBooksError(status, "Returned an unexpected response", raw_response=response.text)
-
-        response_data = content["response"]
         if status >= 400:
-            message, code = self._extract_error(response_data["errors"])
-            raise FreshBooksError(status, message, error_code=code, raw_response=content)
+            message, code, error_details = self._handle_error(response_data)
+            raise FreshBooksError(
+                status, message, error_code=code, error_details=error_details, raw_response=response_data
+            )
+
         try:
-            return response_data["result"]
+            return response_data["response"]["result"]
         except KeyError:
             return response_data
 

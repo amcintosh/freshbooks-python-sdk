@@ -4,6 +4,7 @@
 
 - Add includes parameter to project-like `get` calls
 - Allow API version header configuration
+- Handle new API version accounting errors
 
 ## 1.1.0
 

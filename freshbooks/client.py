@@ -152,15 +152,19 @@ class Client:
             code_type: code
         }
         response = requests.post(self.token_url, payload, timeout=self.timeout)
-        content = response.json()
         try:
+            content = response.json()
             self.access_token = content["access_token"]
             self.refresh_token = content["refresh_token"]
             created_at = datetime.utcfromtimestamp(content["created_at"])
             expires_in = timedelta(seconds=content["expires_in"])
             self.access_token_expires_at = created_at + expires_in
         except KeyError:
-            raise FreshBooksError(response.status_code, "Failed to fetch access_token", raw_response=response.text)
+            raise FreshBooksError(
+                response.status_code,
+                content.get("error_description") or "Failed to fetch access_token",
+                raw_response=response.text
+            )
         return SimpleNamespace(
             access_token=self.access_token,
             refresh_token=self.refresh_token,

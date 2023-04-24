@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Improved error messages on authorization failures
+
 ## 1.2.0
 
 - Add includes parameter to project-like `get` calls

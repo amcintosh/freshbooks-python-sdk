@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.2.1
+
 ## 
 
 - Improved error messages on authorization failures

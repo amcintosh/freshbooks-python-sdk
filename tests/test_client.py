@@ -71,6 +71,22 @@ class TestClientAuth:
     @httpretty.activate
     def test_get_access_token__failure(self):
         url = "{}/auth/oauth/token".format(API_BASE_URL)
+        httpretty.register_uri(
+            httpretty.POST,
+            url,
+            body=json.dumps(get_fixture("auth_me_response__no_auth")),
+            status=403
+        )
+
+        try:
+            self.freshBooksClient.get_access_token("some_grant")
+        except FreshBooksError as e:
+            assert str(e) == "This action requires authentication to continue."
+            assert e.status_code == 403
+
+    @httpretty.activate
+    def test_get_access_token__unknown_failure(self):
+        url = "{}/auth/oauth/token".format(API_BASE_URL)
         httpretty.register_uri(httpretty.POST, url, status=500)
 
         try:

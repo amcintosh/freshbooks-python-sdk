@@ -1,0 +1,48 @@
+{
+    "data": [
+        {
+            "uuid": "e17f9556-c99f-4fdb-ad8b-089ac4798bae",
+            "name": "Cash",
+            "number": "1000",
+            "description": "",
+            "type": "asset",
+            "sub_type": "Cash & Bank",
+            "system_account_name": "Cash",
+            "parent_account": null,
+            "sub_accounts": [
+                "34bb2ff8-8c1b-4142-a66b-b6c35b2e143a"
+            ],
+            "auto_created": true,
+            "state": "active",
+            "updated_at": "2022-09-22T08:47:04.668685Z"
+        },
+        {
+            "uuid": "02ff051b-f059-4650-b819-bccdea4e6b45",
+            "name": "Petty Cash",
+            "number": "1000-1",
+            "description": "",
+            "type": "asset",
+            "sub_type": "Cash & Bank",
+            "system_account_name": "Petty Cash",
+            "parent_account": "5a3f16b2-d521-414a-a404-575ee2dc6eee",
+            "sub_accounts": [],
+            "auto_created": false,
+            "state": "active",
+            "updated_at": "2023-04-23T19:51:33.817861Z"
+        },
+        {
+            "uuid": "e6addd0b-9d36-4860-a89d-07ea2fa33117",
+            "name": "Accounts Receivable",
+            "number": "1200",
+            "description": "",
+            "type": "asset",
+            "sub_type": "Current Asset",
+            "system_account_name": "Accounts Receivable",
+            "parent_account": null,
+            "sub_accounts": [],
+            "auto_created": false,
+            "state": "active",
+            "updated_at": "2023-04-23T19:51:33.800781Z"
+        }
+    ]
+}

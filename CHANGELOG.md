@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Properly handle some project error messages
+
 ## 1.2.1
 
 - Improved error messages on authorization failures

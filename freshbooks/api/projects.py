@@ -39,8 +39,8 @@ class ProjectsBaseResource(Resource):
             for error_key in errors:  # could be reversed(errors) after dropping 3.7
                 details.append({error_key: errors[error_key]})
                 message = f"Error: {error_key} {errors[error_key]}"
-        else:
-            message = error_response.get("error", "Unknown error")
+        elif error_response.get("error"):
+            message = error_response["error"]
         return message, code, details
 
     def _request(self, url: str, method: str, data: Optional[dict] = None) -> Any:

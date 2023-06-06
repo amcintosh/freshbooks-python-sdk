@@ -99,6 +99,13 @@ except FreshBooksError as e:
     assert str(e) == "Client not found."
     assert e.status_code == 404
     assert e.error_code == 1012
+    assert e.error_details == [{
+        "errno": 1012,
+        "field": "userid",
+        "message": "Client not found.",
+        "object": "client",
+        "value": "12345"
+    }]
     assert e.raw_response ==  ("{'response': {'errors': [{'errno': 1012, "
                                "'field': 'userid', 'message': 'Client not found.', "
                                "'object': 'client', 'value': '134'}]}}")

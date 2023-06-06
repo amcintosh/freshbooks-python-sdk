@@ -188,6 +188,13 @@ and the HTTP response body.</p>
     <span class="k">assert</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;Client not found.&quot;</span>
     <span class="k">assert</span> <span class="n">e</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">404</span>
     <span class="k">assert</span> <span class="n">e</span><span class="o">.</span><span class="n">error_code</span> <span class="o">==</span> <span class="mi">1012</span>
+    <span class="k">assert</span> <span class="n">e</span><span class="o">.</span><span class="n">error_details</span> <span class="o">==</span> <span class="p">[{</span>
+        <span class="s2">&quot;errno&quot;</span><span class="p">:</span> <span class="mi">1012</span><span class="p">,</span>
+        <span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;userid&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Client not found.&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;object&quot;</span><span class="p">:</span> <span class="s2">&quot;client&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;12345&quot;</span>
+    <span class="p">}]</span>
     <span class="k">assert</span> <span class="n">e</span><span class="o">.</span><span class="n">raw_response</span> <span class="o">==</span>  <span class="p">(</span><span class="s2">&quot;{&#39;response&#39;: {&#39;errors&#39;: [{&#39;errno&#39;: 1012, &quot;</span>
                                <span class="s2">&quot;&#39;field&#39;: &#39;userid&#39;, &#39;message&#39;: &#39;Client not found.&#39;, &quot;</span>
                                <span class="s2">&quot;&#39;object&#39;: &#39;client&#39;, &#39;value&#39;: &#39;134&#39;}]}}&quot;</span><span class="p">)</span>

@@ -68,6 +68,27 @@ class TestProjectsResources:
         assert httpretty.last_request().querystring == expected_params
 
     @httpretty.activate
+    def test_get_project__no_auth(self):
+        project_id = 654321
+        url = "{}/projects/business/{}/project/{}".format(API_BASE_URL, self.business_id, project_id)
+        httpretty.register_uri(
+            httpretty.GET,
+            url,
+            body=json.dumps(get_fixture("get_project_response__no_auth")),
+            status=401
+        )
+
+        try:
+            self.freshBooksClient.projects.get(self.business_id, project_id)
+        except FreshBooksError as e:
+            assert str(e) == ("The server could not verify that you are authorized to access the URL "
+                              "requested. You either supplied the wrong credentials (e.g. a bad "
+                              "password), or your browser doesn't understand how to supply the "
+                              "credentials required.")
+            assert e.status_code == 401
+            assert e.error_code is None
+
+    @httpretty.activate
     def test_get_project__not_found(self):
         project_id = 654321
         url = "{}/projects/business/{}/project/{}".format(API_BASE_URL, self.business_id, project_id)

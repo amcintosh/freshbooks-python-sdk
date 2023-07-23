@@ -9,6 +9,7 @@ from requests.models import urlencode  # type: ignore
 
 from freshbooks.api.accounting import AccountingResource
 from freshbooks.api.auth import AuthResource
+from freshbooks.api.accounting_business import AccountingBusinessResource
 from freshbooks.api.comments import CommentsResource, CommentsSubResource
 from freshbooks.api.events import EventsResource
 from freshbooks.api.payments import PaymentsResource
@@ -307,6 +308,16 @@ class Client:
     def items(self) -> AccountingResource:
         """FreshBooks items resource with calls to get, list, create, update, delete"""
         return AccountingResource(self._client_resource_config(), "items/items", "item", "items")
+    
+    @property
+    def journal_entries(self) -> AccountingResource:
+        """FreshBooks items resource with calls to get, list, create, update, delete"""
+        return AccountingResource(self._client_resource_config(), "journal_entries/journal_entries", "journal_entry", "journal_entries")
+    
+    @property
+    def journal_entries_accounts(self) -> AccountingResource:
+        """FreshBooks items resource with calls to get, list, create, update, delete"""
+        return AccountingResource(self._client_resource_config(), "journal_entry_accounts/journal_entry_accounts", "journal_entry_account", "journal_entries_accounts")
 
     @property
     def other_income(self) -> AccountingResource:
@@ -352,6 +363,16 @@ class Client:
         """FreshBooks taxes resource with calls to get, list, create, update, delete"""
         return AccountingResource(
             self._client_resource_config(), "taxes/taxes", "tax", "taxes", delete_via_update=False
+        )
+    
+    # Accounting Business Resources
+    
+    @property
+    def ledger_accounts(self) -> AccountingBusinessResource:
+        """FreshBooks accounts resource with calls to get, list, create, update"""
+        return AccountingBusinessResource(
+            self._client_resource_config(), "ledger_accounts/accounts",
+            missing_endpoints=["delete"]
         )
 
     # Events Resources

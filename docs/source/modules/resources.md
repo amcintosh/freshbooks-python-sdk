@@ -9,6 +9,12 @@
   :inherited-members:
 ```
 
+```{eval-rst}
+.. automodule:: freshbooks.api.accounting_business
+  :members:
+  :inherited-members:
+```
+
 ## Auth
 
 ```{eval-rst}

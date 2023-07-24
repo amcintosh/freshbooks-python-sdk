@@ -1,0 +1,29 @@
+{
+    "errors": {
+        "message": "Request failed with status code 400",
+        "status": 400,
+        "details": [
+            {
+                "reason": "name: This field is required.",
+                "metadata": {
+                    "message": "This field is required.",
+                    "field": "name"
+                }
+            },
+            {
+                "reason": "sub_type: This field is required.",
+                "metadata": {
+                    "message": "This field is required.",
+                    "field": "sub_type"
+                }
+            },
+            {
+                "reason": "parent_account: This field is required.",
+                "metadata": {
+                    "message": "This field is required.",
+                    "field": "parent_account"
+                }
+            }
+        ]
+    }
+}

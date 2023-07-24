@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Add Ledger Accounts resource
 - Properly handle some project error messages
 
 ## 1.2.1

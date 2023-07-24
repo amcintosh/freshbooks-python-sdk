@@ -1,7 +1,6 @@
 from datetime import datetime, timezone
 import json
 import httpretty
-import pytest
 
 from freshbooks import Client as FreshBooksClient
 from freshbooks import PaginateBuilder, FilterBuilder, IncludesBuilder, FreshBooksError, VisState
@@ -114,10 +113,7 @@ class TestAccountingResources:
 
         assert str(client.test_amount) == "Result(test_amount)"
         assert client.test_amount.code == "CAD"
-
-        assert str(client.grand_total_balance) == "ListResult(grand_total_balance)"
-        with pytest.raises(IndexError):
-            assert client.grand_total_balance[0].code is None
+        assert client.grand_total_balance == []
 
     @httpretty.activate
     def test_get_client__not_found_old_error(self):

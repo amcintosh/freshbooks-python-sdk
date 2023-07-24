@@ -1,0 +1,15 @@
+{
+    "errors": {
+        "message": "Request failed with status code 404",
+        "status": 404,
+        "details": [
+            {
+                "reason": "Not found.",
+                "metadata": {
+                    "message": "Not found.",
+                    "field": null
+                }
+            }
+        ]
+    }
+}

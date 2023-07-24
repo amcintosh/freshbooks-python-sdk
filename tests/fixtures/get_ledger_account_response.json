@@ -1,0 +1,18 @@
+{
+    "data": {
+        "uuid": "a_uuid",
+        "name": "Cash",
+        "number": "1000",
+        "description": "As described",
+        "type": "asset",
+        "sub_type": "Cash & Bank",
+        "system_account_name": "Cash",
+        "parent_account": null,
+        "sub_accounts": [
+            "a_uuid2"
+        ],
+        "auto_created": true,
+        "state": "active",
+        "updated_at": "2023-04-27T14:33:48.841075Z"
+    }
+}

@@ -1,0 +1,34 @@
+{
+    "data": [
+        {
+            "uuid": "a_uuid",
+            "name": "Cash",
+            "number": "1000",
+            "description": "As described",
+            "type": "asset",
+            "sub_type": "Cash & Bank",
+            "system_account_name": "Cash",
+            "parent_account": null,
+            "sub_accounts": [
+                "a_uuid2"
+            ],
+            "auto_created": true,
+            "state": "active",
+            "updated_at": "2023-04-27T14:33:48.841075Z"
+        },
+        {
+            "uuid": "a_uuid2",
+            "name": "Petty Cash",
+            "number": "1000-1",
+            "description": "Moar described",
+            "type": "asset",
+            "sub_type": "Cash & Bank",
+            "system_account_name": "Petty Cash",
+            "parent_account": "a_uuid",
+            "sub_accounts": [],
+            "auto_created": false,
+            "state": "active",
+            "updated_at": "2023-04-27T14:33:48.865680Z"
+        }
+   ]
+}

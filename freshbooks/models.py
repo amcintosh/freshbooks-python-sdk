@@ -63,7 +63,9 @@ class Result:
         field_data = self.data.get(field)
         if isinstance(field_data, dict):
             return Result(field, {field: field_data})
-        if isinstance(field_data, list):
+        if isinstance(field_data, list) and len(field_data) > 0 and isinstance(field_data[0], dict):
+            # If a list of dictionaries, we want to return a sub-ListResult.
+            # Otherwise return the list of literals.
             return ListResult(field, field, {field: field_data}, include_pages=False)
         if isinstance(field_data, str):
             # Check if the String is a date

@@ -9,6 +9,7 @@ from requests.models import urlencode  # type: ignore
 
 from freshbooks.api.accounting import AccountingResource
 from freshbooks.api.auth import AuthResource
+from freshbooks.api.accounting_business import AccountingBusinessResource
 from freshbooks.api.comments import CommentsResource, CommentsSubResource
 from freshbooks.api.events import EventsResource
 from freshbooks.api.payments import PaymentsResource
@@ -352,6 +353,16 @@ class Client:
         """FreshBooks taxes resource with calls to get, list, create, update, delete"""
         return AccountingResource(
             self._client_resource_config(), "taxes/taxes", "tax", "taxes", delete_via_update=False
+        )
+
+    # Accounting Business Resources
+
+    @property
+    def ledger_accounts(self) -> AccountingBusinessResource:
+        """FreshBooks accounts resource with calls to get, list"""
+        return AccountingBusinessResource(
+            self._client_resource_config(), "ledger_accounts/accounts", "accounts",
+            missing_endpoints=["delete"]
         )
 
     # Events Resources

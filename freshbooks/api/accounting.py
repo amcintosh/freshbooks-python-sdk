@@ -10,7 +10,7 @@ from freshbooks.models import ListResult, Result, VisState
 
 
 class AccountingResource(Resource):
-    """Handles resources under the `/accounting` endpoints."""
+    """Handles resources under the `/accounting/account/` endpoints."""
 
     def __init__(self, client_config: SimpleNamespace, accounting_path: str,
                  single_name: str, list_name: str,

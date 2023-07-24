@@ -7,6 +7,7 @@ import pytest
 from freshbooks import Client as FreshBooksClient
 from freshbooks import FreshBooksError
 from freshbooks.api.accounting import AccountingResource
+from freshbooks.api.accounting_business import AccountingBusinessResource
 from freshbooks.api.comments import CommentsResource, CommentsSubResource
 from freshbooks.api.projects import ProjectsResource
 from freshbooks.api.resource import HttpVerbs
@@ -317,6 +318,39 @@ class TestClientResources:
 
         with pytest.raises(FreshBooksNotImplementedError):
             self.freshBooksClient.systems.delete(account_id, resource_id)
+
+    @pytest.mark.parametrize(
+        "resource_name",
+        [
+            "ledger_accounts"
+        ]
+    )
+    @patch.object(AccountingBusinessResource, "_get_url", return_value="some_url")
+    def test_accounting_business_resource_methods(self, mock_url, resource_name):
+        """Test general methods on accounting_business resources"""
+        business_uuid = "a_business_uuid"
+        resource_uuid = "a_uuid"
+        resource_ = getattr(self.freshBooksClient, resource_name)
+
+        list_response = {"data": []}
+        single_response = {"data": {}}
+
+        with patch.object(AccountingBusinessResource, "_request", return_value=list_response) as mock_request:
+            resource_.list(business_uuid)
+            mock_request.assert_called_with("some_url", HttpVerbs.GET)
+
+        with patch.object(AccountingBusinessResource, "_request", return_value=single_response) as mock_request:
+            resource_.get(business_uuid, resource_uuid)
+            mock_request.assert_called_with("some_url", HttpVerbs.GET)
+
+            resource_.create(business_uuid, {})
+            mock_request.assert_called_with("some_url", HttpVerbs.POST, data={})
+
+            resource_.update(business_uuid, resource_uuid, {})
+            mock_request.assert_called_with("some_url", HttpVerbs.PUT, data={})
+
+        with pytest.raises(FreshBooksNotImplementedError):
+            resource_.delete(business_uuid, resource_uuid)
 
     @pytest.mark.parametrize(
         "resource_name, single_name",

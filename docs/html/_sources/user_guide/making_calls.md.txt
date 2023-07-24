@@ -1,12 +1,14 @@
 # Making API Calls
 
 Each resource in the client provides calls for `get`, `list`, `create`, `update` and `delete` calls. Please note that
-some API resources are scoped to a FreshBooks `account_id` while others are scoped to a `business_id`. In general these
-fall along the lines of accounting resources vs projects/time tracking resources, but that is not precise.
+some API resources are scoped to a FreshBooks `account_id` while others are scoped to a `business_id` or a
+`business_uuid`. In general these fall along the lines of `account_id` for older accounting resources,
+`business_id` for projects/time tracking, and `business_uuid` for all newer resources, but that is not precise.
 
 ```python
 client = freshBooksClient.clients.get(account_id, client_user_id)
 project = freshBooksClient.projects.get(business_id, project_id)
+account = freshBooksClient.ledger_accounts.get(business_uuid, ledger_account_uuid)
 ```
 
 ## Get and List

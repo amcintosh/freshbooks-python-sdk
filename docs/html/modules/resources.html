@@ -72,6 +72,16 @@
 <li class="toctree-l4"><a class="reference internal" href="#freshbooks.api.accounting.AccountingResource.update"><code class="docutils literal notranslate"><span class="pre">AccountingResource.update()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#freshbooks.api.accounting_business.AccountingBusinessResource"><code class="docutils literal notranslate"><span class="pre">AccountingBusinessResource</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#freshbooks.api.accounting_business.AccountingBusinessResource.API_RETRIES"><code class="docutils literal notranslate"><span class="pre">AccountingBusinessResource.API_RETRIES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#freshbooks.api.accounting_business.AccountingBusinessResource.create"><code class="docutils literal notranslate"><span class="pre">AccountingBusinessResource.create()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#freshbooks.api.accounting_business.AccountingBusinessResource.delete"><code class="docutils literal notranslate"><span class="pre">AccountingBusinessResource.delete()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#freshbooks.api.accounting_business.AccountingBusinessResource.get"><code class="docutils literal notranslate"><span class="pre">AccountingBusinessResource.get()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#freshbooks.api.accounting_business.AccountingBusinessResource.headers"><code class="docutils literal notranslate"><span class="pre">AccountingBusinessResource.headers()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#freshbooks.api.accounting_business.AccountingBusinessResource.list"><code class="docutils literal notranslate"><span class="pre">AccountingBusinessResource.list()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#freshbooks.api.accounting_business.AccountingBusinessResource.update"><code class="docutils literal notranslate"><span class="pre">AccountingBusinessResource.update()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#module-freshbooks.api.auth">Auth</a><ul>
@@ -204,7 +214,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="freshbooks.api.accounting.AccountingResource">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">freshbooks.api.accounting.</span></span><span class="sig-name descname"><span class="pre">AccountingResource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client_config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">accounting_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">single_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delete_via_update</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">missing_endpoints</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.accounting.AccountingResource" title="Permalink to this definition"></a></dt>
-<dd><p>Handles resources under the <code class="docutils literal notranslate"><span class="pre">/accounting</span></code> endpoints.</p>
+<dd><p>Handles resources under the <code class="docutils literal notranslate"><span class="pre">/accounting/account/</span></code> endpoints.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="freshbooks.api.accounting.AccountingResource.API_RETRIES">
 <span class="sig-name descname"><span class="pre">API_RETRIES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#freshbooks.api.accounting.AccountingResource.API_RETRIES" title="Permalink to this definition"></a></dt>
@@ -344,6 +354,159 @@ See <a class="reference external" href="https://www.freshbooks.com/api/active_de
 <li><p><strong>resource_id</strong> – Id of the resource to update</p></li>
 <li><p><strong>data</strong> – Dictionary of data to update the resource to</p></li>
 <li><p><strong>builders</strong> – (Optional) IncludesBuilder object for including additional data, sub-resources, etc.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Result object with the updated resource’s response data.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-freshbooks.api.accounting_business"></span><dl class="py class">
+<dt class="sig sig-object py" id="freshbooks.api.accounting_business.AccountingBusinessResource">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">freshbooks.api.accounting_business.</span></span><span class="sig-name descname"><span class="pre">AccountingBusinessResource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client_config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">missing_endpoints</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.accounting_business.AccountingBusinessResource" title="Permalink to this definition"></a></dt>
+<dd><p>Handles resources under the <code class="docutils literal notranslate"><span class="pre">/accounting/businesses/</span></code> endpoints.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="freshbooks.api.accounting_business.AccountingBusinessResource.API_RETRIES">
+<span class="sig-name descname"><span class="pre">API_RETRIES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#freshbooks.api.accounting_business.AccountingBusinessResource.API_RETRIES" title="Permalink to this definition"></a></dt>
+<dd><p>Default number of retries</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="freshbooks.api.accounting_business.AccountingBusinessResource.create">
+<span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">business_uuid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.accounting_business.AccountingBusinessResource.create" title="Permalink to this definition"></a></dt>
+<dd><p>Create a resource.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>business_uuid</strong> – The business uuid</p></li>
+<li><p><strong>data</strong> – Dictionary of data to populate the resource</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Result object with the new resource’s response data.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="freshbooks.api.accounting_business.AccountingBusinessResource.delete">
+<span class="sig-name descname"><span class="pre">delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">business_uuid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_uuid</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.accounting_business.AccountingBusinessResource.delete" title="Permalink to this definition"></a></dt>
+<dd><p>Delete a resource.</p>
+<p>Note: Most FreshBooks resources are soft-deleted,
+See <a class="reference external" href="https://www.freshbooks.com/api/active_deleted">FreshBooks API - Active and Deleted Objects</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>business_uuid</strong> – The business uuid</p></li>
+<li><p><strong>resource_uuid</strong> – Id of the resource to return</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An empty Result object.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="freshbooks.api.accounting_business.AccountingBusinessResource.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">business_uuid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_uuid</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.accounting_business.AccountingBusinessResource.get" title="Permalink to this definition"></a></dt>
+<dd><p>Get a single resource with the corresponding id.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>business_uuid</strong> – The business uuid</p></li>
+<li><p><strong>resource_uuid</strong> – Id of the resource to return</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Result object with the resource’s response data.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="models.html#freshbooks.models.Result" title="freshbooks.models.Result">Result</a></p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="freshbooks.api.accounting_business.AccountingBusinessResource.headers">
+<span class="sig-name descname"><span class="pre">headers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">has_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.accounting_business.AccountingBusinessResource.headers" title="Permalink to this definition"></a></dt>
+<dd><p>Get headers required for API calls</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~typing.Dict``[:py:class:``str</span></code>, :py:class:<code class="docutils literal notranslate"><span class="pre">str</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="freshbooks.api.accounting_business.AccountingBusinessResource.list">
+<span class="sig-name descname"><span class="pre">list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">business_uuid</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.accounting_business.AccountingBusinessResource.list" title="Permalink to this definition"></a></dt>
+<dd><p>Get a list of resources.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.ListResult</span></code></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>business_uuid</strong> – The business uuid</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ListResult object with the resources response data.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="models.html#freshbooks.models.ListResult" title="freshbooks.models.ListResult">ListResult</a></p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call is not successful.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="freshbooks.api.accounting_business.AccountingBusinessResource.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">business_uuid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_uuid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.api.accounting_business.AccountingBusinessResource.update" title="Permalink to this definition"></a></dt>
+<dd><p>Update a resource.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.models.Result</span></code></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>business_uuid</strong> – The business uuid</p></li>
+<li><p><strong>resource_uuid</strong> – Id of the resource to return</p></li>
+<li><p><strong>data</strong> – Dictionary of data to update the resource to</p></li>
 </ul>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>

@@ -106,10 +106,12 @@
   <section id="making-api-calls">
 <h1>Making API Calls<a class="headerlink" href="#making-api-calls" title="Permalink to this heading"></a></h1>
 <p>Each resource in the client provides calls for <code class="docutils literal notranslate"><span class="pre">get</span></code>, <code class="docutils literal notranslate"><span class="pre">list</span></code>, <code class="docutils literal notranslate"><span class="pre">create</span></code>, <code class="docutils literal notranslate"><span class="pre">update</span></code> and <code class="docutils literal notranslate"><span class="pre">delete</span></code> calls. Please note that
-some API resources are scoped to a FreshBooks <code class="docutils literal notranslate"><span class="pre">account_id</span></code> while others are scoped to a <code class="docutils literal notranslate"><span class="pre">business_id</span></code>. In general these
-fall along the lines of accounting resources vs projects/time tracking resources, but that is not precise.</p>
+some API resources are scoped to a FreshBooks <code class="docutils literal notranslate"><span class="pre">account_id</span></code> while others are scoped to a <code class="docutils literal notranslate"><span class="pre">business_id</span></code> or a
+<code class="docutils literal notranslate"><span class="pre">business_uuid</span></code>. In general these fall along the lines of <code class="docutils literal notranslate"><span class="pre">account_id</span></code> for older accounting resources,
+<code class="docutils literal notranslate"><span class="pre">business_id</span></code> for projects/time tracking, and <code class="docutils literal notranslate"><span class="pre">business_uuid</span></code> for all newer resources, but that is not precise.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">client</span> <span class="o">=</span> <span class="n">freshBooksClient</span><span class="o">.</span><span class="n">clients</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">account_id</span><span class="p">,</span> <span class="n">client_user_id</span><span class="p">)</span>
 <span class="n">project</span> <span class="o">=</span> <span class="n">freshBooksClient</span><span class="o">.</span><span class="n">projects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">business_id</span><span class="p">,</span> <span class="n">project_id</span><span class="p">)</span>
+<span class="n">account</span> <span class="o">=</span> <span class="n">freshBooksClient</span><span class="o">.</span><span class="n">ledger_accounts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">business_uuid</span><span class="p">,</span> <span class="n">ledger_account_uuid</span><span class="p">)</span>
 </pre></div>
 </div>
 <section id="get-and-list">

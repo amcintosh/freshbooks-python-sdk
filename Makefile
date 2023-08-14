@@ -46,6 +46,8 @@ tag:
 check-style:
 	flake8 freshbooks --count --show-source --statistics
 	flake8 tests --count --show-source --statistics
+	refurb freshbooks
+	refurb tests
 
 check-types:
 	mypy --install-types --non-interactive freshbooks

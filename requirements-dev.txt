@@ -11,3 +11,4 @@ sphinx-rtd-theme
 enum-tools[sphinx]
 myst-parser
 commonmark
+refurb

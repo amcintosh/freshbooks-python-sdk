@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 import json
 from unittest.mock import patch
 import httpretty
@@ -66,8 +66,8 @@ class TestClientAuth:
         assert result.access_token == "my_access_token"
         assert self.freshBooksClient.refresh_token == "my_refresh_token"
         assert result.refresh_token == "my_refresh_token"
-        assert self.freshBooksClient.access_token_expires_at == datetime(2010, 10, 17)
-        assert result.access_token_expires_at == datetime(2010, 10, 17)
+        assert self.freshBooksClient.access_token_expires_at == datetime(2010, 10, 17, tzinfo=timezone.utc)
+        assert result.access_token_expires_at == datetime(2010, 10, 17, tzinfo=timezone.utc)
 
     @httpretty.activate
     def test_get_access_token__failure(self):
@@ -134,8 +134,8 @@ class TestClientAuth:
         assert result.access_token == "my_access_token"
         assert self.freshBooksClient.refresh_token == "my_refresh_token"
         assert result.refresh_token == "my_refresh_token"
-        assert self.freshBooksClient.access_token_expires_at == datetime(2010, 10, 17)
-        assert result.access_token_expires_at == datetime(2010, 10, 17)
+        assert self.freshBooksClient.access_token_expires_at == datetime(2010, 10, 17, tzinfo=timezone.utc)
+        assert result.access_token_expires_at == datetime(2010, 10, 17, tzinfo=timezone.utc)
 
     @httpretty.activate
     def test_get_refresh_token__uninitialized_client(self):
@@ -156,8 +156,8 @@ class TestClientAuth:
         assert result.access_token == "my_access_token"
         assert self.freshBooksClient.refresh_token == "my_refresh_token"
         assert result.refresh_token == "my_refresh_token"
-        assert self.freshBooksClient.access_token_expires_at == datetime(2010, 10, 17)
-        assert result.access_token_expires_at == datetime(2010, 10, 17)
+        assert self.freshBooksClient.access_token_expires_at == datetime(2010, 10, 17, tzinfo=timezone.utc)
+        assert result.access_token_expires_at == datetime(2010, 10, 17, tzinfo=timezone.utc)
 
     @httpretty.activate
     def test_get_refresh_token__uninitialized_client_not_provided(self):

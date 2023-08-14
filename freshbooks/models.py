@@ -1,3 +1,4 @@
+import contextlib
 from collections import namedtuple
 from copy import deepcopy
 from datetime import date, datetime, timezone
@@ -69,10 +70,8 @@ class Result:
             return ListResult(field, field, {field: field_data}, include_pages=False)
         if isinstance(field_data, str):
             # Check if the String is a date
-            try:
+            with contextlib.suppress(ValueError):
                 return date.fromisoformat(field_data)  # type: ignore
-            except ValueError:
-                pass
 
             # Check if the String is a datetime
             try:

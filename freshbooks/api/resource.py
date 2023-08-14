@@ -53,7 +53,7 @@ class Resource:
         }
         if self.api_version:
             headers["X-API-VERSION"] = self.api_version
-        if has_data and method in [HttpVerbs.POST, HttpVerbs.PUT, HttpVerbs.PATCH]:
+        if has_data and method in (HttpVerbs.POST, HttpVerbs.PUT, HttpVerbs.PATCH):
             headers["Content-Type"] = "application/json"
         return headers
 
@@ -74,7 +74,7 @@ class Resource:
             session = self.session.delete
         elif method is HttpVerbs.HEAD:  # pragma: no cover
             session = self.session.head
-        if has_data and method in [HttpVerbs.POST, HttpVerbs.PUT, HttpVerbs.PATCH]:
+        if has_data and method in (HttpVerbs.POST, HttpVerbs.PUT, HttpVerbs.PATCH):
             payload = json.dumps(data)
 
         try:

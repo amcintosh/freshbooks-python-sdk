@@ -22,7 +22,7 @@ class TestUploadsResources:
         response = self.freshBooksClient.images.get(some_jwt)
 
         assert response.status_code == 200
-        assert type(response.content) == bytes
+        assert type(response.content) is bytes
 
         assert httpretty.last_request().headers["Content-Type"] is None
 
@@ -71,7 +71,7 @@ class TestUploadsResources:
         response = self.freshBooksClient.attachments.get(some_jwt)
 
         assert response.status_code == 200
-        assert type(response.content) == bytes
+        assert type(response.content) is bytes
 
         assert httpretty.last_request().headers["Content-Type"] is None
 

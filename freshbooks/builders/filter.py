@@ -179,7 +179,7 @@ class FilterBuilder(Builder):
         return self
 
     def _convert_between_field_name(self, field: str, min_max: str) -> str:
-        if field[-4:] not in ["_min", "_max"] and field[-5:] != "_date":
+        if field[-4:] not in ("_min", "_max") and field[-5:] != "_date":
             return f"{field}{min_max}"
         return field
 
@@ -201,15 +201,15 @@ class FilterBuilder(Builder):
             The built query string
         """
         is_accounting_like = False
-        if not resource_name or resource_name in ["AccountingResource", "EventsResource"]:
+        if not resource_name or resource_name in ("AccountingResource", "EventsResource"):
             is_accounting_like = True
         query_string = ""
         for filter_type, field, value in self._filters:
-            if filter_type in ["like", "between"] or (is_accounting_like and filter_type == "equals"):
+            if filter_type in ("like", "between") or (is_accounting_like and filter_type == "equals"):
                 query_string = f"{query_string}&search[{field}]={value}"
             if filter_type == "in":
                 for val in value:
                     query_string = f"{query_string}&search[{field}][]={val}"
-            if filter_type in ["bool", "date_time"] or (not is_accounting_like and filter_type == "equals"):
+            if filter_type in ("bool", "date_time") or (not is_accounting_like and filter_type == "equals"):
                 query_string = f"{query_string}&{field}={value}"
         return query_string

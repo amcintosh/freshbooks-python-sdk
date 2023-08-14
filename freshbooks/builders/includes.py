@@ -53,7 +53,7 @@ class IncludesBuilder(Builder):
         """
         query_string = ""
         for key in self._includes:
-            if not resource_name or resource_name in ["AccountingResource", "EventsResource"]:
+            if not resource_name or resource_name in ("AccountingResource", "EventsResource"):
                 query_string = f"{query_string}&include[]={key}"
             else:
                 query_string = f"{query_string}&{key}=true"

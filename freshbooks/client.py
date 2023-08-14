@@ -1,5 +1,5 @@
 import os
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 import logging
 from types import SimpleNamespace
 from typing import Optional, List
@@ -157,7 +157,7 @@ class Client:
             content = response.json()
             self.access_token = content["access_token"]
             self.refresh_token = content["refresh_token"]
-            created_at = datetime.utcfromtimestamp(content["created_at"])
+            created_at = datetime.fromtimestamp(content["created_at"], tz=timezone.utc)
             expires_in = timedelta(seconds=content["expires_in"])
             self.access_token_expires_at = created_at + expires_in
         except KeyError:

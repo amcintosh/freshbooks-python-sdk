@@ -68,6 +68,6 @@ class SortBuilder(Builder):
         if not self._sort:
             return ""
 
-        if not resource_name or resource_name in ["AccountingResource", "EventsResource"]:
+        if not resource_name or resource_name in ("AccountingResource", "EventsResource"):
             return f"&sort={self._sort}_asc" if self._ascending else f"&sort={self._sort}_desc"
         return f"&sort={self._sort}" if self._ascending else f"&sort=-{self._sort}"

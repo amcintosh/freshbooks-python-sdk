@@ -59,6 +59,7 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Authorization Flow</a></li>
 <li class="toctree-l2"><a class="reference internal" href="create_invoice.html">Create Invoice</a></li>
 <li class="toctree-l2"><a class="reference internal" href="create_invoice_extended.html">Create Invoice - Extended</a></li>
+<li class="toctree-l2"><a class="reference internal" href="export_clients_outstanding_balance.html">Export Clients Outstanding Balance</a></li>
 </ul>
 </li>
 </ul>
@@ -104,14 +105,14 @@
 <span class="linenos"> 4</span><span class="kn">from</span> <span class="nn">types</span> <span class="kn">import</span> <span class="n">SimpleNamespace</span>
 <span class="linenos"> 5</span><span class="kn">from</span> <span class="nn">freshbooks</span> <span class="kn">import</span> <span class="n">Client</span> <span class="k">as</span> <span class="n">FreshBooksClient</span>
 <span class="linenos"> 6</span>
-<span class="linenos"> 7</span><span class="n">fb_client_id</span> <span class="o">=</span> <span class="s2">&quot;&lt;your client id&gt;&quot;</span>
-<span class="linenos"> 8</span><span class="n">secret</span> <span class="o">=</span> <span class="s2">&quot;&lt;your client secret&gt;&quot;</span>
-<span class="linenos"> 9</span><span class="n">redirect_uri</span> <span class="o">=</span> <span class="s2">&quot;&lt;your redirect uri&gt;&quot;</span>
+<span class="linenos"> 7</span><span class="n">FB_CLIENT_ID</span> <span class="o">=</span> <span class="s2">&quot;&lt;your client id&gt;&quot;</span>
+<span class="linenos"> 8</span><span class="n">SECRET</span> <span class="o">=</span> <span class="s2">&quot;&lt;your client secret&gt;&quot;</span>
+<span class="linenos"> 9</span><span class="n">REDIRECT_URI</span> <span class="o">=</span> <span class="s2">&quot;&lt;your redirect uri&gt;&quot;</span>
 <span class="linenos">10</span>
 <span class="linenos">11</span><span class="n">freshBooksClient</span> <span class="o">=</span> <span class="n">FreshBooksClient</span><span class="p">(</span>
-<span class="linenos">12</span>    <span class="n">client_id</span><span class="o">=</span><span class="n">fb_client_id</span><span class="p">,</span>
-<span class="linenos">13</span>    <span class="n">client_secret</span><span class="o">=</span><span class="n">secret</span><span class="p">,</span>
-<span class="linenos">14</span>    <span class="n">redirect_uri</span><span class="o">=</span><span class="n">redirect_uri</span>
+<span class="linenos">12</span>    <span class="n">client_id</span><span class="o">=</span><span class="n">FB_CLIENT_ID</span><span class="p">,</span>
+<span class="linenos">13</span>    <span class="n">client_secret</span><span class="o">=</span><span class="n">SECRET</span><span class="p">,</span>
+<span class="linenos">14</span>    <span class="n">redirect_uri</span><span class="o">=</span><span class="n">REDIRECT_URI</span>
 <span class="linenos">15</span><span class="p">)</span>
 <span class="linenos">16</span>
 <span class="linenos">17</span><span class="n">authorization_url</span> <span class="o">=</span> <span class="n">freshBooksClient</span><span class="o">.</span><span class="n">get_auth_request_url</span><span class="p">(</span>
@@ -120,7 +121,7 @@
 <span class="linenos">20</span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Go to this URL to authorize: </span><span class="si">{</span><span class="n">authorization_url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="linenos">21</span>
 <span class="linenos">22</span><span class="c1"># Going to that URL will prompt the user to log into FreshBooks and authorize the application.</span>
-<span class="linenos">23</span><span class="c1"># Once authorized, FreshBooks will redirect the user to your `redirect_uri` with the authorization </span>
+<span class="linenos">23</span><span class="c1"># Once authorized, FreshBooks will redirect the user to your `redirect_uri` with the authorization</span>
 <span class="linenos">24</span><span class="c1"># code will be a parameter in the URL.</span>
 <span class="linenos">25</span><span class="n">auth_code</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter the code you get after authorization: &quot;</span><span class="p">)</span>
 <span class="linenos">26</span>

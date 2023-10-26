@@ -17,4 +17,5 @@ Be sure to update the example files with your own credentials in place of `<your
   examples/authorization_flow
   examples/create_invoice
   examples/create_invoice_extended
+  examples/export_clients_outstanding_balance
 ```

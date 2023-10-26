@@ -4,14 +4,14 @@
 from types import SimpleNamespace
 from freshbooks import Client as FreshBooksClient
 
-fb_client_id = "<your client id>"
-secret = "<your client secret>"
-redirect_uri = "<your redirect uri>"
+FB_CLIENT_ID = "<your client id>"
+SECRET = "<your client secret>"
+REDIRECT_URI = "<your redirect uri>"
 
 freshBooksClient = FreshBooksClient(
-    client_id=fb_client_id,
-    client_secret=secret,
-    redirect_uri=redirect_uri
+    client_id=FB_CLIENT_ID,
+    client_secret=SECRET,
+    redirect_uri=REDIRECT_URI
 )
 
 authorization_url = freshBooksClient.get_auth_request_url(
@@ -20,7 +20,7 @@ authorization_url = freshBooksClient.get_auth_request_url(
 print(f"Go to this URL to authorize: {authorization_url}")
 
 # Going to that URL will prompt the user to log into FreshBooks and authorize the application.
-# Once authorized, FreshBooks will redirect the user to your `redirect_uri` with the authorization 
+# Once authorized, FreshBooks will redirect the user to your `redirect_uri` with the authorization
 # code will be a parameter in the URL.
 auth_code = input("Enter the code you get after authorization: ")
 

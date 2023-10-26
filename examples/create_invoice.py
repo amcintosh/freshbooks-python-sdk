@@ -4,17 +4,17 @@ from datetime import date
 from freshbooks import Client as FreshBooksClient
 from freshbooks import FreshBooksError
 
-fb_client_id = "<your client id>"
-access_token = "<your access token>"
-account_id = "<your account id>"
+FB_CLIENT_ID = "<your client id>"
+ACCESS_TOKEN = "<your access token>"
+ACCOUNT_ID = "<your account id>"
 
-freshBooksClient = FreshBooksClient(client_id=fb_client_id, access_token=access_token)
+freshBooksClient = FreshBooksClient(client_id=FB_CLIENT_ID, access_token=ACCESS_TOKEN)
 
 # Create the client
 print("Creating client...")
 try:
     client_data = {"organization": "Python SDK Test Client"}
-    client = freshBooksClient.clients.create(account_id, client_data)
+    client = freshBooksClient.clients.create(ACCOUNT_ID, client_data)
 except FreshBooksError as e:
     print(e)
     print(e.status_code)
@@ -49,7 +49,7 @@ invoice_data = {
 }
 print("Creating invoice...")
 try:
-    invoice = freshBooksClient.invoices.create(account_id, invoice_data)
+    invoice = freshBooksClient.invoices.create(ACCOUNT_ID, invoice_data)
 except FreshBooksError as e:
     print(e)
     print(e.status_code)
@@ -64,7 +64,7 @@ invoice_data = {
     "action_mark_as_sent": True
 }
 try:
-    invoice = freshBooksClient.invoices.update(account_id, invoice.id, invoice_data)
+    invoice = freshBooksClient.invoices.update(ACCOUNT_ID, invoice.id, invoice_data)
 except FreshBooksError as e:
     print(e)
     print(e.status_code)

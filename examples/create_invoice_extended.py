@@ -5,21 +5,21 @@ from datetime import date
 from freshbooks import Client as FreshBooksClient
 from freshbooks import FreshBooksError
 
-fb_client_id = "<your client id>"
-access_token = "<your access token>"
-account_id = "<your account id>"
-destination_email = "<your email>"  # Don't use the same email as the account owner.
+FB_CLIENT_ID = "<your client id>"
+ACCESS_TOKEN = "<your access token>"
+ACCOUNT_ID = "<your account id>"
+DESTINATION_EMAIL = "<your email>"  # Don't use the same email as the account owner.
 
-freshBooksClient = FreshBooksClient(client_id=fb_client_id, access_token=access_token)
+freshBooksClient = FreshBooksClient(client_id=FB_CLIENT_ID, access_token=ACCESS_TOKEN)
 
 # Create the client
 print("Creating client...")
 try:
     client_data = {
-        "email": destination_email,
+        "email": DESTINATION_EMAIL,
         "organization": "Python SDK Test Client"
     }
-    client = freshBooksClient.clients.create(account_id, client_data)
+    client = freshBooksClient.clients.create(ACCOUNT_ID, client_data)
 except FreshBooksError as e:
     print(e)
     print(e.status_code)
@@ -31,12 +31,12 @@ print(f"Created client {client.id}")
 try:
     print("Uploading invoice logo")
     # We upload a file by providing the path to the file.
-    logo = freshBooksClient.images.upload(account_id, file_path="./assets/sample_logo.png")
+    logo = freshBooksClient.images.upload(ACCOUNT_ID, file_path="./assets/sample_logo.png")
 
     print("Uploading invoice attachment")
     # We upload a file by opening it and providing the file stream.
     attachment = freshBooksClient.attachments.upload(
-        account_id, file_stream=open("./assets/sample_attachment.pdf", "rb")
+        ACCOUNT_ID, file_stream=open("./assets/sample_attachment.pdf", "rb")
     )
 except FreshBooksError as e:
     print(e)
@@ -91,7 +91,7 @@ invoice_data = {
 }
 print("Creating invoice...")
 try:
-    invoice = freshBooksClient.invoices.create(account_id, invoice_data)
+    invoice = freshBooksClient.invoices.create(ACCOUNT_ID, invoice_data)
 except FreshBooksError as e:
     print(e)
     print(e.status_code)
@@ -109,7 +109,7 @@ payment_option_data = {
     "has_credit_card": True
 }
 try:
-    freshBooksClient.invoice_payment_options.create(account_id, invoice.id, payment_option_data)
+    freshBooksClient.invoice_payment_options.create(ACCOUNT_ID, invoice.id, payment_option_data)
 except FreshBooksError as e:
     print(e)
     print(e.status_code)
@@ -127,7 +127,7 @@ invoice_data = {
     }
 }
 try:
-    invoice = freshBooksClient.invoices.update(account_id, invoice.id, invoice_data)
+    invoice = freshBooksClient.invoices.update(ACCOUNT_ID, invoice.id, invoice_data)
 except FreshBooksError as e:
     print(e)
     print(e.status_code)

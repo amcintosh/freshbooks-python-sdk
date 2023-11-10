@@ -162,7 +162,7 @@ fetch the results offset by <code class="docutils literal notranslate"><span cla
 <dd><p>Builds the query string parameters from the PaginateBuilder.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">str</span></code></p>
+<dd class="field-odd"><p>:sphinx_autodoc_typehints_type:<code class="docutils literal notranslate"><span class="pre">\:py\:class\:\``str</span></code></p>
 </dd>
 <dt class="field-even">Parameters<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>resource_name</strong> – The type of resource to generate the query string for. Eg. AccountingResource, ProjectsResource</p>
@@ -179,7 +179,7 @@ fetch the results offset by <code class="docutils literal notranslate"><span cla
 <dd><p>Set the page you wish to fetch in a list call, or get the currently set the page.
 When setting, can be chained.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">paginator</span> <span class="o">=</span> <span class="n">PaginateBuilder</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-<span class="go">:rtype: :py:data:`~typing.Union`\[:py:class:`int`, :py:obj:`None`, :py:class:`~freshbooks.builders.Builder`]</span>
+<span class="go">:rtype: :sphinx_autodoc_typehints_type:`\:py\:data\:\`\~typing.Union\`\\ \\\[\:py\:class\:\`int\`\, \:py\:obj\:\`None\`\, \:py\:class\:\`\~freshbooks.builders.Builder\`\]`</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">paginator</span>
 <span class="go">PaginateBuilder(page=1, per_page=3)</span>
@@ -209,7 +209,7 @@ When setting, can be chained.</p>
 or get the currently set per_page. When setting, can be chained.</p>
 <p>The page size is capped at 100.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">paginator</span> <span class="o">=</span> <span class="n">PaginateBuilder</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-<span class="go">:rtype: :py:data:`~typing.Union`\[:py:class:`int`, :py:obj:`None`, :py:class:`~freshbooks.builders.Builder`]</span>
+<span class="go">:rtype: :sphinx_autodoc_typehints_type:`\:py\:data\:\`\~typing.Union\`\\ \\\[\:py\:class\:\`int\`\, \:py\:obj\:\`None\`\, \:py\:class\:\`\~freshbooks.builders.Builder\`\]`</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">paginator</span>
 <span class="go">PaginateBuilder(page=1, per_page=3)</span>
@@ -278,7 +278,7 @@ or <code class="docutils literal notranslate"><span class="pre">_date</span></co
 <p>For date fields, you can pass the iso format <code class="docutils literal notranslate"><span class="pre">2020-10-17</span></code> or a <code class="docutils literal notranslate"><span class="pre">datetime</span></code> or <code class="docutils literal notranslate"><span class="pre">date</span></code> object, which
 will be converted to the proper string format.</p>
 <p>Examples:
-:rtype: :py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.builders.Builder</span></code></p>
+:rtype: :sphinx_autodoc_typehints_type:<code class="docutils literal notranslate"><span class="pre">\:py\:class\:\``~freshbooks.builders.Builder</span></code></p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">filter.between(&quot;amount&quot;,</span> <span class="pre">1,</span> <span class="pre">10)</span></code> will yield filters <code class="docutils literal notranslate"><span class="pre">&amp;search[amount_min]=1&amp;search[amount_max]=10</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">filter.between(&quot;amount_min&quot;,</span> <span class="pre">min=1)</span></code> will yield filter <code class="docutils literal notranslate"><span class="pre">&amp;search[amount_min]=1</span></code></p></li>
@@ -308,7 +308,7 @@ will be converted to the proper string format.</p>
 <code class="docutils literal notranslate"><span class="pre">filter.boolean(&quot;active&quot;,</span> <span class="pre">False)</span></code> will yield the filter <code class="docutils literal notranslate"><span class="pre">&amp;active=false</span></code></p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.builders.Builder</span></code></p>
+<dd class="field-odd"><p>:sphinx_autodoc_typehints_type:<code class="docutils literal notranslate"><span class="pre">\:py\:class\:\``~freshbooks.builders.Builder</span></code></p>
 </dd>
 <dt class="field-even">Parameters<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
@@ -328,7 +328,7 @@ will be converted to the proper string format.</p>
 <dd><p>Builds the query string parameters from the FilterBuilder.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">str</span></code></p>
+<dd class="field-odd"><p>:sphinx_autodoc_typehints_type:<code class="docutils literal notranslate"><span class="pre">\:py\:class\:\``str</span></code></p>
 </dd>
 <dt class="field-even">Parameters<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>resource_name</strong> – The type of resource to generate the query string for. Eg. AccountingResource, ProjectsResource</p>
@@ -347,7 +347,7 @@ by the field. Eg. “updated_since” on Time Entries will return time entries u
 after the provided time.</p>
 <p>The url parameter must be in ISO 8601 format (eg. 2010-10-17T05:45:53Z)</p>
 <p>Example:
-:rtype: :py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.builders.Builder</span></code></p>
+:rtype: :sphinx_autodoc_typehints_type:<code class="docutils literal notranslate"><span class="pre">\:py\:class\:\``~freshbooks.builders.Builder</span></code></p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">filter.date_time(&quot;updated_since&quot;,</span> <span class="pre">&quot;2020-10-17T13:14:07&quot;)</span></code> will yield <code class="docutils literal notranslate"><span class="pre">&amp;updated_since=2020-10-17T13:14:07</span></code></p></li>
 </ul>
@@ -372,7 +372,7 @@ after the provided time.</p>
 <code class="docutils literal notranslate"><span class="pre">filter.equals(&quot;username&quot;,</span> <span class="pre">&quot;Bob&quot;)</span></code> will yield the filter <code class="docutils literal notranslate"><span class="pre">&amp;search[username]=Bob</span></code></p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.builders.Builder</span></code></p>
+<dd class="field-odd"><p>:sphinx_autodoc_typehints_type:<code class="docutils literal notranslate"><span class="pre">\:py\:class\:\``~freshbooks.builders.Builder</span></code></p>
 </dd>
 <dt class="field-even">Parameters<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
@@ -399,7 +399,7 @@ This way we can be as forgiving as possible for developers by accepting:
 of unique cases that may not be handled.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.builders.Builder</span></code></p>
+<dd class="field-odd"><p>:sphinx_autodoc_typehints_type:<code class="docutils literal notranslate"><span class="pre">\:py\:class\:\``~freshbooks.builders.Builder</span></code></p>
 </dd>
 <dt class="field-even">Parameters<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
@@ -421,7 +421,7 @@ of unique cases that may not be handled.</p>
 not Like-match “leaf”.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.builders.Builder</span></code></p>
+<dd class="field-odd"><p>:sphinx_autodoc_typehints_type:<code class="docutils literal notranslate"><span class="pre">\:py\:class\:\``~freshbooks.builders.Builder</span></code></p>
 </dd>
 <dt class="field-even">Parameters<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
@@ -458,7 +458,7 @@ not Like-match “leaf”.</p>
 <dd><p>Builds the query string parameters from the IncludesBuilder.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">str</span></code></p>
+<dd class="field-odd"><p>:sphinx_autodoc_typehints_type:<code class="docutils literal notranslate"><span class="pre">\:py\:class\:\``str</span></code></p>
 </dd>
 <dt class="field-even">Parameters<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>resource_name</strong> – The type of resource to generate the query string for. Eg. AccountingResource, ProjectsResource</p>
@@ -477,7 +477,7 @@ not Like-match “leaf”.</p>
 <code class="docutils literal notranslate"><span class="pre">includes.include(&quot;late_reminders&quot;)</span></code> will yield the filter <code class="docutils literal notranslate"><span class="pre">&amp;include[]=late_reminders</span></code></p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.builders.Builder</span></code></p>
+<dd class="field-odd"><p>:sphinx_autodoc_typehints_type:<code class="docutils literal notranslate"><span class="pre">\:py\:class\:\``~freshbooks.builders.Builder</span></code></p>
 </dd>
 <dt class="field-even">Parameters<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>key</strong> – The key for the resource or data to include</p>
@@ -511,7 +511,7 @@ not Like-match “leaf”.</p>
 <dd><p>Alias for .ascending()</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.builders.Builder</span></code></p>
+<dd class="field-odd"><p>:sphinx_autodoc_typehints_type:<code class="docutils literal notranslate"><span class="pre">\:py\:class\:\``~freshbooks.builders.Builder</span></code></p>
 </dd>
 </dl>
 </dd></dl>
@@ -522,7 +522,7 @@ not Like-match “leaf”.</p>
 <dd><p>Add a sort by the field in ascending order.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.builders.Builder</span></code></p>
+<dd class="field-odd"><p>:sphinx_autodoc_typehints_type:<code class="docutils literal notranslate"><span class="pre">\:py\:class\:\``~freshbooks.builders.Builder</span></code></p>
 </dd>
 <dt class="field-even">Parameters<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>key</strong> – The field for the resource list to be sorted by</p>
@@ -536,7 +536,7 @@ not Like-match “leaf”.</p>
 <dd><p>Builds the query string parameter from the SortBuilder.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">str</span></code></p>
+<dd class="field-odd"><p>:sphinx_autodoc_typehints_type:<code class="docutils literal notranslate"><span class="pre">\:py\:class\:\``str</span></code></p>
 </dd>
 <dt class="field-even">Parameters<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>resource_name</strong> – The type of resource to generate the query string for. Eg. AccountingResource, ProjectsResource</p>
@@ -553,7 +553,7 @@ not Like-match “leaf”.</p>
 <dd><p>Alias for .descending()</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.builders.Builder</span></code></p>
+<dd class="field-odd"><p>:sphinx_autodoc_typehints_type:<code class="docutils literal notranslate"><span class="pre">\:py\:class\:\``~freshbooks.builders.Builder</span></code></p>
 </dd>
 </dl>
 </dd></dl>
@@ -564,7 +564,7 @@ not Like-match “leaf”.</p>
 <dd><p>Add a sort by the field in descending order.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>:py:class:<code class="docutils literal notranslate"><span class="pre">~freshbooks.builders.Builder</span></code></p>
+<dd class="field-odd"><p>:sphinx_autodoc_typehints_type:<code class="docutils literal notranslate"><span class="pre">\:py\:class\:\``~freshbooks.builders.Builder</span></code></p>
 </dd>
 <dt class="field-even">Parameters<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>key</strong> – The field for the resource list to be sorted by</p>

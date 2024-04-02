@@ -55,8 +55,8 @@ class TestEventsResources:
         except FreshBooksError as e:
             assert str(e) == "Requested resource could not be found."
             assert e.status_code == 404
-            assert e.error_code == 5
-            assert e.raw_response == {"code": 5, "message": "Requested resource could not be found.", "details": []}
+            assert e.error_code == 404
+            assert e.raw_response == {"errno": 404, "message": "Requested resource could not be found."}
 
     @httpretty.activate
     def test_get_callback__no_auth(self):
@@ -71,11 +71,11 @@ class TestEventsResources:
         try:
             self.freshBooksClient.callbacks.get(self.account_id, callback_id)
         except FreshBooksError as e:
-            assert str(e) == "The request token failed to authenticate or validate."
+            assert str(e) == "invalid_token: The request token failed to authenticate or validate."
             assert e.status_code == 404
-            assert e.error_code == 16
+            assert e.error_code == 401
             assert e.raw_response == {
-                "code": 16, "message": "The request token failed to authenticate or validate.", "details": []
+                "errno": 401, "message": "invalid_token: The request token failed to authenticate or validate."
             }
 
     @httpretty.activate
@@ -202,12 +202,12 @@ class TestEventsResources:
         try:
             self.freshBooksClient.callbacks.create(self.account_id, payload)
         except FreshBooksError as e:
-            assert str(e) == "Invalid data in this request."
+            assert str(e) == "The request was well-formed but was unable to be followed due to semantic errors."
             assert e.status_code == 400
-            assert e.error_code == 3
+            assert e.error_code == 422
             assert e.error_details == [
-                {"field": "event", "description": "Unrecognized event."},
-                {"field": "uri", "description": "Not a well-formed URL."}
+                "event: Value error, Unrecognized event.",
+                "uri: Input should be a valid URL, relative URL without a base"
             ]
             assert e.raw_response == response
 

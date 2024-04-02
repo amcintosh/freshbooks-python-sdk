@@ -1,6 +1,5 @@
-from typing import Tuple
 from decimal import Decimal
-from typing import Any, List, Optional
+from typing import Any, Optional
 
 from freshbooks.api.accounting import AccountingResource
 from freshbooks.api.resource import HttpVerbs
@@ -21,18 +20,6 @@ class EventsResource(AccountingResource):
                 self.base_url, account_id, self.accounting_path, resource_id)
         return "{}/events/account/{}/{}".format(self.base_url, account_id, self.accounting_path)
 
-    def _extract_error_details(self, errors: dict) -> Tuple[str, Optional[int], Optional[List[dict]]]:
-        if not errors:  # pragma: no cover
-            return "Unknown error", None, None
-
-        details = []
-        for detail in errors.get("details", []):
-            if detail.get("@type") == "type.googleapis.com/google.rpc.BadRequest" and detail.get('fieldViolations'):
-                for field in detail.get('fieldViolations'):
-                    details.append(field)
-
-        return errors["message"], int(errors["code"]), details
-
     def _request(self, url: str, method: str, data: Optional[dict] = None) -> Any:
         response = self._send_request(url, method, data)
 
@@ -49,7 +36,9 @@ class EventsResource(AccountingResource):
             raise FreshBooksError(status, "Failed to parse response", raw_response=response.text)
 
         if status >= 400:
-            error_message, error_code, error_details = self._extract_error_details(content)
+            error_message = content.get("message", "Unknown error")
+            error_code = content.get("errno")
+            error_details = content.get("details", [])
             raise FreshBooksError(
                 status, error_message, error_code=error_code, error_details=error_details, raw_response=content
             )

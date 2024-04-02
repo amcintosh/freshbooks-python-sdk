@@ -4,7 +4,8 @@
 
 - Add Ledger Accounts resource
 - Properly handle some project error messages
-- `access_token_expires_at` is now  set as UTC
+- `access_token_expires_at` is now set as UTC
+- Handle new API version accounting and webhook event errors
 
 ## 1.2.1
 

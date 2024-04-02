@@ -1,28 +1,8 @@
 {
-    "code": 3,
-    "message": "Invalid data in this request.",
+    "errno": 422,
+    "message": "The request was well-formed but was unable to be followed due to semantic errors.",
     "details": [
-        {
-            "@type": "type.googleapis.com/google.rpc.BadRequest",
-            "fieldViolations": [
-                {
-                    "field": "event",
-                    "description": "Unrecognized event."
-                },
-                {
-                    "field": "uri",
-                    "description": "Not a well-formed URL."
-                }
-            ]
-        },
-        {
-            "@type": "type.googleapis.com/google.rpc.Help",
-            "links": [
-                {
-                    "description": "API Documentation",
-                    "url": "https://www.freshbooks.com/api/webhooks"
-                }
-            ]
-        }
+        "event: Value error, Unrecognized event.",
+        "uri: Input should be a valid URL, relative URL without a base"
     ]
 }

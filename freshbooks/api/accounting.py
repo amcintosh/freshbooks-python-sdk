@@ -1,6 +1,6 @@
 from decimal import Decimal
 from types import SimpleNamespace
-from typing import Any, List, Optional, Tuple, Union
+from typing import Any, List, Optional, Tuple
 
 from freshbooks.api.resource import HttpVerbs, Resource
 from freshbooks.builders import Builder
@@ -28,30 +28,14 @@ class AccountingResource(Resource):
                 self.base_url, account_id, self.accounting_path, resource_id)
         return "{}/accounting/account/{}/{}".format(self.base_url, account_id, self.accounting_path)
 
-    def _extract_error(self, errors: Union[list, dict]) -> Tuple[str, int, Optional[List[dict]]]:
-        if isinstance(errors, list):
-            return errors[0]["message"], int(errors[0]["errno"]), errors
-        return errors["message"], int(errors["errno"]), None  # pragma: no cover
-
-    def _extract_new_error(self, response_data: dict) -> Tuple[str, Optional[int], Optional[List[dict]]]:
-        message = response_data["message"]
-        code = None
-        details = []
-        for detail in response_data.get("details", []):
-            if detail.get("@type") == "type.googleapis.com/google.rpc.ErrorInfo":  # pragma: no branch
-                code = int(detail.get("reason"))
-                if detail.get("metadata"):  # pragma: no branch
-                    details.append(detail["metadata"])
-                if detail.get("metadata", {}).get("message"):  # pragma: no branch
-                    message = detail["metadata"]["message"]
-        return message, code, details
-
     def _handle_error(self, response_data: dict) -> Tuple[str, Optional[int], Optional[List[dict]]]:
-        if response_data.get("response", {}).get("errors"):
-            return self._extract_error(response_data["response"]["errors"])
-        elif response_data.get("message") and response_data.get("code"):
-            return self._extract_new_error(response_data)
-        return "Unknown error", None, None  # pragma: no cover
+        errors = response_data.get("response", {}).get("errors")
+        if not errors:
+            return "Unknown error", None, None  # pragma: no cover
+        elif isinstance(errors, list):
+            return errors[0]["message"], int(errors[0]["errno"]), errors
+        else:
+            return errors["message"], int(errors["errno"]), None  # pragma: no cover
 
     def _request(self, url: str, method: str, data: Optional[dict] = None) -> Any:
         response = self._send_request(url, method, data)

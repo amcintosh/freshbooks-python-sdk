@@ -1,5 +1,4 @@
 {
-    "code": 5,
-    "message": "Requested resource could not be found.",
-    "details": []
+    "errno": 404,
+    "message": "Requested resource could not be found."
 }

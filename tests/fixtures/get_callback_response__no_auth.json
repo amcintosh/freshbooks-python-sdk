@@ -1,5 +1,4 @@
 {
-    "code": 16,
-    "message": "The request token failed to authenticate or validate.",
-    "details": []
+    "errno": 401,
+    "message": "invalid_token: The request token failed to authenticate or validate."
 }

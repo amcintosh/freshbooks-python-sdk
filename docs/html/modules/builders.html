@@ -142,7 +142,7 @@
 <span id="paginator"></span><h2>Paginator<a class="headerlink" href="#module-freshbooks.builders.paginator" title="Link to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="freshbooks.builders.paginator.PaginateBuilder">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">freshbooks.builders.paginator.</span></span><span class="sig-name descname"><span class="pre">PaginateBuilder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">page</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">per_page</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.builders.paginator.PaginateBuilder" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">freshbooks.builders.paginator.</span></span><span class="sig-name descname"><span class="pre">PaginateBuilder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">page</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">per_page</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.builders.paginator.PaginateBuilder" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Builder</span></code></p>
 <p>Builder for making paginated list queries.</p>
 <p>Has two attributes, <code class="docutils literal notranslate"><span class="pre">page</span></code> and <code class="docutils literal notranslate"><span class="pre">per_page</span></code>. When a <code class="docutils literal notranslate"><span class="pre">PaginateBuilder</span></code> object is passed
@@ -161,29 +161,24 @@ fetch the results offset by <code class="docutils literal notranslate"><span cla
 </div>
 <dl class="py method">
 <dt class="sig sig-object py" id="freshbooks.builders.paginator.PaginateBuilder.build">
-<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resource_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.builders.paginator.PaginateBuilder.build" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resource_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#freshbooks.builders.paginator.PaginateBuilder.build" title="Link to this definition"></a></dt>
 <dd><p>Builds the query string parameters from the PaginateBuilder.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>:sphinx_autodoc_typehints_type:<code class="docutils literal notranslate"><span class="pre">\:py\:class\:\``str</span></code></p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>resource_name</strong> – The type of resource to generate the query string for. Eg. AccountingResource, ProjectsResource</p>
 </dd>
-<dt class="field-even">Parameters<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>resource_name</strong> – The type of resource to generate the query string for. Eg. AccountingResource, ProjectsResource</p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The built query string</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The built query string</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="freshbooks.builders.paginator.PaginateBuilder.page">
-<span class="sig-name descname"><span class="pre">page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">page</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.builders.paginator.PaginateBuilder.page" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">page</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Builder</span></span></span><a class="headerlink" href="#freshbooks.builders.paginator.PaginateBuilder.page" title="Link to this definition"></a></dt>
 <dd><p>Set the page you wish to fetch in a list call, or get the currently set the page.
 When setting, can be chained.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">paginator</span> <span class="o">=</span> <span class="n">PaginateBuilder</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-<span class="go">:rtype: :sphinx_autodoc_typehints_type:`\:py\:data\:\`\~typing.Union\`\\ \\\[\:py\:class\:\`int\`\, \:py\:obj\:\`None\`\, \:py\:class\:\`\~freshbooks.builders.Builder\`\]`</span>
-
 <span class="gp">&gt;&gt;&gt; </span><span class="n">paginator</span>
 <span class="go">PaginateBuilder(page=1, per_page=3)</span>
 
@@ -207,13 +202,11 @@ When setting, can be chained.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="freshbooks.builders.paginator.PaginateBuilder.per_page">
-<span class="sig-name descname"><span class="pre">per_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">per_page</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.builders.paginator.PaginateBuilder.per_page" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">per_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">per_page</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Builder</span></span></span><a class="headerlink" href="#freshbooks.builders.paginator.PaginateBuilder.per_page" title="Link to this definition"></a></dt>
 <dd><p>Set the number of results you wish to fetch in a page of a list call,
 or get the currently set per_page. When setting, can be chained.</p>
 <p>The page size is capped at 100.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">paginator</span> <span class="o">=</span> <span class="n">PaginateBuilder</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-<span class="go">:rtype: :sphinx_autodoc_typehints_type:`\:py\:data\:\`\~typing.Union\`\\ \\\[\:py\:class\:\`int\`\, \:py\:obj\:\`None\`\, \:py\:class\:\`\~freshbooks.builders.Builder\`\]`</span>
-
 <span class="gp">&gt;&gt;&gt; </span><span class="n">paginator</span>
 <span class="go">PaginateBuilder(page=1, per_page=3)</span>
 
@@ -273,15 +266,14 @@ which can be chained together.</p>
 </div>
 <dl class="py method">
 <dt class="sig sig-object py" id="freshbooks.builders.filter.FilterBuilder.between">
-<span class="sig-name descname"><span class="pre">between</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.builders.filter.FilterBuilder.between" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">between</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Builder</span></span></span><a class="headerlink" href="#freshbooks.builders.filter.FilterBuilder.between" title="Link to this definition"></a></dt>
 <dd><p>Filters results where the provided field is between two values.</p>
 <p>In general ‘between’ filters end in a <code class="docutils literal notranslate"><span class="pre">_min</span></code> or <code class="docutils literal notranslate"><span class="pre">_max</span></code> (as in <code class="docutils literal notranslate"><span class="pre">amount_min</span></code> or <code class="docutils literal notranslate"><span class="pre">amount_max</span></code>)
 or <code class="docutils literal notranslate"><span class="pre">_date</span></code> (as in <code class="docutils literal notranslate"><span class="pre">start_date</span></code>, <code class="docutils literal notranslate"><span class="pre">end_date</span></code>). If the provided field does not end in
 <code class="docutils literal notranslate"><span class="pre">_min</span></code>/<code class="docutils literal notranslate"><span class="pre">_max</span></code> or <code class="docutils literal notranslate"><span class="pre">_date</span></code>, then the appropriate <code class="docutils literal notranslate"><span class="pre">_min</span></code>/<code class="docutils literal notranslate"><span class="pre">_max</span></code> will be appended.</p>
 <p>For date fields, you can pass the iso format <code class="docutils literal notranslate"><span class="pre">2020-10-17</span></code> or a <code class="docutils literal notranslate"><span class="pre">datetime</span></code> or <code class="docutils literal notranslate"><span class="pre">date</span></code> object, which
 will be converted to the proper string format.</p>
-<p>Examples:
-:rtype: :sphinx_autodoc_typehints_type:<code class="docutils literal notranslate"><span class="pre">\:py\:class\:\``~freshbooks.builders.Builder</span></code></p>
+<p>Examples:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">filter.between(&quot;amount&quot;,</span> <span class="pre">1,</span> <span class="pre">10)</span></code> will yield filters <code class="docutils literal notranslate"><span class="pre">&amp;search[amount_min]=1&amp;search[amount_max]=10</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">filter.between(&quot;amount_min&quot;,</span> <span class="pre">min=1)</span></code> will yield filter <code class="docutils literal notranslate"><span class="pre">&amp;search[amount_min]=1</span></code></p></li>
@@ -305,52 +297,45 @@ will be converted to the proper string format.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="freshbooks.builders.filter.FilterBuilder.boolean">
-<span class="sig-name descname"><span class="pre">boolean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.builders.filter.FilterBuilder.boolean" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">boolean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Builder</span></span></span><a class="headerlink" href="#freshbooks.builders.filter.FilterBuilder.boolean" title="Link to this definition"></a></dt>
 <dd><p>Filters results where the field is equal to true or false.</p>
 <p>Example:
 <code class="docutils literal notranslate"><span class="pre">filter.boolean(&quot;active&quot;,</span> <span class="pre">False)</span></code> will yield the filter <code class="docutils literal notranslate"><span class="pre">&amp;active=false</span></code></p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>:sphinx_autodoc_typehints_type:<code class="docutils literal notranslate"><span class="pre">\:py\:class\:\``~freshbooks.builders.Builder</span></code></p>
-</dd>
-<dt class="field-even">Parameters<span class="colon">:</span></dt>
-<dd class="field-even"><ul class="simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
 <li><p><strong>field</strong> – The API response field to filter on</p></li>
 <li><p><strong>value</strong> – True or False</p></li>
 </ul>
 </dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The FilterBuilder instance</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The FilterBuilder instance</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="freshbooks.builders.filter.FilterBuilder.build">
-<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resource_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.builders.filter.FilterBuilder.build" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resource_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#freshbooks.builders.filter.FilterBuilder.build" title="Link to this definition"></a></dt>
 <dd><p>Builds the query string parameters from the FilterBuilder.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>:sphinx_autodoc_typehints_type:<code class="docutils literal notranslate"><span class="pre">\:py\:class\:\``str</span></code></p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>resource_name</strong> – The type of resource to generate the query string for. Eg. AccountingResource, ProjectsResource</p>
 </dd>
-<dt class="field-even">Parameters<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>resource_name</strong> – The type of resource to generate the query string for. Eg. AccountingResource, ProjectsResource</p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The built query string</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The built query string</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="freshbooks.builders.filter.FilterBuilder.date_time">
-<span class="sig-name descname"><span class="pre">date_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.builders.filter.FilterBuilder.date_time" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">date_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">datetime</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Builder</span></span></span><a class="headerlink" href="#freshbooks.builders.filter.FilterBuilder.date_time" title="Link to this definition"></a></dt>
 <dd><p>Filters for entries that come before or after a particular time, as specified
 by the field. Eg. “updated_since” on Time Entries will return time entries updated
 after the provided time.</p>
 <p>The url parameter must be in ISO 8601 format (eg. 2010-10-17T05:45:53Z)</p>
-<p>Example:
-:rtype: :sphinx_autodoc_typehints_type:<code class="docutils literal notranslate"><span class="pre">\:py\:class\:\``~freshbooks.builders.Builder</span></code></p>
+<p>Example:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">filter.date_time(&quot;updated_since&quot;,</span> <span class="pre">&quot;2020-10-17T13:14:07&quot;)</span></code> will yield <code class="docutils literal notranslate"><span class="pre">&amp;updated_since=2020-10-17T13:14:07</span></code></p></li>
 </ul>
@@ -369,29 +354,26 @@ after the provided time.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="freshbooks.builders.filter.FilterBuilder.equals">
-<span class="sig-name descname"><span class="pre">equals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.builders.filter.FilterBuilder.equals" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">equals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Builder</span></span></span><a class="headerlink" href="#freshbooks.builders.filter.FilterBuilder.equals" title="Link to this definition"></a></dt>
 <dd><p>Filters results where the field is equal to the provided value.</p>
 <p>Example:
 <code class="docutils literal notranslate"><span class="pre">filter.equals(&quot;username&quot;,</span> <span class="pre">&quot;Bob&quot;)</span></code> will yield the filter <code class="docutils literal notranslate"><span class="pre">&amp;search[username]=Bob</span></code></p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>:sphinx_autodoc_typehints_type:<code class="docutils literal notranslate"><span class="pre">\:py\:class\:\``~freshbooks.builders.Builder</span></code></p>
-</dd>
-<dt class="field-even">Parameters<span class="colon">:</span></dt>
-<dd class="field-even"><ul class="simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
 <li><p><strong>field</strong> – The API response field to filter on</p></li>
 <li><p><strong>value</strong> – The value the field should equal</p></li>
 </ul>
 </dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The FilterBuilder instance</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The FilterBuilder instance</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="freshbooks.builders.filter.FilterBuilder.in_list">
-<span class="sig-name descname"><span class="pre">in_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.builders.filter.FilterBuilder.in_list" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">in_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Builder</span></span></span><a class="headerlink" href="#freshbooks.builders.filter.FilterBuilder.in_list" title="Link to this definition"></a></dt>
 <dd><p>Filters if the provided field matches a value in a list.</p>
 <p>In general, an ‘in’ filter will be bound to the plural form of the field.
 Eg. <code class="docutils literal notranslate"><span class="pre">userid</span></code> for an equal filter, <code class="docutils literal notranslate"><span class="pre">userids</span></code> for a list filter.</p>
@@ -401,39 +383,33 @@ This way we can be as forgiving as possible for developers by accepting:
 <p>Of course the FreshBooks API is not 100% consistent, so there are a couple
 of unique cases that may not be handled.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>:sphinx_autodoc_typehints_type:<code class="docutils literal notranslate"><span class="pre">\:py\:class\:\``~freshbooks.builders.Builder</span></code></p>
-</dd>
-<dt class="field-even">Parameters<span class="colon">:</span></dt>
-<dd class="field-even"><ul class="simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
 <li><p><strong>field</strong> – The API response field to filter on</p></li>
 <li><p><strong>values</strong> – List of values the field should one of</p></li>
 </ul>
 </dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The FilterBuilder instance</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The FilterBuilder instance</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="freshbooks.builders.filter.FilterBuilder.like">
-<span class="sig-name descname"><span class="pre">like</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.builders.filter.FilterBuilder.like" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">like</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Builder</span></span></span><a class="headerlink" href="#freshbooks.builders.filter.FilterBuilder.like" title="Link to this definition"></a></dt>
 <dd><p>Filters for a match contained within the field being searched. For example,
 “leaf” will Like-match “aleaf” and “leafy”, but not “leav”, and “leafs” would
 not Like-match “leaf”.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>:sphinx_autodoc_typehints_type:<code class="docutils literal notranslate"><span class="pre">\:py\:class\:\``~freshbooks.builders.Builder</span></code></p>
-</dd>
-<dt class="field-even">Parameters<span class="colon">:</span></dt>
-<dd class="field-even"><ul class="simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
 <li><p><strong>field</strong> – The API response field to filter on</p></li>
 <li><p><strong>value</strong> – The value the field should contain</p></li>
 </ul>
 </dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The FilterBuilder instance</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The FilterBuilder instance</p>
 </dd>
 </dl>
 </dd></dl>
@@ -457,36 +433,30 @@ not Like-match “leaf”.</p>
 </div>
 <dl class="py method">
 <dt class="sig sig-object py" id="freshbooks.builders.includes.IncludesBuilder.build">
-<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resource_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.builders.includes.IncludesBuilder.build" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resource_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#freshbooks.builders.includes.IncludesBuilder.build" title="Link to this definition"></a></dt>
 <dd><p>Builds the query string parameters from the IncludesBuilder.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>:sphinx_autodoc_typehints_type:<code class="docutils literal notranslate"><span class="pre">\:py\:class\:\``str</span></code></p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>resource_name</strong> – The type of resource to generate the query string for. Eg. AccountingResource, ProjectsResource</p>
 </dd>
-<dt class="field-even">Parameters<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>resource_name</strong> – The type of resource to generate the query string for. Eg. AccountingResource, ProjectsResource</p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The built query string</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The built query string</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="freshbooks.builders.includes.IncludesBuilder.include">
-<span class="sig-name descname"><span class="pre">include</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.builders.includes.IncludesBuilder.include" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">include</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Builder</span></span></span><a class="headerlink" href="#freshbooks.builders.includes.IncludesBuilder.include" title="Link to this definition"></a></dt>
 <dd><p>Add an include key to the builder.</p>
 <p>Example:
 <code class="docutils literal notranslate"><span class="pre">includes.include(&quot;late_reminders&quot;)</span></code> will yield the filter <code class="docutils literal notranslate"><span class="pre">&amp;include[]=late_reminders</span></code></p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>:sphinx_autodoc_typehints_type:<code class="docutils literal notranslate"><span class="pre">\:py\:class\:\``~freshbooks.builders.Builder</span></code></p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>key</strong> – The key for the resource or data to include</p>
 </dd>
-<dt class="field-even">Parameters<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>key</strong> – The key for the resource or data to include</p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The IncludesBuilder instance</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The IncludesBuilder instance</p>
 </dd>
 </dl>
 </dd></dl>
@@ -510,67 +480,48 @@ not Like-match “leaf”.</p>
 </div>
 <dl class="py method">
 <dt class="sig sig-object py" id="freshbooks.builders.sort.SortBuilder.asc">
-<span class="sig-name descname"><span class="pre">asc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.builders.sort.SortBuilder.asc" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">asc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Builder</span></span></span><a class="headerlink" href="#freshbooks.builders.sort.SortBuilder.asc" title="Link to this definition"></a></dt>
 <dd><p>Alias for .ascending()</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>:sphinx_autodoc_typehints_type:<code class="docutils literal notranslate"><span class="pre">\:py\:class\:\``~freshbooks.builders.Builder</span></code></p>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="freshbooks.builders.sort.SortBuilder.ascending">
-<span class="sig-name descname"><span class="pre">ascending</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.builders.sort.SortBuilder.ascending" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">ascending</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Builder</span></span></span><a class="headerlink" href="#freshbooks.builders.sort.SortBuilder.ascending" title="Link to this definition"></a></dt>
 <dd><p>Add a sort by the field in ascending order.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>:sphinx_autodoc_typehints_type:<code class="docutils literal notranslate"><span class="pre">\:py\:class\:\``~freshbooks.builders.Builder</span></code></p>
-</dd>
-<dt class="field-even">Parameters<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>key</strong> – The field for the resource list to be sorted by</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>key</strong> – The field for the resource list to be sorted by</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="freshbooks.builders.sort.SortBuilder.build">
-<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resource_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.builders.sort.SortBuilder.build" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resource_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#freshbooks.builders.sort.SortBuilder.build" title="Link to this definition"></a></dt>
 <dd><p>Builds the query string parameter from the SortBuilder.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>:sphinx_autodoc_typehints_type:<code class="docutils literal notranslate"><span class="pre">\:py\:class\:\``str</span></code></p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>resource_name</strong> – The type of resource to generate the query string for. Eg. AccountingResource, ProjectsResource</p>
 </dd>
-<dt class="field-even">Parameters<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>resource_name</strong> – The type of resource to generate the query string for. Eg. AccountingResource, ProjectsResource</p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The built query string</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The built query string</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="freshbooks.builders.sort.SortBuilder.desc">
-<span class="sig-name descname"><span class="pre">desc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.builders.sort.SortBuilder.desc" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">desc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Builder</span></span></span><a class="headerlink" href="#freshbooks.builders.sort.SortBuilder.desc" title="Link to this definition"></a></dt>
 <dd><p>Alias for .descending()</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>:sphinx_autodoc_typehints_type:<code class="docutils literal notranslate"><span class="pre">\:py\:class\:\``~freshbooks.builders.Builder</span></code></p>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="freshbooks.builders.sort.SortBuilder.descending">
-<span class="sig-name descname"><span class="pre">descending</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.builders.sort.SortBuilder.descending" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">descending</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Builder</span></span></span><a class="headerlink" href="#freshbooks.builders.sort.SortBuilder.descending" title="Link to this definition"></a></dt>
 <dd><p>Add a sort by the field in descending order.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>:sphinx_autodoc_typehints_type:<code class="docutils literal notranslate"><span class="pre">\:py\:class\:\``~freshbooks.builders.Builder</span></code></p>
-</dd>
-<dt class="field-even">Parameters<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>key</strong> – The field for the resource list to be sorted by</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>key</strong> – The field for the resource list to be sorted by</p>
 </dd>
 </dl>
 </dd></dl>

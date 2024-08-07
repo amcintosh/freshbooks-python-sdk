@@ -134,7 +134,7 @@
 <h1>Client<a class="headerlink" href="#client" title="Link to this heading"></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="freshbooks.client.Client">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">freshbooks.client.</span></span><span class="sig-name descname"><span class="pre">Client</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">client_secret</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">redirect_uri</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">access_token</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">refresh_token</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_agent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">api_version</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auto_retry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.client.Client" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">freshbooks.client.</span></span><span class="sig-name descname"><span class="pre">Client</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">client_secret</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">redirect_uri</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">access_token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">refresh_token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_agent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">api_version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">30</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auto_retry</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.client.Client" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py property">
 <dt class="sig sig-object py" id="freshbooks.client.Client.attachments">
@@ -181,14 +181,9 @@ get, list, create, update, delete, resend_verification, verify</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="freshbooks.client.Client.current_user">
-<span class="sig-name descname"><span class="pre">current_user</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.client.Client.current_user" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">current_user</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="models.html#freshbooks.models.Identity" title="freshbooks.models.Identity"><span class="pre">Identity</span></a></span></span><a class="headerlink" href="#freshbooks.client.Client.current_user" title="Link to this definition"></a></dt>
 <dd><p>The identity details of the currently authenticated user.</p>
 <p>See <a class="reference external" href="https://www.freshbooks.com/api/me_endpoint">FreshBooks API - Business, Roles, and Identity</a></p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>:sphinx_autodoc_typehints_type:<code class="docutils literal notranslate"><span class="pre">\:py\:class\:\``~freshbooks.models.Identity</span></code></p>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="py property">
@@ -217,24 +212,21 @@ get, list, create, update, delete, resend_verification, verify</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="freshbooks.client.Client.get_access_token">
-<span class="sig-name descname"><span class="pre">get_access_token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.client.Client.get_access_token" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_access_token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">SimpleNamespace</span></span></span><a class="headerlink" href="#freshbooks.client.Client.get_access_token" title="Link to this definition"></a></dt>
 <dd><p>Makes a call to the FreshBooks token URL to get an access_token.</p>
 <p>This requires the access_grant code obtained after the user is redirected by the authorization
 step. See <code class="docutils literal notranslate"><span class="pre">freshbooks.client.Client.get_auth_request_url</span></code>.</p>
 <p>This call sets the <code class="docutils literal notranslate"><span class="pre">access_token</span></code>, <code class="docutils literal notranslate"><span class="pre">refresh_token</span></code>, and <code class="docutils literal notranslate"><span class="pre">access_token_expires_at</span></code> attributes
 on the Client instance and also returns those values in an object.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>:sphinx_autodoc_typehints_type:<code class="docutils literal notranslate"><span class="pre">\:py\:class\:\``~types.SimpleNamespace</span></code></p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>code</strong> – access_grant code from the authorization redirect</p>
 </dd>
-<dt class="field-even">Parameters<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>code</strong> – access_grant code from the authorization redirect</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Simple namespace containing <code class="docutils literal notranslate"><span class="pre">access_token</span></code>, <code class="docutils literal notranslate"><span class="pre">refresh_token</span></code>, and <code class="docutils literal notranslate"><span class="pre">access_token_expires_at</span></code></p>
 </dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Simple namespace containing <code class="docutils literal notranslate"><span class="pre">access_token</span></code>, <code class="docutils literal notranslate"><span class="pre">refresh_token</span></code>, and <code class="docutils literal notranslate"><span class="pre">access_token_expires_at</span></code></p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><ul class="simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
 <li><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksError" title="freshbooks.errors.FreshBooksError"><strong>FreshBooksError</strong></a> – If the call fails to return a access token.</p></li>
 <li><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksClientConfigError" title="freshbooks.errors.FreshBooksClientConfigError"><strong>FreshBooksClientConfigError</strong></a> – If client_secret and redirect_uri are not set on the client instance.</p></li>
 </ul>
@@ -244,7 +236,7 @@ on the Client instance and also returns those values in an object.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="freshbooks.client.Client.get_auth_request_url">
-<span class="sig-name descname"><span class="pre">get_auth_request_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scopes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.client.Client.get_auth_request_url" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_auth_request_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scopes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#freshbooks.client.Client.get_auth_request_url" title="Link to this definition"></a></dt>
 <dd><p>Returns the url that a client needs to request an oauth grant from the server.</p>
 <p>To get an oauth access token, send your user to this URL. The user will be prompted to
 log in to FreshBooks, after which they will be redirected to the <code class="docutils literal notranslate"><span class="pre">redirect_uri</span></code> set on
@@ -254,17 +246,14 @@ access token by calling <code class="docutils literal notranslate"><span class="
 <p>If scopes are not specified, then the access token will be given the default scopes your
 application is registered for.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>:sphinx_autodoc_typehints_type:<code class="docutils literal notranslate"><span class="pre">\:py\:class\:\``str</span></code></p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>scopes</strong> – List of scopes if your want an access token with only a subset of your registered scopes</p>
 </dd>
-<dt class="field-even">Parameters<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>scopes</strong> – List of scopes if your want an access token with only a subset of your registered scopes</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The URL for the authorization request</p>
 </dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The URL for the authorization request</p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksClientConfigError" title="freshbooks.errors.FreshBooksClientConfigError"><strong>FreshBooksClientConfigError</strong></a> – If redirect_uri is not set on the client instance.</p>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksClientConfigError" title="freshbooks.errors.FreshBooksClientConfigError"><strong>FreshBooksClientConfigError</strong></a> – If redirect_uri is not set on the client instance.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -325,7 +314,7 @@ application is registered for.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="freshbooks.client.Client.refresh_access_token">
-<span class="sig-name descname"><span class="pre">refresh_access_token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">refresh_token</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.client.Client.refresh_access_token" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">refresh_access_token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">refresh_token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">SimpleNamespace</span></span></span><a class="headerlink" href="#freshbooks.client.Client.refresh_access_token" title="Link to this definition"></a></dt>
 <dd><p>Makes a call to the FreshBooks token URL to refresh an access_token.</p>
 <p>If <code class="docutils literal notranslate"><span class="pre">refresh_token</span></code> is provided, it will call to refresh it, otherwise it will use the
 <code class="docutils literal notranslate"><span class="pre">refresh_token</span></code> on the Client instance.</p>
@@ -333,17 +322,14 @@ application is registered for.</p>
 on the Client instance to the new values from the refresh call, and also returns those values
 in an object.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>:sphinx_autodoc_typehints_type:<code class="docutils literal notranslate"><span class="pre">\:py\:class\:\``~types.SimpleNamespace</span></code></p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>refresh_token</strong> – (Optional) refresh_token from initial <code class="docutils literal notranslate"><span class="pre">get_access_token</span></code> call</p>
 </dd>
-<dt class="field-even">Parameters<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>refresh_token</strong> – (Optional) refresh_token from initial <code class="docutils literal notranslate"><span class="pre">get_access_token</span></code> call</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Simple namespace containing <code class="docutils literal notranslate"><span class="pre">access_token</span></code>, <code class="docutils literal notranslate"><span class="pre">refresh_token</span></code>, and <code class="docutils literal notranslate"><span class="pre">access_token_expires_at</span></code></p>
 </dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Simple namespace containing <code class="docutils literal notranslate"><span class="pre">access_token</span></code>, <code class="docutils literal notranslate"><span class="pre">refresh_token</span></code>, and <code class="docutils literal notranslate"><span class="pre">access_token_expires_at</span></code></p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksClientConfigError" title="freshbooks.errors.FreshBooksClientConfigError"><strong>FreshBooksClientConfigError</strong></a> – If refresh_token is not set on the client instance and is not provided.</p>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="errors.html#freshbooks.errors.FreshBooksClientConfigError" title="freshbooks.errors.FreshBooksClientConfigError"><strong>FreshBooksClientConfigError</strong></a> – If refresh_token is not set on the client instance and is not provided.</p>
 </dd>
 </dl>
 </dd></dl>

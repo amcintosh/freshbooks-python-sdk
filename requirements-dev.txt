@@ -6,7 +6,7 @@ httpretty
 flake8
 mypy
 sphinx
-sphinx-autodoc-typehints
+sphinx-autodoc2
 sphinx-rtd-theme
 enum-tools[sphinx]
 myst-parser

@@ -73,7 +73,7 @@ presentation = {
     "theme_primary_color": "#1fab13",
     "theme_layout": "simple",
     "theme_font_name": "modern",
-    "image_logo_src": f"/uploads/images/{logo.jwt}"  # The logo uplad response contains a jwt token
+    "image_logo_src": f"/uploads/images/{logo.jwt}"  # The logo upload response contains a jwt token
 }
 
 invoice_data = {

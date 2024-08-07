@@ -39,8 +39,7 @@ release = version
 # ones.
 extensions = [
     "myst_parser",
-    "sphinx.ext.autodoc",
-    "sphinx_autodoc_typehints",
+    "autodoc2",
     "sphinx.ext.doctest",
     "sphinx.ext.intersphinx",
     "sphinx.ext.todo",
@@ -78,6 +77,20 @@ html_static_path = ['_static']
 
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = True
+
+autodoc2_packages = [
+    {
+        "path": "../../freshbooks",
+        "auto_mode": False
+    }
+]
+"""
+autodoc2_docstring_parser_regexes = [
+    # this will render all docstrings as Markdown
+    (r".*", "myst"),
+]
+autodoc2_docstrings = "all"
+"""
 
 # Allow markdown in docstrings
 

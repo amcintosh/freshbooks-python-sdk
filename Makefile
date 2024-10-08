@@ -1,10 +1,6 @@
 .PHONY: env, install-dev, tag, clean
 .PHONY: generate-docs, test, check-style, check-types
 
-PROJECT=freshbooks-python-sdk
-GIT_URL="https://${GIT_CREDENTIALS_USR}:${GIT_CREDENTIALS_PSW}@github.com/freshbooks/$(PROJECT).git"
-GIT_RELEASE_WORKING_DIR=/tmp/$(PROJECT)
-
 ifeq ($(BRANCH_NAME),)
 BRANCH_NAME="$$(git rev-parse --abbrev-ref HEAD)"
 endif

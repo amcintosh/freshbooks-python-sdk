@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.3.0
+
 ## 
 
 - Add Ledger Accounts resource

@@ -7,7 +7,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Webhook Callbacks &mdash; freshbooks-sdk 1.3.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
 
   
@@ -135,14 +135,14 @@ signature generated from a JSON string of the form data sent in the request and 
 originally sent in the webhook verification process as a secret.</p>
 <p>From FreshBooks’ documentation, the signature can be generated in Python using:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Using Flask</span>
-<span class="kn">import</span> <span class="nn">base64</span>
-<span class="kn">import</span> <span class="nn">hmac</span>
-<span class="kn">import</span> <span class="nn">hashlib</span>
-<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">base64</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">hmac</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">hashlib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
 
-<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span>
 
-<span class="k">def</span> <span class="nf">signature_match</span><span class="p">(</span><span class="n">verifier</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">signature_match</span><span class="p">(</span><span class="n">verifier</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
    <span class="n">signature</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;X-FreshBooks-Hmac-SHA256&#39;</span><span class="p">)</span>
    <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">)</span>
 

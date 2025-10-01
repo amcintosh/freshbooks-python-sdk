@@ -7,7 +7,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Making API Calls &mdash; freshbooks-sdk 1.3.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
 
   
@@ -127,7 +127,7 @@ The raw json-parsed dictionary can also be accessed via the <code class="docutil
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">vis_state</span></code> returns an Enum. See <a class="reference external" href="https://www.freshbooks.com/api/active_deleted">FreshBooks API - Active and Deleted Objects</a>
 for details.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">freshbooks</span> <span class="kn">import</span> <span class="n">VisState</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">freshbooks</span><span class="w"> </span><span class="kn">import</span> <span class="n">VisState</span>
 
 <span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">vis_state</span> <span class="o">==</span> <span class="n">VisState</span><span class="o">.</span><span class="n">ACTIVE</span>
 <span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">vis_state</span> <span class="o">==</span> <span class="mi">0</span>
@@ -180,7 +180,7 @@ as if a <code class="docutils literal notranslate"><span class="pre">get</span><
 This exception class contains the error message, HTTP response code, FreshBooks-specific error number if one exists,
 and the HTTP response body.</p>
 <p>Example:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">freshbooks</span> <span class="kn">import</span> <span class="n">FreshBooksError</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">freshbooks</span><span class="w"> </span><span class="kn">import</span> <span class="n">FreshBooksError</span>
 
 <span class="k">try</span><span class="p">:</span>
     <span class="n">client</span> <span class="o">=</span> <span class="n">freshBooksClient</span><span class="o">.</span><span class="n">clients</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">account_id</span><span class="p">,</span> <span class="n">client_id</span><span class="p">)</span>
@@ -221,7 +221,7 @@ optional data in the response. See <a class="reference external" href="https://w
 </pre></div>
 </div>
 <p>To make a paginated call, first create a <code class="docutils literal notranslate"><span class="pre">PaginateBuilder</span></code> object that can be passed into the <code class="docutils literal notranslate"><span class="pre">list</span></code> method.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">freshbooks</span> <span class="kn">import</span> <span class="n">PaginateBuilder</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">freshbooks</span><span class="w"> </span><span class="kn">import</span> <span class="n">PaginateBuilder</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">paginator</span> <span class="o">=</span> <span class="n">PaginateBuilder</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">paginator</span>
@@ -260,7 +260,7 @@ can be chained.</p>
 <h3>Filters<a class="headerlink" href="#filters" title="Link to this heading"></a></h3>
 <p>To filter which results are return by <code class="docutils literal notranslate"><span class="pre">list</span></code> method calls, construct a <code class="docutils literal notranslate"><span class="pre">FilterBuilder</span></code> and pass that
 in the list of builders to the <code class="docutils literal notranslate"><span class="pre">list</span></code> method.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">freshbooks</span> <span class="kn">import</span> <span class="n">FilterBuilder</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">freshbooks</span><span class="w"> </span><span class="kn">import</span> <span class="n">FilterBuilder</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">filter</span> <span class="o">=</span> <span class="n">FilterBuilder</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">filter</span><span class="o">.</span><span class="n">equals</span><span class="p">(</span><span class="s2">&quot;userid&quot;</span><span class="p">,</span> <span class="mi">123</span><span class="p">)</span>
@@ -311,7 +311,7 @@ for details on filtering active, archived, and deleted resources.</p>
 <h3>Includes<a class="headerlink" href="#includes" title="Link to this heading"></a></h3>
 <p>To include additional relationships, sub-resources, or data in a response an <code class="docutils literal notranslate"><span class="pre">IncludesBuilder</span></code>
 can be constructed.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">freshbooks</span> <span class="kn">import</span> <span class="n">IncludesBuilder</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">freshbooks</span><span class="w"> </span><span class="kn">import</span> <span class="n">IncludesBuilder</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">includes</span> <span class="o">=</span> <span class="n">IncludesBuilder</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">includes</span><span class="o">.</span><span class="n">include</span><span class="p">(</span><span class="s2">&quot;outstanding_balance&quot;</span><span class="p">)</span>
@@ -340,7 +340,7 @@ can be constructed.</p>
 <h3>Sorting<a class="headerlink" href="#sorting" title="Link to this heading"></a></h3>
 <p>To sort the results of a list call by supported fields (see the documentation for that resource) a
 <code class="docutils literal notranslate"><span class="pre">SortBuilder</span></code> can be used.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">freshbooks</span> <span class="kn">import</span> <span class="n">SortBuilder</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">freshbooks</span><span class="w"> </span><span class="kn">import</span> <span class="n">SortBuilder</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">sort</span> <span class="o">=</span> <span class="n">SortBuilder</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">sort</span><span class="o">.</span><span class="n">ascending</span><span class="p">(</span><span class="s2">&quot;invoice_date&quot;</span><span class="p">)</span>
@@ -348,7 +348,7 @@ can be constructed.</p>
 </pre></div>
 </div>
 <p>to sort by the invoice date in ascending order, or:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">freshbooks</span> <span class="kn">import</span> <span class="n">SortBuilder</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">freshbooks</span><span class="w"> </span><span class="kn">import</span> <span class="n">SortBuilder</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">sort</span> <span class="o">=</span> <span class="n">SortBuilder</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">sort</span><span class="o">.</span><span class="n">descending</span><span class="p">(</span><span class="s2">&quot;invoice_date&quot;</span><span class="p">)</span>
@@ -366,7 +366,7 @@ can be constructed.</p>
 <p>For historical reasons, some resources in the FreshBooks API (mostly accounting-releated) return date/times in
 “US/Eastern” timezone. Some effort is taken to return <code class="docutils literal notranslate"><span class="pre">datetime</span></code> objects as zone-aware and normalized to UTC. In these
 cases, the raw response string will differ from the attribute. For example:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timezone</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timezone</span>
 
 <span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;updated&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;2021-04-16 10:31:59&quot;</span>  <span class="c1"># Zone-naive string in &quot;US/Eastern&quot;</span>
 <span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">updated</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;2021-04-16T14:31:59+00:00&#39;</span>  <span class="c1"># Zone-aware datetime in UTC</span>

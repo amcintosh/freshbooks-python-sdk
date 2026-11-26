@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Drop support for python 3.8, 3.9 as they are end of life and no longer available on Ubuntu 26.04 LTS
+  (and GitHub Actions runners).
+
 ## 1.3.1
 
 - Fix `ZoneInfoNotFoundError` when reading accounting dates on systems without the legacy `US/Eastern`

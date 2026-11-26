@@ -6,14 +6,14 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Builders &mdash; freshbooks-sdk 1.3.0 documentation</title>
+  <title>Builders &mdash; freshbooks-sdk 1.3.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=1f29e9d3"></script>
+      <script src="../_static/documentation_options.js?v=bb516dca"></script>
       <script src="../_static/doctools.js?v=9bcbadda"></script>
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
@@ -239,23 +239,23 @@ which can be chained together.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">freshbooks</span><span class="w"> </span><span class="kn">import</span> <span class="n">FilterBuilder</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">FilterBuilder</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">like</span><span class="p">(</span><span class="s2">&quot;email_like&quot;</span><span class="p">,</span> <span class="s2">&quot;@freshbooks.com&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">like</span><span class="p">(</span><span class="s2">"email_like"</span><span class="p">,</span> <span class="s2">"@freshbooks.com"</span><span class="p">)</span>
 <span class="go">FilterBuilder(&amp;search[email_like]=@freshbooks.com)</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">FilterBuilder</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">in_list</span><span class="p">(</span><span class="s2">&quot;clientids&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">123</span><span class="p">,</span> <span class="mi">456</span><span class="p">])</span><span class="o">.</span><span class="n">boolean</span><span class="p">(</span><span class="s2">&quot;active&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">in_list</span><span class="p">(</span><span class="s2">"clientids"</span><span class="p">,</span> <span class="p">[</span><span class="mi">123</span><span class="p">,</span> <span class="mi">456</span><span class="p">])</span><span class="o">.</span><span class="n">boolean</span><span class="p">(</span><span class="s2">"active"</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
 <span class="go">FilterBuilder(&amp;search[clientids][]=123&amp;search[clientids][]=456&amp;active=False)</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">FilterBuilder</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">boolean</span><span class="p">(</span><span class="s2">&quot;active&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">in_list</span><span class="p">(</span><span class="s2">&quot;clientids&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">123</span><span class="p">,</span> <span class="mi">456</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">boolean</span><span class="p">(</span><span class="s2">"active"</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">in_list</span><span class="p">(</span><span class="s2">"clientids"</span><span class="p">,</span> <span class="p">[</span><span class="mi">123</span><span class="p">,</span> <span class="mi">456</span><span class="p">])</span>
 <span class="go">FilterBuilder(&amp;active=False&amp;search[clientids][]=123&amp;search[clientids][]=456)</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">FilterBuilder</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="s2">&quot;amount&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="s2">"amount"</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 <span class="go">FilterBuilder(&amp;search[amount_min]=1&amp;search[amount_max]=10)</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">FilterBuilder</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="s2">&quot;start_date&quot;</span><span class="p">,</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="s2">"start_date"</span><span class="p">,</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">())</span>
 <span class="go">FilterBuilder(&amp;search[start_date]=2020-11-21)</span>
 </pre></div>
 </div>
@@ -422,7 +422,7 @@ not Like-match “leaf”.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">freshbooks</span><span class="w"> </span><span class="kn">import</span> <span class="n">IncludesBuilder</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">includes</span> <span class="o">=</span> <span class="n">IncludesBuilder</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">includes</span><span class="o">.</span><span class="n">include</span><span class="p">(</span><span class="s2">&quot;late_reminders&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">includes</span><span class="o">.</span><span class="n">include</span><span class="p">(</span><span class="s2">"late_reminders"</span><span class="p">)</span>
 <span class="go">IncludesBuilder(&amp;include[]=late_reminders)</span>
 </pre></div>
 </div>
@@ -469,7 +469,7 @@ not Like-match “leaf”.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">freshbooks</span><span class="w"> </span><span class="kn">import</span> <span class="n">SortBuilder</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">sort</span> <span class="o">=</span> <span class="n">SortBuilder</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">sort</span><span class="o">.</span><span class="n">ascending</span><span class="p">(</span><span class="s2">&quot;invoice_date&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sort</span><span class="o">.</span><span class="n">ascending</span><span class="p">(</span><span class="s2">"invoice_date"</span><span class="p">)</span>
 <span class="go">SortBuilder(&amp;sort=invoice_date_asc)</span>
 </pre></div>
 </div>

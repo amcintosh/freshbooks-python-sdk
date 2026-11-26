@@ -6,14 +6,14 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Create Invoice &mdash; freshbooks-sdk 1.3.0 documentation</title>
+  <title>Create Invoice &mdash; freshbooks-sdk 1.3.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=1f29e9d3"></script>
+      <script src="../_static/documentation_options.js?v=bb516dca"></script>
       <script src="../_static/doctools.js?v=9bcbadda"></script>
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
@@ -103,50 +103,50 @@
 <span class="linenos"> 4</span><span class="kn">from</span><span class="w"> </span><span class="nn">freshbooks</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span> <span class="k">as</span> <span class="n">FreshBooksClient</span>
 <span class="linenos"> 5</span><span class="kn">from</span><span class="w"> </span><span class="nn">freshbooks</span><span class="w"> </span><span class="kn">import</span> <span class="n">FreshBooksError</span>
 <span class="linenos"> 6</span>
-<span class="linenos"> 7</span><span class="n">FB_CLIENT_ID</span> <span class="o">=</span> <span class="s2">&quot;&lt;your client id&gt;&quot;</span>
-<span class="linenos"> 8</span><span class="n">ACCESS_TOKEN</span> <span class="o">=</span> <span class="s2">&quot;&lt;your access token&gt;&quot;</span>
-<span class="linenos"> 9</span><span class="n">ACCOUNT_ID</span> <span class="o">=</span> <span class="s2">&quot;&lt;your account id&gt;&quot;</span>
+<span class="linenos"> 7</span><span class="n">FB_CLIENT_ID</span> <span class="o">=</span> <span class="s2">"&lt;your client id&gt;"</span>
+<span class="linenos"> 8</span><span class="n">ACCESS_TOKEN</span> <span class="o">=</span> <span class="s2">"&lt;your access token&gt;"</span>
+<span class="linenos"> 9</span><span class="n">ACCOUNT_ID</span> <span class="o">=</span> <span class="s2">"&lt;your account id&gt;"</span>
 <span class="linenos">10</span>
 <span class="linenos">11</span><span class="n">freshBooksClient</span> <span class="o">=</span> <span class="n">FreshBooksClient</span><span class="p">(</span><span class="n">client_id</span><span class="o">=</span><span class="n">FB_CLIENT_ID</span><span class="p">,</span> <span class="n">access_token</span><span class="o">=</span><span class="n">ACCESS_TOKEN</span><span class="p">)</span>
 <span class="linenos">12</span>
 <span class="linenos">13</span><span class="c1"># Create the client</span>
-<span class="linenos">14</span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Creating client...&quot;</span><span class="p">)</span>
+<span class="linenos">14</span><span class="nb">print</span><span class="p">(</span><span class="s2">"Creating client..."</span><span class="p">)</span>
 <span class="linenos">15</span><span class="k">try</span><span class="p">:</span>
-<span class="linenos">16</span>    <span class="n">client_data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;organization&quot;</span><span class="p">:</span> <span class="s2">&quot;Python SDK Test Client&quot;</span><span class="p">}</span>
+<span class="linenos">16</span>    <span class="n">client_data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"organization"</span><span class="p">:</span> <span class="s2">"Python SDK Test Client"</span><span class="p">}</span>
 <span class="linenos">17</span>    <span class="n">client</span> <span class="o">=</span> <span class="n">freshBooksClient</span><span class="o">.</span><span class="n">clients</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">ACCOUNT_ID</span><span class="p">,</span> <span class="n">client_data</span><span class="p">)</span>
 <span class="linenos">18</span><span class="k">except</span> <span class="n">FreshBooksError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
 <span class="linenos">19</span>    <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
 <span class="linenos">20</span>    <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">status_code</span><span class="p">)</span>
 <span class="linenos">21</span>    <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="linenos">22</span>
-<span class="linenos">23</span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Created client </span><span class="si">{</span><span class="n">client</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos">23</span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Created client </span><span class="si">{</span><span class="n">client</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 <span class="linenos">24</span>
 <span class="linenos">25</span><span class="c1"># Create the invoice</span>
 <span class="linenos">26</span><span class="n">line1</span> <span class="o">=</span> <span class="p">{</span>
-<span class="linenos">27</span>    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Fancy Dishes&quot;</span><span class="p">,</span>
-<span class="linenos">28</span>    <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;They&#39;re pretty swanky&quot;</span><span class="p">,</span>
-<span class="linenos">29</span>    <span class="s2">&quot;qty&quot;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
-<span class="linenos">30</span>    <span class="s2">&quot;unit_cost&quot;</span><span class="p">:</span> <span class="p">{</span>
-<span class="linenos">31</span>        <span class="s2">&quot;amount&quot;</span><span class="p">:</span> <span class="s2">&quot;27.00&quot;</span><span class="p">,</span>
-<span class="linenos">32</span>        <span class="s2">&quot;code&quot;</span><span class="p">:</span> <span class="s2">&quot;CAD&quot;</span>
+<span class="linenos">27</span>    <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Fancy Dishes"</span><span class="p">,</span>
+<span class="linenos">28</span>    <span class="s2">"description"</span><span class="p">:</span> <span class="s2">"They're pretty swanky"</span><span class="p">,</span>
+<span class="linenos">29</span>    <span class="s2">"qty"</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
+<span class="linenos">30</span>    <span class="s2">"unit_cost"</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos">31</span>        <span class="s2">"amount"</span><span class="p">:</span> <span class="s2">"27.00"</span><span class="p">,</span>
+<span class="linenos">32</span>        <span class="s2">"code"</span><span class="p">:</span> <span class="s2">"CAD"</span>
 <span class="linenos">33</span>    <span class="p">}</span>
 <span class="linenos">34</span><span class="p">}</span>
 <span class="linenos">35</span><span class="n">line2</span> <span class="o">=</span> <span class="p">{</span>
-<span class="linenos">36</span>    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Regular Glasses&quot;</span><span class="p">,</span>
-<span class="linenos">37</span>    <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s1">&#39;They look &quot;just ok&quot;&#39;</span><span class="p">,</span>
-<span class="linenos">38</span>    <span class="s2">&quot;qty&quot;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
-<span class="linenos">39</span>    <span class="s2">&quot;unit_cost&quot;</span><span class="p">:</span> <span class="p">{</span>
-<span class="linenos">40</span>        <span class="s2">&quot;amount&quot;</span><span class="p">:</span> <span class="s2">&quot;5.95&quot;</span><span class="p">,</span>
-<span class="linenos">41</span>        <span class="s2">&quot;code&quot;</span><span class="p">:</span> <span class="s2">&quot;CAD&quot;</span>
+<span class="linenos">36</span>    <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Regular Glasses"</span><span class="p">,</span>
+<span class="linenos">37</span>    <span class="s2">"description"</span><span class="p">:</span> <span class="s1">'They look "just ok"'</span><span class="p">,</span>
+<span class="linenos">38</span>    <span class="s2">"qty"</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
+<span class="linenos">39</span>    <span class="s2">"unit_cost"</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos">40</span>        <span class="s2">"amount"</span><span class="p">:</span> <span class="s2">"5.95"</span><span class="p">,</span>
+<span class="linenos">41</span>        <span class="s2">"code"</span><span class="p">:</span> <span class="s2">"CAD"</span>
 <span class="linenos">42</span>    <span class="p">}</span>
 <span class="linenos">43</span><span class="p">}</span>
 <span class="linenos">44</span><span class="n">invoice_data</span> <span class="o">=</span> <span class="p">{</span>
-<span class="linenos">45</span>    <span class="s2">&quot;customerid&quot;</span><span class="p">:</span> <span class="n">client</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
-<span class="linenos">46</span>    <span class="s2">&quot;create_date&quot;</span><span class="p">:</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">(),</span>
-<span class="linenos">47</span>    <span class="s2">&quot;due_offset_days&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>  <span class="c1"># due 5 days after create_date</span>
-<span class="linenos">48</span>    <span class="s2">&quot;lines&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">line1</span><span class="p">,</span> <span class="n">line2</span><span class="p">],</span>
+<span class="linenos">45</span>    <span class="s2">"customerid"</span><span class="p">:</span> <span class="n">client</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+<span class="linenos">46</span>    <span class="s2">"create_date"</span><span class="p">:</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">(),</span>
+<span class="linenos">47</span>    <span class="s2">"due_offset_days"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>  <span class="c1"># due 5 days after create_date</span>
+<span class="linenos">48</span>    <span class="s2">"lines"</span><span class="p">:</span> <span class="p">[</span><span class="n">line1</span><span class="p">,</span> <span class="n">line2</span><span class="p">],</span>
 <span class="linenos">49</span><span class="p">}</span>
-<span class="linenos">50</span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Creating invoice...&quot;</span><span class="p">)</span>
+<span class="linenos">50</span><span class="nb">print</span><span class="p">(</span><span class="s2">"Creating invoice..."</span><span class="p">)</span>
 <span class="linenos">51</span><span class="k">try</span><span class="p">:</span>
 <span class="linenos">52</span>    <span class="n">invoice</span> <span class="o">=</span> <span class="n">freshBooksClient</span><span class="o">.</span><span class="n">invoices</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">ACCOUNT_ID</span><span class="p">,</span> <span class="n">invoice_data</span><span class="p">)</span>
 <span class="linenos">53</span><span class="k">except</span> <span class="n">FreshBooksError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
@@ -154,13 +154,13 @@
 <span class="linenos">55</span>    <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">status_code</span><span class="p">)</span>
 <span class="linenos">56</span>    <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="linenos">57</span>
-<span class="linenos">58</span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Created invoice </span><span class="si">{</span><span class="n">invoice</span><span class="o">.</span><span class="n">invoice_number</span><span class="si">}</span><span class="s2"> (Id: </span><span class="si">{</span><span class="n">invoice</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
-<span class="linenos">59</span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invoice total is </span><span class="si">{</span><span class="n">invoice</span><span class="o">.</span><span class="n">amount</span><span class="o">.</span><span class="n">amount</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">invoice</span><span class="o">.</span><span class="n">amount</span><span class="o">.</span><span class="n">code</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos">58</span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Created invoice </span><span class="si">{</span><span class="n">invoice</span><span class="o">.</span><span class="n">invoice_number</span><span class="si">}</span><span class="s2"> (Id: </span><span class="si">{</span><span class="n">invoice</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
+<span class="linenos">59</span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Invoice total is </span><span class="si">{</span><span class="n">invoice</span><span class="o">.</span><span class="n">amount</span><span class="o">.</span><span class="n">amount</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">invoice</span><span class="o">.</span><span class="n">amount</span><span class="o">.</span><span class="n">code</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 <span class="linenos">60</span>
 <span class="linenos">61</span><span class="c1"># Invoices are created in draft status, so we need to mark it as sent</span>
-<span class="linenos">62</span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Marking invoice as sent...&quot;</span><span class="p">)</span>
+<span class="linenos">62</span><span class="nb">print</span><span class="p">(</span><span class="s2">"Marking invoice as sent..."</span><span class="p">)</span>
 <span class="linenos">63</span><span class="n">invoice_data</span> <span class="o">=</span> <span class="p">{</span>
-<span class="linenos">64</span>    <span class="s2">&quot;action_mark_as_sent&quot;</span><span class="p">:</span> <span class="kc">True</span>
+<span class="linenos">64</span>    <span class="s2">"action_mark_as_sent"</span><span class="p">:</span> <span class="kc">True</span>
 <span class="linenos">65</span><span class="p">}</span>
 <span class="linenos">66</span><span class="k">try</span><span class="p">:</span>
 <span class="linenos">67</span>    <span class="n">invoice</span> <span class="o">=</span> <span class="n">freshBooksClient</span><span class="o">.</span><span class="n">invoices</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">ACCOUNT_ID</span><span class="p">,</span> <span class="n">invoice</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">invoice_data</span><span class="p">)</span>

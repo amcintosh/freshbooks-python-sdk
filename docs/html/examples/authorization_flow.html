@@ -6,14 +6,14 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Authorization Flow &mdash; freshbooks-sdk 1.3.0 documentation</title>
+  <title>Authorization Flow &mdash; freshbooks-sdk 1.3.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=1f29e9d3"></script>
+      <script src="../_static/documentation_options.js?v=bb516dca"></script>
       <script src="../_static/doctools.js?v=9bcbadda"></script>
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
@@ -103,9 +103,9 @@
 <span class="linenos"> 4</span><span class="kn">from</span><span class="w"> </span><span class="nn">types</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimpleNamespace</span>
 <span class="linenos"> 5</span><span class="kn">from</span><span class="w"> </span><span class="nn">freshbooks</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span> <span class="k">as</span> <span class="n">FreshBooksClient</span>
 <span class="linenos"> 6</span>
-<span class="linenos"> 7</span><span class="n">FB_CLIENT_ID</span> <span class="o">=</span> <span class="s2">&quot;&lt;your client id&gt;&quot;</span>
-<span class="linenos"> 8</span><span class="n">SECRET</span> <span class="o">=</span> <span class="s2">&quot;&lt;your client secret&gt;&quot;</span>
-<span class="linenos"> 9</span><span class="n">REDIRECT_URI</span> <span class="o">=</span> <span class="s2">&quot;&lt;your redirect uri&gt;&quot;</span>
+<span class="linenos"> 7</span><span class="n">FB_CLIENT_ID</span> <span class="o">=</span> <span class="s2">"&lt;your client id&gt;"</span>
+<span class="linenos"> 8</span><span class="n">SECRET</span> <span class="o">=</span> <span class="s2">"&lt;your client secret&gt;"</span>
+<span class="linenos"> 9</span><span class="n">REDIRECT_URI</span> <span class="o">=</span> <span class="s2">"&lt;your redirect uri&gt;"</span>
 <span class="linenos">10</span>
 <span class="linenos">11</span><span class="n">freshBooksClient</span> <span class="o">=</span> <span class="n">FreshBooksClient</span><span class="p">(</span>
 <span class="linenos">12</span>    <span class="n">client_id</span><span class="o">=</span><span class="n">FB_CLIENT_ID</span><span class="p">,</span>
@@ -114,22 +114,22 @@
 <span class="linenos">15</span><span class="p">)</span>
 <span class="linenos">16</span>
 <span class="linenos">17</span><span class="n">authorization_url</span> <span class="o">=</span> <span class="n">freshBooksClient</span><span class="o">.</span><span class="n">get_auth_request_url</span><span class="p">(</span>
-<span class="linenos">18</span>    <span class="n">scopes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;user:profile:read&#39;</span><span class="p">,</span> <span class="s1">&#39;user:clients:read&#39;</span><span class="p">]</span>
+<span class="linenos">18</span>    <span class="n">scopes</span><span class="o">=</span><span class="p">[</span><span class="s1">'user:profile:read'</span><span class="p">,</span> <span class="s1">'user:clients:read'</span><span class="p">]</span>
 <span class="linenos">19</span><span class="p">)</span>
-<span class="linenos">20</span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Go to this URL to authorize: </span><span class="si">{</span><span class="n">authorization_url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos">20</span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Go to this URL to authorize: </span><span class="si">{</span><span class="n">authorization_url</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 <span class="linenos">21</span>
 <span class="linenos">22</span><span class="c1"># Going to that URL will prompt the user to log into FreshBooks and authorize the application.</span>
 <span class="linenos">23</span><span class="c1"># Once authorized, FreshBooks will redirect the user to your `redirect_uri` with the authorization</span>
 <span class="linenos">24</span><span class="c1"># code will be a parameter in the URL.</span>
-<span class="linenos">25</span><span class="n">auth_code</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter the code you get after authorization: &quot;</span><span class="p">)</span>
+<span class="linenos">25</span><span class="n">auth_code</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"Enter the code you get after authorization: "</span><span class="p">)</span>
 <span class="linenos">26</span>
 <span class="linenos">27</span><span class="c1"># This will exchange the authorization code for an access token</span>
 <span class="linenos">28</span><span class="n">token_response</span> <span class="o">=</span> <span class="n">freshBooksClient</span><span class="o">.</span><span class="n">get_access_token</span><span class="p">(</span><span class="n">auth_code</span><span class="p">)</span>
-<span class="linenos">29</span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;This is the access token the client is now configurated with: </span><span class="si">{</span><span class="n">token_response</span><span class="o">.</span><span class="n">access_token</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="linenos">30</span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;It is good until </span><span class="si">{</span><span class="n">token_response</span><span class="o">.</span><span class="n">access_token_expires_at</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos">29</span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"This is the access token the client is now configurated with: </span><span class="si">{</span><span class="n">token_response</span><span class="o">.</span><span class="n">access_token</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="linenos">30</span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"It is good until </span><span class="si">{</span><span class="n">token_response</span><span class="o">.</span><span class="n">access_token_expires_at</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 <span class="linenos">31</span><span class="nb">print</span><span class="p">()</span>
 <span class="linenos">32</span>
-<span class="linenos">33</span><span class="c1"># Get the current user&#39;s identity</span>
+<span class="linenos">33</span><span class="c1"># Get the current user's identity</span>
 <span class="linenos">34</span><span class="n">identity</span> <span class="o">=</span> <span class="n">freshBooksClient</span><span class="o">.</span><span class="n">current_user</span><span class="p">()</span>
 <span class="linenos">35</span><span class="n">businesses</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="linenos">36</span>
@@ -139,8 +139,8 @@
 <span class="linenos">40</span>    <span class="n">businesses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
 <span class="linenos">41</span>        <span class="n">SimpleNamespace</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">business</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">business_id</span><span class="o">=</span><span class="n">business</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">account_id</span><span class="o">=</span><span class="n">business</span><span class="o">.</span><span class="n">account_id</span><span class="p">)</span>
 <span class="linenos">42</span>    <span class="p">)</span>
-<span class="linenos">43</span>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">num</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">business</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="linenos">44</span><span class="n">business_index</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Which business do you want to use? &quot;</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="linenos">43</span>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">num</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">business</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="linenos">44</span><span class="n">business_index</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Which business do you want to use? "</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span>
 <span class="linenos">45</span><span class="nb">print</span><span class="p">()</span>
 <span class="linenos">46</span>
 <span class="linenos">47</span><span class="n">business_id</span> <span class="o">=</span> <span class="n">businesses</span><span class="p">[</span><span class="n">business_index</span><span class="p">]</span><span class="o">.</span><span class="n">business_id</span>  <span class="c1"># Used for project-related calls</span>
@@ -148,7 +148,7 @@
 <span class="linenos">49</span>
 <span class="linenos">50</span><span class="c1"># Get a client for the business to show successful access</span>
 <span class="linenos">51</span><span class="n">client</span> <span class="o">=</span> <span class="n">freshBooksClient</span><span class="o">.</span><span class="n">clients</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="n">account_id</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-<span class="linenos">52</span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;</span><span class="si">{</span><span class="n">client</span><span class="o">.</span><span class="n">organization</span><span class="si">}</span><span class="s2">&#39; is a client of </span><span class="si">{</span><span class="n">businesses</span><span class="p">[</span><span class="n">business_index</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos">52</span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"'</span><span class="si">{</span><span class="n">client</span><span class="o">.</span><span class="n">organization</span><span class="si">}</span><span class="s2">' is a client of </span><span class="si">{</span><span class="n">businesses</span><span class="p">[</span><span class="n">business_index</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>

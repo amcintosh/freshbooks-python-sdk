@@ -6,14 +6,14 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Changelog &mdash; freshbooks-sdk 1.3.0 documentation</title>
+  <title>Changelog &mdash; freshbooks-sdk 1.3.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
 
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=1f29e9d3"></script>
+      <script src="_static/documentation_options.js?v=bb516dca"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
@@ -94,6 +94,14 @@
 
 <span class="gu">## Unreleased</span>
 
+<span class="k">-</span><span class="w"> </span>Drop support for python 3.8, 3.9 as they are end of life and no longer available on Ubuntu 26.04 LTS
+  (and GitHub Actions runners).
+
+<span class="gu">## 1.3.1</span>
+
+<span class="k">-</span><span class="w"> </span>Fix <span class="sb">`ZoneInfoNotFoundError`</span> when reading accounting dates on systems without the legacy <span class="sb">`US/Eastern`</span>
+  time zone name (Debian 13, Ubuntu 24.04+)
+
 <span class="gu">## 1.3.0</span>
 
 <span class="k">-</span><span class="w"> </span>Add Ledger Accounts resource
@@ -120,7 +128,7 @@
 
 <span class="gu">## 1.0.1</span>
 
-<span class="k">-</span><span class="w"> </span>Fixed Identity &quot;business_memberships&quot; attribute to return Result objects
+<span class="k">-</span><span class="w"> </span>Fixed Identity "business_memberships" attribute to return Result objects
 
 <span class="gu">## 1.0.0</span>
 

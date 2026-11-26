@@ -6,14 +6,14 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Export Clients Outstanding Balance &mdash; freshbooks-sdk 1.3.0 documentation</title>
+  <title>Export Clients Outstanding Balance &mdash; freshbooks-sdk 1.3.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=1f29e9d3"></script>
+      <script src="../_static/documentation_options.js?v=bb516dca"></script>
       <script src="../_static/doctools.js?v=9bcbadda"></script>
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
@@ -113,22 +113,22 @@
 <span class="linenos">14</span><span class="kn">from</span><span class="w"> </span><span class="nn">freshbooks</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span> <span class="k">as</span> <span class="n">FreshBooksClient</span>
 <span class="linenos">15</span><span class="kn">from</span><span class="w"> </span><span class="nn">freshbooks</span><span class="w"> </span><span class="kn">import</span> <span class="n">FreshBooksError</span><span class="p">,</span> <span class="n">IncludesBuilder</span><span class="p">,</span> <span class="n">PaginateBuilder</span>
 <span class="linenos">16</span>
-<span class="linenos">17</span><span class="n">FB_CLIENT_ID</span> <span class="o">=</span> <span class="s2">&quot;&lt;your client id&gt;&quot;</span>
-<span class="linenos">18</span><span class="n">ACCESS_TOKEN</span> <span class="o">=</span> <span class="s2">&quot;&lt;your access token&gt;&quot;</span>
-<span class="linenos">19</span><span class="n">ACCOUNT_ID</span> <span class="o">=</span> <span class="s2">&quot;&lt;your account id&gt;&quot;</span>
+<span class="linenos">17</span><span class="n">FB_CLIENT_ID</span> <span class="o">=</span> <span class="s2">"&lt;your client id&gt;"</span>
+<span class="linenos">18</span><span class="n">ACCESS_TOKEN</span> <span class="o">=</span> <span class="s2">"&lt;your access token&gt;"</span>
+<span class="linenos">19</span><span class="n">ACCOUNT_ID</span> <span class="o">=</span> <span class="s2">"&lt;your account id&gt;"</span>
 <span class="linenos">20</span><span class="n">PAGE_SIZE</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="linenos">21</span>
 <span class="linenos">22</span><span class="n">freshBooksClient</span> <span class="o">=</span> <span class="n">FreshBooksClient</span><span class="p">(</span><span class="n">client_id</span><span class="o">=</span><span class="n">FB_CLIENT_ID</span><span class="p">,</span> <span class="n">access_token</span><span class="o">=</span><span class="n">ACCESS_TOKEN</span><span class="p">)</span>
 <span class="linenos">23</span>
-<span class="linenos">24</span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;clients.csv&quot;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">csvfile</span><span class="p">:</span>
+<span class="linenos">24</span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"clients.csv"</span><span class="p">,</span> <span class="s1">'w'</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">''</span><span class="p">)</span> <span class="k">as</span> <span class="n">csvfile</span><span class="p">:</span>
 <span class="linenos">25</span>    <span class="n">writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">csvfile</span><span class="p">)</span>
-<span class="linenos">26</span>    <span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="s2">&quot;Client Id&quot;</span><span class="p">,</span> <span class="s2">&quot;Organization&quot;</span><span class="p">,</span> <span class="s2">&quot;Outstanding Balance&quot;</span><span class="p">,</span> <span class="s2">&quot;Currency&quot;</span><span class="p">])</span>
+<span class="linenos">26</span>    <span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="s2">"Client Id"</span><span class="p">,</span> <span class="s2">"Organization"</span><span class="p">,</span> <span class="s2">"Outstanding Balance"</span><span class="p">,</span> <span class="s2">"Currency"</span><span class="p">])</span>
 <span class="linenos">27</span>
-<span class="linenos">28</span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fetching all clients...&quot;</span><span class="p">)</span>
+<span class="linenos">28</span>    <span class="nb">print</span><span class="p">(</span><span class="s2">"Fetching all clients..."</span><span class="p">)</span>
 <span class="linenos">29</span>    <span class="c1"># Setup paginator to iterate through all clients</span>
 <span class="linenos">30</span>    <span class="n">paginator</span> <span class="o">=</span> <span class="n">PaginateBuilder</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">PAGE_SIZE</span><span class="p">)</span>
 <span class="linenos">31</span>    <span class="c1"># Include outstanding balances in the response</span>
-<span class="linenos">32</span>    <span class="n">includes</span> <span class="o">=</span> <span class="n">IncludesBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">include</span><span class="p">(</span><span class="s2">&quot;outstanding_balance&quot;</span><span class="p">)</span>
+<span class="linenos">32</span>    <span class="n">includes</span> <span class="o">=</span> <span class="n">IncludesBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">include</span><span class="p">(</span><span class="s2">"outstanding_balance"</span><span class="p">)</span>
 <span class="linenos">33</span>
 <span class="linenos">34</span>    <span class="n">clients</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="linenos">35</span>    <span class="k">while</span> <span class="ow">not</span> <span class="n">clients</span> <span class="ow">or</span> <span class="n">clients</span><span class="o">.</span><span class="n">pages</span><span class="o">.</span><span class="n">page</span> <span class="o">&lt;</span> <span class="n">clients</span><span class="o">.</span><span class="n">pages</span><span class="o">.</span><span class="n">pages</span><span class="p">:</span>
@@ -141,7 +141,7 @@
 <span class="linenos">42</span>            <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="linenos">43</span>
 <span class="linenos">44</span>        <span class="k">for</span> <span class="n">client</span> <span class="ow">in</span> <span class="n">clients</span><span class="p">:</span>
-<span class="linenos">45</span>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Writing client </span><span class="si">{</span><span class="n">client</span><span class="o">.</span><span class="n">organization</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">client</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">) to csv...&quot;</span><span class="p">)</span>
+<span class="linenos">45</span>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Writing client </span><span class="si">{</span><span class="n">client</span><span class="o">.</span><span class="n">organization</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">client</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">) to csv..."</span><span class="p">)</span>
 <span class="linenos">46</span>            <span class="c1"># Clients will have a outstanding_balance for each currency</span>
 <span class="linenos">47</span>            <span class="k">if</span> <span class="ow">not</span> <span class="n">client</span><span class="o">.</span><span class="n">outstanding_balance</span><span class="p">:</span>
 <span class="linenos">48</span>                <span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="n">client</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">client</span><span class="o">.</span><span class="n">organization</span><span class="p">])</span>

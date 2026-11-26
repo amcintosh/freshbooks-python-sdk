@@ -6,14 +6,14 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Webhook Callbacks &mdash; freshbooks-sdk 1.3.0 documentation</title>
+  <title>Webhook Callbacks &mdash; freshbooks-sdk 1.3.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=1f29e9d3"></script>
+      <script src="../_static/documentation_options.js?v=bb516dca"></script>
       <script src="../_static/doctools.js?v=9bcbadda"></script>
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
@@ -104,8 +104,8 @@ See <a class="reference external" href="https://www.freshbooks.com/api/webhooks"
 <section id="registration">
 <h2>Registration<a class="headerlink" href="#registration" title="Link to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;invoice.create&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;uri&quot;</span><span class="p">:</span> <span class="s2">&quot;http://your_server.com/webhooks/ready&quot;</span>
+    <span class="s2">"event"</span><span class="p">:</span> <span class="s2">"invoice.create"</span><span class="p">,</span>
+    <span class="s2">"uri"</span><span class="p">:</span> <span class="s2">"http://your_server.com/webhooks/ready"</span>
 <span class="p">}</span>
 
 <span class="n">webhook</span> <span class="o">=</span> <span class="n">freshBooksClient</span><span class="o">.</span><span class="n">callbacks</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">account_id</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
@@ -143,12 +143,12 @@ originally sent in the webhook verification process as a secret.</p>
 <span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">signature_match</span><span class="p">(</span><span class="n">verifier</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
-   <span class="n">signature</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;X-FreshBooks-Hmac-SHA256&#39;</span><span class="p">)</span>
+   <span class="n">signature</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'X-FreshBooks-Hmac-SHA256'</span><span class="p">)</span>
    <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">)</span>
 
    <span class="n">dig</span> <span class="o">=</span> <span class="n">hmac</span><span class="o">.</span><span class="n">new</span><span class="p">(</span>
-      <span class="n">verifier</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">),</span>
-      <span class="n">msg</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">),</span>
+      <span class="n">verifier</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">'utf-8'</span><span class="p">),</span>
+      <span class="n">msg</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">'utf-8'</span><span class="p">),</span>
       <span class="n">digestmod</span><span class="o">=</span><span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span>
    <span class="p">)</span><span class="o">.</span><span class="n">digest</span><span class="p">()</span>
    <span class="n">calculated_sig</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">dig</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>

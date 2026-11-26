@@ -6,14 +6,14 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Models &mdash; freshbooks-sdk 1.3.0 documentation</title>
+  <title>Models &mdash; freshbooks-sdk 1.3.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=1f29e9d3"></script>
+      <script src="../_static/documentation_options.js?v=bb516dca"></script>
       <script src="../_static/doctools.js?v=9bcbadda"></script>
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
@@ -160,19 +160,19 @@ to make accessing the current user’s identity easier.</p>
 <p>Data in the API can be accessed via attributes.</p>
 <p>Example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">clients</span> <span class="o">=</span> <span class="n">freshBooksClient</span><span class="o">.</span><span class="n">clients</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="n">account_id</span><span class="p">)</span>
-<span class="k">assert</span> <span class="n">clients</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">organization</span> <span class="o">==</span> <span class="s2">&quot;FreshBooks&quot;</span>
+<span class="k">assert</span> <span class="n">clients</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">organization</span> <span class="o">==</span> <span class="s2">"FreshBooks"</span>
 </pre></div>
 </div>
 <p>The json-parsed dictionary can also be directly accessed via the <code class="docutils literal notranslate"><span class="pre">data</span></code> attribute.</p>
 <p>Example:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span> <span class="n">clients</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;clients&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;organization&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;FreshBooks&quot;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span> <span class="n">clients</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">"clients"</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">"organization"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"FreshBooks"</span>
 </pre></div>
 </div>
 <p>The list can also be iterated over to access the individual resources as <code class="docutils literal notranslate"><span class="pre">Result</span></code> obejcts.</p>
 <p>Example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">client</span> <span class="ow">in</span> <span class="n">clients</span><span class="p">:</span>
-    <span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">organization</span> <span class="o">==</span> <span class="s2">&quot;FreshBooks&quot;</span>
-    <span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;organization&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;FreshBooks&quot;</span>
+    <span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">organization</span> <span class="o">==</span> <span class="s2">"FreshBooks"</span>
+    <span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">"organization"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"FreshBooks"</span>
 </pre></div>
 </div>
 <p>Pagination results are included in the <code class="docutils literal notranslate"><span class="pre">pages</span></code> attribute:</p>
@@ -193,14 +193,14 @@ to make accessing the current user’s identity easier.</p>
 <p>Data in the API can be accessed via attributes.</p>
 <p>Example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">client</span> <span class="o">=</span> <span class="n">freshBooksClient</span><span class="o">.</span><span class="n">clients</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">account_id</span><span class="p">,</span> <span class="n">user_id</span><span class="p">)</span>
-<span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">organization</span> <span class="o">==</span> <span class="s2">&quot;FreshBooks&quot;</span>
+<span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">organization</span> <span class="o">==</span> <span class="s2">"FreshBooks"</span>
 <span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">userid</span> <span class="o">==</span> <span class="n">user_id</span>
 </pre></div>
 </div>
 <p>The json-parsed dictionary can also be directly accessed via the <code class="docutils literal notranslate"><span class="pre">data</span></code> attribute.</p>
 <p>Example:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;organization&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;FreshBooks&quot;</span>
-<span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;userid&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">user_id</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">"organization"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"FreshBooks"</span>
+<span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">"userid"</span><span class="p">]</span> <span class="o">==</span> <span class="n">user_id</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -268,19 +268,20 @@ to make accessing the current user’s identity easier.</p>
 <span class="sig-name descname"><span class="pre">to_bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">byteorder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'big'</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">signed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#freshbooks.models.VisState.to_bytes" title="Link to this definition"></a></dt>
 <dd><p>Return an array of bytes representing an integer.</p>
 <p>length
-Length of bytes object to use.  An OverflowError is raised if the
-integer is not representable with the given number of bytes.  Default
-is length 1.
+Length of bytes object to use.  An OverflowError is raised if
+the integer is not representable with the given number of bytes.
+Default is length 1.
 byteorder
-The byte order used to represent the integer.  If byteorder is ‘big’,
-the most significant byte is at the beginning of the byte array.  If
-byteorder is ‘little’, the most significant byte is at the end of the
-byte array.  To request the native byte order of the host system, use
-sys.byteorder as the byte order value.  Default is to use ‘big’.
+The byte order used to represent the integer.  If byteorder is
+‘big’, the most significant byte is at the beginning of the byte
+array.  If byteorder is ‘little’, the most significant byte is at
+the end of the byte array.  To request the native byte order of
+the host system, use sys.byteorder as the byte order value.
+Default is to use ‘big’.
 signed
-Determines whether two’s complement is used to represent the integer.
-If signed is False and a negative integer is given, an OverflowError
-is raised.</p>
+Determines whether two’s complement is used to represent the
+integer.  If signed is False and a negative integer is given,
+an OverflowError is raised.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -289,17 +290,19 @@ is raised.</p>
 <dd><p>Return the integer represented by the given array of bytes.</p>
 <p>bytes
 Holds the array of bytes to convert.  The argument must either
-support the buffer protocol or be an iterable object producing bytes.
-Bytes and bytearray are examples of built-in objects that support the
-buffer protocol.
+support the buffer protocol or be an iterable object producing
+bytes.  Bytes and bytearray are examples of built-in objects that
+support the buffer protocol.
 byteorder
-The byte order used to represent the integer.  If byteorder is ‘big’,
-the most significant byte is at the beginning of the byte array.  If
-byteorder is ‘little’, the most significant byte is at the end of the
-byte array.  To request the native byte order of the host system, use
-sys.byteorder as the byte order value.  Default is to use ‘big’.
+The byte order used to represent the integer.  If byteorder is
+‘big’, the most significant byte is at the beginning of the byte
+array.  If byteorder is ‘little’, the most significant byte is at
+the end of the byte array.  To request the native byte order of
+the host system, use sys.byteorder as the byte order value.
+Default is to use ‘big’.
 signed
-Indicates whether two’s complement is used to represent the integer.</p>
+Indicates whether two’s complement is used to represent the
+integer.</p>
 </dd></dl>
 
 <dl class="py method">

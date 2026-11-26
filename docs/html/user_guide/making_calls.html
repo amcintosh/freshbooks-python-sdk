@@ -6,14 +6,14 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Making API Calls &mdash; freshbooks-sdk 1.3.0 documentation</title>
+  <title>Making API Calls &mdash; freshbooks-sdk 1.3.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=1f29e9d3"></script>
+      <script src="../_static/documentation_options.js?v=bb516dca"></script>
       <script src="../_static/doctools.js?v=9bcbadda"></script>
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
@@ -118,11 +118,11 @@ some API resources are scoped to a FreshBooks <code class="docutils literal notr
 The raw json-parsed dictionary can also be accessed via the <code class="docutils literal notranslate"><span class="pre">data</span></code> attribute.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">client</span> <span class="o">=</span> <span class="n">freshBooksClient</span><span class="o">.</span><span class="n">clients</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">account_id</span><span class="p">,</span> <span class="n">client_user_id</span><span class="p">)</span>
 
-<span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">organization</span> <span class="o">==</span> <span class="s2">&quot;FreshBooks&quot;</span>
+<span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">organization</span> <span class="o">==</span> <span class="s2">"FreshBooks"</span>
 <span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">userid</span> <span class="o">==</span> <span class="n">client_user_id</span>
 
-<span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;organization&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;FreshBooks&quot;</span>
-<span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;userid&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">client_user_id</span>
+<span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">"organization"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"FreshBooks"</span>
+<span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">"userid"</span><span class="p">]</span> <span class="o">==</span> <span class="n">client_user_id</span>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">vis_state</span></code> returns an Enum. See <a class="reference external" href="https://www.freshbooks.com/api/active_deleted">FreshBooks API - Active and Deleted Objects</a>
@@ -131,21 +131,21 @@ for details.</p>
 
 <span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">vis_state</span> <span class="o">==</span> <span class="n">VisState</span><span class="o">.</span><span class="n">ACTIVE</span>
 <span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">vis_state</span> <span class="o">==</span> <span class="mi">0</span>
-<span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;vis_state&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">VisState</span><span class="o">.</span><span class="n">ACTIVE</span>
-<span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;vis_state&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span>
+<span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">'vis_state'</span><span class="p">]</span> <span class="o">==</span> <span class="n">VisState</span><span class="o">.</span><span class="n">ACTIVE</span>
+<span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">'vis_state'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span>
 </pre></div>
 </div>
 <p>API calls which return a list of resources return a <code class="docutils literal notranslate"><span class="pre">ListResult</span></code> object. The resources in the list can be accessed by
 index and iterated over. Similarly, the raw dictionary can be accessed via the <code class="docutils literal notranslate"><span class="pre">data</span></code> attribute.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">clients</span> <span class="o">=</span> <span class="n">freshBooksClient</span><span class="o">.</span><span class="n">clients</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="n">account_id</span><span class="p">)</span>
 
-<span class="k">assert</span> <span class="n">clients</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">organization</span> <span class="o">==</span> <span class="s2">&quot;FreshBooks&quot;</span>
+<span class="k">assert</span> <span class="n">clients</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">organization</span> <span class="o">==</span> <span class="s2">"FreshBooks"</span>
 
-<span class="k">assert</span> <span class="n">clients</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;clients&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;organization&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;FreshBooks&quot;</span>
+<span class="k">assert</span> <span class="n">clients</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">"clients"</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">"organization"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"FreshBooks"</span>
 
 <span class="k">for</span> <span class="n">client</span> <span class="ow">in</span> <span class="n">clients</span><span class="p">:</span>
-    <span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">organization</span> <span class="o">==</span> <span class="s2">&quot;FreshBooks&quot;</span>
-    <span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;organization&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;FreshBooks&quot;</span>
+    <span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">organization</span> <span class="o">==</span> <span class="s2">"FreshBooks"</span>
+    <span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">"organization"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"FreshBooks"</span>
 </pre></div>
 </div>
 </section>
@@ -154,17 +154,17 @@ index and iterated over. Similarly, the raw dictionary can be accessed via the <
 <p>API calls to create and update take a dictionary of the resource data. A successful call will return a <code class="docutils literal notranslate"><span class="pre">Result</span></code> object
 as if a <code class="docutils literal notranslate"><span class="pre">get</span></code> call.</p>
 <p>Create:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;john.doe@abcorp.com&quot;</span><span class="p">}</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"email"</span><span class="p">:</span> <span class="s2">"john.doe@abcorp.com"</span><span class="p">}</span>
 <span class="n">new_client</span> <span class="o">=</span> <span class="n">FreshBooksClient</span><span class="o">.</span><span class="n">clients</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">account_id</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
 
 <span class="n">client_id</span> <span class="o">=</span> <span class="n">new_client</span><span class="o">.</span><span class="n">userid</span>
 </pre></div>
 </div>
 <p>Update:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;john.doe@abcorp.ca&quot;</span><span class="p">}</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"email"</span><span class="p">:</span> <span class="s2">"john.doe@abcorp.ca"</span><span class="p">}</span>
 <span class="n">client</span> <span class="o">=</span> <span class="n">freshBooksClient</span><span class="o">.</span><span class="n">clients</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">account_id</span><span class="p">,</span> <span class="n">client_id</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
 
-<span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">email</span> <span class="o">==</span> <span class="s2">&quot;john.doe@abcorp.ca&quot;</span>
+<span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">email</span> <span class="o">==</span> <span class="s2">"john.doe@abcorp.ca"</span>
 </pre></div>
 </div>
 <p>Delete:</p>
@@ -185,19 +185,19 @@ and the HTTP response body.</p>
 <span class="k">try</span><span class="p">:</span>
     <span class="n">client</span> <span class="o">=</span> <span class="n">freshBooksClient</span><span class="o">.</span><span class="n">clients</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">account_id</span><span class="p">,</span> <span class="n">client_id</span><span class="p">)</span>
 <span class="k">except</span> <span class="n">FreshBooksError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-    <span class="k">assert</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;Client not found.&quot;</span>
+    <span class="k">assert</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="o">==</span> <span class="s2">"Client not found."</span>
     <span class="k">assert</span> <span class="n">e</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">404</span>
     <span class="k">assert</span> <span class="n">e</span><span class="o">.</span><span class="n">error_code</span> <span class="o">==</span> <span class="mi">1012</span>
     <span class="k">assert</span> <span class="n">e</span><span class="o">.</span><span class="n">error_details</span> <span class="o">==</span> <span class="p">[{</span>
-        <span class="s2">&quot;errno&quot;</span><span class="p">:</span> <span class="mi">1012</span><span class="p">,</span>
-        <span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;userid&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Client not found.&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;object&quot;</span><span class="p">:</span> <span class="s2">&quot;client&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;12345&quot;</span>
+        <span class="s2">"errno"</span><span class="p">:</span> <span class="mi">1012</span><span class="p">,</span>
+        <span class="s2">"field"</span><span class="p">:</span> <span class="s2">"userid"</span><span class="p">,</span>
+        <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"Client not found."</span><span class="p">,</span>
+        <span class="s2">"object"</span><span class="p">:</span> <span class="s2">"client"</span><span class="p">,</span>
+        <span class="s2">"value"</span><span class="p">:</span> <span class="s2">"12345"</span>
     <span class="p">}]</span>
-    <span class="k">assert</span> <span class="n">e</span><span class="o">.</span><span class="n">raw_response</span> <span class="o">==</span>  <span class="p">(</span><span class="s2">&quot;{&#39;response&#39;: {&#39;errors&#39;: [{&#39;errno&#39;: 1012, &quot;</span>
-                               <span class="s2">&quot;&#39;field&#39;: &#39;userid&#39;, &#39;message&#39;: &#39;Client not found.&#39;, &quot;</span>
-                               <span class="s2">&quot;&#39;object&#39;: &#39;client&#39;, &#39;value&#39;: &#39;134&#39;}]}}&quot;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">e</span><span class="o">.</span><span class="n">raw_response</span> <span class="o">==</span>  <span class="p">(</span><span class="s2">"{'response': {'errors': [{'errno': 1012, "</span>
+                               <span class="s2">"'field': 'userid', 'message': 'Client not found.', "</span>
+                               <span class="s2">"'object': 'client', 'value': '134'}]}}"</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Not all resources have full CRUD methods available. For example expense categories have <code class="docutils literal notranslate"><span class="pre">list</span></code> and <code class="docutils literal notranslate"><span class="pre">get</span></code>
@@ -263,7 +263,7 @@ in the list of builders to the <code class="docutils literal notranslate"><span 
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">freshbooks</span><span class="w"> </span><span class="kn">import</span> <span class="n">FilterBuilder</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">filter</span> <span class="o">=</span> <span class="n">FilterBuilder</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">filter</span><span class="o">.</span><span class="n">equals</span><span class="p">(</span><span class="s2">&quot;userid&quot;</span><span class="p">,</span> <span class="mi">123</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">filter</span><span class="o">.</span><span class="n">equals</span><span class="p">(</span><span class="s2">"userid"</span><span class="p">,</span> <span class="mi">123</span><span class="p">)</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">clients</span> <span class="o">=</span> <span class="n">freshBooksClient</span><span class="o">.</span><span class="n">clients</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="n">account_id</span><span class="p">,</span> <span class="n">builders</span><span class="o">=</span><span class="p">[</span><span class="nb">filter</span><span class="p">])</span>
 </pre></div>
@@ -273,36 +273,36 @@ which can be chained together.</p>
 <p>Please see <a class="reference external" href="https://www.freshbooks.com/api/active_deleted">FreshBooks API - Active and Deleted Objects</a>
 for details on filtering active, archived, and deleted resources.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">FilterBuilder</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">in_list</span><span class="p">(</span><span class="s2">&quot;clientids&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">123</span><span class="p">,</span> <span class="mi">456</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">in_list</span><span class="p">(</span><span class="s2">"clientids"</span><span class="p">,</span> <span class="p">[</span><span class="mi">123</span><span class="p">,</span> <span class="mi">456</span><span class="p">])</span>
 <span class="go">FilterBuilder(&amp;search[clientids][]=123&amp;search[clientids][]=456)</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">FilterBuilder</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">like</span><span class="p">(</span><span class="s2">&quot;email_like&quot;</span><span class="p">,</span> <span class="s2">&quot;@freshbooks.com&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">like</span><span class="p">(</span><span class="s2">"email_like"</span><span class="p">,</span> <span class="s2">"@freshbooks.com"</span><span class="p">)</span>
 <span class="go">FilterBuilder(&amp;search[email_like]=@freshbooks.com)</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">FilterBuilder</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="s2">&quot;amount&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="s2">"amount"</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 <span class="go">FilterBuilder(&amp;search[amount_min]=1&amp;search[amount_max]=10)</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">FilterBuilder</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="s2">&quot;amount&quot;</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>  <span class="c1"># For just minimum</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="s2">"amount"</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>  <span class="c1"># For just minimum</span>
 <span class="go">FilterBuilder(&amp;search[amount_min]=15)</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">FilterBuilder</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="s2">&quot;amount_min&quot;</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>  <span class="c1"># Alternatively</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="s2">"amount_min"</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>  <span class="c1"># Alternatively</span>
 <span class="go">FilterBuilder(&amp;search[amount_min]=15)</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">FilterBuilder</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="s2">&quot;start_date&quot;</span><span class="p">,</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="s2">"start_date"</span><span class="p">,</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">())</span>
 <span class="go">FilterBuilder(&amp;search[start_date]=2020-11-21)</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">FilterBuilder</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">boolean</span><span class="p">(</span><span class="s2">&quot;complete&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span> <span class="c1"># Boolean filters are mostly used on Project-like resources</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">boolean</span><span class="p">(</span><span class="s2">"complete"</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span> <span class="c1"># Boolean filters are mostly used on Project-like resources</span>
 <span class="go">FilterBuilder(&amp;complete=False)</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">last_week</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">FilterBuilder</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">equals</span><span class="p">(</span><span class="s2">&quot;vis_state&quot;</span><span class="p">,</span> <span class="n">VisState</span><span class="o">.</span><span class="n">ACTIVE</span><span class="p">)</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="s2">&quot;updated&quot;</span><span class="p">,</span> <span class="n">last_week</span><span class="p">,</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">())</span> <span class="c1"># Chaining filters</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">equals</span><span class="p">(</span><span class="s2">"vis_state"</span><span class="p">,</span> <span class="n">VisState</span><span class="o">.</span><span class="n">ACTIVE</span><span class="p">)</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="s2">"updated"</span><span class="p">,</span> <span class="n">last_week</span><span class="p">,</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">())</span> <span class="c1"># Chaining filters</span>
 <span class="go">FilterBuilder(&amp;search[vis_state]=0&amp;search[updated_min]=2020-11-14&amp;search[updated_max]=2020-11-21)</span>
 </pre></div>
 </div>
@@ -314,22 +314,22 @@ can be constructed.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">freshbooks</span><span class="w"> </span><span class="kn">import</span> <span class="n">IncludesBuilder</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">includes</span> <span class="o">=</span> <span class="n">IncludesBuilder</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">includes</span><span class="o">.</span><span class="n">include</span><span class="p">(</span><span class="s2">&quot;outstanding_balance&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">includes</span><span class="o">.</span><span class="n">include</span><span class="p">(</span><span class="s2">"outstanding_balance"</span><span class="p">)</span>
 <span class="go">IncludesBuilder(&amp;include[]=outstanding_balance)</span>
 </pre></div>
 </div>
 <p>Which can then be passed into <code class="docutils literal notranslate"><span class="pre">list</span></code> or <code class="docutils literal notranslate"><span class="pre">get</span></code> calls:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">clients</span> <span class="o">=</span> <span class="n">freshBooksClient</span><span class="o">.</span><span class="n">clients</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="n">account_id</span><span class="p">,</span> <span class="n">builders</span><span class="o">=</span><span class="p">[</span><span class="n">includes</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">clients</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">outstanding_balance</span>
-<span class="go">[{&#39;amount&#39;: {&#39;amount&#39;: &#39;100.00&#39;, &#39;code&#39;: &#39;USD&#39;}}]</span>
+<span class="go">[{'amount': {'amount': '100.00', 'code': 'USD'}}]</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">client</span> <span class="o">=</span> <span class="n">freshBooksClient</span><span class="o">.</span><span class="n">clients</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">account_id</span><span class="p">,</span> <span class="n">client_id</span><span class="p">,</span> <span class="n">includes</span><span class="o">=</span><span class="n">includes</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">client</span><span class="o">.</span><span class="n">outstanding_balance</span>
-<span class="go">[{&#39;amount&#39;: {&#39;amount&#39;: &#39;100.00&#39;, &#39;code&#39;: &#39;USD&#39;}}]</span>
+<span class="go">[{'amount': {'amount': '100.00', 'code': 'USD'}}]</span>
 </pre></div>
 </div>
 <p>Includes can also be passed into <code class="docutils literal notranslate"><span class="pre">create</span></code> and <code class="docutils literal notranslate"><span class="pre">update</span></code> calls to include the data in the response of the updated resource:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;john.doe@abcorp.com&quot;</span><span class="p">}</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"email"</span><span class="p">:</span> <span class="s2">"john.doe@abcorp.com"</span><span class="p">}</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">new_client</span> <span class="o">=</span> <span class="n">FreshBooksClient</span><span class="o">.</span><span class="n">clients</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">account_id</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">includes</span><span class="o">=</span><span class="n">includes</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">new_client</span><span class="o">.</span><span class="n">outstanding_balance</span>
 <span class="go">[]  # New client has no balance</span>
@@ -343,7 +343,7 @@ can be constructed.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">freshbooks</span><span class="w"> </span><span class="kn">import</span> <span class="n">SortBuilder</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">sort</span> <span class="o">=</span> <span class="n">SortBuilder</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">sort</span><span class="o">.</span><span class="n">ascending</span><span class="p">(</span><span class="s2">&quot;invoice_date&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sort</span><span class="o">.</span><span class="n">ascending</span><span class="p">(</span><span class="s2">"invoice_date"</span><span class="p">)</span>
 <span class="go">SortBuilder(&amp;sort=invoice_date_asc)</span>
 </pre></div>
 </div>
@@ -351,7 +351,7 @@ can be constructed.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">freshbooks</span><span class="w"> </span><span class="kn">import</span> <span class="n">SortBuilder</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">sort</span> <span class="o">=</span> <span class="n">SortBuilder</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">sort</span><span class="o">.</span><span class="n">descending</span><span class="p">(</span><span class="s2">&quot;invoice_date&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sort</span><span class="o">.</span><span class="n">descending</span><span class="p">(</span><span class="s2">"invoice_date"</span><span class="p">)</span>
 <span class="go">SortBuilder(&amp;sort=invoice_date_desc)</span>
 </pre></div>
 </div>
@@ -368,8 +368,8 @@ can be constructed.</p>
 cases, the raw response string will differ from the attribute. For example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timezone</span>
 
-<span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;updated&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;2021-04-16 10:31:59&quot;</span>  <span class="c1"># Zone-naive string in &quot;US/Eastern&quot;</span>
-<span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">updated</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;2021-04-16T14:31:59+00:00&#39;</span>  <span class="c1"># Zone-aware datetime in UTC</span>
+<span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">"updated"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"2021-04-16 10:31:59"</span>  <span class="c1"># Zone-naive string in "US/Eastern"</span>
+<span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">updated</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span> <span class="o">==</span> <span class="s1">'2021-04-16T14:31:59+00:00'</span>  <span class="c1"># Zone-aware datetime in UTC</span>
 <span class="k">assert</span> <span class="n">client</span><span class="o">.</span><span class="n">updated</span> <span class="o">==</span> <span class="n">datetime</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2021</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">hour</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">minute</span><span class="o">=</span><span class="mi">31</span><span class="p">,</span> <span class="n">second</span><span class="o">=</span><span class="mi">59</span><span class="p">,</span> <span class="n">tzinfo</span><span class="o">=</span><span class="n">timezone</span><span class="o">.</span><span class="n">utc</span><span class="p">)</span>
 </pre></div>
 </div>

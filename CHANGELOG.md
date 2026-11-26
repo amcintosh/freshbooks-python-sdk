@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.3.1
+
 - Fix `ZoneInfoNotFoundError` when reading accounting dates on systems without the legacy `US/Eastern`
   time zone name (Debian 13, Ubuntu 24.04+)
 

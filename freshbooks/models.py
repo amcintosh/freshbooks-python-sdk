@@ -87,7 +87,7 @@ class Result:
                 parsed_date = datetime.fromisoformat(field_data.rstrip("Z"))  # type: ignore
                 if "T" in field_data or _is_accounting_utc_date_field(self._name, field):
                     return parsed_date.replace(tzinfo=timezone.utc)
-                return parsed_date.replace(tzinfo=ZoneInfo("US/Eastern")).astimezone(timezone.utc)
+                return parsed_date.replace(tzinfo=ZoneInfo("America/New_York")).astimezone(timezone.utc)
             except ValueError:
                 return field_data
 

@@ -5,7 +5,7 @@ pytest-cov
 httpretty
 flake8
 mypy
-sphinx
+sphinx<9.0
 sphinx-autodoc2
 sphinx-rtd-theme
 enum-tools[sphinx]

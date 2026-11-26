@@ -1,6 +1,6 @@
 import json
 from types import SimpleNamespace
-from typing import Any, Dict, Optional
+from typing import Any, Callable, Dict, Optional
 
 import requests
 from requests.adapters import HTTPAdapter
@@ -62,14 +62,15 @@ class Resource:
     ) -> requests.Response:
         payload = None
         has_data = data is not None
+        session: Callable[..., requests.Response]
         if method is HttpVerbs.GET:
             session = self.session.get
         elif method is HttpVerbs.POST:
-            session = self.session.post  # type: ignore
+            session = self.session.post
         elif method is HttpVerbs.PUT:
-            session = self.session.put  # type: ignore
+            session = self.session.put
         elif method is HttpVerbs.PATCH:  # pragma: no cover
-            session = self.session.patch  # type: ignore
+            session = self.session.patch
         elif method is HttpVerbs.DELETE:
             session = self.session.delete
         elif method is HttpVerbs.HEAD:  # pragma: no cover

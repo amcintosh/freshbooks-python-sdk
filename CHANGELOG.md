@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Fix `ZoneInfoNotFoundError` when reading accounting dates on systems without the legacy `US/Eastern`
+  time zone name (Debian 13, Ubuntu 24.04+)
+
 ## 1.3.0
 
 - Add Ledger Accounts resource

@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.4.0
+
 - Drop support for python 3.8, 3.9 as they are end of life and no longer available on Ubuntu 26.04 LTS
   (and GitHub Actions runners).
 
